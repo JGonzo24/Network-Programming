@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/joshu/Desktop/VS Code/Network Programming",
-      "program": "c:/Users/joshu/Desktop/VS Code/Network Programming/build/Debug/outDebug",
+      "cwd": "c:/Users/joshu/Desktop/VS Code/Network Programming/Chapter 2 Socket APIs",
+      "program": "c:/Users/joshu/Desktop/VS Code/Network Programming/Chapter 2 Socket APIs/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
