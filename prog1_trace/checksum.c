@@ -38,7 +38,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
-
 /*
  * in_cksum --
  *      Checksum routine for Internet Protocol family headers (C Version)
@@ -46,6 +45,9 @@
  * Note - addr - pass in a pointer to an array of chars but typecast it to a unsigned short *
  *        len = number of BYTES to ckeck (so number of bytes in the char array
  */
+typedef unsigned short u_short;
+typedef unsigned char u_char;
+
 unsigned short in_cksum(unsigned short *addr,int len)
 {
         register int sum = 0;
