@@ -100,6 +100,10 @@ void my_packet_handler(u_char *args, const struct pcap_pkthdr *header, const uin
     {
         arp(packet+14);
     }
+    else if (etherType == 0x0800)
+    {
+        ip(packet+14);
+    }
     printf("\n");
 }
 
@@ -155,8 +159,81 @@ void arp(const uint8_t *packet)
     printf("\t\tTarget IP: %s\n", dest_ip);
 }
 
-void ip()
+void ip(const uint8_t* packet)
 {
+    // What does an IP header look like?
+    uint8_t header_length;
+    uint8_t ip_pdu_len[2];
+    uint8_t ttl;
+    uint8_t protocol;
+    // uint16_t checksum;
+    uint16_t checksum;
+
+    uint8_t sender_ip[4];
+    uint8_t dest_ip[4];
+
+    printf("\n\tIP header\n");
+    
+    // Header length in the lower 4 bits of the first byte
+    header_length = (packet[0] & 0x0F) * 4;
+
+    // The next field that is of interest is the ip_pdu_len
+    // Second byte, len = 2 bytes
+    memcpy(&ip_pdu_len, packet + 2, 2);
+
+    //TTL, this is in the 8th byte, 1 byte long
+    memcpy(&ttl, packet + 8, 1);
+
+    // Protocol (byte 9), 1 byte long
+    memcpy(&protocol, packet + 9, 1);
+ 
+
+
+    // checksum (byte 10), 2 bytes long
+    memcpy(checksum, packet + 10, 2);
+    checksum = ntohs(checksum);
+    // Sender address (byte 16), 4 bytes long
+    memcpy(&sender_ip, packet + 12, 4);
+
+    // Destination address
+    memcpy(&dest_ip, packet + 16, 4);
+    
+    // Now that we have the data needed from the header, lets distinguish and print
+    printf("\t\tIP PDU Len: %u", ip_pdu_len);
+    printf("\t\tHeader Len (bytes): %u", header_length);
+    printf("\t\tTTL:%u", ttl);
+    printf("\t\tProtocol: ");
+    switch(protocol)
+    {
+        case 1:
+        // ICMP
+            printf("ICMP\n");
+            break;
+        case 4:
+            printf("TCP\n");
+            break;
+        // IPv4
+        case 6:
+        // TCP
+            printf("UDP\n");
+            break;
+        default:
+            printf("Unknown\n");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -174,7 +251,8 @@ int main()
     // }
     // Open File with PCAP library
     char errbuf[PCAP_ERRBUF_SIZE];
-    pcap_t *pcap_handle = pcap_open_offline("ArpTest.pcap", errbuf);
+    const char* file_dir = "ArpTest.pcap";
+    pcap_t *pcap_handle = pcap_open_offline(file_dir, errbuf);
 
     if (!pcap_handle)
     {
