@@ -89,6 +89,7 @@ void convert_to_ip(const uint8_t *bytes, char *output, size_t length)
 // Process and print the Ethernet header.
 void ethernet(const uint8_t *packet_in)
 {
+
     printf("\tEthernet Header\n");
 
     uint8_t dest_mac[6];
@@ -168,14 +169,14 @@ void arp(const uint8_t *packet)
 
     opcode = ntohs(opcode);
 
-    printf("\n\tARP Header\n");
+    printf("\n\tARP header\n");
     printf("\t\tOpcode: ");
     if (opcode == 1)
         printf("Request\n");
     else if (opcode == 2)
         printf("Reply\n");
     else
-        printf("Unknown (%u)\n", opcode);
+        printf("Unknown\n");
 
     // Convert and print sender MAC and IP.
     char sender_mac_str[MAC_STR_LEN];
@@ -249,7 +250,7 @@ void ip(const uint8_t *packet)
         printf("UDP\n");
         break;
     default:
-        printf("Unknown (%u)\n", protocol);
+        printf("Unknown\n");
         break;
     }
     printf("\t\tChecksum: ");
@@ -258,11 +259,11 @@ void ip(const uint8_t *packet)
     uint16_t computed_checksum = in_cksum((unsigned short *)packet, header_length);
     if (computed_checksum == 0)
     {
-        printf("Correct (0x%04X)\n", checksum);
+        printf("Correct (0x%04x)\n", checksum);
     }
     else
     {
-        printf("Incorrect (0x%04X)\n", checksum);
+        printf("Incorrect (0x%04x)\n", checksum);
     }
 
     printf("\t\tSender IP: %s\n", sender_ip_str);
@@ -282,7 +283,7 @@ void ip(const uint8_t *packet)
     }
     else
     {
-        printf("\t\tUnknown\n");
+        return; // Unknown protocol
     }
 }
 
@@ -346,8 +347,19 @@ void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length
 
     // Print the extracted TCP header values.
     printf("\t\tSegment Length: %u\n", segment_length);
-    printf("\t\tSource Port:  %u\n", src_port);
-    printf("\t\tDest Port:  %u\n", dest_port);
+    // Get the source and destination ports correlated with the service names. If unknown print the port number
+    const char *src_service = get_service_name(src_port);
+    const char *dest_service = get_service_name(dest_port);
+    if (src_service)
+        printf("\t\tSource Port:  %s\n", src_service);
+    else
+        printf("\t\tSource Port:  %u\n", src_port);
+
+    if (dest_service)
+        printf("\t\tDest Port:  %s\n", dest_service);
+    else
+        printf("\t\tDest Port:  %u\n", dest_port);
+
     printf("\t\tSequence Number: %u\n", seq_number);
     printf("\t\tACK Number: %u\n", ack_number);
     printf("\t\tData Offset (bytes): %u\n", tcp_header_length);
@@ -399,12 +411,12 @@ void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length
     // The correct checksum is computed over the pseudo-header plus the TCP segment.
     if (computed_checksum == 0)
     {
-        printf("\t\tChecksum: Correct (0x%04X)\n", checksum);
+        printf("\t\tChecksum: Correct (0x%04x)\n", checksum);
     }
     else
     {
-        printf("\t\tChecksum: Incorrect (0x%04X)\n", checksum);
-        printf("\t\tExpected: 0x%04X\n", computed_checksum);
+        printf("\t\tChecksum: Incorrect (0x%04x)\n", checksum);
+        printf("\t\tExpected: 0x%04x\n", computed_checksum);
     }
 
 }
@@ -429,15 +441,17 @@ void udp(const uint8_t *packet)
     const char *dest_service = get_service_name(dest_port);
 
     if (src_service)
-        printf("\t\tSource Port: %s (%u)\n", src_service, src_port);
+        printf("\t\tSource Port:  %s \n", src_service);
     else
-        printf("\t\tSource Port: Unknown (%u)\n", src_port);
+
+        printf("\t\tSource Port:  %u \n", src_port);
 
     // Print Destination Port.
     if (dest_service)
-        printf("\t\tDest Port: %s (%u)\n", dest_service, dest_port);
+        printf("\t\tDest Port:  %s\n", dest_service);
+
     else
-        printf("\t\tDest Port: Unknown (%u)\n", dest_port);
+        printf("\t\tDest Port:  %u\n", dest_port);
 }
 
 void icmp(const uint8_t *packet)
@@ -456,15 +470,24 @@ void icmp(const uint8_t *packet)
     }
     else
     {
-        printf("\t\tType: Unknown (%u)\n", type);
+        printf("\t\tType: %u\n", type);
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    // Input the .pcap file that you want to analyze
+    // Check if the user provided a filename as an argument.
+    if (argc != 2)
+    {
+        fprintf(stderr, "Usage: %s <pcap_file>\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+
+
     // Open pcap file.
     char errbuf[PCAP_ERRBUF_SIZE];
-    const char *file_dir = "largeMix.pcap";
+    const char *file_dir = argv[1];
     pcap_t *pcap_handle = pcap_open_offline(file_dir, errbuf);
 
     if (!pcap_handle)

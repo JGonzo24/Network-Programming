@@ -1,3 +1,4 @@
+
 Packet number: 1  Packet Len: 78
 
 	Ethernet Header
@@ -15,7 +16,7 @@ Packet number: 1  Packet Len: 78
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 2  Packet Len: 491
@@ -35,7 +36,7 @@ Packet number: 2  Packet Len: 491
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 3  Packet Len: 85
@@ -55,7 +56,7 @@ Packet number: 3  Packet Len: 85
 		Dest IP: 64.166.172.8
 
 	UDP Header
-		Source Port:  2074 
+		Source Port:  2074
 		Dest Port:  DNS
 
 Packet number: 4  Packet Len: 196
@@ -75,7 +76,7 @@ Packet number: 4  Packet Len: 196
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  2074
 
 Packet number: 5  Packet Len: 73
@@ -95,7 +96,7 @@ Packet number: 5  Packet Len: 73
 		Dest IP: 64.166.172.8
 
 	UDP Header
-		Source Port:  2075 
+		Source Port:  2075
 		Dest Port:  DNS
 
 Packet number: 6  Packet Len: 542
@@ -115,7 +116,7 @@ Packet number: 6  Packet Len: 542
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  2075
 
 Packet number: 7  Packet Len: 74
@@ -135,7 +136,7 @@ Packet number: 7  Packet Len: 74
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 8  Packet Len: 233
@@ -155,7 +156,7 @@ Packet number: 8  Packet Len: 233
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 9  Packet Len: 72
@@ -175,7 +176,7 @@ Packet number: 9  Packet Len: 72
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 10  Packet Len: 478
@@ -195,7 +196,7 @@ Packet number: 10  Packet Len: 478
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 11  Packet Len: 81
@@ -215,7 +216,7 @@ Packet number: 11  Packet Len: 81
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 12  Packet Len: 209
@@ -235,7 +236,7 @@ Packet number: 12  Packet Len: 209
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 13  Packet Len: 73
@@ -255,7 +256,7 @@ Packet number: 13  Packet Len: 73
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 14  Packet Len: 442
@@ -275,7 +276,7 @@ Packet number: 14  Packet Len: 442
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 15  Packet Len: 79
@@ -295,7 +296,7 @@ Packet number: 15  Packet Len: 79
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 16  Packet Len: 255
@@ -315,7 +316,7 @@ Packet number: 16  Packet Len: 255
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 17  Packet Len: 84
@@ -335,7 +336,7 @@ Packet number: 17  Packet Len: 84
 		Dest IP: 206.13.29.12
 
 	UDP Header
-		Source Port:  1335 
+		Source Port:  1335
 		Dest Port:  DNS
 
 Packet number: 18  Packet Len: 431
@@ -355,7 +356,7 @@ Packet number: 18  Packet Len: 431
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  DNS 
+		Source Port:  DNS
 		Dest Port:  1335
 
 Packet number: 19  Packet Len: 92
@@ -375,7 +376,7 @@ Packet number: 19  Packet Len: 92
 		Dest IP: 192.168.1.255
 
 	UDP Header
-		Source Port:  137 
+		Source Port:  137
 		Dest Port:  137
 
 Packet number: 20  Packet Len: 104
@@ -395,6 +396,5 @@ Packet number: 20  Packet Len: 104
 		Dest IP: 192.168.1.102
 
 	UDP Header
-		Source Port:  137 
+		Source Port:  137
 		Dest Port:  137
-
