@@ -1,4 +1,4 @@
-Packet number: 1  Packet Len: 78
+Packet number: 1  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -6,19 +6,18 @@ Packet number: 1  Packet Len: 78
 		Type: IP
 
 	IP Header
-		IP PDU Len: 64
-		Header Len (bytes): 20
+		IP PDU Len: 60
+		Header Len (bytes): 40
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x2067)
+		Protocol: ICMP
+		Checksum: Incorrect (0x1743)
 		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
+		Dest IP: 66.94.230.35
 
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
+	ICMP Header
+		Type: 109
 
-Packet number: 2  Packet Len: 491
+Packet number: 2  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:2:2d:90:75:89
@@ -26,19 +25,18 @@ Packet number: 2  Packet Len: 491
 		Type: IP
 
 	IP Header
-		IP PDU Len: 477
+		IP PDU Len: 60
 		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0x30e3)
-		Sender IP: 206.13.29.12
+		TTL: 52
+		Protocol: ICMP
+		Checksum: Incorrect (0x5565)
+		Sender IP: 66.94.230.35
 		Dest IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
+	ICMP Header
+		Type: Reply
 
-Packet number: 3  Packet Len: 85
+Packet number: 3  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -46,19 +44,18 @@ Packet number: 3  Packet Len: 85
 		Type: IP
 
 	IP Header
-		IP PDU Len: 71
+		IP PDU Len: 65340
 		Header Len (bytes): 20
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x1ec3)
+		Protocol: ICMP
+		Checksum: Incorrect (0x1742)
 		Sender IP: 192.168.1.102
-		Dest IP: 64.166.172.8
+		Dest IP: 66.94.230.35
 
-	UDP Header
-		Source Port:  2074 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 4  Packet Len: 196
+Packet number: 4  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:2:2d:90:75:89
@@ -66,19 +63,18 @@ Packet number: 4  Packet Len: 196
 		Type: IP
 
 	IP Header
-		IP PDU Len: 182
+		IP PDU Len: 195
 		Header Len (bytes): 20
-		TTL: 253
-		Protocol: UDP
-		Checksum: Correct (0x0870)
-		Sender IP: 64.166.172.8
+		TTL: 52
+		Protocol: ICMP
+		Checksum: Incorrect (0x4f0a)
+		Sender IP: 66.94.230.35
 		Dest IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  2074
+	ICMP Header
+		Type: Reply
 
-Packet number: 5  Packet Len: 73
+Packet number: 5  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -86,19 +82,18 @@ Packet number: 5  Packet Len: 73
 		Type: IP
 
 	IP Header
-		IP PDU Len: 59
+		IP PDU Len: 60
 		Header Len (bytes): 20
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x1ece)
+		Protocol: ICMP
+		Checksum: Incorrect (0x4371)
 		Sender IP: 192.168.1.102
-		Dest IP: 64.166.172.8
+		Dest IP: 64.233.187.99
 
-	UDP Header
-		Source Port:  2075 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 6  Packet Len: 542
+Packet number: 6  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:2:2d:90:75:89
@@ -106,17 +101,16 @@ Packet number: 6  Packet Len: 542
 		Type: IP
 
 	IP Header
-		IP PDU Len: 528
+		IP PDU Len: 60
 		Header Len (bytes): 20
-		TTL: 253
-		Protocol: UDP
-		Checksum: Correct (0x0715)
-		Sender IP: 64.166.172.8
+		TTL: 242
+		Protocol: ICMP
+		Checksum: Incorrect (0xd170)
+		Sender IP: 64.233.187.99
 		Dest IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  2075
+	ICMP Header
+		Type: Reply
 
 Packet number: 7  Packet Len: 74
 
@@ -129,16 +123,15 @@ Packet number: 7  Packet Len: 74
 		IP PDU Len: 60
 		Header Len (bytes): 20
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x205d)
+		Protocol: ICMP
+		Checksum: Incorrect (0x4370)
 		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
+		Dest IP: 64.233.187.99
 
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 8  Packet Len: 233
+Packet number: 8  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:2:2d:90:75:89
@@ -146,19 +139,18 @@ Packet number: 8  Packet Len: 233
 		Type: IP
 
 	IP Header
-		IP PDU Len: 219
+		IP PDU Len: 60
 		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0x68b7)
-		Sender IP: 206.13.29.12
+		TTL: 242
+		Protocol: ICMP
+		Checksum: Incorrect (0xd16f)
+		Sender IP: 64.233.187.99
 		Dest IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
+	ICMP Header
+		Type: Reply
 
-Packet number: 9  Packet Len: 72
+Packet number: 9  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -166,19 +158,18 @@ Packet number: 9  Packet Len: 72
 		Type: IP
 
 	IP Header
-		IP PDU Len: 58
+		IP PDU Len: 60
 		Header Len (bytes): 20
-		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x2032)
+		TTL: 127
+		Protocol: ICMP
+		Checksum: Incorrect (0x436f)
 		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
+		Dest IP: 64.233.187.99
 
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 10  Packet Len: 478
+Packet number: 10  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:2:2d:90:75:89
@@ -186,19 +177,15 @@ Packet number: 10  Packet Len: 478
 		Type: IP
 
 	IP Header
-		IP PDU Len: 464
+		IP PDU Len: 60
 		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0xb9ca)
-		Sender IP: 206.13.29.12
+		TTL: 242
+		Protocol: Unknown
+		Checksum: Incorrect (0xd16e)
+		Sender IP: 64.233.187.99
 		Dest IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
-
-Packet number: 11  Packet Len: 81
+Packet number: 11  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -206,19 +193,18 @@ Packet number: 11  Packet Len: 81
 		Type: IP
 
 	IP Header
-		IP PDU Len: 67
+		IP PDU Len: 60
 		Header Len (bytes): 20
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x2017)
+		Protocol: ICMP
+		Checksum: Incorrect (0xbc6e)
 		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
+		Dest IP: 64.233.187.99
 
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 12  Packet Len: 209
+Packet number: 12  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:2:2d:90:75:89
@@ -226,19 +212,18 @@ Packet number: 12  Packet Len: 209
 		Type: IP
 
 	IP Header
-		IP PDU Len: 195
+		IP PDU Len: 60
 		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0xb8d5)
-		Sender IP: 206.13.29.12
+		TTL: 242
+		Protocol: ICMP
+		Checksum: Incorrect (0xd192)
+		Sender IP: 64.233.187.99
 		Dest IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
+	ICMP Header
+		Type: Reply
 
-Packet number: 13  Packet Len: 73
+Packet number: 13  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -246,39 +231,18 @@ Packet number: 13  Packet Len: 73
 		Type: IP
 
 	IP Header
-		IP PDU Len: 59
+		IP PDU Len: 60
 		Header Len (bytes): 20
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x1fd2)
-		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
+		Protocol: ICMP
+		Checksum: Incorrect (0xbc00)
+		Sender IP: 63.168.1.102
+		Dest IP: 129.65.2.119
 
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 14  Packet Len: 442
-
-	Ethernet Header
-		Dest MAC: 0:2:2d:90:75:89
-		Source MAC: 0:6:25:78:c4:7d
-		Type: IP
-
-	IP Header
-		IP PDU Len: 428
-		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0xb7a3)
-		Sender IP: 206.13.29.12
-		Dest IP: 192.168.1.102
-
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
-
-Packet number: 15  Packet Len: 79
+Packet number: 14  Packet Len: 74
 
 	Ethernet Header
 		Dest MAC: 0:6:25:78:c4:7d
@@ -286,115 +250,42 @@ Packet number: 15  Packet Len: 79
 		Type: IP
 
 	IP Header
-		IP PDU Len: 65
+		IP PDU Len: 60
 		Header Len (bytes): 20
 		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x1f32)
-		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
+		Protocol: ICMP
+		Checksum: Incorrect (0xbbff)
+		Sender IP: 192.87.1.102
+		Dest IP: 129.65.2.119
 
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
+	ICMP Header
+		Type: Request
 
-Packet number: 16  Packet Len: 255
-
-	Ethernet Header
-		Dest MAC: 0:2:2d:90:75:89
-		Source MAC: 0:6:25:78:c4:7d
-		Type: IP
-
-	IP Header
-		IP PDU Len: 241
-		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0xb57c)
-		Sender IP: 206.13.29.12
-		Dest IP: 192.168.1.102
-
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
-
-Packet number: 17  Packet Len: 84
-
-	Ethernet Header
-		Dest MAC: 0:6:25:78:c4:7d
-		Source MAC: 0:2:2d:90:75:89
-		Type: IP
-
-	IP Header
-		IP PDU Len: 70
-		Header Len (bytes): 20
-		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x1f0e)
-		Sender IP: 192.168.1.102
-		Dest IP: 206.13.29.12
-
-	UDP Header
-		Source Port:  1335 
-		Dest Port:  DNS
-
-Packet number: 18  Packet Len: 431
-
-	Ethernet Header
-		Dest MAC: 0:2:2d:90:75:89
-		Source MAC: 0:6:25:78:c4:7d
-		Type: IP
-
-	IP Header
-		IP PDU Len: 417
-		Header Len (bytes): 20
-		TTL: 247
-		Protocol: UDP
-		Checksum: Correct (0xb3f5)
-		Sender IP: 206.13.29.12
-		Dest IP: 192.168.1.102
-
-	UDP Header
-		Source Port:  DNS 
-		Dest Port:  1335
-
-Packet number: 19  Packet Len: 92
+Packet number: 15  Packet Len: 60
 
 	Ethernet Header
 		Dest MAC: ff:ff:ff:ff:ff:ff
-		Source MAC: 0:2:2d:90:75:89
-		Type: IP
+		Source MAC: 0:20:18:dc:ae:ab
+		Type: ARP
 
-	IP Header
-		IP PDU Len: 78
-		Header Len (bytes): 20
-		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x46a2)
-		Sender IP: 192.168.1.102
-		Dest IP: 192.168.1.255
+	ARP header
+		Opcode: Request
+		Sender MAC: 0:20:18:dc:ae:ab
+		Sender IP: 192.168.1.105
+		Target MAC: 0:0:0:0:0:0
+		Target IP: 192.168.1.102
 
-	UDP Header
-		Source Port:  137 
-		Dest Port:  137
-
-Packet number: 20  Packet Len: 104
+Packet number: 16  Packet Len: 42
 
 	Ethernet Header
-		Dest MAC: 0:2:2d:90:75:89
-		Source MAC: 0:20:18:dc:ae:ab
-		Type: IP
+		Dest MAC: 0:20:18:dc:ae:ab
+		Source MAC: 0:2:2d:90:75:89
+		Type: ARP
 
-	IP Header
-		IP PDU Len: 90
-		Header Len (bytes): 20
-		TTL: 128
-		Protocol: UDP
-		Checksum: Correct (0x8af0)
-		Sender IP: 192.168.1.105
-		Dest IP: 192.168.1.102
-
-	UDP Header
-		Source Port:  137 
-		Dest Port:  137
+	ARP header
+		Opcode: Reply
+		Sender MAC: 0:2:2d:90:75:89
+		Sender IP: 192.168.1.102
+		Target MAC: 0:20:18:dc:ae:ab
+		Target IP: 192.168.1.105
 

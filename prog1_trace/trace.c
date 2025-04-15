@@ -8,40 +8,64 @@
 #include <netinet/in.h>    // For ntohs()
 #include <arpa/inet.h>     // For inet_ntoa()
 #include <netinet/ether.h> // For ether_ntoa()
+#include <net/ethernet.h>  // For struct ether_addr
 
 typedef unsigned char u_char;
 #define IP_STR_LEN 16
 #define MAC_STR_LEN 18
+#define PSEUDO_HDR_LEN 12
 
 // Function prototypes
-const char* get_service_name(uint16_t port);
+const char *get_service_name(uint16_t port);
 void udp(const uint8_t *packet);
+void print_src_and_dest(const char *src_service, uint16_t src_port, const char *dest_service, uint16_t dest_port);
 void arp(const uint8_t *packet);
-void convert_to_mac(const uint8_t mac_bytes[6], char *mac_str, size_t max_len);
+void mac_to_string(const uint8_t mac_bytes[6], char *mac_str, size_t max_len);
 void print_etherType(const char *etherType);
 const char *get_packet_type(uint16_t etherType);
 void convert_to_ip(const uint8_t *bytes, char *output, size_t length);
-void ethernet(const uint8_t *packet_in);
+void ethernet(const uint8_t *packet);
 void ip(const uint8_t *packet);
-void my_packet_handler(u_char *args, const struct pcap_pkthdr *header, const uint8_t *packet);
+void print_ip_protocol(uint8_t protocol);
+void process_packet(u_char *args, const struct pcap_pkthdr *header, const uint8_t *packet);
 void icmp(const uint8_t *packet);
 void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length,
          const uint8_t *ip_src, const uint8_t *ip_dest);
-// Convert a 6-byte MAC address to a colon-separated string using the ether library.
-void convert_to_mac(const uint8_t mac_bytes[6], char *mac_str, size_t max_len)
+
+void print_tcp_flags(uint16_t flag_bits);
+
+// Convert a 6-byte MAC address to a string representation.
+void mac_to_string(const uint8_t mac_bytes[6], char *mac_str, size_t max_len)
 {
     struct ether_addr eth;
     // Copy the 6-byte MAC address into the structure's octet field.
     memcpy(eth.ether_addr_octet, mac_bytes, 6);
 
     // Use ether_ntoa to convert the struct ether_addr to a string.
-    // Note: The result is stored in a static buffer.
     char *temp = ether_ntoa(&eth);
 
-    // Copy the string to the user-provided buffer, ensuring not to overflow it.
     strncpy(mac_str, temp, max_len);
     // Ensure null termination.
     mac_str[max_len - 1] = '\0';
+}
+
+void print_ip_protocol(uint8_t protocol)
+{
+    switch (protocol)
+    {
+    case 1:
+        printf("ICMP\n");
+        break;
+    case 6:
+        printf("TCP\n");
+        break;
+    case 17:
+        printf("UDP\n");
+        break;
+    default:
+        printf("Unknown\n");
+        break;
+    }
 }
 
 void print_etherType(const char *etherType)
@@ -49,18 +73,26 @@ void print_etherType(const char *etherType)
     printf("\t\tType: %s\n", etherType);
 }
 
-const char* get_service_name(uint16_t port) {
-    switch (port) {
-        case 80:  return "HTTP";
-        case 23:  return "TELNET";
-        case 21:  return "FTP";
-        case 110: return "POP3";
-        case 25:  return "SMTP";
-        case 53:  return "DNS";
-        default:  return NULL; // Unknown service
+const char *get_service_name(uint16_t port)
+{
+    switch (port)
+    {
+    case 80:
+        return "HTTP";
+    case 23:
+        return "TELNET";
+    case 21:
+        return "FTP";
+    case 110:
+        return "POP3";
+    case 25:
+        return "SMTP";
+    case 53:
+        return "DNS";
+    default:
+        return NULL; // Unknown service
     }
 }
-
 
 const char *get_packet_type(uint16_t etherType)
 {
@@ -81,13 +113,14 @@ void convert_to_ip(const uint8_t *bytes, char *output, size_t length)
     struct in_addr addr;
     memcpy(&addr.s_addr, bytes, sizeof(addr.s_addr));
 
+    // To use inet_ntoa, we need to convert the bytes to a struct in_addr.
     char *temp = inet_ntoa(addr);
     strncpy(output, temp, length);
     output[length - 1] = '\0';
 }
 
 // Process and print the Ethernet header.
-void ethernet(const uint8_t *packet_in)
+void ethernet(const uint8_t *packet)
 {
 
     printf("\tEthernet Header\n");
@@ -96,46 +129,25 @@ void ethernet(const uint8_t *packet_in)
     uint8_t src_mac[6];
     uint16_t etherType;
 
-    memcpy(dest_mac, packet_in, 6);
-    memcpy(src_mac, packet_in + 6, 6);
-    memcpy(&etherType, packet_in + 12, 2);
+    memcpy(dest_mac, packet, 6);
+    memcpy(src_mac, packet + 6, 6);
+    memcpy(&etherType, packet + 12, 2);
     etherType = ntohs(etherType);
 
     // Print Destination MAC.
     printf("\t\tDest MAC: ");
     char mac_str[MAC_STR_LEN];
-    convert_to_mac(dest_mac, mac_str, sizeof(mac_str));
+    mac_to_string(dest_mac, mac_str, sizeof(mac_str));
     printf("%s\n", mac_str);
 
     // Print Source MAC.
     printf("\t\tSource MAC: ");
-    convert_to_mac(src_mac, mac_str, sizeof(mac_str));
+    mac_to_string(src_mac, mac_str, sizeof(mac_str));
     printf("%s\n", mac_str);
 
     // Print Ethernet type.
     const char *type = get_packet_type(etherType);
     print_etherType(type);
-}
-
-uint32_t packet_counter = 0;
-
-// PCAP packet handler function.
-void my_packet_handler(u_char *args, const struct pcap_pkthdr *header, const uint8_t *packet)
-{
-    // Ensure we have at least an Ethernet header.
-    if (header->caplen < 14)
-    {
-        fprintf(stderr, "Packet too short for an Ethernet header.\n");
-        return;
-    }
-    packet_counter++;
-    printf("Packet number: %u  Packet Len: %u\n\n", packet_counter, header->caplen);
-
-    ethernet(packet);
-
-    uint16_t etherType;
-    memcpy(&etherType, packet + 12, 2);
-    etherType = ntohs(etherType);
 
     if (etherType == 0x0806)
     {
@@ -147,6 +159,23 @@ void my_packet_handler(u_char *args, const struct pcap_pkthdr *header, const uin
         // IPv4 packet; skip Ethernet header.
         ip(packet + 14);
     }
+}
+
+uint32_t packet_counter = 0;
+
+// PCAP packet handler function.
+void process_packet(u_char *args, const struct pcap_pkthdr *header, const uint8_t *packet)
+{
+    // Ensure we have at least an Ethernet header.
+    if (header->caplen < 14)
+    {
+        fprintf(stderr, "Packet too short for an Ethernet header.\n");
+        return;
+    }
+    packet_counter++;
+    printf("Packet number: %u  Packet Len: %u\n\n", packet_counter, header->caplen);
+
+    ethernet(packet);
 
     printf("\n");
 }
@@ -171,6 +200,7 @@ void arp(const uint8_t *packet)
 
     printf("\n\tARP header\n");
     printf("\t\tOpcode: ");
+
     if (opcode == 1)
         printf("Request\n");
     else if (opcode == 2)
@@ -181,7 +211,7 @@ void arp(const uint8_t *packet)
     // Convert and print sender MAC and IP.
     char sender_mac_str[MAC_STR_LEN];
     char sender_ip_str[IP_STR_LEN];
-    convert_to_mac(source_mac, sender_mac_str, sizeof(sender_mac_str));
+    mac_to_string(source_mac, sender_mac_str, sizeof(sender_mac_str));
     convert_to_ip(source_protocol_addr, sender_ip_str, sizeof(sender_ip_str));
     printf("\t\tSender MAC: %s\n", sender_mac_str);
     printf("\t\tSender IP: %s\n", sender_ip_str);
@@ -189,7 +219,7 @@ void arp(const uint8_t *packet)
     // Convert and print target MAC and IP.
     char target_mac_str[MAC_STR_LEN];
     char target_ip_str[IP_STR_LEN];
-    convert_to_mac(dest_mac, target_mac_str, sizeof(target_mac_str));
+    mac_to_string(dest_mac, target_mac_str, sizeof(target_mac_str));
     convert_to_ip(dest_protocol_addr, target_ip_str, sizeof(target_ip_str));
     printf("\t\tTarget MAC: %s\n", target_mac_str);
     printf("\t\tTarget IP: %s\n", target_ip_str);
@@ -238,25 +268,14 @@ void ip(const uint8_t *packet)
     printf("\t\tHeader Len (bytes): %u\n", header_length);
     printf("\t\tTTL: %u\n", ttl);
     printf("\t\tProtocol: ");
-    switch (protocol)
-    {
-    case 1:
-        printf("ICMP\n");
-        break;
-    case 6:
-        printf("TCP\n");
-        break;
-    case 17:
-        printf("UDP\n");
-        break;
-    default:
-        printf("Unknown\n");
-        break;
-    }
+
+    print_ip_protocol(protocol);
+
     printf("\t\tChecksum: ");
 
-    // if checksum is correct output "Correct (checksum)", else, output "Incorrect (checksum)"
+    // If checksum is correct output "Correct (checksum)", else, output "Incorrect (checksum)".
     uint16_t computed_checksum = in_cksum((unsigned short *)packet, header_length);
+
     if (computed_checksum == 0)
     {
         printf("Correct (0x%04x)\n", checksum);
@@ -269,6 +288,7 @@ void ip(const uint8_t *packet)
     printf("\t\tSender IP: %s\n", sender_ip_str);
     printf("\t\tDest IP: %s\n", dest_ip_str);
 
+    // Determine the protocol and call the appropriate function.
     if (protocol == 1)
     {
         icmp(packet + header_length);
@@ -287,9 +307,7 @@ void ip(const uint8_t *packet)
     }
 }
 
-#define PSEUDO_HDR_LEN 12
-
-// tcp() now takes additional pointers to the 4-byte source and destination IP addresses.
+// tcp() now takes additional pointers to the 4-byte source and destination IP addresses for the pseudo header.
 void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length,
          const uint8_t *ip_src, const uint8_t *ip_dest)
 {
@@ -298,6 +316,8 @@ void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length
     // Extract Data Offset using the top 4 bits of byte 12 (only one shift allowed).
     // (Byte at index 12 holds data offset in its upper 4 bits.)
     uint8_t offset = (packet[12] >> 4) & 0x0F;
+
+    // For the length, multiply by 4 to get the length in bytes.
     uint16_t tcp_header_length = offset * 4;
 
     // Source Port: 2 bytes at offset 0
@@ -324,14 +344,11 @@ void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length
     uint16_t tmp;
     memcpy(&tmp, packet + 12, 2);
     tmp = ntohs(tmp);
+
     // The lower 12 bits contain the flags.
     uint16_t flag_bits = tmp & 0x0FFF;
-    int fin_flag = (flag_bits & 0x0001) ? 1 : 0;
-    int syn_flag = (flag_bits & 0x0002) ? 1 : 0;
-    int rst_flag = (flag_bits & 0x0004) ? 1 : 0;
-    int ack_flag = (flag_bits & 0x0010) ? 1 : 0;
 
-    // Window Size: 2 bytes at offset 14
+    // Window Size: 2 bytes at offset 14.
     uint16_t window_size;
     memcpy(&window_size, packet + 14, 2);
     window_size = ntohs(window_size);
@@ -350,27 +367,17 @@ void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length
     // Get the source and destination ports correlated with the service names. If unknown print the port number
     const char *src_service = get_service_name(src_port);
     const char *dest_service = get_service_name(dest_port);
-    if (src_service)
-        printf("\t\tSource Port:  %s\n", src_service);
-    else
-        printf("\t\tSource Port:  %u\n", src_port);
 
-    if (dest_service)
-        printf("\t\tDest Port:  %s\n", dest_service);
-    else
-        printf("\t\tDest Port:  %u\n", dest_port);
+    print_src_and_dest(src_service, src_port, dest_service, dest_port);
 
     printf("\t\tSequence Number: %u\n", seq_number);
     printf("\t\tACK Number: %u\n", ack_number);
     printf("\t\tData Offset (bytes): %u\n", tcp_header_length);
-    printf("\t\tSYN Flag: %s\n", syn_flag ? "Yes" : "No");
-    printf("\t\tRST Flag: %s\n", rst_flag ? "Yes" : "No");
-    printf("\t\tFIN Flag: %s\n", fin_flag ? "Yes" : "No");
-    printf("\t\tACK Flag: %s\n", ack_flag ? "Yes" : "No");
+
+    print_tcp_flags(flag_bits);
+
     printf("\t\tWindow Size: %u\n", window_size);
 
-    // -----------------------------------------------
-    // Build the pseudo-header manually without using structs.
     // Pseudo-header layout (12 bytes):
     // Bytes 0-3: Source IP (4 bytes)
     // Bytes 4-7: Destination IP (4 bytes)
@@ -416,9 +423,20 @@ void tcp(const uint8_t *packet, uint16_t ip_total_len, uint16_t ip_header_length
     else
     {
         printf("\t\tChecksum: Incorrect (0x%04x)\n", checksum);
-        printf("\t\tExpected: 0x%04x\n", computed_checksum);
     }
+}
 
+void print_tcp_flags(uint16_t flag_bits)
+{
+    int fin_flag = (flag_bits & 0x0001) ? 1 : 0;
+    int syn_flag = (flag_bits & 0x0002) ? 1 : 0;
+    int rst_flag = (flag_bits & 0x0004) ? 1 : 0;
+    int ack_flag = (flag_bits & 0x0010) ? 1 : 0;
+
+    printf("\t\tSYN Flag: %s\n", syn_flag ? "Yes" : "No");
+    printf("\t\tRST Flag: %s\n", rst_flag ? "Yes" : "No");
+    printf("\t\tFIN Flag: %s\n", fin_flag ? "Yes" : "No");
+    printf("\t\tACK Flag: %s\n", ack_flag ? "Yes" : "No");
 }
 
 void udp(const uint8_t *packet)
@@ -440,6 +458,11 @@ void udp(const uint8_t *packet)
     const char *src_service = get_service_name(src_port);
     const char *dest_service = get_service_name(dest_port);
 
+    print_src_and_dest(src_service, src_port, dest_service, dest_port);
+}
+
+void print_src_and_dest(const char *src_service, uint16_t src_port, const char *dest_service, uint16_t dest_port)
+{
     if (src_service)
         printf("\t\tSource Port:  %s \n", src_service);
     else
@@ -484,7 +507,6 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-
     // Open pcap file.
     char errbuf[PCAP_ERRBUF_SIZE];
     const char *file_dir = argv[1];
@@ -492,11 +514,11 @@ int main(int argc, char *argv[])
 
     if (!pcap_handle)
     {
-        fprintf(stderr, "Error opening trace file: %s\n", errbuf);
+        fprintf(stderr, "Unable to open the pcap file '%s': %s\n", file_dir, errbuf);
         exit(EXIT_FAILURE);
     }
 
-    if (pcap_loop(pcap_handle, 0, my_packet_handler, NULL) < 0)
+    if (pcap_loop(pcap_handle, 0, process_packet, NULL) < 0)
     {
         fprintf(stderr, "Error processing packets: %s\n", pcap_geterr(pcap_handle));
         pcap_close(pcap_handle);
