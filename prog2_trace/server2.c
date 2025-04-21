@@ -160,10 +160,10 @@ int processClient(int socketNum) {
     } else {
         // Print the received data
         printf("Message received on socket %d, length: %d, Data: %s\n", socketNum, messageLen, buffer);
-
-        // Optionally, you can send data back to the client (e.g., echo server)
-       // safeSend(socketNum, buffer, messageLen, 0);
     }
-
+    // Echo the message back to the client
+    messageLen = sendPDU(socketNum, buffer, messageLen);
+    printf("Socket %d: Number of bytes sent: %d bytes, message: %s\n", socketNum, messageLen, buffer);
+    // Continue processing the client
     return 0;
 }

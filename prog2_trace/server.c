@@ -77,7 +77,7 @@ void recvFromClient(int clientSocket)
 		printf("Socket %d: Message received, length: %d Data: %s\n", clientSocket, messageLen, dataBuffer);
 		
 		// send it back to client (just to test sending is working... e.g. debugging)
-		messageLen = safeSend(clientSocket, dataBuffer, messageLen, 0);
+		messageLen = sendPDU(clientSocket, dataBuffer, messageLen);
 		printf("Socket %d: msg sent: %d bytes, text: %s\n", clientSocket, messageLen, dataBuffer);
 	}
 	else

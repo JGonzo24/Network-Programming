@@ -43,7 +43,12 @@ int sendPDU(int clientSocket, uint8_t * dataBuffer, int lengthOfData)
     // send the entire PDU using send()
     int numBytesSent = safeSend(clientSocket, pdu, pdu_len, 0);
 
-    return numBytesSent;
+    if (numBytesSent == pdu_len) {
+        return lengthOfData;
+    } else {
+        printf("Error: Sent %d bytes, but expected to send %d bytes\n", numBytesSent, pdu_len);
+        return -1;  // Error in sending
+    }
 }
 
 /*
@@ -76,9 +81,6 @@ int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
     // Convert the 2-byte length from network byte order to host byte order
     uint16_t pdu_length_read = ntohs(*(uint16_t *)lengthBuffer);
     
-    // Print the length for debugging purposes
-    printf("Received PDU length: %d\n", pdu_length_read);
-
     // Check if the length is smaller than the buffer size
     if (pdu_length_read > bufferSize) {
         printf("Error: The buffer is not large enough to fit the PDU! Needs at least %d bytes.\n", pdu_length_read);
