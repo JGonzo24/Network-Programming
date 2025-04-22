@@ -1,0 +1,6 @@
+Name: Joshua Gonzalez 
+Lab Section: 3:00 pm
+
+You can run ./make then run ./server2 ./cclient local host <portnum>
+
+You can type anything in the client terminal, then it will be both echoed and sent to the server. This works with multiple clients. Server does not end until ^c. Server can still take clients even though there are none connected to it. 
