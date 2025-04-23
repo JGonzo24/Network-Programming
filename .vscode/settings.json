@@ -56,5 +56,11 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "C_Cpp.default.compilerPath": "C:/MinGW/bin/gcc.exe"
+  "C_Cpp.default.compilerPath": "C:/MinGW/bin/gcc.exe",
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }
