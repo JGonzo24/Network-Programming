@@ -114,7 +114,6 @@ int resizeHandleTable(int newTableSize)
     {
         handleTable[i].socketNum = -1;
         memset(handleTable[i].handle, 0, sizeof(handleTable[i].handle));
-
     }
     printf("Handle table resized to %d entries.\n", tableSize);
     return 0;
