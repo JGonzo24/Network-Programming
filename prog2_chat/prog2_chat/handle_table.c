@@ -202,5 +202,17 @@ int showHandles()
     {
         printf("Socket: %d, Handle: %s\n", handleTable[i].socketNum, handleTable[i].handle);
     }
-    return 0;
+    return handleCount;
+}
+
+// Function to simply get handle table
+Handle_t *getHandleTable()
+{
+    return handleTable;
+}
+
+// Get handle count
+int getHandleCount()
+{
+    return handleCount;
 }

@@ -67,6 +67,8 @@
     "safeutil.h": "c",
     "sendreceive.h": "c",
     "string.h": "c",
-    "cclient.h": "c"
+    "cclient.h": "c",
+    "shared.h": "c",
+    "makepdu.h": "c"
   }
 }

@@ -12,7 +12,6 @@ Each PDU is different depending on the flags and the type of message being sent.
 #include <string.h>
 #include <stdint.h>
 #include "makePDU.h"
-#include "cclient.h" 
 #include "sendreceive.h"
 
 /*
@@ -56,7 +55,6 @@ uint8_t* makeInitialPDU()
 
 uint8_t* constructMulticastPacket(char* buffer, int socketNum)
 {
-    uint8_t num = 5;
 	static MulticastPacket_t packetInfo;
     static uint8_t multicastPDU[MAXBUF];
     memset(&packetInfo, 0, sizeof(packetInfo));

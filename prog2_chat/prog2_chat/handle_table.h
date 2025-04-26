@@ -20,5 +20,7 @@ int getHandle(int socketNum, char *handle);
 int getSocket(char *handle, int *socketNum);
 int showHandles();
 int resizeHandleTable(int newSize);
+Handle_t *getHandleTable();
+int getHandleCount();
 
 #endif

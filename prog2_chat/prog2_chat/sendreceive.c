@@ -78,7 +78,9 @@ int sendPDU(int clientSocket, uint8_t * dataBuffer, int lengthOfData)
 int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
 
     uint8_t lengthBuffer[2];  // Buffer to hold the 2-byte PDU length
+    printf("----------------------- recvPDU() -----------------------\n");
     int received_bytes = safeRecv(socketNumber, lengthBuffer, 2, MSG_WAITALL);
+    printPacket(lengthBuffer, 2);
 
     printf("Length buffer in recvPDU(): ");
     for (int i = 0; i < 2; i++) {

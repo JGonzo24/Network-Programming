@@ -27,14 +27,15 @@
 #include "sendreceive.h"
 #include "pollLib.h"
 #include "handle_table.h"
+#include "shared.h"
+#include "makePDU.h"
 
-#define MAXBUF 1024 // Define MAXBUF with an appropriate buffer size
 #define DEBUG_FLAG 1
 #define POLL_SET_SIZE 10 // Define the size of the poll set
 
 void printPacket(const uint8_t *packet, size_t length);
 void recvFromClient(int clientSocket);
-int checkArgs(int argc, char *argv[]);
+int checkArgs_s(int argc, char *argv[]);
 void serverControl(int serverSocket);
 int processClient(int socketNum);
 int addNewSocket(int socketNum);
@@ -43,9 +44,13 @@ void handleFlags(int socketNum, uint8_t flag, uint8_t *buffer, int messageLen);
 void handleBroadcastMessage(int socketNum, const char *buffer);
 int validateMessage(uint8_t *buffer, int messageLen);
 void handleMulticastMessage(int socketNum, char *buffer);
+int validateMulticastMessage(uint8_t *buffer , int socketNum, int messageLen);
+int sendClientResponse(int socketNum, uint8_t flag, uint8_t handle_len, char *handle);
+int handleListHandles_s(int socketNum, char *buffer);
+
 
 #define MAX_HANDLE_LEN 100
- // Define MAX_HANDLE_LEN with an appropriate value
+// Define MAX_HANDLE_LEN with an appropriate value
 
 void printPacket(const uint8_t *packet, size_t length)
 {
@@ -67,7 +72,7 @@ int main(int argc, char *argv[])
     int portNumber = 0;
 
     // Parse command line arguments
-    portNumber = checkArgs(argc, argv);
+    portNumber = checkArgs_s(argc, argv);
 
     // Create the server socket
     mainServerSocket = tcpServerSetup(portNumber);
@@ -112,7 +117,7 @@ void recvFromClient(int clientSocket)
 }
 
 // Function to check command-line arguments and return the port number
-int checkArgs(int argc, char *argv[])
+int checkArgs_s(int argc, char *argv[])
 {
     int portNumber = 0;
 
@@ -250,11 +255,11 @@ int addNewSocket(int socketNum)
 
 // Function to process client data
 int processClient(int socketNum)
-{   
+{
     uint8_t buffer[MAXBUF];
     int messageLen = 0;
     uint8_t flag;
-    
+
     // save the pdu into the buffer
     messageLen = recvPDU(socketNum, buffer, MAXBUF);
     printf("Socket %d: recvPDU returned %d\n", socketNum, messageLen);
@@ -263,7 +268,6 @@ int processClient(int socketNum)
         perror("recvPDU failed");
         return -1;
     }
-
 
     // Extract the flag from the buffer
     flag = buffer[0]; // First byte is the flag
@@ -302,23 +306,34 @@ int processClient(int socketNum)
     {
         printf("PDU Received: %d bytes\n", messageLen);
         handleFlags(socketNum, flag, buffer, messageLen);
-
     }
-   
+
     // call function that determines what to do after reading the flag
     // Continue processing the client
     return 0;
 }
 
-
-void multicastMessage(int socketNum, uint8_t *buffer)
+void multicastMessage(int socketNum, uint8_t *buffer, int messageLen)
 {
-    // Handle the multicast message
+    // Check if the message is valid
+    if (messageLen < 3)
+    {
+        printf("Invalid multicast message: too short\n");
+        return;
+    }
+
+    // Print the multicast message
     printf("Multicast message received on socket %d\n", socketNum);
+    printPacket(buffer, messageLen);
 
-
-    // Validate the handles in the message
-    
+    // Call the function to handle the multicast message
+    int valid = validateMulticastMessage(buffer, socketNum, messageLen);
+    if (valid < 0)
+    {
+        printf("Invalid multicast message format\n");
+        return;
+    }
+    printf("Multicast message received on socket %d\n", socketNum);
 }
 
 void handleFlags(int socketNum, uint8_t flag, uint8_t *buffer, int messageLen)
@@ -332,11 +347,16 @@ void handleFlags(int socketNum, uint8_t flag, uint8_t *buffer, int messageLen)
         forwardMessage(socketNum, buffer, messageLen);
         break;
     case 0x06:
-
         // Handle the command type 0x06
         printf("Command type 0x06 received\n");
         fflush(stdout);
-        multicastMessage(socketNum, buffer);
+        multicastMessage(socketNum, buffer, messageLen);
+        break;
+    case 0xA:
+        // Handle the command type 0xA
+        printf("Command type 0xA received, list handles!\n");
+        fflush(stdout);
+        handleListHandles_s(socketNum, (char*)buffer);
         break;
 
     default:
@@ -346,10 +366,25 @@ void handleFlags(int socketNum, uint8_t flag, uint8_t *buffer, int messageLen)
     }
 }
 
+
+int handleListHandles_s(int socketNum, char *buffer)
+{
+    // Handle the list handles command
+    printf("Handling list handles command-----------------------\n");
+    uint8_t flag = buffer[0];
+    if (flag != 0xA)
+    {
+        printf("Invalid flag for list handles: %d\n", flag);
+        return -1;
+    }
+
+    sendListPDU(socketNum); // Send the list of handles to the client
+    // Call the function to show all handles in the table
+    return 0;
+}
+
 void forwardMessage(int socketNum, uint8_t *buffer, int messageLen)
 {
-    printPacket(buffer, messageLen);
-
     int valid = validateMessage(buffer, messageLen);
 
     if (valid < 0)
@@ -359,6 +394,99 @@ void forwardMessage(int socketNum, uint8_t *buffer, int messageLen)
     }
 }
 
+int validateMulticastMessage(uint8_t *buffer, int socketNum, int messageLen)
+{
+    printf("----------------------------------------------\n");
+    printf("Validating multicast message\n");
+    int offset = 0;
+    // First read the buffer to get the sender handle length
+    uint8_t flag = buffer[0];
+
+    if (flag != 0x06)
+    {
+        printf("Invalid flag for multicast message: %d\n", flag);
+        return -1;
+    }
+    offset++;
+
+    uint8_t senderHandleLen = buffer[1];
+    offset++;
+
+    char senderHandle[senderHandleLen + 1];
+    memcpy(senderHandle, buffer + 2, senderHandleLen);
+    offset += senderHandleLen;
+    // read the byte for num of destination handles
+    uint8_t numDestHandles = buffer[2 + senderHandleLen];
+    offset++;
+    // read the destination handles
+    DestHandle_t destHandles[MAX_DEST_HANDLES];
+    for (int i = 0; i < numDestHandles; i++)
+    {
+        destHandles[i].dest_handle_len = buffer[offset++];
+        memcpy(destHandles[i].handle_name, buffer + offset, destHandles[i].dest_handle_len);
+        destHandles[i].handle_name[destHandles[i].dest_handle_len] = '\0'; // Null-terminate the handle
+        offset += destHandles[i].dest_handle_len;
+    }
+    printf("Destination handles:\n");
+    for (int i = 0; i < numDestHandles; i++)
+    {
+        printf("Handle %d: %s\n", i + 1, destHandles[i].handle_name);
+    }
+    int sent_bytes = 0;
+    // Check if the read handles are valid through the handle table
+    for (int i = 0; i < numDestHandles; i++)
+    {
+        int dest_socketNum = 0;
+        if (getSocket(destHandles[i].handle_name, &dest_socketNum) < 0)
+        {
+            printf("Error: destination handle %s not found in the table.\n", destHandles[i].handle_name);
+            sent_bytes = sendClientResponse(socketNum, 0x07, destHandles[i].dest_handle_len, destHandles[i].handle_name); // Send error response to client
+        }
+        else
+        {
+            printf("Destination handle %s found in the table with socket number %d\n", destHandles[i].handle_name, dest_socketNum);
+            sent_bytes = sendPDU(dest_socketNum, buffer, messageLen); // Send the message to the destination handle
+
+            if (sent_bytes < 0)
+            {
+                printf("Error sending message to socket %d\n", socketNum);
+                return -1;
+            }
+            else
+            {
+                printf("Message sent to socket %d\n", socketNum);
+            }
+        }
+    }
+    // Send success response to the client
+    return 0;
+}
+
+int sendClientResponse(int socketNum, uint8_t flag, uint8_t handle_len, char *handle)
+{
+    // create a 1 byte buffer with the flag, sendPDU() will send the length
+    uint8_t response[MAXBUF];
+    response[0] = flag;
+
+    // Set the PDU length (2 bytes for length + 1 byte for flag)
+    response[1] = handle_len; // Set the handle length
+
+    // copy in the handle
+    memcpy(response + 2, handle, handle_len);
+
+    int sent = sendPDU(socketNum, response, 1);
+
+    if (sent < 0)
+    {
+        printf("Error sending response to socket %d\n", socketNum);
+        return -1;
+    }
+    else
+    {
+        printf("Response sent to socket %d with flag %d\n", socketNum, flag);
+    }
+    return sent;
+}
 
 int validateMessage(uint8_t *buffer, int messageLen)
 {
@@ -368,6 +496,7 @@ int validateMessage(uint8_t *buffer, int messageLen)
         printf("Invalid message: too short\n");
         return -1;
     }
+
     printPacket(buffer, messageLen);
     // Extract the sender handle length and destination handle length
     uint8_t senderHandleLen = buffer[1];
@@ -400,8 +529,6 @@ int validateMessage(uint8_t *buffer, int messageLen)
 
     sendPDU(socketNum, buffer, messageLen); // Send the message to the destination handle
     printf("Message sent to socket %d\n", socketNum);
-
-    
 
     // Check if the lengths are within bounds
     if (senderHandleLen + destinationHandleLen + 4 > messageLen)

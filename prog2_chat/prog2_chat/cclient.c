@@ -29,6 +29,7 @@
 #include "pollLib.h"
 #include "cclient.h"
 #include "makePDU.h"
+#include "shared.h"
 
 char sender_handle[MAX_HANDLE_LEN] = {0}; // Global variable to store the sender handle
 
@@ -328,9 +329,7 @@ void handleBroadcastMessage(int socketNum, const char *buffer)
 void handleMulticastMessage(int socketNum, char *buffer)
 {
 	printf("Handle multicast message command.\n");
-	uint8_t* multicastPDU = constructMulticastPacket(buffer, socketNum);	
-	
-	// print out the pdu in bytes
+	constructMulticastPacket(buffer, socketNum);	
 	printf("We got back home");
 	
 }
@@ -338,9 +337,18 @@ void handleMulticastMessage(int socketNum, char *buffer)
 void handleListHandles(int socketNum, const char *buffer)
 {
 	printf("Handle list handles command.\n");
-
-	// get the arguments from the buffer
-	char *token = strtok((char *)buffer, " ");
+	// all we need to do is list the current handles in the handle table
+	uint8_t listPDU[MAXBUF];
+	int done = makeListPDU(listPDU, socketNum);
+	if (done < 0)
+	{
+		printf("Error sending list PDU.\n");
+		return;
+	}
+	else
+	{
+		printf("List PDU sent successfully.\n");
+	}
 }
 
 void handleInvalidCommand(int socketNum, const char *buffer)
@@ -518,27 +526,45 @@ void receiveMessage(uint8_t *buffer, int totalBytes)
 	char sender_handle_rec[sender_handle_len];
 	memcpy(sender_handle_rec, buffer + offset, sender_handle_len);
 	offset += sender_handle_len;
-	// printf("Sender handle: %s\n", sender_handle_rec);
+	printf("Sender handle: %s\n", sender_handle_rec);
 
 	// Step 4: Extract destination flag
-	//uint8_t destination_flag = buffer[offset++];
-	offset++;
+	uint8_t numDestHandles = buffer[offset++];
+	printf("Number of destination handles: %d\n", numDestHandles);
+	// offset++;
 	// printf("Destination flag (should be 1): %d\n", destination_flag);
 
 	// Step 5: Extract destination handle length
-	uint8_t destination_handle_len = buffer[offset++];
+
+
+	// uint8_t destination_handle_len = buffer[offset++];
+
+
 	// printf("Destination handle length: %d\n", destination_handle_len);
 
 	// Step 6: Extract destination handle (also not null-terminated)
-	char destination_handle[destination_handle_len];
-	memcpy(destination_handle, buffer + offset, destination_handle_len);
-	offset += destination_handle_len;
+	
+	// depending on the length of the numDestHandles, 
+	// char destination_handle[destination_handle_len];
+	// memcpy(destination_handle, buffer + offset, destination_handle_len);
+	// offset += destination_handle_len;
 	// printf("Destination handle: %s\n", destination_handle);
+	
+	// each destination handle has a length then the handle name
+	DestHandle_t handles[numDestHandles];
+	for (int i = 0; i < numDestHandles; i++)
+	{
+		handles[i].dest_handle_len = buffer[offset++];
+		memcpy(handles[i].handle_name, buffer + offset, handles[i].dest_handle_len);
+		handles[i].handle_name[handles[i].dest_handle_len] = '\0'; // Null-terminate the handle
+		offset += handles[i].dest_handle_len;
+		// printf("Destination handle %d: %s\n", i + 1, handles[i].handle_name);
+	}
 
 	// Step 7: Extract the message
 	int message_length = totalBytes - offset;
-	// printf("Message length: %d\n", message_length);
-
+	printf("Message length: %d\n", message_length);
+	
 	if (message_length > 0)
 	{
 		// Copy the message into a printable string
@@ -552,11 +578,87 @@ void receiveMessage(uint8_t *buffer, int totalBytes)
 		// }
 		// printf("\n");
 
-		printf("%s: %s\n", sender_handle, message);
+		printf("%s: %s\n", sender_handle_rec, message);
 	}
 	else
 	{
 		printf("No message payload.\n");
+	}
+}
+
+
+
+int handleFlagsFromServer(int flag, uint8_t *buffer, int totalBytes)
+{
+	// Handle the flags from the server
+	switch (flag)
+	{
+	case 0x01:
+		printf("Received a message from the server.\n");
+		break;
+	case 0x02:
+		printf("Received a broadcast message from the server.\n");
+		break;
+	case 0x03:
+		printf("Received a multicast message from the server.\n");
+		break;
+	case 0x05:
+		printf("Message command received.\n");
+		receiveMessage(buffer, totalBytes);
+		break;
+	case 0x06:
+		printf("Multicast message command received.\n");
+		receiveMessage(buffer, totalBytes);
+		break;
+	case 0x07:
+		printf("Error packet, destination handle does not exist.\n");
+		break;
+	case 0xB:
+		printf("Received a number of handles from the server.\n");
+		processListHandles(buffer, totalBytes);
+		break;
+	case 0xC:
+		printf("Received a list of handles from the server.\n");
+		// call handleListHandles(socketNum, buffer);
+		break;
+	default:
+		printf("Unknown flag received: %d\n", flag);
+		break;
+	}
+	return 0;
+}
+
+void processListHandles(uint8_t *buffer, int totalBytes)
+{
+	if (buffer[0] == 0xb)
+	{
+		// next comes 32 bits in network order of number of handles
+		printPacket(buffer, totalBytes);
+		printf("-------------------------\n");
+		// get the number of handles from buffer
+		uint32_t numHandles;
+		memcpy(&numHandles, buffer + 1, sizeof(uint32_t));
+		numHandles = ntohl(numHandles); // Convert from network byte order to host byte order
+		printf("Number of handles: %d\n", numHandles);
+	}
+	else if(buffer[0] == 0xC)
+	{
+		// next comes the handles
+		uint8_t numHandles = buffer[1];
+		printf("Number of handles: %d\n", numHandles);
+		for (int i = 0; i < numHandles; i++)
+		{
+			uint8_t handleLen = buffer[2 + i * (MAX_HANDLE_LEN + 1)];
+			char handle[MAX_HANDLE_LEN + 1];
+			memcpy(handle, buffer + 3 + i * (MAX_HANDLE_LEN + 1), handleLen);
+			handle[handleLen] = '\0'; // Null-terminate the handle
+			printf("Handle %d: %s\n", i + 1, handle);
+		}
+	}
+	else
+	{
+		printf("Invalid flag for list handles: %d\n", buffer[0]);
+		return;
 	}
 }
 
@@ -567,6 +669,11 @@ void processMsgFromServer(int socketNum)
 
 	// just for debugging, recv a message from the server to prove it works.
 	recvBytes = recvPDU(socketNum, buffer, MAXBUF);
+
+	handleFlagsFromServer(buffer[0], buffer, recvBytes);
+	
+	
+	printf("recvPDU returned %d\n", recvBytes);
 
 	if (recvBytes == 0)
 	{
@@ -580,7 +687,6 @@ void processMsgFromServer(int socketNum)
 	{
 		buffer[recvBytes] = '\0'; // Null terminate the string
 	}
-	receiveMessage(buffer, recvBytes);
 }
 
 void sendToServer(int socketNum)
