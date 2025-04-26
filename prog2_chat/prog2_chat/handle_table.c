@@ -69,7 +69,8 @@ void initHandleTable()
 // Function to add a handle to the table
 int addHandle(int socketNum, char *handle)
 {
-    
+    printf("Adding handle: %s with socket number: %d\n", handle, socketNum);
+
     // Ensure that the handle doesn't already exist in the table
     for (int i = 0; i < handleCount; i++)
     {
@@ -81,21 +82,35 @@ int addHandle(int socketNum, char *handle)
     }
 
     // Check if the table needs to be resized if we add the new handle
+    printf("Handle count: %d, Table size: %d\n", handleCount, tableSize);
     if (handleCount == tableSize)
     {
+        // Resize the handle table
         tableSize *= 2;
-        resizeHandleTable(tableSize);
+        resizeHandleTable(tableSize);  // Ensure this function allocates new memory properly
     }
 
     // The next thing we must do is to actually add the new handle
+    // We also need to ensure the handle fits within the allocated space
+    if (strlen(handle) >= sizeof(handleTable[handleCount].handle))
+    {
+        printf("Error: handle size exceeds maximum allowed length\n");
+        return -1;
+    }
+
+    // Copy handle to the table
     handleTable[handleCount].socketNum = socketNum;
-    strncpy(handleTable[handleCount].handle, handle, sizeof(handleTable[handleCount].handle) -1);
-    handleTable[handleCount].handle[sizeof(handleTable[handleCount].handle) -1] = '\0'; // Null termination of string
-    handleCount ++;
+    strncpy(handleTable[handleCount].handle, handle, sizeof(handleTable[handleCount].handle) - 1);
+
+    // Ensure the handle is null-terminated
+    handleTable[handleCount].handle[sizeof(handleTable[handleCount].handle) - 1] = '\0';
+
+    handleCount++;
 
     printf("Handle: %s was added with socket number: %d\n", handle, socketNum);
     return 0;
 }
+
 
 int resizeHandleTable(int newTableSize)
 {
@@ -149,25 +164,43 @@ int removeHandle(int socketNum)
 }
 
 
-int main()
+// returning the socket number from the handle  
+int getSocket(char *handle, int *socketNum)
 {
-    // Initialize the handle table
-    initHandleTable();
+    for (int i = 0; i < handleCount; i++)
+    {
+        if (strcmp(handleTable[i].handle, handle) == 0)
+        {
+            *socketNum = handleTable[i].socketNum;
+            return 0;
+        }
+    }
+    printf("Error: handle %s not found in the table.\n", handle);
+    return -1;
+}
 
-    // Add some handles
-    addHandle(1, "client1");
-    addHandle(2, "client2");
-    addHandle(3, "client3");
-
-    // Remove a handle
-    removeHandle(2); // Should remove "client2"
-
-    // Try to remove a non-existent handle
-    removeHandle(99); // Should print an error
-
-    // Add more handles to test the table after removal
-    addHandle(4, "client4");
-    addHandle(5, "client5");
-
+// Add a validate function to check if the handle exists
+int getHandle(int socketNum, char *handle)
+{
+    for (int i = 0; i < handleCount; i++)
+    {
+        if (handleTable[i].socketNum == socketNum)
+        {
+            strncpy(handle, handleTable[i].handle, sizeof(handleTable[i].handle) - 1);
+            handle[sizeof(handleTable[i].handle) - 1] = '\0'; // Ensure null termination
+            return 0;
+        }
+    }
+    printf("Error: socket number %d not found in the table.\n", socketNum);
+    return -1;
+}
+// Function to show all handles in the table
+int showHandles()
+{
+    printf("Current handles in the table:\n");
+    for (int i = 0; i < handleCount; i++)
+    {
+        printf("Socket: %d, Handle: %s\n", handleTable[i].socketNum, handleTable[i].handle);
+    }
     return 0;
 }

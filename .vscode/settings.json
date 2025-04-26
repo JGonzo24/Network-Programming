@@ -62,5 +62,11 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
+  },
+  "files.associations": {
+    "safeutil.h": "c",
+    "sendreceive.h": "c",
+    "string.h": "c",
+    "cclient.h": "c"
   }
 }

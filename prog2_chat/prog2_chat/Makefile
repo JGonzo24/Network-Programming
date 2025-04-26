@@ -1,28 +1,32 @@
-# Makefile for CPE464 tcp test code
-# written by Hugh Smith - April 2019
+# Makefile for CPE464 TCP chat program
+# Written by Joshua (based on Hugh Smith's 2019 template)
 
-CC= gcc
-CFLAGS= -g -Wall -std=gnu99
+# Compiler and flags
+CC = gcc
+CFLAGS = -g -Wall -std=gnu99
 LIBS = 
 
-OBJS = networks.o gethostbyname.o pollLib.o safeUtil.o sendreceive.o 
+# Object files
+CLIENT_OBJS = networks.o gethostbyname.o pollLib.o safeUtil.o sendreceive.o handle_table.o makePDU.o
+SERVER_OBJS = networks.o gethostbyname.o pollLib.o safeUtil.o sendreceive.o handle_table.o 
 
-all:   cclient server2
+# Targets
+all: cclient server2
 
-cclient: cclient.c $(OBJS)
-	$(CC) $(CFLAGS) -o cclient cclient.c  $(OBJS) $(LIBS)
+cclient: cclient.c $(CLIENT_OBJS)
+	$(CC) $(CFLAGS) -o cclient cclient.c $(CLIENT_OBJS) $(LIBS)
 
-server2: server2.c $(OBJS)
-	$(CC) $(CFLAGS) -o server2 server2.c $(OBJS) $(LIBS)
+server2: server2.c $(SERVER_OBJS)
+	$(CC) $(CFLAGS) -o server2 server2.c $(SERVER_OBJS) $(LIBS)
+
+# Pattern rule for compiling .c files to .o
 .c.o:
-	gcc -c $(CFLAGS) $< -o $@ $(LIBS)
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
+# Clean object files only
 cleano:
 	rm -f *.o
 
+# Clean everything
 clean:
 	rm -f server2 cclient *.o
-
-
-
-

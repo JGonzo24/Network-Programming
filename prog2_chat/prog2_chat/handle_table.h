@@ -21,8 +21,4 @@ int getSocket(char *handle, int *socketNum);
 int showHandles();
 int resizeHandleTable(int newSize);
 
-
-
-
-
 #endif

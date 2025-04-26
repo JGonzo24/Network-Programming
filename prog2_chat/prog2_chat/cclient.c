@@ -27,73 +27,54 @@
 #include "handle_table.h"
 #include <poll.h> // Include poll.h for pollfd structure
 #include "pollLib.h"
+#include "cclient.h"
+#include "makePDU.h"
 
-#define MAXBUF 1400
-#define DEBUG_FLAG 1
-#define MAX_MSG_SIZE 199 // Maximum message size (excluding the null terminator)
-#define MAX_HANDLE_LEN 100
+char sender_handle[MAX_HANDLE_LEN] = {0}; // Global variable to store the sender handle
 
-typedef enum
+CommandType parseCommand(char *buffer)
 {
-	CMD_SEND_MESSAGE,
-	CMD_BROADCAST_MESSAGE,
-	CMD_MULTICAST_MESSAGE,
-	CMD_LIST_HANDLES,
-	CMD_INVALID
-} CommandType;
+	// Trim leading and trailing spaces
+	char trimmedBuffer[MAXBUF];
+	int i = 0, j = 0;
 
-char sender_handle[MAX_HANDLE_LEN];
-
-void sendToServer(int socketNum);
-int readFromStdin(uint8_t *buffer);
-void checkArgs(int argc, char *argv[]);
-void clientControl(int socketNum);
-void createInitialPacket();
-void processMsgFromServer(int socketNum);
-void sendCommand(int socketNum, char *buffer);
-CommandType parseCommand(const char *buffer);
-void handleSendMessage(int socketNum, const char *buffer);
-void handleBroadcastMessage(int socketNum, const char *buffer);
-void handleMulticastMessage(int socketNum, const char *buffer);
-void handleListHandles(int socketNum, const char *buffer);
-void handleInvalidCommand(int socketNum, const char *buffer);
-void sendMessageInChunks(int socketNum, const char *sendingHandle, const char *destinationHandle, char *message, int message_len);
-
-CommandType parseCommand(const char *buffer)
-{
-	// Ensure that the command is case insensitive
-	char command[MAXBUF];
-	int i = 0;
-	while (buffer[i] != '\0' && i < MAXBUF - 1)
+	// Skip leading spaces
+	while (buffer[i] == ' ' || buffer[i] == '\t')
 	{
-		command[i] = tolower(buffer[i]);
 		i++;
 	}
-	command[i] = '\0'; // Null terminate the string
 
-	if (strncmp(command, "%m", 2) == 0)
+	// Copy the trimmed input
+	while (buffer[i] != '\0' && j < MAXBUF - 1)
+	{
+		trimmedBuffer[j++] = tolower(buffer[i++]);
+	}
+	trimmedBuffer[j] = '\0'; // Null terminate the string
+
+	// Debug: Print trimmed buffer to verify its content
+	// Parse the command
+	if (strncasecmp(trimmedBuffer, "%m", 2) == 0)
 	{
 		return CMD_SEND_MESSAGE;
 	}
-	else if (strncmp(command, "%b", 2) == 0)
+	else if (strncasecmp(trimmedBuffer, "%b", 2) == 0)
 	{
 		return CMD_BROADCAST_MESSAGE;
 	}
-	else if (strncmp(command, "%c", 2) == 0)
+	else if (strncasecmp(trimmedBuffer, "%c", 2) == 0)
 	{
 		return CMD_MULTICAST_MESSAGE;
 	}
-	else if (strncmp(command, "%l", 2) == 0)
+	else if (strncasecmp(trimmedBuffer, "%l", 2) == 0)
 	{
 		return CMD_LIST_HANDLES;
 	}
 	else
 	{
+		printf("Invalid buffer: %s\n", trimmedBuffer); // Debug output
 		return CMD_INVALID;
 	}
 }
-
-
 
 /*
 Format for Message Packet for %m command:
@@ -111,13 +92,14 @@ x bytes: destination handle name
 x bytes: Null terminated message string
 */
 
-
 void waitForServerResponse(int socketNum)
 {
 	uint8_t buffer[MAXBUF]; // data buffer
 	int recvBytes = 0;
 
 	// just for debugging, recv a message from the server to prove it works.
+	printf("Waiting for server response...\n");
+	fflush(stdout);
 	recvBytes = recvPDU(socketNum, buffer, MAXBUF);
 
 	if (recvBytes == 0)
@@ -128,17 +110,11 @@ void waitForServerResponse(int socketNum)
 		exit(0);
 	}
 
-	if (recvBytes < MAXBUF)
-	{
-		buffer[recvBytes] = '\0'; // Null terminate the string
-	}
-
-
 	uint8_t flag = buffer[2];
+	printf("Server response: %d\n", flag);
 	if (flag == 2)
 	{
-		printf("Confirming good message.\n");
-
+		printf("Confirming login message.\n");
 	}
 	else if (flag == 3)
 	{
@@ -150,85 +126,182 @@ void waitForServerResponse(int socketNum)
 		printf("Unknown server response.\n");
 	}
 }
-void handleSendMessage(int socketNum, const char *buffer)
+
+int handleSendMessage(int socketNum, const char *buffer)
 {
-	char destinationHandle[MAX_HANDLE_LEN];
-	char message[MAX_MSG_SIZE];
-	int destinationHandleLen = 0;
-	int message_len = 0;
-
 	printf("Handle send message command.\n");
+	// Extract the destination handle and message from the buffer
+	char destinationHandle[MAX_HANDLE_LEN];
+	uint8_t text_message[MAX_MSG_SIZE];
 
-	// Parse the handle and message from the buffer
-	if (sscanf(buffer, "%%m %s %[^\n]", destinationHandle, message) != 2)
+	// Parse the command from the buffer
+	readMessageCommand(buffer, destinationHandle, text_message);
+
+	// add a byte to the text_message len for the null terminator
+	int text_message_len = strlen((char *)text_message);
+	text_message_len += 1; // Add 1 for the null terminator
+
+	// Debug: Print the extracted values
+	// printf("-----------------------------------------\n");
+	// printf("Sender Handle: %s\n", sender_handle);
+	// printf("Destination Handle: %s\n", destinationHandle);
+	// printf("Message: %s\n", text_message);
+	// printf("-----------------------------------------\n");
+
+	// print both in bytes
+	// printf("----------------------------------------\n");
+	// printf("Sender Handle in bytes: ");
+	// for (int i = 0; i < strlen(sender_handle); i++)
+	// {
+	// 	printf("%02x ", sender_handle[i]);
+	// }
+	// printf("\n");
+	// printf("Destination Handle in bytes: ");
+	// for (int i = 0; i < strlen(destinationHandle); i++)
+	// {
+	// 	printf("%02x ", destinationHandle[i]);
+	// }
+	// printf("\n");
+	// printf("Message in bytes: ");
+	// for (int i = 0; i < text_message_len; i++)
+	// {
+	// 	printf("%02x ", text_message[i]);
+	// }
+	// printf("\n");
+	// printf("-----------------------------------------\n");
+
+	// int senderHandleLen = strlen(sender_handle);
+	// int destinationHandleLen = strlen(destinationHandle);
+	// printf("---------------------------------------\n");
+	// printf("Destination Handle Length: %d\n", destinationHandleLen);
+	// printf("Text Message Length: %d\n", text_message_len);
+	// printf("Sender Handle Length: %d\n", senderHandleLen);
+	// printf("---------------------------------------\n");
+
+	// Construct the message packet
+	MessagePacket_t packetInfo = constructMessagePacket(destinationHandle, text_message_len, (uint8_t *)text_message, socketNum);
+	if (packetInfo.packet_len == 0)
 	{
-		printf("Invalid send message format. Use: %%m <handle> <message>\n");
-		return;
+		printf("Error constructing message packet.\n");
+		return -1;
 	}
-
-	destinationHandleLen = strlen(destinationHandle);
-	message_len = strlen(message);
-
-	if (destinationHandleLen == 0 || message_len == 0)
+	printf("----------------------------------------\n");
+	printf("Message packet text length: %d\n", packetInfo.text_message_len);
+	printf("-----------------------------------------\n");
+	// Send the message packet in chunks
+	int sent = sendMessageInChunks(socketNum, destinationHandle, packetInfo.packet, packetInfo.packet_len);
+	if (sent < 0)
 	{
-		printf("Handle or message cannot be empty.\n");
-		return;
+		printf("Error sending message packet.\n");
+		return -1;
 	}
-
-	// create the message packet 
-	uint8_t messagePacket[MAXBUF];
-
-	// First two bytes are the length of the whole packet
-	uint16_t total_packet_length = 1 + 1 + strlen(sender_handle) + 1 + 1 + strlen(destinationHandle) + message_len + 1;
-
-	// Convert the length to network order
-	uint16_t length_in_network_order = htons(total_packet_length);
-	
-	// bytes 0 and 1 are the length of the packet
-	memcpy(messagePacket, &length_in_network_order, 2);
-
-	// byte 2 is the command type (0x01 for %m)
-	uint8_t command_type = 0x01;
-	messagePacket[2] = command_type;
-
-	// byte 3 has one byte for the length of the sender handle
-	uint8_t sender_handle_len = strlen(sender_handle);
-	messagePacket[3] = sender_handle_len;
-	// copy the sender handle into the message packet
-	memcpy(messagePacket + 4, sender_handle, sender_handle_len);
-
-	// byte 4 + sender_handle_len has one byte for the value 1
-	messagePacket[4 + sender_handle_len] = 1;
-	// byte 5 + sender_handle_len has one byte for the length of the destination handle
-	messagePacket[5 + sender_handle_len] = strlen(destinationHandle);
-	// copy the destination handle into the message packet
-	memcpy(messagePacket + 6 + sender_handle_len, destinationHandle, strlen(destinationHandle));
-	// byte 6 + sender_handle_len + destination_handle_len has the message
-	memcpy(messagePacket + 7 + sender_handle_len + strlen(destinationHandle), message, message_len);
-	// byte 7 + sender_handle_len + destination_handle_len + message_len has the null terminator
-	messagePacket[7 + sender_handle_len + strlen(destinationHandle) + message_len] = '\0';
-
-	// Now that we have the message packet, we can send it to the server
-	int bytesSent = sendPDU(socketNum, messagePacket, total_packet_length);
-	if (bytesSent < 0)
+	else
 	{
-		printf("Error sending message packet to server.\n");
-		return;
+		printf("Message sent successfully.\n");
 	}
-	// Print the message packet for debugging
-	printf("Message Packet Sent:\n");
-	for (int i = 0; i < total_packet_length; i++)
-	{
-		printf("%02x ", messagePacket[i]);
-	}
-	printf("\n");
-	// Print the sender handle and destination handle for debugging
-	printf("Sender Handle: %s, Destination Handle: %s\n", sender_handle, destinationHandle);
-
-	// wait for server response
-	waitForServerResponse(socketNum);
+	return 0;
 }
 
+void readMessageCommand(const char *buffer, char destinationHandle[100], uint8_t text_message[199])
+{
+	// Tokenize the buffer to extract the command, destination handle, and message
+	char *token = strtok((char *)buffer, " ");
+	if (token == NULL || strcasecmp(token, "%m") != 0)
+	{
+		printf("Invalid message format. Use: %%m <destination_handle> <message>\n");
+		return;
+	}
+	// Extract the destination handle
+	token = strtok(NULL, " ");
+	if (token == NULL)
+	{
+		printf("Invalid message format. Use: %%m <destination_handle> <message>\n");
+		return;
+	}
+	strncpy(destinationHandle, token, MAX_HANDLE_LEN - 1);
+
+	// Extract the message
+	token = strtok(NULL, "\n");
+	if (token == NULL)
+	{
+		printf("Invalid message format. Use: %%m <destination_handle> <message>\n");
+		return;
+	}
+	strncpy((char *)text_message, token, MAX_MSG_SIZE - 1);
+	text_message[MAX_MSG_SIZE] = '\0'; // Null terminate only the text message
+}
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_HANDLE_LEN 100
+#define MAX_MSG_SIZE 199
+
+void readMulticastCommand(char *buffer, uint8_t *numHandles, DestHandle_t handles[], char *message)
+{
+    char *token = strtok(buffer, " ");
+    if (!token || strcasecmp(token, "%C") != 0)
+    {
+        printf("Invalid format. Use: %%C <num_handles> <handle1> <handle2> ... <message>\n");
+        return;
+    }
+
+    // Parse number of handles
+    token = strtok(NULL, " ");
+    if (!token || sscanf(token, "%hhd", numHandles) != 1 || *numHandles <= 0)
+    {
+        printf("Invalid number of handles. Must be > 0.\n");
+        return;
+    }
+
+    // Now grab each handle and store it into handles[i].handle_name
+    for (int i = 0; i < *numHandles; i++)
+    {
+        token = strtok(NULL, " ");
+        if (!token)
+        {
+            printf("Expected %d handles but found %d.\n", *numHandles, i);
+            return;
+        }
+        strncpy(handles[i].handle_name, token, MAX_HANDLE_LEN - 1);
+        handles[i].handle_name[MAX_HANDLE_LEN - 1] = '\0';
+        // Optionally, update the dest handle length field
+        handles[i].dest_handle_len = strlen(handles[i].handle_name);
+    }
+
+    // The rest of the buffer (including spaces) is the message
+    // strtok(NULL, "") returns the remainder of the string
+    char *msgStart = strtok(NULL, "");
+    if (!msgStart)
+        msgStart = ""; // allow empty message
+
+    // Copy up to MAX_MSG_SIZE chars, then null-terminate
+    strncpy(message, msgStart, MAX_MSG_SIZE - 1);
+    message[MAX_MSG_SIZE - 1] = '\0';
+
+    // --- Debug printout ---
+    printf("Parsed multicast command:\n");
+    printf("  Number of handles: %d\n", *numHandles);
+    for (int i = 0; i < *numHandles; i++)
+        printf("    Handle %d: %s\n", i + 1, handles[i].handle_name);
+    printf("  Message: %s\n", message);
+}
+	
+int sendMessageInChunks(int socketNum, char *destinationHandle, uint8_t *fullMessage, int fullMessageLength)
+{
+
+	int sent = sendPDU(socketNum, fullMessage, fullMessageLength);
+	if (sent < 1)
+	{
+		printf("ERROR in sending PDU from sendMessageInchunks\n");
+		return -1;
+	}
+	else
+	{
+		printf("All good\n");
+	}
+	return 1;
+}
 
 void handleBroadcastMessage(int socketNum, const char *buffer)
 {
@@ -250,93 +323,24 @@ void handleBroadcastMessage(int socketNum, const char *buffer)
 		return;
 	}
 }
-void parseMulticastInput(const char *buffer, int *numHandles, char destinationHandles[9][MAX_HANDLE_LEN], char *message)
-{
-	// 1) Skip the “%c” and any spaces
-	const char *ptr = buffer + 2;
-	while (*ptr == ' ')
-		ptr++;
 
-	// 2) Parse the number of handles with strtol (gives end‐ptr)
-	char *endptr;
-	long nh = strtol(ptr, &endptr, 10);
-	if (endptr == ptr || nh < 2 || nh > 9)
-	{
-		printf("Invalid number of handles. Must be between 2 and 9.\n");
-		*numHandles = -1; // Indicate error
-		return;
-	}
-	*numHandles = (int)nh;
 
-	// 3) Advance past the count and any spaces
-	ptr = endptr;
-	while (*ptr == ' ')
-		ptr++;
-
-	// 4) Parse each destination handle
-	for (int i = 0; i < *numHandles; i++)
-	{
-		// Find length of this handle token
-		int len = 0;
-		while (ptr[len] != '\0' && ptr[len] != ' ')
-			len++;
-
-		if (len == 0 || len >= MAX_HANDLE_LEN)
-		{
-			printf("Invalid destination handle format.\n");
-			*numHandles = -1; // Indicate error
-			return;
-		}
-
-		// Copy it into destinationHandles[i]
-		memcpy(destinationHandles[i], ptr, len);
-		destinationHandles[i][len] = '\0';
-
-		// Advance ptr past this handle and any following spaces
-		ptr += len;
-		while (*ptr == ' ')
-			ptr++;
-	}
-
-	// 5) The rest of ptr is the message
-	if (*ptr == '\0')
-	{
-		printf("Invalid format: no message provided.\n");
-		*numHandles = -1; // Indicate error
-		return;
-	}
-	strncpy(message, ptr, MAX_MSG_SIZE - 1);
-	message[MAX_MSG_SIZE - 1] = '\0'; // Ensure null termination
-}
-
-void handleMulticastMessage(int socketNum, const char *buffer)
+void handleMulticastMessage(int socketNum, char *buffer)
 {
 	printf("Handle multicast message command.\n");
-
-	int numHandles = 0;
-	char destinationHandles[9][MAX_HANDLE_LEN]; // Maximum of 9 destination handles
-	char message[MAX_MSG_SIZE];
-
-	// Parse the input
-	parseMulticastInput(buffer, &numHandles, destinationHandles, message);
-
-	if (numHandles == -1)
-	{
-		// Parsing failed
-		return;
-	}
-
-	printf("Number of handles: %d\n", numHandles);
-	for (int i = 0; i < numHandles; i++)
-	{
-		printf("Destination Handle %d: %s\n", i + 1, destinationHandles[i]);
-	}
-	printf("Message: %s\n", message);
+	uint8_t* multicastPDU = constructMulticastPacket(buffer, socketNum);	
+	
+	// print out the pdu in bytes
+	printf("We got back home");
+	
 }
 
 void handleListHandles(int socketNum, const char *buffer)
 {
 	printf("Handle list handles command.\n");
+
+	// get the arguments from the buffer
+	char *token = strtok((char *)buffer, " ");
 }
 
 void handleInvalidCommand(int socketNum, const char *buffer)
@@ -348,13 +352,11 @@ int main(int argc, char *argv[])
 {
 	int socketNum = 0; // socket descriptor
 	strncpy(sender_handle, argv[1], MAX_HANDLE_LEN - 1);
-	sender_handle[MAX_HANDLE_LEN - 1] = '\0'; // Ensure null termination
 	checkArgs(argc, argv);
-
 
 	/* set up the TCP Client socket  */
 	socketNum = tcpClientSetup(argv[2], argv[3], DEBUG_FLAG);
-	
+
 	printf("Client handle: %s\n", sender_handle);
 	// call the client control() function
 	clientControl(socketNum);
@@ -365,7 +367,7 @@ int main(int argc, char *argv[])
 void sendCommand(int socketNum, char *buffer)
 {
 	CommandType commandType = parseCommand(buffer);
-
+	printf("command type %d\n", commandType);
 	switch (commandType)
 	{
 	case CMD_SEND_MESSAGE:
@@ -373,7 +375,6 @@ void sendCommand(int socketNum, char *buffer)
 		printf("Send message command detected.\n");
 		// call handleSendMessage(socketNum, buffer);
 		handleSendMessage(socketNum, buffer);
-
 		break;
 
 	case CMD_BROADCAST_MESSAGE:
@@ -417,21 +418,15 @@ void sendCommand(int socketNum, char *buffer)
 
 void clientControl(int socketNum)
 {
-	// init valid handle here 
-	/*3-byte chat-header, then 1 byte handle length then the handle (*/
-
-	// 1 byte for the value 1 (one destination handle)
-	// 1 byte for the length of the destination handle
-
-    createInitialPacket();
-
-    setupPollSet();
+	setupPollSet();
 
 	// Add STDIN and the socket to the poll set
 	addToPollSet(socketNum);
 	addToPollSet(STDIN_FILENO);
 
-	// Continously loop throug hthe to accept user input and process messages from the user
+	initialConnection(socketNum, 1);
+
+	// Continously loop through the to accept user input and process messages from the user
 	while (1)
 	{
 		printf("$: ");
@@ -465,36 +460,104 @@ void clientControl(int socketNum)
 	exit(0);
 }
 
-void initialConnection(int clientSocket, uint8_t flag)
+void printPacket(const uint8_t *packet, size_t length)
 {
-    // First thing is to create the initial packet and have the flag be 1
+	printf("Packet (%zu bytes):\n", length);
+	for (size_t i = 0; i < length; i++)
+	{
+		printf("%02x ", packet[i]); // Print each byte in hexadecimal format
+		if ((i + 1) % 16 == 0)
+		{
+			printf("\n"); // Add a newline every 16 bytes for readability
+		}
+	}
+	printf("\n");
+}
 
-	// First two bytes are the length of the whole packet
+int initialConnection(int clientSocket, uint8_t flag)
+{
+	uint8_t *initial_packet = makeInitialPDU();
 
-	/*
-	- First two bytes are the length of the whole packet
-	- byte 2 is the flag
-	- byte 3 has the length of the handle
-	- copy the handle into the packet
-	*/
-	uint16_t total_packet_length = 4 + strlen(sender_handle);
-	uint8_t initialPacket[total_packet_length];
-	// Convert the length to network order
-	uint16_t length_in_network_order = htons(total_packet_length);
-	memcpy(initialPacket, &length_in_network_order, 2);
-	// byte 2 is the flag
-	initialPacket[2] = flag;
-	// byte 3 has one byte for the length of the sender handle
-	uint8_t sender_handle_len = strlen(sender_handle);
-	initialPacket[3] = sender_handle_len;
-	// copy the sender handle into the message packet
-	memcpy(initialPacket + 4, sender_handle, sender_handle_len);
+	int handle_len = strlen(sender_handle);
+	int initial_packet_len = 1 + handle_len + 1 + 1; // 2 bytes for length, 1 byte for flag
 
-	// Now that we have the message packet, we can send it to the server
-	int bytesSent = sendPDU(clientSocket, initialPacket, total_packet_length);
+	int sent = sendPDU(clientSocket, initial_packet, initial_packet_len);
 
-	
+	if (sent < 0)
+	{
+		printf("Error sending initial packet to server.\n");
+		return -1;
+	}
 
+	waitForServerResponse(clientSocket);
+	return 0;
+}
+
+void receiveMessage(uint8_t *buffer, int totalBytes)
+{
+	// printf("Parsing received PDU, length: %d\n", totalBytes);
+
+	// printf("PDU contents: ");
+	// for (int i = 0; i < totalBytes; i++) {
+	//     printf("%02x ", buffer[i]);
+	// }
+	// printf("\n");
+
+	int offset = 0;
+
+	// Step 1: Extract the flag
+	// flag = buffer[offset++];
+	offset++;
+	// printf("Flag: %d\n", flag);
+
+	// Step 2: Extract sender handle length
+	uint8_t sender_handle_len = buffer[offset++];
+	// printf("Sender handle length: %d\n", sender_handle_len);
+
+	// Step 3: Extract sender handle (not null-terminated in PDU)
+	char sender_handle_rec[sender_handle_len];
+	memcpy(sender_handle_rec, buffer + offset, sender_handle_len);
+	offset += sender_handle_len;
+	// printf("Sender handle: %s\n", sender_handle_rec);
+
+	// Step 4: Extract destination flag
+	//uint8_t destination_flag = buffer[offset++];
+	offset++;
+	// printf("Destination flag (should be 1): %d\n", destination_flag);
+
+	// Step 5: Extract destination handle length
+	uint8_t destination_handle_len = buffer[offset++];
+	// printf("Destination handle length: %d\n", destination_handle_len);
+
+	// Step 6: Extract destination handle (also not null-terminated)
+	char destination_handle[destination_handle_len];
+	memcpy(destination_handle, buffer + offset, destination_handle_len);
+	offset += destination_handle_len;
+	// printf("Destination handle: %s\n", destination_handle);
+
+	// Step 7: Extract the message
+	int message_length = totalBytes - offset;
+	// printf("Message length: %d\n", message_length);
+
+	if (message_length > 0)
+	{
+		// Copy the message into a printable string
+		char message[message_length + 1];
+		memcpy(message, buffer + offset, message_length);
+		message[message_length] = '\0'; // null-terminate
+
+		// printf("Message in bytes: ");
+		// for (int i = 0; i < message_length; i++) {
+		//     printf("%02x ", (uint8_t)message[i]);
+		// }
+		// printf("\n");
+
+		printf("%s: %s\n", sender_handle, message);
+	}
+	else
+	{
+		printf("No message payload.\n");
+	}
 }
 
 void processMsgFromServer(int socketNum)
@@ -517,19 +580,22 @@ void processMsgFromServer(int socketNum)
 	{
 		buffer[recvBytes] = '\0'; // Null terminate the string
 	}
-
-
-	printf("Socket %d: Bytes recevied: %d message: %s\n", socketNum, recvBytes, buffer);
-
-
-
+	receiveMessage(buffer, recvBytes);
 }
 
 void sendToServer(int socketNum)
 {
-	uint8_t buffer[MAXBUF]; // data buffer
-	int sendLen = readFromStdin(buffer);
-	sendCommand(socketNum, (char *)buffer); // Returns 0 on success, -1 on failure
+	uint8_t buffer[MAXBUF];
+	int inputLen = readFromStdin(buffer);
+	if (inputLen > 0)
+	{
+		printf("command entered: %s\n", buffer);
+	}
+	else
+	{
+		printf("No valid input received.\n");
+	}
+	sendCommand(socketNum, (char *)buffer);
 }
 
 int readFromStdin(uint8_t *buffer)
