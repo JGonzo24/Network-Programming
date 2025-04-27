@@ -13,6 +13,7 @@
 
 int sendListPDU(int socketNum);
 int makeListPDU(uint8_t* listPDU, int socketNum);
+int sendBroadcastPDU(uint8_t* broadcastPDU, int socketNum, char* message, char* sender_handle);
 
 
 
@@ -42,6 +43,14 @@ typedef struct {
     DestHandle_t destHandles[MAX_DEST_HANDLES];
     char text_message[MAX_MSG_SIZE];
 } MulticastPacket_t;
+
+
+typedef struct {
+    uint8_t flag;
+    uint8_t senderHandleLen;
+    char senderHandle[MAX_HANDLE_LEN];
+    char text_message[MAX_MSG_SIZE];
+} BroadcastPacket_t;
 
 typedef enum {
     CMD_BROADCAST_MESSAGE,

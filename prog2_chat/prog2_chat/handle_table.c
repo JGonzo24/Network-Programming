@@ -67,7 +67,7 @@ void initHandleTable()
 }
 
 // Function to add a handle to the table
-int addHandle(int socketNum, char *handle)
+int addHandle(int socketNum, char *handle, int handleLen)
 {
     printf("Adding handle: %s with socket number: %d\n", handle, socketNum);
 
@@ -104,7 +104,7 @@ int addHandle(int socketNum, char *handle)
 
     // Ensure the handle is null-terminated
     handleTable[handleCount].handle[sizeof(handleTable[handleCount].handle) - 1] = '\0';
-
+    handleTable[handleCount].handleLen = handleLen;
     handleCount++;
 
     printf("Handle: %s was added with socket number: %d\n", handle, socketNum);

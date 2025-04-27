@@ -18,14 +18,14 @@
 #include "shared.h"
 #include "handle_table.h"
 
-int makeListPDU(uint8_t* listPDU, int socketNum)
+int makeListPDU(uint8_t *listPDU, int socketNum)
 {
     // Creae a list PDU
     /*
     Format: flag = 10
     */
     uint8_t flag = 0x0A; // Command type for %l
-    
+
     // Put the PDU into the buffer
     listPDU[0] = flag;
     return sendPDU(socketNum, listPDU, 1);
@@ -48,7 +48,7 @@ int sendListPDU(int socketNum)
     memcpy(listPDU + 1, &networkOrderCount, sizeof(uint32_t)); // Copy the handle count to the PDU
     offset += sizeof(uint32_t);
 
-    // sendPDU to the client 
+    // sendPDU to the client
     int sent = sendPDU(socketNum, listPDU, offset);
     if (sent < 0)
     {
@@ -60,7 +60,7 @@ int sendListPDU(int socketNum)
         printf("List PDU sent to socket %d\n", socketNum);
     }
 
-    // then send the handles in format of for each handle 
+    // then send the handles in format of for each handle
     /*
     - Flag
     - handle length
@@ -72,8 +72,8 @@ int sendListPDU(int socketNum)
     Use the struct Handle_t to get the handles
     add the flag in the first byte
     */
-   Handle_t *handleTable = getHandleTable();
-   int count = getHandleCount();
+    Handle_t *handleTable = getHandleTable();
+    int count = getHandleCount();
 
     if (handleTable == NULL)
     {
@@ -83,23 +83,61 @@ int sendListPDU(int socketNum)
 
     for (int i = 0; i < count; i++)
     {
+        // send a PDU for each handle
         uint8_t handlePDU[MAXBUF];
-        handlePDU[0] = 0x0C; // Command type for sending back from the server
-        DestHandle_t handleInfo;
-        handleInfo.dest_handle_len = strlen(handleTable[i].handle);
-        memcpy(handleInfo.handle_name, handleTable[i].handle, handleInfo.dest_handle_len);
-        handleInfo.handle_name[handleInfo.dest_handle_len] = '\0'; // Null-terminate the handle
-        
-        // Copy the handle length and handle to the PDU
-        handlePDU[1] = handleInfo.dest_handle_len; // Set the handle length
-        memcpy(handlePDU + 2, handleInfo.handle_name, handleInfo.dest_handle_len); // Copy the handle
-        handlePDU[2 + handleInfo.dest_handle_len] = '\0'; // Null-terminate the handle
-        int handlePDU_len = 2 + handleInfo.dest_handle_len; // Length of the PDU
+        uint8_t handleFlag = 0x0C; // Command type for sending back from the server
+        handlePDU[0] = handleFlag;
+        int handleLen = handleTable[i].handleLen; // Get the handle length
 
-        printPacket(handlePDU, handlePDU_len); // Print the PDU in hex format
-        // Send the handle PDU to the client
+        handlePDU[1] = handleLen; // Set the handle length
+        memcpy(handlePDU + 2, handleTable[i].handle, handleLen); // Copy the handle to the PDU
+
+        int handlePDU_len = 2 + handleLen; // Length of the PDU
+
         int sent = sendPDU(socketNum, handlePDU, handlePDU_len);
+        if (sent < 0)
+        {
+            printf("Error sending handle PDU to socket %d\n", socketNum);
+            return -1;
+        }
+        else
+        {
+            printf("Handle PDU sent to socket %d\n", socketNum);
+        }
     }
+
+    // lastly send a PDU with the flag == 0x0D to indicate end of list
+    uint8_t endPDU[MAXBUF];
+    uint8_t endFlag = 0x0D; // Command type for sending back from the server
+    endPDU[0] = endFlag;
+    sendPDU(socketNum, endPDU, 1);
+    printf("End PDU sent to socket %d\n", socketNum);
     showHandles();
     return 0;
 }
+
+ int sendBroadcastPDU(uint8_t *broadcastPDU, int socketNum, char *message, char *sender_handle)
+ {
+    // construct the packet
+    int offset = 0;
+    // First byte is the flag
+    uint8_t flag = 0x04 ; // Command type for %b
+    broadcastPDU[offset++] = flag;
+
+    // 1 byte for the sender handle length
+    broadcastPDU[offset++] = strlen(sender_handle);
+
+    // Copy the sender handle into the packet
+    memcpy(broadcastPDU + offset, sender_handle, strlen(sender_handle));
+    offset += strlen(sender_handle);
+
+    // Copy the text message into the PDU
+    int text_message_len = strlen(message);
+    memcpy(broadcastPDU + offset, message, text_message_len);
+    offset += text_message_len;
+    broadcastPDU[offset] = '\0'; // Null-terminate the message
+    offset += 1;
+    // Send the broadcast PDU to the server
+    int sent = sendPDU(socketNum, broadcastPDU, offset);
+    return 0;
+ }

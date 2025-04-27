@@ -44,6 +44,7 @@ void handleMulticastMessage(int socketNum, char *buffer);
 int handleFlagsFromServer(int flag, uint8_t *buffer, int totalBytes);
 void processListHandles(uint8_t *buffer, int totalBytes);
 int validateMulticastMessage(uint8_t *buffer, int socketNum, int messageLen);
+int receiveBroadcastMessage(uint8_t *buffer, int socketNum);
 
 
 

@@ -30,7 +30,6 @@ x bytes: sender handle name
 uint8_t* makeInitialPDU()
 {
     int sender_handle_len = strlen(sender_handle);
-    uint16_t total_len = 1 + 1 + sender_handle_len; // 1 byte for flag, 1 byte for handle length, and the length of the handle
     uint8_t static pdu[MAXBUF]; // Static array to hold the PDU
     uint8_t flag = 1;
 
@@ -42,11 +41,7 @@ uint8_t* makeInitialPDU()
 
     // memcpy the sender handle into the PDU
     memcpy(pdu + 2, sender_handle, sender_handle_len);
-    printf("Printed Initial PDU: ");
-    for (int i = 0; i < total_len; i++)
-    {
-        printf("%02x ", pdu[i]);
-    }
+
     printf("\n");
 
     return pdu;
@@ -59,14 +54,11 @@ uint8_t* constructMulticastPacket(char* buffer, int socketNum)
     static uint8_t multicastPDU[MAXBUF];
     memset(&packetInfo, 0, sizeof(packetInfo));
 
-	printf("About to read the command!");
-
 	readMulticastCommand(buffer, &packetInfo.numDestHandles, packetInfo.destHandles, packetInfo.text_message);
     // construct the packet to be sent
     int offset = 0;
     // First byte is the flag
     packetInfo.flag = 0x06;
-
 
     packetInfo.senderHandleLen = strlen(sender_handle);
     
@@ -92,8 +84,6 @@ uint8_t* constructMulticastPacket(char* buffer, int socketNum)
     multicastPDU[offset] = '\0';
     offset += 1;
     
-    printPacket(multicastPDU, offset);
-
     sendPDU(socketNum, multicastPDU, offset);
 	return multicastPDU;
 } 
@@ -101,51 +91,6 @@ uint8_t* constructMulticastPacket(char* buffer, int socketNum)
 
 MessagePacket_t constructMessagePacket(char destinationHandle[100], int text_message_len, uint8_t text_message[199], int socketNum)
 {
-    // // First check if we need to resize the message packet
-    // if (text_message_len > MAXBUF)
-    // {
-    //     printf("Error: Message length exceeds maximum buffer size.\n");
-        
-    // }
-    // printf("------------------------------------------\n");
-    // printf("Text message length: %d\n", text_message_len);
-    // printf("------------------------------------------\n");
-
-    // printf("Constructing message packet...\n");
-    // printf("Destination Handle: %s\n", destinationHandle);
-	// int destinationHandleLen = strlen((char*)destinationHandle);
-	// int senderHandleLen = strlen(sender_handle);
-
-	// // First packet is the flag
-	// uint8_t static message_packet[MAXBUF];
-	// uint8_t flag = 0x05; // Command type for %m
-	// memcpy(message_packet, &flag, 1);
-
-	// // 1 byte for the sender handle length
-    // memcpy(message_packet + 1, &senderHandleLen, 1);
-
-	// // Copy the sender handle into the packet
-	// memcpy(message_packet + 2, sender_handle, senderHandleLen);
-	// // 1 byte for the destination handle flag (always 1
-	// message_packet[2 + senderHandleLen] = 0x01;
-	// // 1 byte for the destination handle length
-	// message_packet[3 + senderHandleLen] = destinationHandleLen;
-	// // Copy the destination handle into the packet
-	// memcpy(message_packet + 4 + senderHandleLen, destinationHandle, destinationHandleLen);
-
-    // printf("Sender Handle Length: %d\n", senderHandleLen);
-    // printf("Destination Handle Length: %d\n", destinationHandleLen);
-
-	// // Text message starts here
-	// memcpy(message_packet + 4 + senderHandleLen + destinationHandleLen, text_message, text_message_len);
-
-    // printPacket(message_packet, 4 + senderHandleLen + destinationHandleLen + text_message_len);
-
-    // printf("----------------------------------------\n");
-    // printPacket(message_packet, 4 + senderHandleLen + destinationHandleLen + text_message_len);
-    // printf("Message packet constructed successfully.\n");
-    // printf("-----------------------------------------\n");
-    // return message_packet;
     
     // Create a packet info structure to hold the packet and its length
     MessagePacket_t packetInfo;
@@ -189,8 +134,6 @@ MessagePacket_t constructMessagePacket(char destinationHandle[100], int text_mes
     packetInfo.packet = message_packet;
     packetInfo.packet_len = total_len;
     packetInfo.text_message_len = text_message_len;
-
-    printf("Message packet constructed successfully.\n");
     return packetInfo;
 }
 

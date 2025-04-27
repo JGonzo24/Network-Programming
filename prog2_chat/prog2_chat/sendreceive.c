@@ -43,14 +43,10 @@ int sendPDU(int clientSocket, uint8_t * dataBuffer, int lengthOfData)
 
     // put the rest of the data into the PDU
     memcpy(pdu + 2, dataBuffer, lengthOfData);
-    // Print the PDU for debugging
-    printPacket(pdu, pdu_length);
-
+    
     // send the entire PDU using send()
     int numBytesSent = safeSend(clientSocket, pdu, pdu_length, 0);
 
-    printf("All bytes sent in hex: \n");
-    printPacket(pdu, pdu_length);
     // Check if the number of bytes sent is equal to the length of the data
 
     if (numBytesSent == pdu_length) {
@@ -78,15 +74,14 @@ int sendPDU(int clientSocket, uint8_t * dataBuffer, int lengthOfData)
 int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
 
     uint8_t lengthBuffer[2];  // Buffer to hold the 2-byte PDU length
-    printf("----------------------- recvPDU() -----------------------\n");
     int received_bytes = safeRecv(socketNumber, lengthBuffer, 2, MSG_WAITALL);
-    printPacket(lengthBuffer, 2);
 
-    printf("Length buffer in recvPDU(): ");
-    for (int i = 0; i < 2; i++) {
-        printf("%02x ", lengthBuffer[i]);
-    }
-    printf("\n");
+
+    // printf("Length buffer in recvPDU(): ");
+    // for (int i = 0; i < 2; i++) {
+    //     printf("%02x ", lengthBuffer[i]);
+    // }
+    // printf("\n");
    
     if (received_bytes == 0) {
         printf("There is nothing to read! Connection closed by client.\n");
@@ -98,10 +93,9 @@ int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
     }
     // Convert the 2-byte length from network byte order to host byte order
     uint16_t pdu_length_read = ntohs(*(uint16_t*)lengthBuffer);
-    printf("PDU length read from recvPDU(): %d\n", pdu_length_read);
-
-
     
+    //printf("PDU length read from recvPDU(): %d\n", pdu_length_read);
+
     // Check if the length is smaller than the buffer size
     if (pdu_length_read > bufferSize) {
         printf("Error: The buffer is not large enough to fit the PDU! Needs at least %d bytes.\n", pdu_length_read);
@@ -109,12 +103,12 @@ int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
     }    
     // 2. Receive the rest of the data (the payload)
     received_bytes = safeRecv(socketNumber, dataBuffer, pdu_length_read-2, MSG_WAITALL);
-    printf("Data buffer in recvPDU(): ");
-    for (int i = 0; i < received_bytes; i++) {
-        printf("%02x ", dataBuffer[i]);
-    }
-    printf("\n");
 
+    // printf("Data buffer in recvPDU(): ");
+    // for (int i = 0; i < received_bytes; i++) {
+    //     printf("%02x ", dataBuffer[i]);
+    // }
+    // printf("\n");
 
     // parse out the flag
     if (received_bytes == 0) {
