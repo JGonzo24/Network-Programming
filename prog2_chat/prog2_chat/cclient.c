@@ -254,7 +254,7 @@ void handleBroadcastMessage(int socketNum, const char *buffer)
 	char message[MAXBUF];
 
 	// Parse the message from the buffer
-	if (sscanf(buffer, "%%b %[^\n]", message) != 1)
+	if (sscanf(buffer, "%%b %[^\n]", message) != 1 && sscanf(buffer, "%%B %[^\n]", message) != 1)
 	{
 		printf("Invalid broadcast message format. Use: %%b <message>\n");
 		return;
