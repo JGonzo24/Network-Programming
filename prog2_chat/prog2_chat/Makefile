@@ -8,13 +8,13 @@ CLIENT_OBJS = networks.o gethostbyname.o pollLib.o safeUtil.o sendreceive.o hand
 SERVER_OBJS = networks.o gethostbyname.o pollLib.o safeUtil.o sendreceive.o handle_table.o shared.o
 
 # Targets
-all: cclient server2
+all: cclient server
 
 cclient: cclient.o $(CLIENT_OBJS)
 	$(CC) $(CFLAGS) -o cclient cclient.o $(CLIENT_OBJS) $(LIBS)
 
-server2: server2.o $(SERVER_OBJS)
-	$(CC) $(CFLAGS) -o server2 server2.o $(SERVER_OBJS) $(LIBS)
+server: server.o $(SERVER_OBJS)
+	$(CC) $(CFLAGS) -o server server.o $(SERVER_OBJS) $(LIBS)
 
 # Pattern rule for compiling .c files to .o
 .c.o:
@@ -26,4 +26,4 @@ cleano:
 
 # Clean everything
 clean:
-	rm -f server2 cclient *.o
+	rm -f server cclient *.o

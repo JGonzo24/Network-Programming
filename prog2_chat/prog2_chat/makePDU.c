@@ -6,7 +6,6 @@ This code creates a PDU (Protocol Data Unit) for sending messages in a chat appl
 Each PDU is different depending on the flags and the type of message being sent.
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,8 +25,7 @@ x bytes: sender handle name
 
 // Global variable to store the sender handle
 
-
-uint8_t* makeInitialPDU()
+uint8_t *makeInitialPDU()
 {
     int sender_handle_len = strlen(sender_handle);
     uint8_t static pdu[MAXBUF]; // Static array to hold the PDU
@@ -47,51 +45,40 @@ uint8_t* makeInitialPDU()
     return pdu;
 }
 
-
-uint8_t* constructMulticastPacket(char* buffer, int socketNum)
+int constructMulticastPDU(uint8_t* multicastPDU, int socketNum, char* sender_handle,int numHandles, DestHandle_t* handles, char* message)
 {
-	static MulticastPacket_t packetInfo;
-    static uint8_t multicastPDU[MAXBUF];
-    memset(&packetInfo, 0, sizeof(packetInfo));
-
-	readMulticastCommand(buffer, &packetInfo.numDestHandles, packetInfo.destHandles, packetInfo.text_message);
-    // construct the packet to be sent
     int offset = 0;
-    // First byte is the flag
-    packetInfo.flag = 0x06;
+    multicastPDU[0] = 0x06; // Command type for %c
+    offset++;
 
-    packetInfo.senderHandleLen = strlen(sender_handle);
-    
-    memcpy(packetInfo.senderHandle, sender_handle, packetInfo.senderHandleLen);
+    uint8_t sender_handle_len = strlen(sender_handle);
+    multicastPDU[offset++] = sender_handle_len;
+    memcpy(multicastPDU + offset, sender_handle, sender_handle_len);
+    offset += sender_handle_len;
 
-    // now copy them all into the PDU
-    multicastPDU[offset++] = packetInfo.flag;
-    multicastPDU[offset++] = packetInfo.senderHandleLen;
-    memcpy(multicastPDU + offset, packetInfo.senderHandle, packetInfo.senderHandleLen);
-    offset += packetInfo.senderHandleLen;
-    multicastPDU[offset++] = packetInfo.numDestHandles;
-    for (int i = 0; i < packetInfo.numDestHandles; i++)
+    multicastPDU[offset++] = numHandles; // Number of destination handles
+
+    for (int i = 0; i < numHandles; i++)
     {
-        multicastPDU[offset++] = packetInfo.destHandles[i].dest_handle_len;
-        memcpy(multicastPDU + offset, packetInfo.destHandles[i].handle_name, packetInfo.destHandles[i].dest_handle_len);
-        offset += packetInfo.destHandles[i].dest_handle_len;
+        uint8_t dest_handle_len = strlen(handles[i].handle_name);
+        multicastPDU[offset++] = dest_handle_len;
+        memcpy(multicastPDU + offset, handles[i].handle_name, dest_handle_len);
+        offset += dest_handle_len;
     }
-    // Copy the text message into the PDU
-    int text_message_len = strlen(packetInfo.text_message); 
-    memcpy(multicastPDU + offset, packetInfo.text_message, text_message_len);
-    offset += text_message_len;
-    // manually add the null terminator
-    multicastPDU[offset] = '\0';
-    offset += 1;
-    
-    sendPDU(socketNum, multicastPDU, offset);
-	return multicastPDU;
-} 
 
+    // Copy the message into the PDU
+    int message_len = strlen(message);
+    memcpy(multicastPDU + offset, message, message_len);
+    offset += message_len;
+
+    // Now that the PDU is constructed, we can send it
+    int pdu_length = offset; // Length of the PDU
+    return pdu_length;
+}
 
 MessagePacket_t constructMessagePacket(char destinationHandle[100], int text_message_len, uint8_t text_message[199], int socketNum)
 {
-    
+
     // Create a packet info structure to hold the packet and its length
     MessagePacket_t packetInfo;
     static uint8_t message_packet[MAXBUF];
@@ -128,7 +115,6 @@ MessagePacket_t constructMessagePacket(char destinationHandle[100], int text_mes
     // Text message starts here
     memcpy(message_packet + offset, text_message, text_message_len);
     offset += text_message_len;
-    
 
     // Fill the packet info structure
     packetInfo.packet = message_packet;
@@ -136,4 +122,3 @@ MessagePacket_t constructMessagePacket(char destinationHandle[100], int text_mes
     packetInfo.text_message_len = text_message_len;
     return packetInfo;
 }
-

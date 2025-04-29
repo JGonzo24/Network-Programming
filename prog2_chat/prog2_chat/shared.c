@@ -60,18 +60,7 @@ int sendListPDU(int socketNum)
         printf("List PDU sent to socket %d\n", socketNum);
     }
 
-    // then send the handles in format of for each handle
-    /*
-    - Flag
-    - handle length
-    - handle
-    */
-    // Get the handles from the handle table
-
-    /*
-    Use the struct Handle_t to get the handles
-    add the flag in the first byte
-    */
+    
     Handle_t *handleTable = getHandleTable();
     int count = getHandleCount();
 
@@ -118,26 +107,44 @@ int sendListPDU(int socketNum)
 
  int sendBroadcastPDU(uint8_t *broadcastPDU, int socketNum, char *message, char *sender_handle)
  {
-    // construct the packet
-    int offset = 0;
-    // First byte is the flag
-    uint8_t flag = 0x04 ; // Command type for %b
-    broadcastPDU[offset++] = flag;
-
-    // 1 byte for the sender handle length
-    broadcastPDU[offset++] = strlen(sender_handle);
-
-    // Copy the sender handle into the packet
-    memcpy(broadcastPDU + offset, sender_handle, strlen(sender_handle));
-    offset += strlen(sender_handle);
-
-    // Copy the text message into the PDU
     int text_message_len = strlen(message);
-    memcpy(broadcastPDU + offset, message, text_message_len);
-    offset += text_message_len;
-    broadcastPDU[offset] = '\0'; // Null-terminate the message
-    offset += 1;
-    // Send the broadcast PDU to the server
-    int sent = sendPDU(socketNum, broadcastPDU, offset);
-    return 0;
+
+    int bytesSent = 0;
+    while (bytesSent < text_message_len)
+    {
+        int chunkSize = MAX_MSG_SIZE;
+
+        if (text_message_len - bytesSent < MAX_MSG_SIZE)
+        {
+            chunkSize = text_message_len - bytesSent;
+        }
+        // construct the packet
+        int offset = 0;
+        // First byte is the flag
+        uint8_t flag = 0x04 ; // Command type for %b
+        broadcastPDU[offset++] = flag;
+
+        // 1 byte for the sender handle length
+        broadcastPDU[offset++] = strlen(sender_handle);
+
+        // Copy the sender handle into the packet
+        memcpy(broadcastPDU + offset, sender_handle, strlen(sender_handle));
+        offset += strlen(sender_handle);
+
+        // Copy the text message into the PDU
+        memcpy(broadcastPDU + offset, message, text_message_len);
+        offset += chunkSize;
+        broadcastPDU[offset] = '\0'; // Null-terminate the message
+        offset += 1;
+        // Send the broadcast PDU to the server
+        int sent = sendPDU(socketNum, broadcastPDU, offset);
+        if (sent < 0)
+        {
+            printf("Error sending broadcast PDU to socket %d\n", socketNum);
+            return -1;
+        }
+
+        bytesSent += chunkSize;
+    }
+        return 0;
  }
