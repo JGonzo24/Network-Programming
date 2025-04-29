@@ -276,10 +276,6 @@ void handleBroadcastMessage(int socketNum, const char *buffer)
 		printf("Error sending broadcast PDU.\n");
 		return;
 	}
-	else
-	{
-		printf("Broadcast PDU sent successfully.\n");
-	}
 }
 
 
@@ -356,13 +352,14 @@ void handleInvalidCommand(int socketNum, const char *buffer)
 int main(int argc, char *argv[])
 {
 	int socketNum = 0; // socket descriptor
-	strncpy(sender_handle, argv[1], MAX_HANDLE_LEN - 1);
 	checkArgs(argc, argv);
+
+	strncpy(sender_handle, argv[1], MAX_HANDLE_LEN - 1);
+	printf("sender_handle: %s\n", sender_handle);
 
 	/* set up the TCP Client socket  */
 	socketNum = tcpClientSetup(argv[2], argv[3], DEBUG_FLAG);
 
-	printf("Client handle: %s\n", sender_handle);
 	clientControl(socketNum);
 
 	return 0;
@@ -510,7 +507,6 @@ void receiveMessage(uint8_t *buffer, int totalBytes)
 	{
 		handles[i].dest_handle_len = buffer[offset++];
 		memcpy(handles[i].handle_name, buffer + offset, handles[i].dest_handle_len);
-		handles[i].handle_name[handles[i].dest_handle_len] = '\0'; // Null-terminate the handle
 		offset += handles[i].dest_handle_len;
 	}
 
@@ -522,7 +518,7 @@ void receiveMessage(uint8_t *buffer, int totalBytes)
 		char message[message_length + 1];
 		memcpy(message, buffer + offset, message_length);
 		message[message_length] = '\0'; // null-terminate
-
+		sender_handle_rec[sender_handle_len] = '\0'; // null-terminate the sender handle
 		printf("%s: %s\n", sender_handle_rec, message);
 	}
 	else
@@ -553,6 +549,7 @@ int receiveBroadcastMessage(uint8_t *buffer, int totalBytes)
 		memcpy(message, buffer + offset, message_length);
 		message[message_length] = '\0'; // null-terminate
 
+		sender_handle_rec[sender_handle_len] = '\0'; // null-terminate the sender handle
 		printf("%s: %s\n", sender_handle_rec, message);
 	}
 	else

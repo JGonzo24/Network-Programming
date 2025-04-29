@@ -257,7 +257,6 @@ int addNewSocket(int socketNum)
         printf("Sending error response to client\n");
         response[2] = 3; // Error flag (set the flag to indicate an error)
         sendPDU(newSocket, response, sizeof(response));
-        exit(-1);
     }
     else
     {

@@ -138,6 +138,11 @@ int sendListPDU(int socketNum)
         offset += 1;
         // Send the broadcast PDU to the server
         int sent = sendPDU(socketNum, broadcastPDU, offset);
+        if (sent < 0)
+        {
+            printf("Error sending broadcast PDU to socket %d\n", socketNum);
+            return -1;
+        }
 
         bytesSent += chunkSize;
     }

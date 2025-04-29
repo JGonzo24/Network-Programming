@@ -69,6 +69,7 @@
     "string.h": "c",
     "cclient.h": "c",
     "shared.h": "c",
-    "makepdu.h": "c"
+    "makepdu.h": "c",
+    "gethostbyname.h": "c"
   }
 }
