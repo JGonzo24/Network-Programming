@@ -119,7 +119,7 @@ int handleSendMessage(int socketNum, const char *buffer)
 {
 	// Extract the destination handle and message from the buffer
 	char destinationHandle[MAX_HANDLE_LEN];
-	uint8_t text_message[MAX_MSG_SIZE];
+	uint8_t text_message[MAXBUF];
 
 	// Parse the command from the buffer
 	readMessageCommand(buffer, destinationHandle, text_message);
@@ -128,30 +128,44 @@ int handleSendMessage(int socketNum, const char *buffer)
 	int text_message_len = strlen((char *)text_message);
 	text_message_len += 1; // Add 1 for the null terminator
 
-	
-	
-	MessagePacket_t packetInfo = constructMessagePacket(destinationHandle, text_message_len, (uint8_t *)text_message, socketNum);
-	if (packetInfo.packet_len == 0)
+
+	int sentBytes = 0;
+	int chunkSize = 0;
+	// Check if the message length exceeds the maximum size
+	while (sentBytes < text_message_len)
 	{
-		printf("Error constructing message packet.\n");
-		return -1;
-	}
-	
-	// Send the message packet in chunks
-	int sent = sendMessageInChunks(socketNum, destinationHandle, packetInfo.packet, packetInfo.packet_len);
-	if (sent < 0)
-	{
-		printf("Error sending message packet.\n");
-		return -1;
-	}
-	else
-	{
-		printf("Message sent successfully.\n");
+
+		chunkSize = MAX_MSG_SIZE;
+		if (text_message_len - sentBytes < MAX_MSG_SIZE)
+		{
+			chunkSize = text_message_len - sentBytes;
+		}
+		MessagePacket_t packetInfo = constructMessagePacket(destinationHandle, chunkSize, (uint8_t *)text_message + sentBytes, socketNum);
+		sentBytes += chunkSize;
+
+		if (packetInfo.packet_len == 0)
+		{
+			printf("Error constructing message packet.\n");
+			return -1;
+		}
+		
+		// Send the message packet in chunks
+		// int sent = sendMessageInChunks(socketNum, destinationHandle, packetInfo.packet, packetInfo.packet_len);
+		int sent = sendPDU(socketNum, packetInfo.packet, packetInfo.packet_len);
+		if (sent < 0)
+		{
+			printf("Error sending message packet.\n");
+			return -1;
+		}
+		else
+		{
+			printf("Message sent successfully.\n");
+		}
 	}
 	return 0;
 }
 
-void readMessageCommand(const char *buffer, char destinationHandle[100], uint8_t text_message[199])
+void readMessageCommand(const char *buffer, char destinationHandle[100], uint8_t text_message[MAXBUF])
 {
 	// Tokenize the buffer to extract the command, destination handle, and message
 	char *token = strtok((char *)buffer, " ");
@@ -176,8 +190,8 @@ void readMessageCommand(const char *buffer, char destinationHandle[100], uint8_t
 		printf("Invalid message format. Use: %%m <destination_handle> <message>\n");
 		return;
 	}
-	strncpy((char *)text_message, token, MAX_MSG_SIZE - 1);
-	text_message[MAX_MSG_SIZE] = '\0'; // Null terminate only the text message
+	strncpy((char *)text_message, token, MAXBUF - 1);
+	text_message[MAXBUF] = '\0'; // Null terminate only the text message
 }
 
 
@@ -218,8 +232,8 @@ void readMulticastCommand(char *buffer, uint8_t *numHandles, DestHandle_t handle
         msgStart = ""; // allow empty message
 
     // Copy up to MAX_MSG_SIZE chars, then null-terminate
-    strncpy(message, msgStart, MAX_MSG_SIZE - 1);
-    message[MAX_MSG_SIZE - 1] = '\0';
+    strncpy(message, msgStart, MAXBUF - 1);
+    message[MAXBUF - 1] = '\0';
 }
 	
 int sendMessageInChunks(int socketNum, char *destinationHandle, uint8_t *fullMessage, int fullMessageLength)
@@ -236,9 +250,8 @@ int sendMessageInChunks(int socketNum, char *destinationHandle, uint8_t *fullMes
 
 void handleBroadcastMessage(int socketNum, const char *buffer)
 {
-	printf("Handle broadcast message command.\n");
 	// Extract the message from the buffer
-	char message[MAX_MSG_SIZE];
+	char message[MAXBUF];
 
 	// Parse the message from the buffer
 	if (sscanf(buffer, "%%b %[^\n]", message) != 1)
@@ -272,14 +285,59 @@ void handleBroadcastMessage(int socketNum, const char *buffer)
 
 void handleMulticastMessage(int socketNum, char *buffer)
 {
-	printf("Handle multicast message command.\n");
-	constructMulticastPacket(buffer, socketNum);	
-	
+
+	uint8_t numHandles = 0;
+	DestHandle_t handles[MAX_DEST_HANDLES];
+	char message[MAXBUF];
+
+	readMulticastCommand(buffer, &numHandles, handles, message);
+
+	if (numHandles == 0)
+	{
+		printf("Invalid multicast message format. Use: %%c <num_handles> <handle1> <handle2> ... <message>\n");
+		return;
+	}
+
+	// Now, we can construct the multicast packet
+	uint8_t multicastPDU[MAXBUF];
+
+
+	int sentBytes = 0;
+	int chunkSize = 0;
+
+	while (sentBytes < strlen(message))
+	{
+		chunkSize = MAX_MSG_SIZE;
+		if (strlen(message) - sentBytes < MAX_MSG_SIZE)
+		{
+			chunkSize = strlen(message) - sentBytes;
+		}
+		int pduLen = constructMulticastPDU(multicastPDU, socketNum, sender_handle, numHandles, handles, message + sentBytes);
+		sentBytes += chunkSize;
+
+		if (pduLen < 0)
+		{
+			printf("Error constructing multicast PDU.\n");
+			return;
+		}
+
+		// Send the multicast PDU
+		int sent = sendPDU(socketNum, multicastPDU, pduLen);
+		if (sent < 0)
+		{
+			printf("Error sending multicast PDU.\n");
+			return;
+		}
+		else
+		{
+			printf("Multicast PDU sent successfully.\n");
+		}
+
+	}
 }
 
 void handleListHandles(int socketNum, const char *buffer)
 {
-	printf("Handle list handles command.\n");
 	// all we need to do is list the current handles in the handle table
 	uint8_t listPDU[MAXBUF];
 	int done = makeListPDU(listPDU, socketNum);
@@ -287,10 +345,6 @@ void handleListHandles(int socketNum, const char *buffer)
 	{
 		printf("Error sending list PDU.\n");
 		return;
-	}
-	else
-	{
-		printf("List PDU sent successfully.\n");
 	}
 }
 

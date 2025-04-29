@@ -32,7 +32,7 @@ void clientControl(int socketNum);
 void processMsgFromServer(int socketNum);
 void sendCommand(int socketNum, char *buffer);
 int handleSendMessage(int socketNum, const char *buffer);
-void readMessageCommand(const char *buffer, char destinationHandle[100], uint8_t text_message[199]);
+void readMessageCommand(const char *buffer, char destinationHandle[100], uint8_t text_message[MAXBUF]);
 int  sendMessageInChunks(int socketNum, char *destinationHandle, uint8_t *fullMessage, int fullMessageLength);
 void handleBroadcastMessage(int socketNum, const char *buffer);
 void handleListHandles(int socketNum, const char *buffer);
@@ -45,9 +45,6 @@ int handleFlagsFromServer(int flag, uint8_t *buffer, int totalBytes);
 void processListHandles(uint8_t *buffer, int totalBytes);
 int validateMulticastMessage(uint8_t *buffer, int socketNum, int messageLen);
 int receiveBroadcastMessage(uint8_t *buffer, int socketNum);
-
-
-
 
 
 #endif // CCLIENT_H

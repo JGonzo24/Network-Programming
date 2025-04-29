@@ -27,7 +27,7 @@
 -- Do not assume the data buffer is a C null terminated string, use memcpy()
 -- Return value: number of bytes sent (not including the the 2 byte length field)
 */
-int sendPDU(int clientSocket, uint8_t * dataBuffer, int lengthOfData)
+int sendPDU(int clientSocket, uint8_t* dataBuffer, int lengthOfData)
 {
     // First we need to add the length of the PDU to the beginning of the dataBuffer
     // The length of the PDU is 2 bytes
@@ -76,13 +76,6 @@ int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
     uint8_t lengthBuffer[2];  // Buffer to hold the 2-byte PDU length
     int received_bytes = safeRecv(socketNumber, lengthBuffer, 2, MSG_WAITALL);
 
-
-    // printf("Length buffer in recvPDU(): ");
-    // for (int i = 0; i < 2; i++) {
-    //     printf("%02x ", lengthBuffer[i]);
-    // }
-    // printf("\n");
-   
     if (received_bytes == 0) {
         printf("There is nothing to read! Connection closed by client.\n");
         return 0;
@@ -103,13 +96,7 @@ int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
     }    
     // 2. Receive the rest of the data (the payload)
     received_bytes = safeRecv(socketNumber, dataBuffer, pdu_length_read-2, MSG_WAITALL);
-
-    // printf("Data buffer in recvPDU(): ");
-    // for (int i = 0; i < received_bytes; i++) {
-    //     printf("%02x ", dataBuffer[i]);
-    // }
-    // printf("\n");
-
+    
     // parse out the flag
     if (received_bytes == 0) {
         printf("There is nothing to read! Connection closed by client.\n");
