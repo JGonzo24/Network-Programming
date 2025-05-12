@@ -1,0 +1,33 @@
+\doxysection{IMsg\+Event.\+h}
+\hypertarget{IMsgEvent_8h_source}{}\label{IMsgEvent_8h_source}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/IMsgEvent.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/IMsgEvent.h}}
+\mbox{\hyperlink{IMsgEvent_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ \_\_IMSGEVENT\_H}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ \_\_IMSGEVENT\_H}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}../utils/dbg\_print.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MSG\_PRINT\_LEVEL\ DBG\_LEVEL\_INFO}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MSG\_PRINT(FMT,\ ...)\ DBG\_PRINT(MSG\_PRINT\_LEVEL,\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_);}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classIMsgEvent}{IMsgEvent}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d}{\string~IMsgEvent}}()\ \{\};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1}{run}}(\textcolor{keywordtype}{void}**\ pBuf,\ \textcolor{keywordtype}{size\_t}*\ pLen,\ uint32\_t\ msgNo,\ \textcolor{keywordtype}{bool}\ isSend\ =\ \textcolor{keyword}{true})\ =\ 0;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091}{report}}(\textcolor{keywordtype}{void})\ =\ 0;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921}{getName}}(\textcolor{keywordtype}{void})\ =\ 0;}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,21 @@
+<map id="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/networks.h" name="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/networks.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="350,5,519,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,72,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="350,54,86,110,85,105,349,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="97,108,167,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="351,60,182,108,180,103,349,55"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,108,267,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="373,63,270,105,268,100,371,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="291,108,362,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="403,62,354,101,351,97,400,58"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="387,108,483,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="437,60,437,94,432,94,432,60"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="507,108,610,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="474,58,532,98,529,102,471,62"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="635,108,731,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="511,58,637,101,636,106,510,63"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="755,108,847,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="520,51,743,103,742,108,519,56"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="871,108,942,133"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="520,44,674,70,858,105,857,110,673,75,519,50"/>
+</map>

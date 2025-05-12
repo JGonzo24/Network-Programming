@@ -1,0 +1,37 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/networks.h}
+\hypertarget{networks_8h_source}{}\label{networks_8h_source}\mbox{\hyperlink{networks_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ Writen\ -\/\ HMS\ April\ 2017}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ Supports\ TCP\ and\ UDP\ -\/\ both\ client\ and\ server}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_NETWORKS\_H\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_NETWORKS\_H\_\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <netinet/in.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <netdb.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ LISTEN\_BACKLOG\ 10}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ for\ the\ TCP\ server\ side}}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{networks_8h_afaa28b25dcf2151fd909dad9c4175755}{tcpServerSetup}}(\textcolor{keywordtype}{int}\ serverPort);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{networks_8h_aad62ce981feef4039738f15fb7b3621b}{tcpAccept}}(\textcolor{keywordtype}{int}\ mainServerSocket,\ \textcolor{keywordtype}{int}\ debugFlag);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ for\ the\ TCP\ client\ side}}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{networks_8h_ae0ee507782f3ebc04eb3341720d155fd}{tcpClientSetup}}(\textcolor{keywordtype}{char}\ *\ serverName,\ \textcolor{keywordtype}{char}\ *\ serverPort,\ \textcolor{keywordtype}{int}\ debugFlag);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ For\ UDP\ Server\ and\ Client}}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{networks_8h_ae322c9493b6aae617793b0d825e764a1}{udpServerSetup}}(\textcolor{keywordtype}{int}\ serverPort);}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{networks_8h_a3bb9c2213390dee4d057e3589562696b}{setupUdpClientToServer}}(\textcolor{keyword}{struct}\ sockaddr\_in6\ *serverAddress,\ \textcolor{keywordtype}{char}\ *\ hostName,\ \textcolor{keywordtype}{int}\ serverPort);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

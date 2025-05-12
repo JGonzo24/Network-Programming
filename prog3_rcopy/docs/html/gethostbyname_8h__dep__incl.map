@@ -1,0 +1,11 @@
+<map id="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/gethostbyname.h" name="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/gethostbyname.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="301,5,484,60"/>
+<area shape="rect" id="Node000002" href="$gethostbyname_8c.html" title="This file contains functions to get the IP address of a host name." alt="" coords="5,108,188,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,67,175,110,173,105,302,62"/>
+<area shape="rect" id="Node000003" href="$networks_8c.html" title="This file contains functions to set up TCP and UDP sockets for client and server connections...." alt="" coords="212,108,381,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="360,72,324,110,320,106,356,68"/>
+<area shape="rect" id="Node000004" href="$rcopy_8c.html" title="This is a simple UDP client program that sends data to a server." alt="" coords="405,108,575,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="430,68,467,106,463,110,426,72"/>
+<area shape="rect" id="Node000005" href="$server_8c.html" title="Simple UDP server that listens for messages and echoes back byte counts." alt="" coords="599,108,768,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="482,62,608,105,607,110,480,67"/>
+</map>

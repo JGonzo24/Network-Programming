@@ -1,0 +1,105 @@
+\doxysection{error\+Flip\+Bits Class Reference}
+\hypertarget{classerrorFlipBits}{}\label{classerrorFlipBits}\index{errorFlipBits@{errorFlipBits}}
+
+
+{\ttfamily \#include $<$error\+Flip\+Bits.\+h$>$}
+
+
+
+Inheritance diagram for error\+Flip\+Bits\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classerrorFlipBits__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for error\+Flip\+Bits\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classerrorFlipBits__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classerrorFlipBits_ad57bd49232a48893e67e871044e3b288}{error\+Flip\+Bits}} ()
+\item 
+virtual \mbox{\hyperlink{classerrorFlipBits_a08706c24d72fc291b9955d0fec0b5e99}{\texorpdfstring{$\sim$}{\string~}error\+Flip\+Bits}} ()
+\item 
+virtual int \mbox{\hyperlink{classerrorFlipBits_a36264ae14767219b0a97d703832dba83}{run}} (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Buf, size\+\_\+t \texorpdfstring{$\ast$}{*}p\+Len, uint32\+\_\+t seqno, bool is\+Send)
+\item 
+virtual int \mbox{\hyperlink{classerrorFlipBits_a3db4462685c7d5a00de87e5eaae11ebc}{report}} (void)
+\item 
+virtual const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classerrorFlipBits_ac3dc08fbeda7f2c62cfbf7b660e352b3}{get\+Name}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d}{\texorpdfstring{$\sim$}{\string~}\+IMsg\+Event}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classerrorDrop}{error\+Drop} -\/ Drops specific (or all) packets passed in
+
+When called, this class will bitwise XOR a random byte within the packet 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classerrorFlipBits_ad57bd49232a48893e67e871044e3b288}\label{classerrorFlipBits_ad57bd49232a48893e67e871044e3b288} 
+\index{errorFlipBits@{errorFlipBits}!errorFlipBits@{errorFlipBits}}
+\index{errorFlipBits@{errorFlipBits}!errorFlipBits@{errorFlipBits}}
+\doxysubsubsection{\texorpdfstring{errorFlipBits()}{errorFlipBits()}}
+{\footnotesize\ttfamily error\+Flip\+Bits\+::error\+Flip\+Bits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classerrorFlipBits_a08706c24d72fc291b9955d0fec0b5e99}\label{classerrorFlipBits_a08706c24d72fc291b9955d0fec0b5e99} 
+\index{errorFlipBits@{errorFlipBits}!````~errorFlipBits@{\texorpdfstring{$\sim$}{\string~}errorFlipBits}}
+\index{````~errorFlipBits@{\texorpdfstring{$\sim$}{\string~}errorFlipBits}!errorFlipBits@{errorFlipBits}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}errorFlipBits()}{\string~errorFlipBits()}}
+{\footnotesize\ttfamily virtual error\+Flip\+Bits\+::\texorpdfstring{$\sim$}{\string~}error\+Flip\+Bits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classerrorFlipBits_ac3dc08fbeda7f2c62cfbf7b660e352b3}\label{classerrorFlipBits_ac3dc08fbeda7f2c62cfbf7b660e352b3} 
+\index{errorFlipBits@{errorFlipBits}!getName@{getName}}
+\index{getName@{getName}!errorFlipBits@{errorFlipBits}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} error\+Flip\+Bits\+::get\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921}{IMsg\+Event}}.
+
+\Hypertarget{classerrorFlipBits_a3db4462685c7d5a00de87e5eaae11ebc}\label{classerrorFlipBits_a3db4462685c7d5a00de87e5eaae11ebc} 
+\index{errorFlipBits@{errorFlipBits}!report@{report}}
+\index{report@{report}!errorFlipBits@{errorFlipBits}}
+\doxysubsubsection{\texorpdfstring{report()}{report()}}
+{\footnotesize\ttfamily int error\+Flip\+Bits\+::report (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091}{IMsg\+Event}}.
+
+\Hypertarget{classerrorFlipBits_a36264ae14767219b0a97d703832dba83}\label{classerrorFlipBits_a36264ae14767219b0a97d703832dba83} 
+\index{errorFlipBits@{errorFlipBits}!run@{run}}
+\index{run@{run}!errorFlipBits@{errorFlipBits}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily int error\+Flip\+Bits\+::run (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Buf,  }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Len,  }\item[{uint32\+\_\+t}]{seqno,  }\item[{bool}]{is\+Send }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Function to be called when running the event case.
+
+Since the function can modify or drop data, a pointer to the buf\texorpdfstring{$\ast$}{*} make it possible to re-\/create a buffer and change the len accordingly.
+
+Return Values\+: \texorpdfstring{$<$}{<}0 Error 0 No change 1 Change 2 Drop Completely 
+
+Implements \mbox{\hyperlink{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1}{IMsg\+Event}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{errorFlipBits_8h}{error\+Flip\+Bits.\+h}}\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{errorFlipBits_8cpp}{error\+Flip\+Bits.\+cpp}}\end{DoxyCompactItemize}

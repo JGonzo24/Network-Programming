@@ -6,6 +6,14 @@
 *
 *****************************************************************************/
 
+/**
+ * @file myServer.c
+ * @author Joshua Gonzalez
+ * @brief  This is a simple TCP server program that receives data from a client
+ * @version 0.1
+ * @date 2025-05-10
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

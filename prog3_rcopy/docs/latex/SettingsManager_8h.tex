@@ -1,0 +1,178 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Settings\+Manager.h File Reference}
+\hypertarget{SettingsManager_8h}{}\label{SettingsManager_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/SettingsManager.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/SettingsManager.h}}
+{\ttfamily \#include "{}Packet\+Manager.\+h"{}}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+Include dependency graph for Settings\+Manager.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SettingsManager_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SettingsManager_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__EnvDataEntry}{\+\_\+\+Env\+Data\+Entry}}
+\item 
+struct \mbox{\hyperlink{struct__EnvKeyInfo}{\+\_\+\+Env\+Key\+Info}}
+\item 
+class \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{SettingsManager_8h_a990edf51308a42b583fde55e2b9bedb7}{RANDOM\+\_\+\+SEED}}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::list$<$ long $>$ \mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{struct__EnvDataEntry}{\+\_\+\+Env\+Data\+Entry}} \mbox{\hyperlink{SettingsManager_8h_abe67cba681d52ca7256eb32947971682}{s\+Env\+Data\+Entry\+\_\+t}}
+\item 
+typedef struct \mbox{\hyperlink{struct__EnvKeyInfo}{\+\_\+\+Env\+Key\+Info}} \mbox{\hyperlink{SettingsManager_8h_a0920aaabeb2db68a6f6206cad466859d}{s\+Env\+Key\+Info\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{e\+Env\+Data\+\_\+t}} \{ \newline
+\mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aace13330f7b8e852be2f47391d1e9699d}{EDT\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa4155bcd709cabe5873e5763e1c7a1be4}{EDT\+\_\+\+LONG}}
+, \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aaa03a8d6aba6f1730ac52b8eb845ba148}{EDT\+\_\+\+FLOAT}}
+, \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa863ec36d67f7e196bb7c2f6146132701}{EDT\+\_\+\+BOOL}}
+, \newline
+\mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa04181424f394702b6ad6c7095ad71f51}{EDT\+\_\+\+CHARPTR}}
+, \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa46d56611e5e5bef5dda0ad9a5eb1ef74}{EDT\+\_\+\+LIST\+\_\+\+LONG}}
+ \}
+\item 
+enum \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{e\+Env\+Data\+Key\+\_\+t}} \{ \newline
+\mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538acadcfeb51dbfdf1a38439b9af610e354}{EDK\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a70aab76b72956c7dd40a21c731cb45f4}{EDK\+\_\+\+AUTOGRADER}}
+, \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a6c69dfc479b50fb5d37b0be4c67ee570}{EDK\+\_\+\+OVERRIDE\+\_\+\+PORT}}
+, \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a45d5e144736cad08dfb00bc3f7f807bd}{EDK\+\_\+\+OVERRIDE\+\_\+\+DEBUG}}
+, \newline
+\mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae94a29e36dee039cf3a34f2e0c4efbc5}{EDK\+\_\+\+OVERRIDE\+\_\+\+SEEDRAND}}
+, \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a95df59b4b31dfa22a355dd4a41a1ea6c}{EDK\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+RATE}}
+, \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a2b50c67cf2eff33b7cc558584d727344}{EDK\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+DROP}}
+, \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae656e5fbabc9648e93916f2688b0b588}{EDK\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+FLIP}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{SettingsManager_8h_a990edf51308a42b583fde55e2b9bedb7}\label{SettingsManager_8h_a990edf51308a42b583fde55e2b9bedb7} 
+\index{SettingsManager.h@{SettingsManager.h}!RANDOM\_SEED@{RANDOM\_SEED}}
+\index{RANDOM\_SEED@{RANDOM\_SEED}!SettingsManager.h@{SettingsManager.h}}
+\doxysubsubsection{\texorpdfstring{RANDOM\_SEED}{RANDOM\_SEED}}
+{\footnotesize\ttfamily \#define RANDOM\+\_\+\+SEED~10}
+
+\doxylink{classSettingsManager}{Settings\+Manager} -\/ Handles importing \& processing all environmental variables
+
+To provide a means to override compiled options, the class acts as a hub for compiled and environment options. Should latter be defined, it will always have precedence over any compiled option.
+
+Environmental Variables (and value options)\+: CPE464\+\_\+\+AUTOGRADER Current Unused CPE464\+\_\+\+OVERRIDE\+\_\+\+PORT \mbox{[}0-\/65535\mbox{]} Override the port of first "{}bind(x)"{} CPE464\+\_\+\+OVERRIDE\+\_\+\+DEBUG \mbox{[}-\/1 to 3\mbox{]} Sets debug level (ERR-\/\+VERBOSE) CPE464\+\_\+\+OVERRIDE\+\_\+\+SEEDRAND \mbox{[}0-\/...\mbox{]} Sets the seed value for random ops CPE464\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+RATE \mbox{[}0.\+0-\/1.\+0\mbox{]} Percent error rate for random events CPE464\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+DROP (see list detail below) CPE464\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+FLIP (see list detail below)
+
+List Options\+: Provide a comma-\/separated list of Msg\+Events to perform an event. Since no parameter undefines an environmental variable, use -\/1 to set random events 
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}\label{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b} 
+\index{SettingsManager.h@{SettingsManager.h}!ListLong\_t@{ListLong\_t}}
+\index{ListLong\_t@{ListLong\_t}!SettingsManager.h@{SettingsManager.h}}
+\doxysubsubsection{\texorpdfstring{ListLong\_t}{ListLong\_t}}
+{\footnotesize\ttfamily typedef std\+::list$<$long$>$ \mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}}}
+
+\Hypertarget{SettingsManager_8h_abe67cba681d52ca7256eb32947971682}\label{SettingsManager_8h_abe67cba681d52ca7256eb32947971682} 
+\index{SettingsManager.h@{SettingsManager.h}!sEnvDataEntry\_t@{sEnvDataEntry\_t}}
+\index{sEnvDataEntry\_t@{sEnvDataEntry\_t}!SettingsManager.h@{SettingsManager.h}}
+\doxysubsubsection{\texorpdfstring{sEnvDataEntry\_t}{sEnvDataEntry\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__EnvDataEntry}{\+\_\+\+Env\+Data\+Entry}} \mbox{\hyperlink{SettingsManager_8h_abe67cba681d52ca7256eb32947971682}{s\+Env\+Data\+Entry\+\_\+t}}}
+
+\Hypertarget{SettingsManager_8h_a0920aaabeb2db68a6f6206cad466859d}\label{SettingsManager_8h_a0920aaabeb2db68a6f6206cad466859d} 
+\index{SettingsManager.h@{SettingsManager.h}!sEnvKeyInfo\_t@{sEnvKeyInfo\_t}}
+\index{sEnvKeyInfo\_t@{sEnvKeyInfo\_t}!SettingsManager.h@{SettingsManager.h}}
+\doxysubsubsection{\texorpdfstring{sEnvKeyInfo\_t}{sEnvKeyInfo\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct__EnvKeyInfo}{\+\_\+\+Env\+Key\+Info}} \mbox{\hyperlink{SettingsManager_8h_a0920aaabeb2db68a6f6206cad466859d}{s\+Env\+Key\+Info\+\_\+t}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a} 
+\index{SettingsManager.h@{SettingsManager.h}!eEnvData\_t@{eEnvData\_t}}
+\index{eEnvData\_t@{eEnvData\_t}!SettingsManager.h@{SettingsManager.h}}
+\doxysubsubsection{\texorpdfstring{eEnvData\_t}{eEnvData\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{e\+Env\+Data\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDT\_UNKNOWN@{EDT\_UNKNOWN}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDT\_UNKNOWN@{EDT\_UNKNOWN}}}\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aace13330f7b8e852be2f47391d1e9699d}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aace13330f7b8e852be2f47391d1e9699d} 
+EDT\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDT\_LONG@{EDT\_LONG}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDT\_LONG@{EDT\_LONG}}}\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa4155bcd709cabe5873e5763e1c7a1be4}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa4155bcd709cabe5873e5763e1c7a1be4} 
+EDT\+\_\+\+LONG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDT\_FLOAT@{EDT\_FLOAT}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDT\_FLOAT@{EDT\_FLOAT}}}\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aaa03a8d6aba6f1730ac52b8eb845ba148}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aaa03a8d6aba6f1730ac52b8eb845ba148} 
+EDT\+\_\+\+FLOAT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDT\_BOOL@{EDT\_BOOL}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDT\_BOOL@{EDT\_BOOL}}}\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa863ec36d67f7e196bb7c2f6146132701}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa863ec36d67f7e196bb7c2f6146132701} 
+EDT\+\_\+\+BOOL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDT\_CHARPTR@{EDT\_CHARPTR}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDT\_CHARPTR@{EDT\_CHARPTR}}}\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa04181424f394702b6ad6c7095ad71f51}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa04181424f394702b6ad6c7095ad71f51} 
+EDT\+\_\+\+CHARPTR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDT\_LIST\_LONG@{EDT\_LIST\_LONG}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDT\_LIST\_LONG@{EDT\_LIST\_LONG}}}\Hypertarget{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa46d56611e5e5bef5dda0ad9a5eb1ef74}\label{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa46d56611e5e5bef5dda0ad9a5eb1ef74} 
+EDT\+\_\+\+LIST\+\_\+\+LONG&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538} 
+\index{SettingsManager.h@{SettingsManager.h}!eEnvDataKey\_t@{eEnvDataKey\_t}}
+\index{eEnvDataKey\_t@{eEnvDataKey\_t}!SettingsManager.h@{SettingsManager.h}}
+\doxysubsubsection{\texorpdfstring{eEnvDataKey\_t}{eEnvDataKey\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{e\+Env\+Data\+Key\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_UNKNOWN@{EDK\_UNKNOWN}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_UNKNOWN@{EDK\_UNKNOWN}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538acadcfeb51dbfdf1a38439b9af610e354}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538acadcfeb51dbfdf1a38439b9af610e354} 
+EDK\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_AUTOGRADER@{EDK\_AUTOGRADER}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_AUTOGRADER@{EDK\_AUTOGRADER}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a70aab76b72956c7dd40a21c731cb45f4}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a70aab76b72956c7dd40a21c731cb45f4} 
+EDK\+\_\+\+AUTOGRADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_OVERRIDE\_PORT@{EDK\_OVERRIDE\_PORT}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_OVERRIDE\_PORT@{EDK\_OVERRIDE\_PORT}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a6c69dfc479b50fb5d37b0be4c67ee570}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a6c69dfc479b50fb5d37b0be4c67ee570} 
+EDK\+\_\+\+OVERRIDE\+\_\+\+PORT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_OVERRIDE\_DEBUG@{EDK\_OVERRIDE\_DEBUG}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_OVERRIDE\_DEBUG@{EDK\_OVERRIDE\_DEBUG}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a45d5e144736cad08dfb00bc3f7f807bd}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a45d5e144736cad08dfb00bc3f7f807bd} 
+EDK\+\_\+\+OVERRIDE\+\_\+\+DEBUG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_OVERRIDE\_SEEDRAND@{EDK\_OVERRIDE\_SEEDRAND}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_OVERRIDE\_SEEDRAND@{EDK\_OVERRIDE\_SEEDRAND}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae94a29e36dee039cf3a34f2e0c4efbc5}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae94a29e36dee039cf3a34f2e0c4efbc5} 
+EDK\+\_\+\+OVERRIDE\+\_\+\+SEEDRAND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_OVERRIDE\_ERR\_RATE@{EDK\_OVERRIDE\_ERR\_RATE}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_OVERRIDE\_ERR\_RATE@{EDK\_OVERRIDE\_ERR\_RATE}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a95df59b4b31dfa22a355dd4a41a1ea6c}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a95df59b4b31dfa22a355dd4a41a1ea6c} 
+EDK\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+RATE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_OVERRIDE\_ERR\_DROP@{EDK\_OVERRIDE\_ERR\_DROP}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_OVERRIDE\_ERR\_DROP@{EDK\_OVERRIDE\_ERR\_DROP}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a2b50c67cf2eff33b7cc558584d727344}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a2b50c67cf2eff33b7cc558584d727344} 
+EDK\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+DROP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EDK\_OVERRIDE\_ERR\_FLIP@{EDK\_OVERRIDE\_ERR\_FLIP}!SettingsManager.h@{SettingsManager.h}}\index{SettingsManager.h@{SettingsManager.h}!EDK\_OVERRIDE\_ERR\_FLIP@{EDK\_OVERRIDE\_ERR\_FLIP}}}\Hypertarget{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae656e5fbabc9648e93916f2688b0b588}\label{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae656e5fbabc9648e93916f2688b0b588} 
+EDK\+\_\+\+OVERRIDE\+\_\+\+ERR\+\_\+\+FLIP&\\
+\hline
+
+\end{DoxyEnumFields}

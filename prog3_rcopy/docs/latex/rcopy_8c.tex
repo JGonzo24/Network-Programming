@@ -1,0 +1,115 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/rcopy.c File Reference}
+\hypertarget{rcopy_8c}{}\label{rcopy_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/rcopy.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/rcopy.c}}
+
+
+This is a simple UDP client program that sends data to a server.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include "{}gethostbyname.\+h"{}}\newline
+{\ttfamily \#include "{}networks.\+h"{}}\newline
+{\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
+Include dependency graph for rcopy.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rcopy_8c_ad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~80
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a}{talk\+To\+Server}} (int socket\+Num, struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server)
+\item 
+int \mbox{\hyperlink{rcopy_8c_ad4e63ea77d61babc4ed66f9bf6d3b8b2}{read\+From\+Stdin}} (char \texorpdfstring{$\ast$}{*}buffer)
+\item 
+int \mbox{\hyperlink{rcopy_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a simple UDP client program that sends data to a server. 
+
+\begin{DoxyAuthor}{Author}
+Joshua Gonzalez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{rcopy_8c_ad7871643c05865c80f5d8050aead2b57}\label{rcopy_8c_ad7871643c05865c80f5d8050aead2b57} 
+\index{rcopy.c@{rcopy.c}!MAXBUF@{MAXBUF}}
+\index{MAXBUF@{MAXBUF}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{MAXBUF}{MAXBUF}}
+{\footnotesize\ttfamily \#define MAXBUF~80}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rcopy_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55}\label{rcopy_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55} 
+\index{rcopy.c@{rcopy.c}!checkArgs@{checkArgs}}
+\index{checkArgs@{checkArgs}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{checkArgs()}{checkArgs()}}
+{\footnotesize\ttfamily int check\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{rcopy.c@{rcopy.c}!main@{main}}
+\index{main@{main}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rcopy_8c_ad4e63ea77d61babc4ed66f9bf6d3b8b2}\label{rcopy_8c_ad4e63ea77d61babc4ed66f9bf6d3b8b2} 
+\index{rcopy.c@{rcopy.c}!readFromStdin@{readFromStdin}}
+\index{readFromStdin@{readFromStdin}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{readFromStdin()}{readFromStdin()}}
+{\footnotesize\ttfamily int read\+From\+Stdin (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
+
+\Hypertarget{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a}\label{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a} 
+\index{rcopy.c@{rcopy.c}!talkToServer@{talkToServer}}
+\index{talkToServer@{talkToServer}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{talkToServer()}{talkToServer()}}
+{\footnotesize\ttfamily void talk\+To\+Server (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=297pt]{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a_cgraph}
+\end{center}
+\end{figure}

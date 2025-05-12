@@ -1,0 +1,40 @@
+\doxysection{info\+Seq\+No.\+h}
+\hypertarget{infoSeqNo_8h_source}{}\label{infoSeqNo_8h_source}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/infoSeqNo.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/infoSeqNo.h}}
+\mbox{\hyperlink{infoSeqNo_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_IMSGEVENT\_SEQNO\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_IMSGEVENT\_SEQNO\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{IMsgEvent_8h}{IMsgEvent.h}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classinfoSeqNo}{infoSeqNo}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIMsgEvent}{IMsgEvent}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{typedef}\ std::map<uint32\_t,\ uint32\_t>\ \mbox{\hyperlink{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}{No2Count\_t}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<uint32\_t>\ \mbox{\hyperlink{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}{NoJournal\_t}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classinfoSeqNo_a60acb17ff30d59822adffcfa9cc4707e}{infoSeqNo}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classinfoSeqNo_a5e35b32fc6b38523718e3a40c314c943}{\string~infoSeqNo}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classinfoSeqNo_a754bc85b9eebe0f3b6da586d9b19cf35}{run}}(\textcolor{keywordtype}{void}**\ pBuf,\ \textcolor{keywordtype}{size\_t}*\ pLen,\ uint32\_t\ seqno,\ \textcolor{keywordtype}{bool}\ isSend);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classinfoSeqNo_a9a5432bda1f1b1139ae1f177cc33d926}{report}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classinfoSeqNo_af86305885a2b26e27c4d52eeaca4818b}{getName}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classinfoSeqNo_a95385f57b0f04da18de346f5f2b6b565}{m\_ValidEndian}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}{No2Count\_t}}\ \ \mbox{\hyperlink{classinfoSeqNo_af0262538a6a89e57a1d797833e0610fb}{m\_Count}};}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}{NoJournal\_t}}\ \mbox{\hyperlink{classinfoSeqNo_af2cca8009c468c141eb5c2166f07116f}{m\_History}};}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

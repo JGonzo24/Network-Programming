@@ -1,0 +1,112 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/my\+Server.c File Reference}
+\hypertarget{myServer_8c}{}\label{myServer_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/myServer.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/myServer.c}}
+
+
+This is a simple TCP server program that receives data from a client.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/uio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}networks.\+h"{}}\newline
+{\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
+Include dependency graph for my\+Server.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myServer_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{myServer_8c_ad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~1024
+\item 
+\#define \mbox{\hyperlink{myServer_8c_a05d1af42442c934b555896d3fe55c79e}{DEBUG\+\_\+\+FLAG}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{myServer_8c_a2d1fb967911b94675295079b6d171704}{recv\+From\+Client}} (int client\+Socket)
+\item 
+int \mbox{\hyperlink{myServer_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{myServer_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a simple TCP server program that receives data from a client. 
+
+\begin{DoxyAuthor}{Author}
+Joshua Gonzalez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/10 
+\end{DoxyDate}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{myServer_8c_a05d1af42442c934b555896d3fe55c79e}\label{myServer_8c_a05d1af42442c934b555896d3fe55c79e} 
+\index{myServer.c@{myServer.c}!DEBUG\_FLAG@{DEBUG\_FLAG}}
+\index{DEBUG\_FLAG@{DEBUG\_FLAG}!myServer.c@{myServer.c}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_FLAG}{DEBUG\_FLAG}}
+{\footnotesize\ttfamily \#define DEBUG\+\_\+\+FLAG~1}
+
+\Hypertarget{myServer_8c_ad7871643c05865c80f5d8050aead2b57}\label{myServer_8c_ad7871643c05865c80f5d8050aead2b57} 
+\index{myServer.c@{myServer.c}!MAXBUF@{MAXBUF}}
+\index{MAXBUF@{MAXBUF}!myServer.c@{myServer.c}}
+\doxysubsubsection{\texorpdfstring{MAXBUF}{MAXBUF}}
+{\footnotesize\ttfamily \#define MAXBUF~1024}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{myServer_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55}\label{myServer_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55} 
+\index{myServer.c@{myServer.c}!checkArgs@{checkArgs}}
+\index{checkArgs@{checkArgs}!myServer.c@{myServer.c}}
+\doxysubsubsection{\texorpdfstring{checkArgs()}{checkArgs()}}
+{\footnotesize\ttfamily int check\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\Hypertarget{myServer_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{myServer_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{myServer.c@{myServer.c}!main@{main}}
+\index{main@{main}!myServer.c@{myServer.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{myServer_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{myServer_8c_a2d1fb967911b94675295079b6d171704}\label{myServer_8c_a2d1fb967911b94675295079b6d171704} 
+\index{myServer.c@{myServer.c}!recvFromClient@{recvFromClient}}
+\index{recvFromClient@{recvFromClient}!myServer.c@{myServer.c}}
+\doxysubsubsection{\texorpdfstring{recvFromClient()}{recvFromClient()}}
+{\footnotesize\ttfamily void recv\+From\+Client (\begin{DoxyParamCaption}\item[{int}]{client\+Socket }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{myServer_8c_a2d1fb967911b94675295079b6d171704_cgraph}
+\end{center}
+\end{figure}

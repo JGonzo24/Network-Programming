@@ -3,6 +3,12 @@
 //
 // Put in system calls with error checking.
 
+
+/**
+ * @brief This file contains functions to safely send and receive data over sockets
+ * 
+ */
+
 #ifndef __SAFEUTIL_H__
 #define __SAFEUTIL_H__
 

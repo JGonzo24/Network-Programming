@@ -1,0 +1,45 @@
+\doxysection{old\+\_\+dbg\+\_\+pring.\+h}
+\hypertarget{old__dbg__pring_8h_source}{}\label{old__dbg__pring_8h_source}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/utils/old\_dbg\_pring.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/utils/old\_dbg\_pring.h}}
+\mbox{\hyperlink{old__dbg__pring_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_\_DBG\_PRINT\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_\_DBG\_PRINT\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ DBG\_LEVEL\_ERROR\ \ -\/1}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ DBG\_LEVEL\_WARN\ \ \ \ 0}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ DBG\_LEVEL\_INFO\ \ \ \ 1}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ DBG\_LEVEL\_DEBUG\ \ \ 2}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ DBG\_LEVEL\_VDEBUG\ \ 3}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ PRINT\_VERBOSE(LVL,\ FMT,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ dbg\_print(LVL,\ "{}\ \ (\%u)(\%-\/20s(\%4u)::\%-\/12s\ -\/\ "{}\ FMT,\ \(\backslash\)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ getpid(),\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_FUNCTION\_\_\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ PRINT\_SIMPLE(LVL,\ FMT,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ \ \ dbg\_print(LVL,\ "{}\ \ (\%u)\%-\/12s\ -\/\ "{}\ FMT,\ \(\backslash\)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ getpid(),\ \_\_FUNCTION\_\_\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ PRINT\_TEST(LVL,\ FMT\ ,\ ...)\ \(\backslash\)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ fprintf(stderr,\ "{}\%-\/12s\ -\/\ "{}\ FMT,\ \(\backslash\)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_\_FUNCTION\_\_\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ERR\_PRINT(FMT,\ ...)\ \ \ \ \ \ PRINT\_VERBOSE(DBG\_LEVEL\_ERROR,\ "{}ERROR\ -\/\ "{}\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ DBG\_PRINT(LVL,\ FMT,\ ...)\ PRINT\_SIMPLE(LVL,\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ WARN\_PRINT(FMT,\ ...)\ DBG\_PRINT(DBG\_LEVEL\_WARN,\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ INFO\_PRINT(FMT,\ ...)\ DBG\_PRINT(DBG\_LEVEL\_INFO,\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SDBG\_PRINT(FMT,\ ...)\ DBG\_PRINT(DBG\_LEVEL\_DEBUG,\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ VDBG\_PRINT(FMT,\ ...)\ DBG\_PRINT(DBG\_LEVEL\_VDEBUG,\ FMT\ ,\ \#\#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{old__dbg__pring_8h_ab4132df5b82245af09eb118502e180f8}{dbg\_print}}(\textcolor{keywordtype}{int}\ level,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fmt,\ ...);}
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{old__dbg__pring_8h_afb9222bc2facf42197d297cc8ea3c00a}{dbg\_setlevel}}(\textcolor{keywordtype}{int}\ newLevel);}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

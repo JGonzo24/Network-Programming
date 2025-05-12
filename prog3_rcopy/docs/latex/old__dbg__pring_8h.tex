@@ -1,0 +1,171 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/utils/old\+\_\+dbg\+\_\+pring.h File Reference}
+\hypertarget{old__dbg__pring_8h}{}\label{old__dbg__pring_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/utils/old\_dbg\_pring.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/utils/old\_dbg\_pring.h}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+Include dependency graph for old\+\_\+dbg\+\_\+pring.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{old__dbg__pring_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a5a2b55831dc86b0a8f44f9cafcccb23d}{DBG\+\_\+\+LEVEL\+\_\+\+ERROR}}~-\/1
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_afb039ba6e20c1a106ddaa2ebbd7f7d7b}{DBG\+\_\+\+LEVEL\+\_\+\+WARN}}~0
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_aaad1ff4e1ec70638accee5b01e07497f}{DBG\+\_\+\+LEVEL\+\_\+\+INFO}}~1
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_abab939696babb9f74169049131997942}{DBG\+\_\+\+LEVEL\+\_\+\+DEBUG}}~2
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a2e339c2276d78b4b7a7222291b930a0f}{DBG\+\_\+\+LEVEL\+\_\+\+VDEBUG}}~3
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_ae6597dd69afa9e1d68efde7116ad27dc}{PRINT\+\_\+\+VERBOSE}}(LVL,  FMT, ...)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a4709005faee903f91fc13a642ee2b00d}{PRINT\+\_\+\+SIMPLE}}(LVL,  FMT, ...)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_ab16f12f3e612346c708cddf44e940c91}{PRINT\+\_\+\+TEST}}(LVL,  FMT, ...)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_aba4864b81f86936b629c00dd9dccfc62}{ERR\+\_\+\+PRINT}}(FMT, ...)~\mbox{\hyperlink{dbg__print_8h_ae6597dd69afa9e1d68efde7116ad27dc}{PRINT\+\_\+\+VERBOSE}}(\mbox{\hyperlink{dbg__print_8h_a5a2b55831dc86b0a8f44f9cafcccb23d}{DBG\+\_\+\+LEVEL\+\_\+\+ERROR}}, "{}ERROR -\/ "{} FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(LVL,  FMT, ...)~\mbox{\hyperlink{dbg__print_8h_a4709005faee903f91fc13a642ee2b00d}{PRINT\+\_\+\+SIMPLE}}(LVL, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a970af0f7c46b228c9195e57745fa6701}{WARN\+\_\+\+PRINT}}(FMT, ...)~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_afb039ba6e20c1a106ddaa2ebbd7f7d7b}{DBG\+\_\+\+LEVEL\+\_\+\+WARN}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a454b0503c0c6ce6f8bb2d273143b7488}{INFO\+\_\+\+PRINT}}(FMT, ...)~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_aaad1ff4e1ec70638accee5b01e07497f}{DBG\+\_\+\+LEVEL\+\_\+\+INFO}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_a79b8294b9df0129be765f73f2af15bf8}{SDBG\+\_\+\+PRINT}}(FMT, ...)~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_abab939696babb9f74169049131997942}{DBG\+\_\+\+LEVEL\+\_\+\+DEBUG}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{old__dbg__pring_8h_af6956915fd09d59725c51effbc30ea67}{VDBG\+\_\+\+PRINT}}(FMT, ...)~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_a2e339c2276d78b4b7a7222291b930a0f}{DBG\+\_\+\+LEVEL\+\_\+\+VDEBUG}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{old__dbg__pring_8h_ab4132df5b82245af09eb118502e180f8}{dbg\+\_\+print}} (int level, const char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+void \mbox{\hyperlink{old__dbg__pring_8h_afb9222bc2facf42197d297cc8ea3c00a}{dbg\+\_\+setlevel}} (int new\+Level)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{old__dbg__pring_8h_abab939696babb9f74169049131997942}\label{old__dbg__pring_8h_abab939696babb9f74169049131997942} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!DBG\_LEVEL\_DEBUG@{DBG\_LEVEL\_DEBUG}}
+\index{DBG\_LEVEL\_DEBUG@{DBG\_LEVEL\_DEBUG}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{DBG\_LEVEL\_DEBUG}{DBG\_LEVEL\_DEBUG}}
+{\footnotesize\ttfamily \#define DBG\+\_\+\+LEVEL\+\_\+\+DEBUG~2}
+
+\Hypertarget{old__dbg__pring_8h_a5a2b55831dc86b0a8f44f9cafcccb23d}\label{old__dbg__pring_8h_a5a2b55831dc86b0a8f44f9cafcccb23d} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!DBG\_LEVEL\_ERROR@{DBG\_LEVEL\_ERROR}}
+\index{DBG\_LEVEL\_ERROR@{DBG\_LEVEL\_ERROR}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{DBG\_LEVEL\_ERROR}{DBG\_LEVEL\_ERROR}}
+{\footnotesize\ttfamily \#define DBG\+\_\+\+LEVEL\+\_\+\+ERROR~-\/1}
+
+A macro-\/based, variable-\/level debug printing functions
+
+There are 5 levels available ranging from -\/1 (ERR) to 3 (VDBG) \Hypertarget{old__dbg__pring_8h_aaad1ff4e1ec70638accee5b01e07497f}\label{old__dbg__pring_8h_aaad1ff4e1ec70638accee5b01e07497f} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!DBG\_LEVEL\_INFO@{DBG\_LEVEL\_INFO}}
+\index{DBG\_LEVEL\_INFO@{DBG\_LEVEL\_INFO}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{DBG\_LEVEL\_INFO}{DBG\_LEVEL\_INFO}}
+{\footnotesize\ttfamily \#define DBG\+\_\+\+LEVEL\+\_\+\+INFO~1}
+
+\Hypertarget{old__dbg__pring_8h_a2e339c2276d78b4b7a7222291b930a0f}\label{old__dbg__pring_8h_a2e339c2276d78b4b7a7222291b930a0f} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!DBG\_LEVEL\_VDEBUG@{DBG\_LEVEL\_VDEBUG}}
+\index{DBG\_LEVEL\_VDEBUG@{DBG\_LEVEL\_VDEBUG}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{DBG\_LEVEL\_VDEBUG}{DBG\_LEVEL\_VDEBUG}}
+{\footnotesize\ttfamily \#define DBG\+\_\+\+LEVEL\+\_\+\+VDEBUG~3}
+
+\Hypertarget{old__dbg__pring_8h_afb039ba6e20c1a106ddaa2ebbd7f7d7b}\label{old__dbg__pring_8h_afb039ba6e20c1a106ddaa2ebbd7f7d7b} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!DBG\_LEVEL\_WARN@{DBG\_LEVEL\_WARN}}
+\index{DBG\_LEVEL\_WARN@{DBG\_LEVEL\_WARN}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{DBG\_LEVEL\_WARN}{DBG\_LEVEL\_WARN}}
+{\footnotesize\ttfamily \#define DBG\+\_\+\+LEVEL\+\_\+\+WARN~0}
+
+\Hypertarget{old__dbg__pring_8h_a8b00b51352aed9d0e167469ac6882eaa}\label{old__dbg__pring_8h_a8b00b51352aed9d0e167469ac6882eaa} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!DBG\_PRINT@{DBG\_PRINT}}
+\index{DBG\_PRINT@{DBG\_PRINT}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{DBG\_PRINT}{DBG\_PRINT}}
+{\footnotesize\ttfamily \#define DBG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{LVL,  }\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_a4709005faee903f91fc13a642ee2b00d}{PRINT\+\_\+\+SIMPLE}}(LVL, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{old__dbg__pring_8h_aba4864b81f86936b629c00dd9dccfc62}\label{old__dbg__pring_8h_aba4864b81f86936b629c00dd9dccfc62} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!ERR\_PRINT@{ERR\_PRINT}}
+\index{ERR\_PRINT@{ERR\_PRINT}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{ERR\_PRINT}{ERR\_PRINT}}
+{\footnotesize\ttfamily \#define ERR\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_ae6597dd69afa9e1d68efde7116ad27dc}{PRINT\+\_\+\+VERBOSE}}(\mbox{\hyperlink{dbg__print_8h_a5a2b55831dc86b0a8f44f9cafcccb23d}{DBG\+\_\+\+LEVEL\+\_\+\+ERROR}}, "{}ERROR -\/ "{} FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{old__dbg__pring_8h_a454b0503c0c6ce6f8bb2d273143b7488}\label{old__dbg__pring_8h_a454b0503c0c6ce6f8bb2d273143b7488} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!INFO\_PRINT@{INFO\_PRINT}}
+\index{INFO\_PRINT@{INFO\_PRINT}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{INFO\_PRINT}{INFO\_PRINT}}
+{\footnotesize\ttfamily \#define INFO\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_aaad1ff4e1ec70638accee5b01e07497f}{DBG\+\_\+\+LEVEL\+\_\+\+INFO}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{old__dbg__pring_8h_a4709005faee903f91fc13a642ee2b00d}\label{old__dbg__pring_8h_a4709005faee903f91fc13a642ee2b00d} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!PRINT\_SIMPLE@{PRINT\_SIMPLE}}
+\index{PRINT\_SIMPLE@{PRINT\_SIMPLE}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{PRINT\_SIMPLE}{PRINT\_SIMPLE}}
+{\footnotesize\ttfamily \#define PRINT\+\_\+\+SIMPLE(\begin{DoxyParamCaption}\item[{}]{LVL,  }\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{old__dbg__pring_8h_ab4132df5b82245af09eb118502e180f8}{dbg\_print}}(LVL,\ \textcolor{stringliteral}{"{}\ \ (\%u)\%-\/12s\ -\/\ "{}}\ FMT,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ getpid(),\ \_\_FUNCTION\_\_\ ,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{old__dbg__pring_8h_ab16f12f3e612346c708cddf44e940c91}\label{old__dbg__pring_8h_ab16f12f3e612346c708cddf44e940c91} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!PRINT\_TEST@{PRINT\_TEST}}
+\index{PRINT\_TEST@{PRINT\_TEST}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{PRINT\_TEST}{PRINT\_TEST}}
+{\footnotesize\ttfamily \#define PRINT\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{LVL,  }\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\%-\/12s\ -\/\ "{}}\ FMT,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \_\_FUNCTION\_\_\ ,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{old__dbg__pring_8h_ae6597dd69afa9e1d68efde7116ad27dc}\label{old__dbg__pring_8h_ae6597dd69afa9e1d68efde7116ad27dc} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!PRINT\_VERBOSE@{PRINT\_VERBOSE}}
+\index{PRINT\_VERBOSE@{PRINT\_VERBOSE}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{PRINT\_VERBOSE}{PRINT\_VERBOSE}}
+{\footnotesize\ttfamily \#define PRINT\+\_\+\+VERBOSE(\begin{DoxyParamCaption}\item[{}]{LVL,  }\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{old__dbg__pring_8h_ab4132df5b82245af09eb118502e180f8}{dbg\_print}}(LVL,\ \textcolor{stringliteral}{"{}\ \ (\%u)(\%-\/20s(\%4u)::\%-\/12s\ -\/\ "{}}\ FMT,\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ getpid(),\ \_\_FILE\_\_,\ \_\_LINE\_\_,\ \_\_FUNCTION\_\_\ ,\ \#\#\_\_VA\_ARGS\_\_)}
+
+\end{DoxyCode}
+\Hypertarget{old__dbg__pring_8h_a79b8294b9df0129be765f73f2af15bf8}\label{old__dbg__pring_8h_a79b8294b9df0129be765f73f2af15bf8} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!SDBG\_PRINT@{SDBG\_PRINT}}
+\index{SDBG\_PRINT@{SDBG\_PRINT}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{SDBG\_PRINT}{SDBG\_PRINT}}
+{\footnotesize\ttfamily \#define SDBG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_abab939696babb9f74169049131997942}{DBG\+\_\+\+LEVEL\+\_\+\+DEBUG}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{old__dbg__pring_8h_af6956915fd09d59725c51effbc30ea67}\label{old__dbg__pring_8h_af6956915fd09d59725c51effbc30ea67} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!VDBG\_PRINT@{VDBG\_PRINT}}
+\index{VDBG\_PRINT@{VDBG\_PRINT}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{VDBG\_PRINT}{VDBG\_PRINT}}
+{\footnotesize\ttfamily \#define VDBG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_a2e339c2276d78b4b7a7222291b930a0f}{DBG\+\_\+\+LEVEL\+\_\+\+VDEBUG}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{old__dbg__pring_8h_a970af0f7c46b228c9195e57745fa6701}\label{old__dbg__pring_8h_a970af0f7c46b228c9195e57745fa6701} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!WARN\_PRINT@{WARN\_PRINT}}
+\index{WARN\_PRINT@{WARN\_PRINT}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{WARN\_PRINT}{WARN\_PRINT}}
+{\footnotesize\ttfamily \#define WARN\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{dbg__print_8h_afb039ba6e20c1a106ddaa2ebbd7f7d7b}{DBG\+\_\+\+LEVEL\+\_\+\+WARN}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{old__dbg__pring_8h_ab4132df5b82245af09eb118502e180f8}\label{old__dbg__pring_8h_ab4132df5b82245af09eb118502e180f8} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!dbg\_print@{dbg\_print}}
+\index{dbg\_print@{dbg\_print}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{dbg\_print()}{dbg\_print()}}
+{\footnotesize\ttfamily void dbg\+\_\+print (\begin{DoxyParamCaption}\item[{int}]{level,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\Hypertarget{old__dbg__pring_8h_afb9222bc2facf42197d297cc8ea3c00a}\label{old__dbg__pring_8h_afb9222bc2facf42197d297cc8ea3c00a} 
+\index{old\_dbg\_pring.h@{old\_dbg\_pring.h}!dbg\_setlevel@{dbg\_setlevel}}
+\index{dbg\_setlevel@{dbg\_setlevel}!old\_dbg\_pring.h@{old\_dbg\_pring.h}}
+\doxysubsubsection{\texorpdfstring{dbg\_setlevel()}{dbg\_setlevel()}}
+{\footnotesize\ttfamily void dbg\+\_\+setlevel (\begin{DoxyParamCaption}\item[{int}]{new\+Level }\end{DoxyParamCaption})}
+

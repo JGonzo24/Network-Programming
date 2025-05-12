@@ -5,6 +5,17 @@
 // Put in system calls with error checking
 // keep the function paramaters same as system call
 
+/**
+ * @file safeUtil.c
+ * @author Joshua Gonzalez
+ * @brief This file contains functions to safely send and receive data over sockets
+ * @version 0.1
+ * @date 2025-05-10
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
@@ -31,9 +42,9 @@ int safeRecvfrom(int socketNum, void * buf, int len, int flags, struct sockaddr 
 int safeSendto(int socketNum, void * buf, int len, int flags, struct sockaddr *srcAddr, int addrLen)
 {
 	int returnValue = 0;
-	if ((returnValue = sendto(socketNum, buf, (size_t) len, flags, srcAddr, (socklen_t) addrLen)) < 0)
+	if ((returnValue = sendtoErr(socketNum, buf, (size_t) len, flags, srcAddr, (socklen_t) addrLen)) < 0)
 	{
-		perror("sendto: ");
+		perror("sendtoErr: ");
 		exit(-1);
 	}
 	

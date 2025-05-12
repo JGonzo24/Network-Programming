@@ -1,0 +1,126 @@
+\doxysection{UDP Server Module}
+\hypertarget{group__udp__server}{}\label{group__udp__server}\index{UDP Server Module@{UDP Server Module}}
+
+
+A simple IPv6/\+IPv4 UDP server example.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{server_8c}{server.\+c}}
+\begin{DoxyCompactList}\small\item\em Simple UDP server that listens for messages and echoes back byte counts. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__udp__server_gad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~80
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb}{process\+Client}} (int socket\+Num)
+\begin{DoxyCompactList}\small\item\em Process incoming client messages on a bound UDP socket. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Validates command-\/line arguments for port number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Entry point for the UDP server application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A simple IPv6/\+IPv4 UDP server example. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__udp__server_gad7871643c05865c80f5d8050aead2b57}\label{group__udp__server_gad7871643c05865c80f5d8050aead2b57} 
+\index{UDP Server Module@{UDP Server Module}!MAXBUF@{MAXBUF}}
+\index{MAXBUF@{MAXBUF}!UDP Server Module@{UDP Server Module}}
+\doxysubsubsection{\texorpdfstring{MAXBUF}{MAXBUF}}
+{\footnotesize\ttfamily \#define MAXBUF~80}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55}\label{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55} 
+\index{UDP Server Module@{UDP Server Module}!checkArgs@{checkArgs}}
+\index{checkArgs@{checkArgs}!UDP Server Module@{UDP Server Module}}
+\doxysubsubsection{\texorpdfstring{checkArgs()}{checkArgs()}}
+{\footnotesize\ttfamily int check\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Validates command-\/line arguments for port number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count from \doxylink{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97}{main()}. \\
+\hline
+{\em argv} & Argument vector from \doxylink{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97}{main()}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The port number to use (0 if none provided).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+On error (too many args), prints usage to stderr and exits. 
+\end{DoxyNote}
+\Hypertarget{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97}\label{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97} 
+\index{UDP Server Module@{UDP Server Module}!main@{main}}
+\index{main@{main}!UDP Server Module@{UDP Server Module}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Entry point for the UDP server application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line argument strings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on clean exit.
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item Parses optional port via {\ttfamily \doxylink{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args()}}. ~\newline
+
+\item Calls {\ttfamily \doxylink{networks_8c_ae322c9493b6aae617793b0d825e764a1}{udp\+Server\+Setup()}} to bind a socket. ~\newline
+
+\item Hands off to {\ttfamily \doxylink{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb}{process\+Client()}} for recv/send loop. ~\newline
+
+\item Closes the socket and returns. 
+\end{DoxyItemize}Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb}\label{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb} 
+\index{UDP Server Module@{UDP Server Module}!processClient@{processClient}}
+\index{processClient@{processClient}!UDP Server Module@{UDP Server Module}}
+\doxysubsubsection{\texorpdfstring{processClient()}{processClient()}}
+{\footnotesize\ttfamily void process\+Client (\begin{DoxyParamCaption}\item[{int}]{socket\+Num }\end{DoxyParamCaption})}
+
+
+
+Process incoming client messages on a bound UDP socket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Num} & Descriptor of an already‐set‐up UDP socket.\\
+\hline
+\end{DoxyParams}
+Loops until the first character of {\ttfamily buffer} is \textquotesingle{}.\textquotesingle{}, receiving into an IPv6 sockaddr, printing the client’s IP and payload, then sending back a text message containing the received byte count. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,82 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/poll\+Lib.c File Reference}
+\hypertarget{pollLib_8c}{}\label{pollLib_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/pollLib.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/pollLib.c}}
+
+
+Library to interface with the poll() system call.  
+
+
+{\ttfamily \#include $<$poll.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
+{\ttfamily \#include "{}poll\+Lib.\+h"{}}\newline
+Include dependency graph for poll\+Lib.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pollLib_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pollLib_8c_a95e1656afd4ed8c57f317b72529febc8}{setup\+Poll\+Set}} ()
+\item 
+void \mbox{\hyperlink{pollLib_8c_a963075ea184857285cc940df3c7c7e4a}{add\+To\+Poll\+Set}} (int socket\+Number)
+\item 
+void \mbox{\hyperlink{pollLib_8c_acc55adaa7f5a0b5d81a21d445e061cab}{remove\+From\+Poll\+Set}} (int socket\+Number)
+\item 
+int \mbox{\hyperlink{pollLib_8c_aaa2d69f7f902e1213b304b3c35153add}{poll\+Call}} (int time\+In\+Milli\+Seconds)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Library to interface with the poll() system call. 
+
+\begin{DoxyAuthor}{Author}
+Joshua Gonzalez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pollLib_8c_a963075ea184857285cc940df3c7c7e4a}\label{pollLib_8c_a963075ea184857285cc940df3c7c7e4a} 
+\index{pollLib.c@{pollLib.c}!addToPollSet@{addToPollSet}}
+\index{addToPollSet@{addToPollSet}!pollLib.c@{pollLib.c}}
+\doxysubsubsection{\texorpdfstring{addToPollSet()}{addToPollSet()}}
+{\footnotesize\ttfamily void add\+To\+Poll\+Set (\begin{DoxyParamCaption}\item[{int}]{socket\+Number }\end{DoxyParamCaption})}
+
+\Hypertarget{pollLib_8c_aaa2d69f7f902e1213b304b3c35153add}\label{pollLib_8c_aaa2d69f7f902e1213b304b3c35153add} 
+\index{pollLib.c@{pollLib.c}!pollCall@{pollCall}}
+\index{pollCall@{pollCall}!pollLib.c@{pollLib.c}}
+\doxysubsubsection{\texorpdfstring{pollCall()}{pollCall()}}
+{\footnotesize\ttfamily int poll\+Call (\begin{DoxyParamCaption}\item[{int}]{time\+In\+Milli\+Seconds }\end{DoxyParamCaption})}
+
+\Hypertarget{pollLib_8c_acc55adaa7f5a0b5d81a21d445e061cab}\label{pollLib_8c_acc55adaa7f5a0b5d81a21d445e061cab} 
+\index{pollLib.c@{pollLib.c}!removeFromPollSet@{removeFromPollSet}}
+\index{removeFromPollSet@{removeFromPollSet}!pollLib.c@{pollLib.c}}
+\doxysubsubsection{\texorpdfstring{removeFromPollSet()}{removeFromPollSet()}}
+{\footnotesize\ttfamily void remove\+From\+Poll\+Set (\begin{DoxyParamCaption}\item[{int}]{socket\+Number }\end{DoxyParamCaption})}
+
+\Hypertarget{pollLib_8c_a95e1656afd4ed8c57f317b72529febc8}\label{pollLib_8c_a95e1656afd4ed8c57f317b72529febc8} 
+\index{pollLib.c@{pollLib.c}!setupPollSet@{setupPollSet}}
+\index{setupPollSet@{setupPollSet}!pollLib.c@{pollLib.c}}
+\doxysubsubsection{\texorpdfstring{setupPollSet()}{setupPollSet()}}
+{\footnotesize\ttfamily void setup\+Poll\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{pollLib_8c_a95e1656afd4ed8c57f317b72529febc8_cgraph}
+\end{center}
+\end{figure}

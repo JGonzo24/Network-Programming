@@ -1,0 +1,108 @@
+\doxysection{Settings\+Manager.\+h}
+\hypertarget{SettingsManager_8h_source}{}\label{SettingsManager_8h_source}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/SettingsManager.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/SettingsManager.h}}
+\mbox{\hyperlink{SettingsManager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ \_\_SETTINGSMANAGER\_H\_}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ \_\_SETTINGSMANAGER\_H\_}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{PacketManager_8h}{PacketManager.h}}"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ RANDOM\_SEED\ 10}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{eEnvData\_t}}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aace13330f7b8e852be2f47391d1e9699d}{EDT\_UNKNOWN}}\ =\ 0,}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa4155bcd709cabe5873e5763e1c7a1be4}{EDT\_LONG}},}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aaa03a8d6aba6f1730ac52b8eb845ba148}{EDT\_FLOAT}},}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa863ec36d67f7e196bb7c2f6146132701}{EDT\_BOOL}},}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa04181424f394702b6ad6c7095ad71f51}{EDT\_CHARPTR}},}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8aa46d56611e5e5bef5dda0ad9a5eb1ef74}{EDT\_LIST\_LONG}}}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{eEnvDataKey\_t}}}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538acadcfeb51dbfdf1a38439b9af610e354}{EDK\_UNKNOWN}}\ =\ 0,}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a70aab76b72956c7dd40a21c731cb45f4}{EDK\_AUTOGRADER}},}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a6c69dfc479b50fb5d37b0be4c67ee570}{EDK\_OVERRIDE\_PORT}},}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a45d5e144736cad08dfb00bc3f7f807bd}{EDK\_OVERRIDE\_DEBUG}},}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae94a29e36dee039cf3a34f2e0c4efbc5}{EDK\_OVERRIDE\_SEEDRAND}},}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a95df59b4b31dfa22a355dd4a41a1ea6c}{EDK\_OVERRIDE\_ERR\_RATE}},}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538a2b50c67cf2eff33b7cc558584d727344}{EDK\_OVERRIDE\_ERR\_DROP}},}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538ae656e5fbabc9648e93916f2688b0b588}{EDK\_OVERRIDE\_ERR\_FLIP}}}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{typedef}\ std::list<long>\ \mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{ListLong\_t}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct__EnvDataEntry}{\_EnvDataEntry}}}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{eEnvDataKey\_t}}\ \mbox{\hyperlink{struct__EnvDataEntry_adb1b99d07a42c7530c3d6dd3061d5596}{key}};}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{eEnvData\_t}}\ \ \ \ \mbox{\hyperlink{struct__EnvDataEntry_a178ebcd079ce4e623a0359163ebb5c1d}{type}};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct__EnvDataEntry_a3bb62bf77723d21f1ba759837574d4cb}{isSet}};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \ \mbox{\hyperlink{struct__EnvDataEntry_a11062a16cd3db994e79c8520068faafa}{vLong}};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct__EnvDataEntry_a5420a2762ead6ff5806f7debbee24561}{vFloat}};}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \mbox{\hyperlink{struct__EnvDataEntry_adf2a89218c83feefa63428ad1a9fd765}{vBool}};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{struct__EnvDataEntry_a2203932c35361b42fd797a8cdf0af199}{vCharPtr}};}
+\DoxyCodeLine{00068\ \ \ \ \ \}\ \mbox{\hyperlink{struct__EnvDataEntry_a90f9be75d0e4c218bbbff25ce0334e3d}{data}};}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{ListLong\_t}}\ \mbox{\hyperlink{struct__EnvDataEntry_a256e98734106bbeda5aabcee3db54d9a}{lLong}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{struct__EnvDataEntry_aef57aa068cbb3222c42d9b1b72ad7740}{\_EnvDataEntry}}()\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct__EnvDataEntry_a3bb62bf77723d21f1ba759837574d4cb}{isSet}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00073\ \ \ \ \ \};}
+\DoxyCodeLine{00074\ \}\ \mbox{\hyperlink{SettingsManager_8h_abe67cba681d52ca7256eb32947971682}{sEnvDataEntry\_t}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct__EnvKeyInfo}{\_EnvKeyInfo}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{eEnvDataKey\_t}}\ \mbox{\hyperlink{struct__EnvKeyInfo_a1a4245076a06aaed245fb69a506a8dbc}{key}};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \ \ \mbox{\hyperlink{struct__EnvKeyInfo_ab5b777d3ede21c8c2798e6af7a3a8560}{keyStr}};}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{eEnvData\_t}}\ \ \ \ \mbox{\hyperlink{struct__EnvKeyInfo_acc181d691ca98de70039c54b07e9c394}{type}};}
+\DoxyCodeLine{00081\ \}\ \mbox{\hyperlink{SettingsManager_8h_a0920aaabeb2db68a6f6206cad466859d}{sEnvKeyInfo\_t}};}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSettingsManager}{SettingsManager}}}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ ====================================================================}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSettingsManager}{SettingsManager}}(\mbox{\hyperlink{classPacketManager}{PacketManager}}\&\ pktMgr);}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSettingsManager_a00f848310bc1f31a896580d1ea4c2e1c}{\string~SettingsManager}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a01151cd5640942dbaa12b41e34531a24}{setUserMode\_Debug}}(\textcolor{keywordtype}{int}\ debugLevel);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_aa09e6ac391d67f8b424c74fe1cfcefb6}{setUserMode\_SeedRand}}(\textcolor{keywordtype}{long}\ seedValue);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a1b97b1806fac2a77d945c50c15697a4b}{setUserMode\_ErrRate}}(\textcolor{keywordtype}{float}\ rate);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a60a963ee01bec4ce1f3fc4bbd5f538d5}{setUserMode\_ErrDrop}}(\textcolor{keywordtype}{bool}\ isEnabled);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a976ca8e9d91b5d21f25ed7c72511a49c}{setUserMode\_ErrFlip}}(\textcolor{keywordtype}{bool}\ isEnabled);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ====================================================================}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ =====\ Helper\ Functions\ =============================================}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_af2056cf5096714919b57449a08393035}{parser2ListLong}}(\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{ListLong\_t}}\&\ lLong,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a695fde0354a134da0f2c1c27b3a398c4}{parserLong2Uint32}}(\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{ListLong\_t}}\&\ lLong,\ std::list<uint32\_t>\&\ lUint32);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ====================================================================}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a31ffcd4141e6f04faec5db40cc559bd8}{loadEnvData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a71d375953244fd393cc4f538b31568e8}{loadEnvData\_Port}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_ac6f64a7e8570a7fe30e1c7aa895a6c5c}{loadEnvData\_Autograder}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a0dcf1f7ca0dabf3da7b58c8a3cd3cc41}{loadEnvData\_Debug}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a794246f7f9719e0512ae155365638cc2}{loadEnvData\_SeedRand}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a86737a0bcc4f2a95b9333df5e8570e95}{loadEnvData\_ErrRate}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_a39c3f2244ab255acc19f287f5853fe65}{loadEnvData\_ErrDrop}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSettingsManager_aab68f144ecd2f87a27cea761d6288862}{loadEnvData\_ErrFlip}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ====================================================================}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::map<eEnvDataKey\_t,\ sEnvDataEntry\_t>\ \mbox{\hyperlink{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}{sEnvDataMap\_t}};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classPacketManager}{PacketManager}}*\ \mbox{\hyperlink{classSettingsManager_aec4ef4052556ebd59e48d9d7724833d5}{m\_pPktMgr}};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}{sEnvDataMap\_t}}\ \ \mbox{\hyperlink{classSettingsManager_a5e2c2b6d705a5a61f78ff7ee1be4509b}{m\_EnvData}};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ====================================================================}}
+\DoxyCodeLine{00120\ \};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

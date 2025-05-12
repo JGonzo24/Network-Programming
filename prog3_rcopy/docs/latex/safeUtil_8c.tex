@@ -1,0 +1,90 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/safe\+Util.c File Reference}
+\hypertarget{safeUtil_8c}{}\label{safeUtil_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/safeUtil.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/safeUtil.c}}
+
+
+This file contains functions to safely send and receive data over sockets.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
+Include dependency graph for safe\+Util.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{safeUtil_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{safeUtil_8c_a63f2db5253b1616ae85fe2b161c46966}{safe\+Recvfrom}} (int socket\+Num, void \texorpdfstring{$\ast$}{*}buf, int len, int flags, struct sockaddr \texorpdfstring{$\ast$}{*}src\+Addr, int \texorpdfstring{$\ast$}{*}addr\+Len)
+\item 
+int \mbox{\hyperlink{safeUtil_8c_a15983dc95bd227f94c4973f67c8a704f}{safe\+Sendto}} (int socket\+Num, void \texorpdfstring{$\ast$}{*}buf, int len, int flags, struct sockaddr \texorpdfstring{$\ast$}{*}src\+Addr, int addr\+Len)
+\item 
+int \mbox{\hyperlink{safeUtil_8c_a5ac815e89bab963c6e7f78f75c8d8e60}{safe\+Recv}} (int socket\+Num, void \texorpdfstring{$\ast$}{*}buf, int len, int flags)
+\item 
+int \mbox{\hyperlink{safeUtil_8c_a61f1b2a403cbae20496dcd805e44e926}{safe\+Send}} (int socket\+Num, void \texorpdfstring{$\ast$}{*}buf, int len, int flags)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{safeUtil_8c_a9997dd623b7b5b8a898bf716c20190b7}{srealloc}} (void \texorpdfstring{$\ast$}{*}ptr, size\+\_\+t size)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{safeUtil_8c_aa28db415c57a2fe5724cd33306389139}{s\+Calloc}} (size\+\_\+t nmemb, size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains functions to safely send and receive data over sockets. 
+
+\begin{DoxyAuthor}{Author}
+Joshua Gonzalez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{safeUtil_8c_a5ac815e89bab963c6e7f78f75c8d8e60}\label{safeUtil_8c_a5ac815e89bab963c6e7f78f75c8d8e60} 
+\index{safeUtil.c@{safeUtil.c}!safeRecv@{safeRecv}}
+\index{safeRecv@{safeRecv}!safeUtil.c@{safeUtil.c}}
+\doxysubsubsection{\texorpdfstring{safeRecv()}{safeRecv()}}
+{\footnotesize\ttfamily int safe\+Recv (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+\Hypertarget{safeUtil_8c_a63f2db5253b1616ae85fe2b161c46966}\label{safeUtil_8c_a63f2db5253b1616ae85fe2b161c46966} 
+\index{safeUtil.c@{safeUtil.c}!safeRecvfrom@{safeRecvfrom}}
+\index{safeRecvfrom@{safeRecvfrom}!safeUtil.c@{safeUtil.c}}
+\doxysubsubsection{\texorpdfstring{safeRecvfrom()}{safeRecvfrom()}}
+{\footnotesize\ttfamily int safe\+Recvfrom (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{len,  }\item[{int}]{flags,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{src\+Addr,  }\item[{int \texorpdfstring{$\ast$}{*}}]{addr\+Len }\end{DoxyParamCaption})}
+
+\Hypertarget{safeUtil_8c_a61f1b2a403cbae20496dcd805e44e926}\label{safeUtil_8c_a61f1b2a403cbae20496dcd805e44e926} 
+\index{safeUtil.c@{safeUtil.c}!safeSend@{safeSend}}
+\index{safeSend@{safeSend}!safeUtil.c@{safeUtil.c}}
+\doxysubsubsection{\texorpdfstring{safeSend()}{safeSend()}}
+{\footnotesize\ttfamily int safe\+Send (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+\Hypertarget{safeUtil_8c_a15983dc95bd227f94c4973f67c8a704f}\label{safeUtil_8c_a15983dc95bd227f94c4973f67c8a704f} 
+\index{safeUtil.c@{safeUtil.c}!safeSendto@{safeSendto}}
+\index{safeSendto@{safeSendto}!safeUtil.c@{safeUtil.c}}
+\doxysubsubsection{\texorpdfstring{safeSendto()}{safeSendto()}}
+{\footnotesize\ttfamily int safe\+Sendto (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{len,  }\item[{int}]{flags,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{src\+Addr,  }\item[{int}]{addr\+Len }\end{DoxyParamCaption})}
+
+\Hypertarget{safeUtil_8c_aa28db415c57a2fe5724cd33306389139}\label{safeUtil_8c_aa28db415c57a2fe5724cd33306389139} 
+\index{safeUtil.c@{safeUtil.c}!sCalloc@{sCalloc}}
+\index{sCalloc@{sCalloc}!safeUtil.c@{safeUtil.c}}
+\doxysubsubsection{\texorpdfstring{sCalloc()}{sCalloc()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} s\+Calloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{nmemb,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\Hypertarget{safeUtil_8c_a9997dd623b7b5b8a898bf716c20190b7}\label{safeUtil_8c_a9997dd623b7b5b8a898bf716c20190b7} 
+\index{safeUtil.c@{safeUtil.c}!srealloc@{srealloc}}
+\index{srealloc@{srealloc}!safeUtil.c@{safeUtil.c}}
+\doxysubsubsection{\texorpdfstring{srealloc()}{srealloc()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} srealloc (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+

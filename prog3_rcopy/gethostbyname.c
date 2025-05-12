@@ -3,6 +3,17 @@
 /* replacement code for gethostbyname - works for IPv4 and IPV6  */
 /* Warning - this is NOT thread safe. */
 
+/**
+ * @file gethostbyname.c
+ * @author 
+ * @brief This file contains functions to get the IP address of a host name
+ * @version 0.1
+ * @date 2025-05-10
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

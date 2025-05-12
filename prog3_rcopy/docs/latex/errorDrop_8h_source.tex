@@ -1,0 +1,41 @@
+\doxysection{error\+Drop.\+h}
+\hypertarget{errorDrop_8h_source}{}\label{errorDrop_8h_source}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/errorDrop.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/errorDrop.h}}
+\mbox{\hyperlink{errorDrop_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ \_\_MSGERROR\_DROP\_H}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ \_\_MSGERROR\_DROP\_H}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{IMsgEvent_8h}{IMsgEvent.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <list>}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classerrorDrop}{errorDrop}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classIMsgEvent}{IMsgEvent}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{typedef}\ std::list<uint32\_t>\ \mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{DropList\_t}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classerrorDrop_ae02aa19abad3c81cd1773ae4ca0857d3}{errorDrop}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classerrorDrop_ae295a4c94684b2809f7e21e67b3965b6}{\string~errorDrop}}()\ \{\};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classerrorDrop_a56451dac6f8962bf01b1c7631b22980f}{setDropAll}}(\textcolor{keywordtype}{bool}\ dropAll);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classerrorDrop_a092408acf79dd65b55cf261a808fe9e6}{setDropSpecific}}(\mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{DropList\_t}}\&\ dropList);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classerrorDrop_a72a28ebbdb1e2a2520339b00c02463c6}{run}}(\textcolor{keywordtype}{void}**\ pBuf,\ \textcolor{keywordtype}{size\_t}*\ pLen,\ uint32\_t\ seqno,\ \textcolor{keywordtype}{bool}\ isSend);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classerrorDrop_a3bc0c82efa504c4567c1dfb57940853b}{report}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classerrorDrop_ab35de9f829a60d9a1c75dd3f2da5b6fa}{getName}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \mbox{\hyperlink{classerrorDrop_afa298d75ef7ac5a6656ae1f7e753a26e}{m\_DropAll}};}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{DropList\_t}}\ \mbox{\hyperlink{classerrorDrop_a16eceef6848f3d481da576fbf0a3fb9c}{m\_DropList}};}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ }
+
+\end{DoxyCode}

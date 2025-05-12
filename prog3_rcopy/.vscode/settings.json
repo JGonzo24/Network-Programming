@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "checksum.h": "c",
+        "types.h": "c",
+        "gethostbyname.h": "c"
+    }
+}

@@ -1,0 +1,326 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/cpe464.h File Reference}
+\hypertarget{cpe464_8h}{}\label{cpe464_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/cpe464.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/cpe464.h}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/select.\+h$>$}\newline
+Include dependency graph for cpe464.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{cpe464_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a3cb1a603428ce7d96fc4e71c2e25f366}{\+\_\+\+CPE464\+\_\+\+HOOKS\+\_\+\+H\+\_\+}}
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a911d91f7898a9a0c4e35bb71e01d39a0}{DEBUG\+\_\+\+ON}}~1
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_afff2c6be67c226eb2b1359a3cd2042b2}{DEBUG\+\_\+\+OFF}}~0
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a49a5677573f5211e705a592c7e3893e7}{FLIP\+\_\+\+ON}}~1
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_ab592fa07d7656d400c3b6b564b3e1631}{FLIP\+\_\+\+OFF}}~0
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a53a2bcf63e7bf5d3fabddbcf1827fd7b}{DROP\+\_\+\+ON}}~1
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a80b274eb147e691ce90ce172c9d5a0a6}{DROP\+\_\+\+OFF}}~0
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_ab661f3fe9c9c699a97998c38842639ef}{RSEED\+\_\+\+ON}}~1
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a0f8889260d77f5380b20a0ab9b44f409}{RSEED\+\_\+\+OFF}}~0
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a990edf51308a42b583fde55e2b9bedb7}{RANDOM\+\_\+\+SEED}}~10
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_af14dd6ee74929ff7e534e8299475397d}{CPE464\+\_\+\+OVERRIDE\+\_\+\+RECV}}
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a3a4125284e799b1e4cbf06041aa3548c}{socket}}(...)~\mbox{\hyperlink{cpe464_8h_aed064a46d68dee819bb347883f048021}{socket\+Mod}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_af39289919acc655cc1f22004a0c11d6e}{bind}}(...)~\mbox{\hyperlink{cpe464_8h_aae33cb498db4c3016435ff3f9b329546}{bind\+Mod}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a96b5e4986f778ea4e4a4dfb8f71501c8}{select}}(...)~\mbox{\hyperlink{cpe464_8h_add584cb96e271899e50ce7a068632ca0}{select\+Mod}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_ab2e49d0b8dbb3181c7d1f622fd5ea1b4}{fork}}~\mbox{\hyperlink{cpe464_8h_a82425f485ce7d04f0dc461f27a001d49}{fork\+Mod}}
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_ac2b13d47c6f01a7cf2d0e4a77a9a3c94}{send}}(...)~\mbox{\hyperlink{cpe464_8h_a6baf40e5c707e012a99043794af718c9}{send\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a264b0cb001893c8c89081301ad05336c}{sendto}}(...)~\mbox{\hyperlink{cpe464_8h_a767819e79935cf81a761252b8986677b}{sendto\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_ad9afc79a0439674bff4bf4998e94e807}{recv}}(...)~\mbox{\hyperlink{cpe464_8h_a58919639340752d5994dc32feee091a1}{recv\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_a2b1eebea5f4d2f94810bae643bd17f52}{recvfrom}}(...)~\mbox{\hyperlink{cpe464_8h_a427f34a5218fb054c85f785b5bd85bd4}{recvfrom\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \mbox{\hyperlink{cpe464_8h_ae2f28880d96ec44293672fc22572a7fc}{sendto\+Err\+\_\+init}}(...)~\mbox{\hyperlink{cpe464_8h_aaedf070171d733d05519822e5da05787}{send\+Err\+\_\+init}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short \mbox{\hyperlink{cpe464_8h_a5e4cd95c89adfdd7e4bdad48b0b7aa9f}{in\+\_\+cksum}} (unsigned short \texorpdfstring{$\ast$}{*}addr, int len)
+\begin{DoxyCompactList}\small\item\em This is the checksum function. It calculates the checksum of a given buffer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{cpe464_8h_a82425f485ce7d04f0dc461f27a001d49}{fork\+Mod}} (void)
+\item 
+int \mbox{\hyperlink{cpe464_8h_aed064a46d68dee819bb347883f048021}{socket\+Mod}} (int doman, int type, int protocol)
+\item 
+int \mbox{\hyperlink{cpe464_8h_aae33cb498db4c3016435ff3f9b329546}{bind\+Mod}} (int sockfd, const struct sockaddr \texorpdfstring{$\ast$}{*}addr, socklen\+\_\+t addrlen)
+\item 
+int \mbox{\hyperlink{cpe464_8h_add584cb96e271899e50ce7a068632ca0}{select\+Mod}} (int nfds, fd\+\_\+set \texorpdfstring{$\ast$}{*}readfds, fd\+\_\+set \texorpdfstring{$\ast$}{*}writefds, fd\+\_\+set \texorpdfstring{$\ast$}{*}exceptfds, struct timeval \texorpdfstring{$\ast$}{*}timeout)
+\item 
+int \mbox{\hyperlink{cpe464_8h_aaedf070171d733d05519822e5da05787}{send\+Err\+\_\+init}} (double error\+\_\+rate, int drop\+\_\+flag, int flip\+\_\+flag, int debug\+\_\+flag, int random\+\_\+flag)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{cpe464_8h_a6baf40e5c707e012a99043794af718c9}{send\+Err}} (int s, void \texorpdfstring{$\ast$}{*}msg, int len, unsigned int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{cpe464_8h_a58919639340752d5994dc32feee091a1}{recv\+Err}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{cpe464_8h_a767819e79935cf81a761252b8986677b}{sendto\+Err}} (int s, void \texorpdfstring{$\ast$}{*}msg, int len, unsigned int flags, const struct sockaddr \texorpdfstring{$\ast$}{*}to, int tolen)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{cpe464_8h_a427f34a5218fb054c85f785b5bd85bd4}{recvfrom\+Err}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags, struct sockaddr \texorpdfstring{$\ast$}{*}from, socklen\+\_\+t \texorpdfstring{$\ast$}{*}fromlen)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{cpe464_8h_a3cb1a603428ce7d96fc4e71c2e25f366}\label{cpe464_8h_a3cb1a603428ce7d96fc4e71c2e25f366} 
+\index{cpe464.h@{cpe464.h}!\_CPE464\_HOOKS\_H\_@{\_CPE464\_HOOKS\_H\_}}
+\index{\_CPE464\_HOOKS\_H\_@{\_CPE464\_HOOKS\_H\_}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{\_CPE464\_HOOKS\_H\_}{\_CPE464\_HOOKS\_H\_}}
+{\footnotesize\ttfamily \#define \+\_\+\+CPE464\+\_\+\+HOOKS\+\_\+\+H\+\_\+}
+
+\Hypertarget{cpe464_8h_af39289919acc655cc1f22004a0c11d6e}\label{cpe464_8h_af39289919acc655cc1f22004a0c11d6e} 
+\index{cpe464.h@{cpe464.h}!bind@{bind}}
+\index{bind@{bind}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{bind}{bind}}
+{\footnotesize\ttfamily \#define bind(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_aae33cb498db4c3016435ff3f9b329546}{bind\+Mod}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_af14dd6ee74929ff7e534e8299475397d}\label{cpe464_8h_af14dd6ee74929ff7e534e8299475397d} 
+\index{cpe464.h@{cpe464.h}!CPE464\_OVERRIDE\_RECV@{CPE464\_OVERRIDE\_RECV}}
+\index{CPE464\_OVERRIDE\_RECV@{CPE464\_OVERRIDE\_RECV}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{CPE464\_OVERRIDE\_RECV}{CPE464\_OVERRIDE\_RECV}}
+{\footnotesize\ttfamily \#define CPE464\+\_\+\+OVERRIDE\+\_\+\+RECV}
+
+\Hypertarget{cpe464_8h_afff2c6be67c226eb2b1359a3cd2042b2}\label{cpe464_8h_afff2c6be67c226eb2b1359a3cd2042b2} 
+\index{cpe464.h@{cpe464.h}!DEBUG\_OFF@{DEBUG\_OFF}}
+\index{DEBUG\_OFF@{DEBUG\_OFF}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_OFF}{DEBUG\_OFF}}
+{\footnotesize\ttfamily \#define DEBUG\+\_\+\+OFF~0}
+
+\Hypertarget{cpe464_8h_a911d91f7898a9a0c4e35bb71e01d39a0}\label{cpe464_8h_a911d91f7898a9a0c4e35bb71e01d39a0} 
+\index{cpe464.h@{cpe464.h}!DEBUG\_ON@{DEBUG\_ON}}
+\index{DEBUG\_ON@{DEBUG\_ON}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_ON}{DEBUG\_ON}}
+{\footnotesize\ttfamily \#define DEBUG\+\_\+\+ON~1}
+
+\Hypertarget{cpe464_8h_a80b274eb147e691ce90ce172c9d5a0a6}\label{cpe464_8h_a80b274eb147e691ce90ce172c9d5a0a6} 
+\index{cpe464.h@{cpe464.h}!DROP\_OFF@{DROP\_OFF}}
+\index{DROP\_OFF@{DROP\_OFF}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{DROP\_OFF}{DROP\_OFF}}
+{\footnotesize\ttfamily \#define DROP\+\_\+\+OFF~0}
+
+\Hypertarget{cpe464_8h_a53a2bcf63e7bf5d3fabddbcf1827fd7b}\label{cpe464_8h_a53a2bcf63e7bf5d3fabddbcf1827fd7b} 
+\index{cpe464.h@{cpe464.h}!DROP\_ON@{DROP\_ON}}
+\index{DROP\_ON@{DROP\_ON}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{DROP\_ON}{DROP\_ON}}
+{\footnotesize\ttfamily \#define DROP\+\_\+\+ON~1}
+
+\Hypertarget{cpe464_8h_ab592fa07d7656d400c3b6b564b3e1631}\label{cpe464_8h_ab592fa07d7656d400c3b6b564b3e1631} 
+\index{cpe464.h@{cpe464.h}!FLIP\_OFF@{FLIP\_OFF}}
+\index{FLIP\_OFF@{FLIP\_OFF}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{FLIP\_OFF}{FLIP\_OFF}}
+{\footnotesize\ttfamily \#define FLIP\+\_\+\+OFF~0}
+
+\Hypertarget{cpe464_8h_a49a5677573f5211e705a592c7e3893e7}\label{cpe464_8h_a49a5677573f5211e705a592c7e3893e7} 
+\index{cpe464.h@{cpe464.h}!FLIP\_ON@{FLIP\_ON}}
+\index{FLIP\_ON@{FLIP\_ON}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{FLIP\_ON}{FLIP\_ON}}
+{\footnotesize\ttfamily \#define FLIP\+\_\+\+ON~1}
+
+\Hypertarget{cpe464_8h_ab2e49d0b8dbb3181c7d1f622fd5ea1b4}\label{cpe464_8h_ab2e49d0b8dbb3181c7d1f622fd5ea1b4} 
+\index{cpe464.h@{cpe464.h}!fork@{fork}}
+\index{fork@{fork}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{fork}{fork}}
+{\footnotesize\ttfamily \#define fork~\mbox{\hyperlink{cpe464_8h_a82425f485ce7d04f0dc461f27a001d49}{fork\+Mod}}}
+
+\Hypertarget{cpe464_8h_a990edf51308a42b583fde55e2b9bedb7}\label{cpe464_8h_a990edf51308a42b583fde55e2b9bedb7} 
+\index{cpe464.h@{cpe464.h}!RANDOM\_SEED@{RANDOM\_SEED}}
+\index{RANDOM\_SEED@{RANDOM\_SEED}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{RANDOM\_SEED}{RANDOM\_SEED}}
+{\footnotesize\ttfamily \#define RANDOM\+\_\+\+SEED~10}
+
+\Hypertarget{cpe464_8h_ad9afc79a0439674bff4bf4998e94e807}\label{cpe464_8h_ad9afc79a0439674bff4bf4998e94e807} 
+\index{cpe464.h@{cpe464.h}!recv@{recv}}
+\index{recv@{recv}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{recv}{recv}}
+{\footnotesize\ttfamily \#define recv(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_a58919639340752d5994dc32feee091a1}{recv\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_a2b1eebea5f4d2f94810bae643bd17f52}\label{cpe464_8h_a2b1eebea5f4d2f94810bae643bd17f52} 
+\index{cpe464.h@{cpe464.h}!recvfrom@{recvfrom}}
+\index{recvfrom@{recvfrom}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{recvfrom}{recvfrom}}
+{\footnotesize\ttfamily \#define recvfrom(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_a427f34a5218fb054c85f785b5bd85bd4}{recvfrom\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_a0f8889260d77f5380b20a0ab9b44f409}\label{cpe464_8h_a0f8889260d77f5380b20a0ab9b44f409} 
+\index{cpe464.h@{cpe464.h}!RSEED\_OFF@{RSEED\_OFF}}
+\index{RSEED\_OFF@{RSEED\_OFF}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{RSEED\_OFF}{RSEED\_OFF}}
+{\footnotesize\ttfamily \#define RSEED\+\_\+\+OFF~0}
+
+\Hypertarget{cpe464_8h_ab661f3fe9c9c699a97998c38842639ef}\label{cpe464_8h_ab661f3fe9c9c699a97998c38842639ef} 
+\index{cpe464.h@{cpe464.h}!RSEED\_ON@{RSEED\_ON}}
+\index{RSEED\_ON@{RSEED\_ON}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{RSEED\_ON}{RSEED\_ON}}
+{\footnotesize\ttfamily \#define RSEED\+\_\+\+ON~1}
+
+\Hypertarget{cpe464_8h_a96b5e4986f778ea4e4a4dfb8f71501c8}\label{cpe464_8h_a96b5e4986f778ea4e4a4dfb8f71501c8} 
+\index{cpe464.h@{cpe464.h}!select@{select}}
+\index{select@{select}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{select}{select}}
+{\footnotesize\ttfamily \#define select(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_add584cb96e271899e50ce7a068632ca0}{select\+Mod}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_ac2b13d47c6f01a7cf2d0e4a77a9a3c94}\label{cpe464_8h_ac2b13d47c6f01a7cf2d0e4a77a9a3c94} 
+\index{cpe464.h@{cpe464.h}!send@{send}}
+\index{send@{send}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{send}{send}}
+{\footnotesize\ttfamily \#define send(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_a6baf40e5c707e012a99043794af718c9}{send\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_a264b0cb001893c8c89081301ad05336c}\label{cpe464_8h_a264b0cb001893c8c89081301ad05336c} 
+\index{cpe464.h@{cpe464.h}!sendto@{sendto}}
+\index{sendto@{sendto}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{sendto}{sendto}}
+{\footnotesize\ttfamily \#define sendto(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_a767819e79935cf81a761252b8986677b}{sendto\+Err}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_ae2f28880d96ec44293672fc22572a7fc}\label{cpe464_8h_ae2f28880d96ec44293672fc22572a7fc} 
+\index{cpe464.h@{cpe464.h}!sendtoErr\_init@{sendtoErr\_init}}
+\index{sendtoErr\_init@{sendtoErr\_init}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{sendtoErr\_init}{sendtoErr\_init}}
+{\footnotesize\ttfamily \#define sendto\+Err\+\_\+init(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_aaedf070171d733d05519822e5da05787}{send\+Err\+\_\+init}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+\Hypertarget{cpe464_8h_a3a4125284e799b1e4cbf06041aa3548c}\label{cpe464_8h_a3a4125284e799b1e4cbf06041aa3548c} 
+\index{cpe464.h@{cpe464.h}!socket@{socket}}
+\index{socket@{socket}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{socket}{socket}}
+{\footnotesize\ttfamily \#define socket(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{cpe464_8h_aed064a46d68dee819bb347883f048021}{socket\+Mod}}(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{cpe464_8h_aae33cb498db4c3016435ff3f9b329546}\label{cpe464_8h_aae33cb498db4c3016435ff3f9b329546} 
+\index{cpe464.h@{cpe464.h}!bindMod@{bindMod}}
+\index{bindMod@{bindMod}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{bindMod()}{bindMod()}}
+{\footnotesize\ttfamily int bind\+Mod (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{const struct sockaddr \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{socklen\+\_\+t}]{addrlen }\end{DoxyParamCaption})}
+
+\Hypertarget{cpe464_8h_a82425f485ce7d04f0dc461f27a001d49}\label{cpe464_8h_a82425f485ce7d04f0dc461f27a001d49} 
+\index{cpe464.h@{cpe464.h}!forkMod@{forkMod}}
+\index{forkMod@{forkMod}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{forkMod()}{forkMod()}}
+{\footnotesize\ttfamily int fork\+Mod (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpe464_8h_a82425f485ce7d04f0dc461f27a001d49_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cpe464_8h_a5e4cd95c89adfdd7e4bdad48b0b7aa9f}\label{cpe464_8h_a5e4cd95c89adfdd7e4bdad48b0b7aa9f} 
+\index{cpe464.h@{cpe464.h}!in\_cksum@{in\_cksum}}
+\index{in\_cksum@{in\_cksum}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{in\_cksum()}{in\_cksum()}}
+{\footnotesize\ttfamily unsigned short in\+\_\+cksum (\begin{DoxyParamCaption}\item[{unsigned short \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+This is the checksum function. It calculates the checksum of a given buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & \\
+\hline
+{\em len} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned short 
+\end{DoxyReturn}
+\Hypertarget{cpe464_8h_a58919639340752d5994dc32feee091a1}\label{cpe464_8h_a58919639340752d5994dc32feee091a1} 
+\index{cpe464.h@{cpe464.h}!recvErr@{recvErr}}
+\index{recvErr@{recvErr}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{recvErr()}{recvErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t recv\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpe464_8h_a58919639340752d5994dc32feee091a1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cpe464_8h_a427f34a5218fb054c85f785b5bd85bd4}\label{cpe464_8h_a427f34a5218fb054c85f785b5bd85bd4} 
+\index{cpe464.h@{cpe464.h}!recvfromErr@{recvfromErr}}
+\index{recvfromErr@{recvfromErr}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{recvfromErr()}{recvfromErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t recvfrom\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{from,  }\item[{socklen\+\_\+t \texorpdfstring{$\ast$}{*}}]{fromlen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpe464_8h_a427f34a5218fb054c85f785b5bd85bd4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cpe464_8h_add584cb96e271899e50ce7a068632ca0}\label{cpe464_8h_add584cb96e271899e50ce7a068632ca0} 
+\index{cpe464.h@{cpe464.h}!selectMod@{selectMod}}
+\index{selectMod@{selectMod}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{selectMod()}{selectMod()}}
+{\footnotesize\ttfamily int select\+Mod (\begin{DoxyParamCaption}\item[{int}]{nfds,  }\item[{fd\+\_\+set \texorpdfstring{$\ast$}{*}}]{readfds,  }\item[{fd\+\_\+set \texorpdfstring{$\ast$}{*}}]{writefds,  }\item[{fd\+\_\+set \texorpdfstring{$\ast$}{*}}]{exceptfds,  }\item[{struct timeval \texorpdfstring{$\ast$}{*}}]{timeout }\end{DoxyParamCaption})}
+
+\Hypertarget{cpe464_8h_a6baf40e5c707e012a99043794af718c9}\label{cpe464_8h_a6baf40e5c707e012a99043794af718c9} 
+\index{cpe464.h@{cpe464.h}!sendErr@{sendErr}}
+\index{sendErr@{sendErr}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{sendErr()}{sendErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t send\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{int}]{len,  }\item[{unsigned int}]{flags }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpe464_8h_a6baf40e5c707e012a99043794af718c9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cpe464_8h_aaedf070171d733d05519822e5da05787}\label{cpe464_8h_aaedf070171d733d05519822e5da05787} 
+\index{cpe464.h@{cpe464.h}!sendErr\_init@{sendErr\_init}}
+\index{sendErr\_init@{sendErr\_init}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{sendErr\_init()}{sendErr\_init()}}
+{\footnotesize\ttfamily int send\+Err\+\_\+init (\begin{DoxyParamCaption}\item[{double}]{error\+\_\+rate,  }\item[{int}]{drop\+\_\+flag,  }\item[{int}]{flip\+\_\+flag,  }\item[{int}]{debug\+\_\+flag,  }\item[{int}]{random\+\_\+flag }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpe464_8h_aaedf070171d733d05519822e5da05787_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cpe464_8h_a767819e79935cf81a761252b8986677b}\label{cpe464_8h_a767819e79935cf81a761252b8986677b} 
+\index{cpe464.h@{cpe464.h}!sendtoErr@{sendtoErr}}
+\index{sendtoErr@{sendtoErr}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{sendtoErr()}{sendtoErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t sendto\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{int}]{len,  }\item[{unsigned int}]{flags,  }\item[{const struct sockaddr \texorpdfstring{$\ast$}{*}}]{to,  }\item[{int}]{tolen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{cpe464_8h_a767819e79935cf81a761252b8986677b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{cpe464_8h_aed064a46d68dee819bb347883f048021}\label{cpe464_8h_aed064a46d68dee819bb347883f048021} 
+\index{cpe464.h@{cpe464.h}!socketMod@{socketMod}}
+\index{socketMod@{socketMod}!cpe464.h@{cpe464.h}}
+\doxysubsubsection{\texorpdfstring{socketMod()}{socketMod()}}
+{\footnotesize\ttfamily int socket\+Mod (\begin{DoxyParamCaption}\item[{int}]{doman,  }\item[{int}]{type,  }\item[{int}]{protocol }\end{DoxyParamCaption})}
+

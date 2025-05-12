@@ -1,0 +1,7 @@
+<map id="sendToServer" name="sendToServer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,115,56"/>
+<area shape="rect" id="Node000002" href="$myClient_8c.html#ab7bf31e4ef7eb9ae4bb835b6ae70a999" title=" " alt="" coords="163,5,280,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,32,149,27,150,32,115,37"/>
+<area shape="rect" id="Node000003" href="$safeUtil_8c.html#a61f1b2a403cbae20496dcd805e44e926" title=" " alt="" coords="180,55,263,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,49,167,57,166,62,115,54"/>
+</map>

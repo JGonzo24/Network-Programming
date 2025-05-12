@@ -1,0 +1,157 @@
+\doxysection{error\+Drop Class Reference}
+\hypertarget{classerrorDrop}{}\label{classerrorDrop}\index{errorDrop@{errorDrop}}
+
+
+{\ttfamily \#include $<$error\+Drop.\+h$>$}
+
+
+
+Inheritance diagram for error\+Drop\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classerrorDrop__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for error\+Drop\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classerrorDrop__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::list$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{Drop\+List\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classerrorDrop_ae02aa19abad3c81cd1773ae4ca0857d3}{error\+Drop}} ()
+\item 
+virtual \mbox{\hyperlink{classerrorDrop_ae295a4c94684b2809f7e21e67b3965b6}{\texorpdfstring{$\sim$}{\string~}error\+Drop}} ()
+\item 
+int \mbox{\hyperlink{classerrorDrop_a56451dac6f8962bf01b1c7631b22980f}{set\+Drop\+All}} (bool drop\+All)
+\item 
+int \mbox{\hyperlink{classerrorDrop_a092408acf79dd65b55cf261a808fe9e6}{set\+Drop\+Specific}} (\mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{Drop\+List\+\_\+t}} \&drop\+List)
+\item 
+virtual int \mbox{\hyperlink{classerrorDrop_a72a28ebbdb1e2a2520339b00c02463c6}{run}} (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Buf, size\+\_\+t \texorpdfstring{$\ast$}{*}p\+Len, uint32\+\_\+t seqno, bool is\+Send)
+\item 
+virtual int \mbox{\hyperlink{classerrorDrop_a3bc0c82efa504c4567c1dfb57940853b}{report}} (void)
+\item 
+virtual const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classerrorDrop_ab35de9f829a60d9a1c75dd3f2da5b6fa}{get\+Name}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d}{\texorpdfstring{$\sim$}{\string~}\+IMsg\+Event}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classerrorDrop_afa298d75ef7ac5a6656ae1f7e753a26e}{m\+\_\+\+Drop\+All}}
+\item 
+\mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{Drop\+List\+\_\+t}} \mbox{\hyperlink{classerrorDrop_a16eceef6848f3d481da576fbf0a3fb9c}{m\+\_\+\+Drop\+List}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classerrorDrop}{error\+Drop} -\/ Drops specific (or all) packets passed in
+
+General use would have a \doxylink{classerrorDrop}{error\+Drop} with Drop\+All for random cases and a drop list should a specific sequence of drops to occur using the standard list within the \doxylink{classPacketManager}{Packet\+Manager} 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}\label{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c} 
+\index{errorDrop@{errorDrop}!DropList\_t@{DropList\_t}}
+\index{DropList\_t@{DropList\_t}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{DropList\_t}{DropList\_t}}
+{\footnotesize\ttfamily typedef std\+::list$<$uint32\+\_\+t$>$ \mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{error\+Drop\+::\+Drop\+List\+\_\+t}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classerrorDrop_ae02aa19abad3c81cd1773ae4ca0857d3}\label{classerrorDrop_ae02aa19abad3c81cd1773ae4ca0857d3} 
+\index{errorDrop@{errorDrop}!errorDrop@{errorDrop}}
+\index{errorDrop@{errorDrop}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{errorDrop()}{errorDrop()}}
+{\footnotesize\ttfamily error\+Drop\+::error\+Drop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classerrorDrop_ae295a4c94684b2809f7e21e67b3965b6}\label{classerrorDrop_ae295a4c94684b2809f7e21e67b3965b6} 
+\index{errorDrop@{errorDrop}!````~errorDrop@{\texorpdfstring{$\sim$}{\string~}errorDrop}}
+\index{````~errorDrop@{\texorpdfstring{$\sim$}{\string~}errorDrop}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}errorDrop()}{\string~errorDrop()}}
+{\footnotesize\ttfamily virtual error\+Drop\+::\texorpdfstring{$\sim$}{\string~}error\+Drop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classerrorDrop_ab35de9f829a60d9a1c75dd3f2da5b6fa}\label{classerrorDrop_ab35de9f829a60d9a1c75dd3f2da5b6fa} 
+\index{errorDrop@{errorDrop}!getName@{getName}}
+\index{getName@{getName}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} error\+Drop\+::get\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921}{IMsg\+Event}}.
+
+\Hypertarget{classerrorDrop_a3bc0c82efa504c4567c1dfb57940853b}\label{classerrorDrop_a3bc0c82efa504c4567c1dfb57940853b} 
+\index{errorDrop@{errorDrop}!report@{report}}
+\index{report@{report}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{report()}{report()}}
+{\footnotesize\ttfamily int error\+Drop\+::report (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091}{IMsg\+Event}}.
+
+\Hypertarget{classerrorDrop_a72a28ebbdb1e2a2520339b00c02463c6}\label{classerrorDrop_a72a28ebbdb1e2a2520339b00c02463c6} 
+\index{errorDrop@{errorDrop}!run@{run}}
+\index{run@{run}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily int error\+Drop\+::run (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Buf,  }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Len,  }\item[{uint32\+\_\+t}]{seqno,  }\item[{bool}]{is\+Send }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Function to be called when running the event case.
+
+Since the function can modify or drop data, a pointer to the buf\texorpdfstring{$\ast$}{*} make it possible to re-\/create a buffer and change the len accordingly.
+
+Return Values\+: \texorpdfstring{$<$}{<}0 Error 0 No change 1 Change 2 Drop Completely 
+
+Implements \mbox{\hyperlink{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1}{IMsg\+Event}}.
+
+\Hypertarget{classerrorDrop_a56451dac6f8962bf01b1c7631b22980f}\label{classerrorDrop_a56451dac6f8962bf01b1c7631b22980f} 
+\index{errorDrop@{errorDrop}!setDropAll@{setDropAll}}
+\index{setDropAll@{setDropAll}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{setDropAll()}{setDropAll()}}
+{\footnotesize\ttfamily int error\+Drop\+::set\+Drop\+All (\begin{DoxyParamCaption}\item[{bool}]{drop\+All }\end{DoxyParamCaption})}
+
+\Hypertarget{classerrorDrop_a092408acf79dd65b55cf261a808fe9e6}\label{classerrorDrop_a092408acf79dd65b55cf261a808fe9e6} 
+\index{errorDrop@{errorDrop}!setDropSpecific@{setDropSpecific}}
+\index{setDropSpecific@{setDropSpecific}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{setDropSpecific()}{setDropSpecific()}}
+{\footnotesize\ttfamily int error\+Drop\+::set\+Drop\+Specific (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{Drop\+List\+\_\+t}} \&}]{drop\+List }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classerrorDrop_afa298d75ef7ac5a6656ae1f7e753a26e}\label{classerrorDrop_afa298d75ef7ac5a6656ae1f7e753a26e} 
+\index{errorDrop@{errorDrop}!m\_DropAll@{m\_DropAll}}
+\index{m\_DropAll@{m\_DropAll}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{m\_DropAll}{m\_DropAll}}
+{\footnotesize\ttfamily bool error\+Drop\+::m\+\_\+\+Drop\+All\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classerrorDrop_a16eceef6848f3d481da576fbf0a3fb9c}\label{classerrorDrop_a16eceef6848f3d481da576fbf0a3fb9c} 
+\index{errorDrop@{errorDrop}!m\_DropList@{m\_DropList}}
+\index{m\_DropList@{m\_DropList}!errorDrop@{errorDrop}}
+\doxysubsubsection{\texorpdfstring{m\_DropList}{m\_DropList}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classerrorDrop_a903c46485e4e509d7fb9db60f03c1e7c}{Drop\+List\+\_\+t}} error\+Drop\+::m\+\_\+\+Drop\+List\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{errorDrop_8h}{error\+Drop.\+h}}\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{errorDrop_8cpp}{error\+Drop.\+cpp}}\end{DoxyCompactItemize}

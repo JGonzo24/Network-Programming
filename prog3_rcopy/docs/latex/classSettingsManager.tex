@@ -1,0 +1,302 @@
+\doxysection{Settings\+Manager Class Reference}
+\hypertarget{classSettingsManager}{}\label{classSettingsManager}\index{SettingsManager@{SettingsManager}}
+
+
+{\ttfamily \#include $<$Settings\+Manager.\+h$>$}
+
+
+
+Collaboration diagram for Settings\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classSettingsManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettingsManager_afffa42505bf0be21ff2ed768614f41a5}{Settings\+Manager}} (\mbox{\hyperlink{classPacketManager}{Packet\+Manager}} \&pkt\+Mgr)
+\item 
+\mbox{\hyperlink{classSettingsManager_a00f848310bc1f31a896580d1ea4c2e1c}{\texorpdfstring{$\sim$}{\string~}\+Settings\+Manager}} ()
+\item 
+int \mbox{\hyperlink{classSettingsManager_a01151cd5640942dbaa12b41e34531a24}{set\+User\+Mode\+\_\+\+Debug}} (int debug\+Level)
+\item 
+int \mbox{\hyperlink{classSettingsManager_aa09e6ac391d67f8b424c74fe1cfcefb6}{set\+User\+Mode\+\_\+\+Seed\+Rand}} (long seed\+Value)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a1b97b1806fac2a77d945c50c15697a4b}{set\+User\+Mode\+\_\+\+Err\+Rate}} (float rate)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a60a963ee01bec4ce1f3fc4bbd5f538d5}{set\+User\+Mode\+\_\+\+Err\+Drop}} (bool is\+Enabled)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a976ca8e9d91b5d21f25ed7c72511a49c}{set\+User\+Mode\+\_\+\+Err\+Flip}} (bool is\+Enabled)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::map$<$ \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{e\+Env\+Data\+Key\+\_\+t}}, \mbox{\hyperlink{SettingsManager_8h_abe67cba681d52ca7256eb32947971682}{s\+Env\+Data\+Entry\+\_\+t}} $>$ \mbox{\hyperlink{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}{s\+Env\+Data\+Map\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classSettingsManager_af2056cf5096714919b57449a08393035}{parser2\+List\+Long}} (\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}} \&l\+Long, const char \texorpdfstring{$\ast$}{*}str)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a695fde0354a134da0f2c1c27b3a398c4}{parser\+Long2\+Uint32}} (\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}} \&l\+Long, std\+::list$<$ uint32\+\_\+t $>$ \&l\+Uint32)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a31ffcd4141e6f04faec5db40cc559bd8}{load\+Env\+Data}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a71d375953244fd393cc4f538b31568e8}{load\+Env\+Data\+\_\+\+Port}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_ac6f64a7e8570a7fe30e1c7aa895a6c5c}{load\+Env\+Data\+\_\+\+Autograder}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a0dcf1f7ca0dabf3da7b58c8a3cd3cc41}{load\+Env\+Data\+\_\+\+Debug}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a794246f7f9719e0512ae155365638cc2}{load\+Env\+Data\+\_\+\+Seed\+Rand}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a86737a0bcc4f2a95b9333df5e8570e95}{load\+Env\+Data\+\_\+\+Err\+Rate}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_a39c3f2244ab255acc19f287f5853fe65}{load\+Env\+Data\+\_\+\+Err\+Drop}} (void)
+\item 
+int \mbox{\hyperlink{classSettingsManager_aab68f144ecd2f87a27cea761d6288862}{load\+Env\+Data\+\_\+\+Err\+Flip}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPacketManager}{Packet\+Manager}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classSettingsManager_aec4ef4052556ebd59e48d9d7724833d5}{m\+\_\+p\+Pkt\+Mgr}}
+\item 
+\mbox{\hyperlink{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}{s\+Env\+Data\+Map\+\_\+t}} \mbox{\hyperlink{classSettingsManager_a5e2c2b6d705a5a61f78ff7ee1be4509b}{m\+\_\+\+Env\+Data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}\label{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc} 
+\index{SettingsManager@{SettingsManager}!sEnvDataMap\_t@{sEnvDataMap\_t}}
+\index{sEnvDataMap\_t@{sEnvDataMap\_t}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{sEnvDataMap\_t}{sEnvDataMap\_t}}
+{\footnotesize\ttfamily typedef std\+::map$<$\mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{e\+Env\+Data\+Key\+\_\+t}}, \mbox{\hyperlink{SettingsManager_8h_abe67cba681d52ca7256eb32947971682}{s\+Env\+Data\+Entry\+\_\+t}}$>$ \mbox{\hyperlink{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}{Settings\+Manager\+::s\+Env\+Data\+Map\+\_\+t}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSettingsManager_afffa42505bf0be21ff2ed768614f41a5}\label{classSettingsManager_afffa42505bf0be21ff2ed768614f41a5} 
+\index{SettingsManager@{SettingsManager}!SettingsManager@{SettingsManager}}
+\index{SettingsManager@{SettingsManager}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{SettingsManager()}{SettingsManager()}}
+{\footnotesize\ttfamily Settings\+Manager\+::\+Settings\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPacketManager}{Packet\+Manager}} \&}]{pkt\+Mgr }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_afffa42505bf0be21ff2ed768614f41a5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a00f848310bc1f31a896580d1ea4c2e1c}\label{classSettingsManager_a00f848310bc1f31a896580d1ea4c2e1c} 
+\index{SettingsManager@{SettingsManager}!````~SettingsManager@{\texorpdfstring{$\sim$}{\string~}SettingsManager}}
+\index{````~SettingsManager@{\texorpdfstring{$\sim$}{\string~}SettingsManager}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SettingsManager()}{\string~SettingsManager()}}
+{\footnotesize\ttfamily Settings\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Settings\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSettingsManager_a31ffcd4141e6f04faec5db40cc559bd8}\label{classSettingsManager_a31ffcd4141e6f04faec5db40cc559bd8} 
+\index{SettingsManager@{SettingsManager}!loadEnvData@{loadEnvData}}
+\index{loadEnvData@{loadEnvData}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData()}{loadEnvData()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a31ffcd4141e6f04faec5db40cc559bd8_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_ac6f64a7e8570a7fe30e1c7aa895a6c5c}\label{classSettingsManager_ac6f64a7e8570a7fe30e1c7aa895a6c5c} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_Autograder@{loadEnvData\_Autograder}}
+\index{loadEnvData\_Autograder@{loadEnvData\_Autograder}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_Autograder()}{loadEnvData\_Autograder()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Autograder (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSettingsManager_a0dcf1f7ca0dabf3da7b58c8a3cd3cc41}\label{classSettingsManager_a0dcf1f7ca0dabf3da7b58c8a3cd3cc41} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_Debug@{loadEnvData\_Debug}}
+\index{loadEnvData\_Debug@{loadEnvData\_Debug}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_Debug()}{loadEnvData\_Debug()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Debug (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{classSettingsManager_a0dcf1f7ca0dabf3da7b58c8a3cd3cc41_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a39c3f2244ab255acc19f287f5853fe65}\label{classSettingsManager_a39c3f2244ab255acc19f287f5853fe65} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_ErrDrop@{loadEnvData\_ErrDrop}}
+\index{loadEnvData\_ErrDrop@{loadEnvData\_ErrDrop}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_ErrDrop()}{loadEnvData\_ErrDrop()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Err\+Drop (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a39c3f2244ab255acc19f287f5853fe65_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_aab68f144ecd2f87a27cea761d6288862}\label{classSettingsManager_aab68f144ecd2f87a27cea761d6288862} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_ErrFlip@{loadEnvData\_ErrFlip}}
+\index{loadEnvData\_ErrFlip@{loadEnvData\_ErrFlip}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_ErrFlip()}{loadEnvData\_ErrFlip()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Err\+Flip (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_aab68f144ecd2f87a27cea761d6288862_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a86737a0bcc4f2a95b9333df5e8570e95}\label{classSettingsManager_a86737a0bcc4f2a95b9333df5e8570e95} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_ErrRate@{loadEnvData\_ErrRate}}
+\index{loadEnvData\_ErrRate@{loadEnvData\_ErrRate}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_ErrRate()}{loadEnvData\_ErrRate()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Err\+Rate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a86737a0bcc4f2a95b9333df5e8570e95_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a71d375953244fd393cc4f538b31568e8}\label{classSettingsManager_a71d375953244fd393cc4f538b31568e8} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_Port@{loadEnvData\_Port}}
+\index{loadEnvData\_Port@{loadEnvData\_Port}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_Port()}{loadEnvData\_Port()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Port (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSettingsManager_a794246f7f9719e0512ae155365638cc2}\label{classSettingsManager_a794246f7f9719e0512ae155365638cc2} 
+\index{SettingsManager@{SettingsManager}!loadEnvData\_SeedRand@{loadEnvData\_SeedRand}}
+\index{loadEnvData\_SeedRand@{loadEnvData\_SeedRand}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{loadEnvData\_SeedRand()}{loadEnvData\_SeedRand()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::load\+Env\+Data\+\_\+\+Seed\+Rand (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a794246f7f9719e0512ae155365638cc2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_af2056cf5096714919b57449a08393035}\label{classSettingsManager_af2056cf5096714919b57449a08393035} 
+\index{SettingsManager@{SettingsManager}!parser2ListLong@{parser2ListLong}}
+\index{parser2ListLong@{parser2ListLong}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{parser2ListLong()}{parser2ListLong()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::parser2\+List\+Long (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}} \&}]{l\+Long,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSettingsManager_a695fde0354a134da0f2c1c27b3a398c4}\label{classSettingsManager_a695fde0354a134da0f2c1c27b3a398c4} 
+\index{SettingsManager@{SettingsManager}!parserLong2Uint32@{parserLong2Uint32}}
+\index{parserLong2Uint32@{parserLong2Uint32}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{parserLong2Uint32()}{parserLong2Uint32()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::parser\+Long2\+Uint32 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}} \&}]{l\+Long,  }\item[{std\+::list$<$ uint32\+\_\+t $>$ \&}]{l\+Uint32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSettingsManager_a01151cd5640942dbaa12b41e34531a24}\label{classSettingsManager_a01151cd5640942dbaa12b41e34531a24} 
+\index{SettingsManager@{SettingsManager}!setUserMode\_Debug@{setUserMode\_Debug}}
+\index{setUserMode\_Debug@{setUserMode\_Debug}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{setUserMode\_Debug()}{setUserMode\_Debug()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::set\+User\+Mode\+\_\+\+Debug (\begin{DoxyParamCaption}\item[{int}]{debug\+Level }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classSettingsManager_a01151cd5640942dbaa12b41e34531a24_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a60a963ee01bec4ce1f3fc4bbd5f538d5}\label{classSettingsManager_a60a963ee01bec4ce1f3fc4bbd5f538d5} 
+\index{SettingsManager@{SettingsManager}!setUserMode\_ErrDrop@{setUserMode\_ErrDrop}}
+\index{setUserMode\_ErrDrop@{setUserMode\_ErrDrop}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{setUserMode\_ErrDrop()}{setUserMode\_ErrDrop()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::set\+User\+Mode\+\_\+\+Err\+Drop (\begin{DoxyParamCaption}\item[{bool}]{is\+Enabled }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a60a963ee01bec4ce1f3fc4bbd5f538d5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a976ca8e9d91b5d21f25ed7c72511a49c}\label{classSettingsManager_a976ca8e9d91b5d21f25ed7c72511a49c} 
+\index{SettingsManager@{SettingsManager}!setUserMode\_ErrFlip@{setUserMode\_ErrFlip}}
+\index{setUserMode\_ErrFlip@{setUserMode\_ErrFlip}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{setUserMode\_ErrFlip()}{setUserMode\_ErrFlip()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::set\+User\+Mode\+\_\+\+Err\+Flip (\begin{DoxyParamCaption}\item[{bool}]{is\+Enabled }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a976ca8e9d91b5d21f25ed7c72511a49c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_a1b97b1806fac2a77d945c50c15697a4b}\label{classSettingsManager_a1b97b1806fac2a77d945c50c15697a4b} 
+\index{SettingsManager@{SettingsManager}!setUserMode\_ErrRate@{setUserMode\_ErrRate}}
+\index{setUserMode\_ErrRate@{setUserMode\_ErrRate}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{setUserMode\_ErrRate()}{setUserMode\_ErrRate()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::set\+User\+Mode\+\_\+\+Err\+Rate (\begin{DoxyParamCaption}\item[{float}]{rate }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_a1b97b1806fac2a77d945c50c15697a4b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSettingsManager_aa09e6ac391d67f8b424c74fe1cfcefb6}\label{classSettingsManager_aa09e6ac391d67f8b424c74fe1cfcefb6} 
+\index{SettingsManager@{SettingsManager}!setUserMode\_SeedRand@{setUserMode\_SeedRand}}
+\index{setUserMode\_SeedRand@{setUserMode\_SeedRand}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{setUserMode\_SeedRand()}{setUserMode\_SeedRand()}}
+{\footnotesize\ttfamily int Settings\+Manager\+::set\+User\+Mode\+\_\+\+Seed\+Rand (\begin{DoxyParamCaption}\item[{long}]{seed\+Value }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSettingsManager_aa09e6ac391d67f8b424c74fe1cfcefb6_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSettingsManager_a5e2c2b6d705a5a61f78ff7ee1be4509b}\label{classSettingsManager_a5e2c2b6d705a5a61f78ff7ee1be4509b} 
+\index{SettingsManager@{SettingsManager}!m\_EnvData@{m\_EnvData}}
+\index{m\_EnvData@{m\_EnvData}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{m\_EnvData}{m\_EnvData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettingsManager_a53f08827dfb1248ec6a3ed72e16267bc}{s\+Env\+Data\+Map\+\_\+t}} Settings\+Manager\+::m\+\_\+\+Env\+Data\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSettingsManager_aec4ef4052556ebd59e48d9d7724833d5}\label{classSettingsManager_aec4ef4052556ebd59e48d9d7724833d5} 
+\index{SettingsManager@{SettingsManager}!m\_pPktMgr@{m\_pPktMgr}}
+\index{m\_pPktMgr@{m\_pPktMgr}!SettingsManager@{SettingsManager}}
+\doxysubsubsection{\texorpdfstring{m\_pPktMgr}{m\_pPktMgr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPacketManager}{Packet\+Manager}}\texorpdfstring{$\ast$}{*} Settings\+Manager\+::m\+\_\+p\+Pkt\+Mgr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\mbox{\hyperlink{SettingsManager_8h}{Settings\+Manager.\+h}}\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\mbox{\hyperlink{SettingsManager_8cpp}{Settings\+Manager.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,110 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/networks.h File Reference}
+\hypertarget{networks_8h}{}\label{networks_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/networks.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/networks.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+Include dependency graph for networks.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{networks_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{networks_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{networks_8h_a848750161824c5aa011ed0442ec0863c}{LISTEN\+\_\+\+BACKLOG}}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{networks_8h_afaa28b25dcf2151fd909dad9c4175755}{tcp\+Server\+Setup}} (int server\+Port)
+\item 
+int \mbox{\hyperlink{networks_8h_aad62ce981feef4039738f15fb7b3621b}{tcp\+Accept}} (int main\+Server\+Socket, int debug\+Flag)
+\item 
+int \mbox{\hyperlink{networks_8h_ae0ee507782f3ebc04eb3341720d155fd}{tcp\+Client\+Setup}} (char \texorpdfstring{$\ast$}{*}server\+Name, char \texorpdfstring{$\ast$}{*}server\+Port, int debug\+Flag)
+\item 
+int \mbox{\hyperlink{networks_8h_ae322c9493b6aae617793b0d825e764a1}{udp\+Server\+Setup}} (int server\+Port)
+\item 
+int \mbox{\hyperlink{networks_8h_a3bb9c2213390dee4d057e3589562696b}{setup\+Udp\+Client\+To\+Server}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server\+Address, char \texorpdfstring{$\ast$}{*}host\+Name, int server\+Port)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{networks_8h_a848750161824c5aa011ed0442ec0863c}\label{networks_8h_a848750161824c5aa011ed0442ec0863c} 
+\index{networks.h@{networks.h}!LISTEN\_BACKLOG@{LISTEN\_BACKLOG}}
+\index{LISTEN\_BACKLOG@{LISTEN\_BACKLOG}!networks.h@{networks.h}}
+\doxysubsubsection{\texorpdfstring{LISTEN\_BACKLOG}{LISTEN\_BACKLOG}}
+{\footnotesize\ttfamily \#define LISTEN\+\_\+\+BACKLOG~10}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{networks_8h_a3bb9c2213390dee4d057e3589562696b}\label{networks_8h_a3bb9c2213390dee4d057e3589562696b} 
+\index{networks.h@{networks.h}!setupUdpClientToServer@{setupUdpClientToServer}}
+\index{setupUdpClientToServer@{setupUdpClientToServer}!networks.h@{networks.h}}
+\doxysubsubsection{\texorpdfstring{setupUdpClientToServer()}{setupUdpClientToServer()}}
+{\footnotesize\ttfamily int setup\+Udp\+Client\+To\+Server (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server\+Address,  }\item[{char \texorpdfstring{$\ast$}{*}}]{host\+Name,  }\item[{int}]{server\+Port }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{networks_8h_a3bb9c2213390dee4d057e3589562696b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{networks_8h_aad62ce981feef4039738f15fb7b3621b}\label{networks_8h_aad62ce981feef4039738f15fb7b3621b} 
+\index{networks.h@{networks.h}!tcpAccept@{tcpAccept}}
+\index{tcpAccept@{tcpAccept}!networks.h@{networks.h}}
+\doxysubsubsection{\texorpdfstring{tcpAccept()}{tcpAccept()}}
+{\footnotesize\ttfamily int tcp\+Accept (\begin{DoxyParamCaption}\item[{int}]{main\+Server\+Socket,  }\item[{int}]{debug\+Flag }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=295pt]{networks_8h_aad62ce981feef4039738f15fb7b3621b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{networks_8h_ae0ee507782f3ebc04eb3341720d155fd}\label{networks_8h_ae0ee507782f3ebc04eb3341720d155fd} 
+\index{networks.h@{networks.h}!tcpClientSetup@{tcpClientSetup}}
+\index{tcpClientSetup@{tcpClientSetup}!networks.h@{networks.h}}
+\doxysubsubsection{\texorpdfstring{tcpClientSetup()}{tcpClientSetup()}}
+{\footnotesize\ttfamily int tcp\+Client\+Setup (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{server\+Name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{server\+Port,  }\item[{int}]{debug\+Flag }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{networks_8h_ae0ee507782f3ebc04eb3341720d155fd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{networks_8h_afaa28b25dcf2151fd909dad9c4175755}\label{networks_8h_afaa28b25dcf2151fd909dad9c4175755} 
+\index{networks.h@{networks.h}!tcpServerSetup@{tcpServerSetup}}
+\index{tcpServerSetup@{tcpServerSetup}!networks.h@{networks.h}}
+\doxysubsubsection{\texorpdfstring{tcpServerSetup()}{tcpServerSetup()}}
+{\footnotesize\ttfamily int tcp\+Server\+Setup (\begin{DoxyParamCaption}\item[{int}]{server\+Port }\end{DoxyParamCaption})}
+
+\Hypertarget{networks_8h_ae322c9493b6aae617793b0d825e764a1}\label{networks_8h_ae322c9493b6aae617793b0d825e764a1} 
+\index{networks.h@{networks.h}!udpServerSetup@{udpServerSetup}}
+\index{udpServerSetup@{udpServerSetup}!networks.h@{networks.h}}
+\doxysubsubsection{\texorpdfstring{udpServerSetup()}{udpServerSetup()}}
+{\footnotesize\ttfamily int udp\+Server\+Setup (\begin{DoxyParamCaption}\item[{int}]{server\+Port }\end{DoxyParamCaption})}
+

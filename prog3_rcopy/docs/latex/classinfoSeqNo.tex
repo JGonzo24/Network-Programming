@@ -1,0 +1,169 @@
+\doxysection{info\+Seq\+No Class Reference}
+\hypertarget{classinfoSeqNo}{}\label{classinfoSeqNo}\index{infoSeqNo@{infoSeqNo}}
+
+
+{\ttfamily \#include $<$info\+Seq\+No.\+h$>$}
+
+
+
+Inheritance diagram for info\+Seq\+No\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classinfoSeqNo__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for info\+Seq\+No\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{classinfoSeqNo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::map$<$ uint32\+\_\+t, uint32\+\_\+t $>$ \mbox{\hyperlink{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}{No2\+Count\+\_\+t}}
+\item 
+typedef std\+::vector$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}{No\+Journal\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classinfoSeqNo_a60acb17ff30d59822adffcfa9cc4707e}{info\+Seq\+No}} ()
+\item 
+virtual \mbox{\hyperlink{classinfoSeqNo_a5e35b32fc6b38523718e3a40c314c943}{\texorpdfstring{$\sim$}{\string~}info\+Seq\+No}} ()
+\item 
+virtual int \mbox{\hyperlink{classinfoSeqNo_a754bc85b9eebe0f3b6da586d9b19cf35}{run}} (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Buf, size\+\_\+t \texorpdfstring{$\ast$}{*}p\+Len, uint32\+\_\+t seqno, bool is\+Send)
+\item 
+virtual int \mbox{\hyperlink{classinfoSeqNo_a9a5432bda1f1b1139ae1f177cc33d926}{report}} (void)
+\item 
+virtual const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classinfoSeqNo_af86305885a2b26e27c4d52eeaca4818b}{get\+Name}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d}{\texorpdfstring{$\sim$}{\string~}\+IMsg\+Event}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classinfoSeqNo_a95385f57b0f04da18de346f5f2b6b565}{m\+\_\+\+Valid\+Endian}}
+\item 
+\mbox{\hyperlink{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}{No2\+Count\+\_\+t}} \mbox{\hyperlink{classinfoSeqNo_af0262538a6a89e57a1d797833e0610fb}{m\+\_\+\+Count}}
+\item 
+\mbox{\hyperlink{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}{No\+Journal\+\_\+t}} \mbox{\hyperlink{classinfoSeqNo_af2cca8009c468c141eb5c2166f07116f}{m\+\_\+\+History}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classinfoSeqNo}{info\+Seq\+No} -\/ maintains a log of all sequence numbers passed in
+
+No changes will be made to the buffers passed to this class, just count the sequence numbers (which are assumed to be in the first 4-\/bytes of each packet in network order.)
+
+Upon destruction, this class will call it\textquotesingle{}s own report function in order.
+
+TODO\+: Report better details about the history instead of unique + count 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}\label{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db} 
+\index{infoSeqNo@{infoSeqNo}!No2Count\_t@{No2Count\_t}}
+\index{No2Count\_t@{No2Count\_t}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{No2Count\_t}{No2Count\_t}}
+{\footnotesize\ttfamily typedef std\+::map$<$uint32\+\_\+t, uint32\+\_\+t$>$ \mbox{\hyperlink{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}{info\+Seq\+No\+::\+No2\+Count\+\_\+t}}}
+
+\Hypertarget{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}\label{classinfoSeqNo_ae694096559574d4899d98dd7cd542436} 
+\index{infoSeqNo@{infoSeqNo}!NoJournal\_t@{NoJournal\_t}}
+\index{NoJournal\_t@{NoJournal\_t}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{NoJournal\_t}{NoJournal\_t}}
+{\footnotesize\ttfamily typedef std\+::vector$<$uint32\+\_\+t$>$ \mbox{\hyperlink{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}{info\+Seq\+No\+::\+No\+Journal\+\_\+t}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classinfoSeqNo_a60acb17ff30d59822adffcfa9cc4707e}\label{classinfoSeqNo_a60acb17ff30d59822adffcfa9cc4707e} 
+\index{infoSeqNo@{infoSeqNo}!infoSeqNo@{infoSeqNo}}
+\index{infoSeqNo@{infoSeqNo}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{infoSeqNo()}{infoSeqNo()}}
+{\footnotesize\ttfamily info\+Seq\+No\+::info\+Seq\+No (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classinfoSeqNo_a5e35b32fc6b38523718e3a40c314c943}\label{classinfoSeqNo_a5e35b32fc6b38523718e3a40c314c943} 
+\index{infoSeqNo@{infoSeqNo}!````~infoSeqNo@{\texorpdfstring{$\sim$}{\string~}infoSeqNo}}
+\index{````~infoSeqNo@{\texorpdfstring{$\sim$}{\string~}infoSeqNo}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}infoSeqNo()}{\string~infoSeqNo()}}
+{\footnotesize\ttfamily info\+Seq\+No\+::\texorpdfstring{$\sim$}{\string~}info\+Seq\+No (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{classinfoSeqNo_a5e35b32fc6b38523718e3a40c314c943_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classinfoSeqNo_af86305885a2b26e27c4d52eeaca4818b}\label{classinfoSeqNo_af86305885a2b26e27c4d52eeaca4818b} 
+\index{infoSeqNo@{infoSeqNo}!getName@{getName}}
+\index{getName@{getName}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily const char \texorpdfstring{$\ast$}{*} info\+Seq\+No\+::get\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921}{IMsg\+Event}}.
+
+\Hypertarget{classinfoSeqNo_a9a5432bda1f1b1139ae1f177cc33d926}\label{classinfoSeqNo_a9a5432bda1f1b1139ae1f177cc33d926} 
+\index{infoSeqNo@{infoSeqNo}!report@{report}}
+\index{report@{report}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{report()}{report()}}
+{\footnotesize\ttfamily int info\+Seq\+No\+::report (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091}{IMsg\+Event}}.
+
+\Hypertarget{classinfoSeqNo_a754bc85b9eebe0f3b6da586d9b19cf35}\label{classinfoSeqNo_a754bc85b9eebe0f3b6da586d9b19cf35} 
+\index{infoSeqNo@{infoSeqNo}!run@{run}}
+\index{run@{run}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily int info\+Seq\+No\+::run (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Buf,  }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Len,  }\item[{uint32\+\_\+t}]{seqno,  }\item[{bool}]{is\+Send }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Function to be called when running the event case.
+
+Since the function can modify or drop data, a pointer to the buf\texorpdfstring{$\ast$}{*} make it possible to re-\/create a buffer and change the len accordingly.
+
+Return Values\+: \texorpdfstring{$<$}{<}0 Error 0 No change 1 Change 2 Drop Completely 
+
+Implements \mbox{\hyperlink{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1}{IMsg\+Event}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classinfoSeqNo_af0262538a6a89e57a1d797833e0610fb}\label{classinfoSeqNo_af0262538a6a89e57a1d797833e0610fb} 
+\index{infoSeqNo@{infoSeqNo}!m\_Count@{m\_Count}}
+\index{m\_Count@{m\_Count}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{m\_Count}{m\_Count}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classinfoSeqNo_aaf5a02d33cae9bf464e679ca128279db}{No2\+Count\+\_\+t}} info\+Seq\+No\+::m\+\_\+\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classinfoSeqNo_af2cca8009c468c141eb5c2166f07116f}\label{classinfoSeqNo_af2cca8009c468c141eb5c2166f07116f} 
+\index{infoSeqNo@{infoSeqNo}!m\_History@{m\_History}}
+\index{m\_History@{m\_History}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{m\_History}{m\_History}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classinfoSeqNo_ae694096559574d4899d98dd7cd542436}{No\+Journal\+\_\+t}} info\+Seq\+No\+::m\+\_\+\+History\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classinfoSeqNo_a95385f57b0f04da18de346f5f2b6b565}\label{classinfoSeqNo_a95385f57b0f04da18de346f5f2b6b565} 
+\index{infoSeqNo@{infoSeqNo}!m\_ValidEndian@{m\_ValidEndian}}
+\index{m\_ValidEndian@{m\_ValidEndian}!infoSeqNo@{infoSeqNo}}
+\doxysubsubsection{\texorpdfstring{m\_ValidEndian}{m\_ValidEndian}}
+{\footnotesize\ttfamily bool info\+Seq\+No\+::m\+\_\+\+Valid\+Endian\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{infoSeqNo_8h}{info\+Seq\+No.\+h}}\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{infoSeqNo_8cpp}{info\+Seq\+No.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,77 @@
+\doxysection{IMsg\+Event Class Reference}
+\hypertarget{classIMsgEvent}{}\label{classIMsgEvent}\index{IMsgEvent@{IMsgEvent}}
+
+
+{\ttfamily \#include $<$IMsg\+Event.\+h$>$}
+
+
+
+Inheritance diagram for IMsg\+Event\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=323pt]{classIMsgEvent__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d}{\texorpdfstring{$\sim$}{\string~}\+IMsg\+Event}} ()
+\item 
+virtual int \mbox{\hyperlink{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1}{run}} (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Buf, size\+\_\+t \texorpdfstring{$\ast$}{*}p\+Len, uint32\+\_\+t msg\+No, bool is\+Send=true)=0
+\item 
+virtual int \mbox{\hyperlink{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091}{report}} (void)=0
+\item 
+virtual const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921}{get\+Name}} (void)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d}\label{classIMsgEvent_a2048f382695ff01723ea3c842fa8bf7d} 
+\index{IMsgEvent@{IMsgEvent}!````~IMsgEvent@{\texorpdfstring{$\sim$}{\string~}IMsgEvent}}
+\index{````~IMsgEvent@{\texorpdfstring{$\sim$}{\string~}IMsgEvent}!IMsgEvent@{IMsgEvent}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}IMsgEvent()}{\string~IMsgEvent()}}
+{\footnotesize\ttfamily virtual IMsg\+Event\+::\texorpdfstring{$\sim$}{\string~}\+IMsg\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921}\label{classIMsgEvent_a9d492dfaacb8ab8766102c1681e62921} 
+\index{IMsgEvent@{IMsgEvent}!getName@{getName}}
+\index{getName@{getName}!IMsgEvent@{IMsgEvent}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily virtual const char \texorpdfstring{$\ast$}{*} IMsg\+Event\+::get\+Name (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classerrorDrop_ab35de9f829a60d9a1c75dd3f2da5b6fa}{error\+Drop}}, \mbox{\hyperlink{classerrorFlipBits_ac3dc08fbeda7f2c62cfbf7b660e352b3}{error\+Flip\+Bits}}, and \mbox{\hyperlink{classinfoSeqNo_af86305885a2b26e27c4d52eeaca4818b}{info\+Seq\+No}}.
+
+\Hypertarget{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091}\label{classIMsgEvent_a79c0d8fb15fcda51347dde4e0cc5c091} 
+\index{IMsgEvent@{IMsgEvent}!report@{report}}
+\index{report@{report}!IMsgEvent@{IMsgEvent}}
+\doxysubsubsection{\texorpdfstring{report()}{report()}}
+{\footnotesize\ttfamily virtual int IMsg\+Event\+::report (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classerrorDrop_a3bc0c82efa504c4567c1dfb57940853b}{error\+Drop}}, \mbox{\hyperlink{classerrorFlipBits_a3db4462685c7d5a00de87e5eaae11ebc}{error\+Flip\+Bits}}, and \mbox{\hyperlink{classinfoSeqNo_a9a5432bda1f1b1139ae1f177cc33d926}{info\+Seq\+No}}.
+
+\Hypertarget{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1}\label{classIMsgEvent_a24a6ddd6634ec048042f55c8b71d82d1} 
+\index{IMsgEvent@{IMsgEvent}!run@{run}}
+\index{run@{run}!IMsgEvent@{IMsgEvent}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily virtual int IMsg\+Event\+::run (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Buf,  }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Len,  }\item[{uint32\+\_\+t}]{msg\+No,  }\item[{bool}]{is\+Send = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Function to be called when running the event case.
+
+Since the function can modify or drop data, a pointer to the buf\texorpdfstring{$\ast$}{*} make it possible to re-\/create a buffer and change the len accordingly.
+
+Return Values\+: \texorpdfstring{$<$}{<}0 Error 0 No change 1 Change 2 Drop Completely 
+
+Implemented in \mbox{\hyperlink{classerrorDrop_a72a28ebbdb1e2a2520339b00c02463c6}{error\+Drop}}, \mbox{\hyperlink{classerrorFlipBits_a36264ae14767219b0a97d703832dba83}{error\+Flip\+Bits}}, and \mbox{\hyperlink{classinfoSeqNo_a754bc85b9eebe0f3b6da586d9b19cf35}{info\+Seq\+No}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\mbox{\hyperlink{IMsgEvent_8h}{IMsg\+Event.\+h}}\end{DoxyCompactItemize}

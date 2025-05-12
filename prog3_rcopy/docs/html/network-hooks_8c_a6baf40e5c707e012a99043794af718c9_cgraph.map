@@ -1,0 +1,11 @@
+<map id="sendErr" name="sendErr">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,76,56"/>
+<area shape="rect" id="Node000002" href="$classPacketManager.html#ab67f660ac08f1498a739c48685387aaa" title=" " alt="" coords="124,31,309,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,41,111,41,111,46,76,46"/>
+<area shape="rect" id="Node000003" href="$classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="374,5,563,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="309,31,360,26,361,32,310,37"/>
+<area shape="rect" id="Node000004" href="$classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="357,55,580,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="310,49,344,53,343,58,309,55"/>
+<area shape="rect" id="Node000005" href="$classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="628,55,849,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="580,65,614,65,614,70,580,70"/>
+</map>

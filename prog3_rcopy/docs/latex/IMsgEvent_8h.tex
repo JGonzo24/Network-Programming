@@ -1,0 +1,49 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\+Msg\+Events/\+IMsg\+Event.h File Reference}
+\hypertarget{IMsgEvent_8h}{}\label{IMsgEvent_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/IMsgEvent.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/MsgEvents/IMsgEvent.h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}../utils/dbg\+\_\+print.\+h"{}}\newline
+Include dependency graph for IMsg\+Event.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{IMsgEvent_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{IMsgEvent_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{IMsgEvent_8h_a028c848789ffa89b9dd08e4fd4a97147}{MSG\+\_\+\+PRINT\+\_\+\+LEVEL}}~\mbox{\hyperlink{dbg__print_8h_aaad1ff4e1ec70638accee5b01e07497f}{DBG\+\_\+\+LEVEL\+\_\+\+INFO}}
+\item 
+\#define \mbox{\hyperlink{IMsgEvent_8h_ae7a126e7f080f89a26fea4fbc1b76572}{MSG\+\_\+\+PRINT}}(FMT, ...)~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{IMsgEvent_8h_a028c848789ffa89b9dd08e4fd4a97147}{MSG\+\_\+\+PRINT\+\_\+\+LEVEL}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+);
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{IMsgEvent_8h_ae7a126e7f080f89a26fea4fbc1b76572}\label{IMsgEvent_8h_ae7a126e7f080f89a26fea4fbc1b76572} 
+\index{IMsgEvent.h@{IMsgEvent.h}!MSG\_PRINT@{MSG\_PRINT}}
+\index{MSG\_PRINT@{MSG\_PRINT}!IMsgEvent.h@{IMsgEvent.h}}
+\doxysubsubsection{\texorpdfstring{MSG\_PRINT}{MSG\_PRINT}}
+{\footnotesize\ttfamily \#define MSG\+\_\+\+PRINT(\begin{DoxyParamCaption}\item[{}]{FMT,  }\item[{}]{... }\end{DoxyParamCaption})~\mbox{\hyperlink{dbg__print_8h_a8b00b51352aed9d0e167469ac6882eaa}{DBG\+\_\+\+PRINT}}(\mbox{\hyperlink{IMsgEvent_8h_a028c848789ffa89b9dd08e4fd4a97147}{MSG\+\_\+\+PRINT\+\_\+\+LEVEL}}, FMT , \#\#\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+);}
+
+\Hypertarget{IMsgEvent_8h_a028c848789ffa89b9dd08e4fd4a97147}\label{IMsgEvent_8h_a028c848789ffa89b9dd08e4fd4a97147} 
+\index{IMsgEvent.h@{IMsgEvent.h}!MSG\_PRINT\_LEVEL@{MSG\_PRINT\_LEVEL}}
+\index{MSG\_PRINT\_LEVEL@{MSG\_PRINT\_LEVEL}!IMsgEvent.h@{IMsgEvent.h}}
+\doxysubsubsection{\texorpdfstring{MSG\_PRINT\_LEVEL}{MSG\_PRINT\_LEVEL}}
+{\footnotesize\ttfamily \#define MSG\+\_\+\+PRINT\+\_\+\+LEVEL~\mbox{\hyperlink{dbg__print_8h_aaad1ff4e1ec70638accee5b01e07497f}{DBG\+\_\+\+LEVEL\+\_\+\+INFO}}}
+
+\doxylink{classIMsgEvent}{IMsg\+Event} -\/ An interface for all event modules which derive from
+
+Within the interface, there are three functions\+: run -\/ takes in a buffer and can modify it. (\texorpdfstring{$<$}{<}0 Err, 0 No-\/\+Chg, \texorpdfstring{$>$}{>}0 Chg) report -\/ provides a summary of the events get\+Name -\/ returns a string of the object name 

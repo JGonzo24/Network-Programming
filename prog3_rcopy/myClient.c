@@ -6,6 +6,19 @@
 *
 *****************************************************************************/
 
+
+
+/**
+ * @file myClient.c
+ * @author Joshua Gonzalez
+ * @brief  This is a simple TCP client program that connects to a server
+ * @version 0.1
+ * @date 2025-05-10
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

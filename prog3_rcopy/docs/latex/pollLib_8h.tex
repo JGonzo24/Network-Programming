@@ -1,0 +1,77 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/poll\+Lib.h File Reference}
+\hypertarget{pollLib_8h}{}\label{pollLib_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/pollLib.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/pollLib.h}}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{pollLib_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pollLib_8h_a78d829b6e393b345d67a6653d0a98c16}{POLL\+\_\+\+SET\+\_\+\+SIZE}}~10
+\item 
+\#define \mbox{\hyperlink{pollLib_8h_a9668357627659dab499faf788e6dec27}{POLL\+\_\+\+WAIT\+\_\+\+FOREVER}}~-\/1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pollLib_8h_a95e1656afd4ed8c57f317b72529febc8}{setup\+Poll\+Set}} ()
+\item 
+void \mbox{\hyperlink{pollLib_8h_a963075ea184857285cc940df3c7c7e4a}{add\+To\+Poll\+Set}} (int socket\+Number)
+\item 
+void \mbox{\hyperlink{pollLib_8h_acc55adaa7f5a0b5d81a21d445e061cab}{remove\+From\+Poll\+Set}} (int socket\+Number)
+\item 
+int \mbox{\hyperlink{pollLib_8h_aaa2d69f7f902e1213b304b3c35153add}{poll\+Call}} (int time\+In\+Milli\+Seconds)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pollLib_8h_a78d829b6e393b345d67a6653d0a98c16}\label{pollLib_8h_a78d829b6e393b345d67a6653d0a98c16} 
+\index{pollLib.h@{pollLib.h}!POLL\_SET\_SIZE@{POLL\_SET\_SIZE}}
+\index{POLL\_SET\_SIZE@{POLL\_SET\_SIZE}!pollLib.h@{pollLib.h}}
+\doxysubsubsection{\texorpdfstring{POLL\_SET\_SIZE}{POLL\_SET\_SIZE}}
+{\footnotesize\ttfamily \#define POLL\+\_\+\+SET\+\_\+\+SIZE~10}
+
+\Hypertarget{pollLib_8h_a9668357627659dab499faf788e6dec27}\label{pollLib_8h_a9668357627659dab499faf788e6dec27} 
+\index{pollLib.h@{pollLib.h}!POLL\_WAIT\_FOREVER@{POLL\_WAIT\_FOREVER}}
+\index{POLL\_WAIT\_FOREVER@{POLL\_WAIT\_FOREVER}!pollLib.h@{pollLib.h}}
+\doxysubsubsection{\texorpdfstring{POLL\_WAIT\_FOREVER}{POLL\_WAIT\_FOREVER}}
+{\footnotesize\ttfamily \#define POLL\+\_\+\+WAIT\+\_\+\+FOREVER~-\/1}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pollLib_8h_a963075ea184857285cc940df3c7c7e4a}\label{pollLib_8h_a963075ea184857285cc940df3c7c7e4a} 
+\index{pollLib.h@{pollLib.h}!addToPollSet@{addToPollSet}}
+\index{addToPollSet@{addToPollSet}!pollLib.h@{pollLib.h}}
+\doxysubsubsection{\texorpdfstring{addToPollSet()}{addToPollSet()}}
+{\footnotesize\ttfamily void add\+To\+Poll\+Set (\begin{DoxyParamCaption}\item[{int}]{socket\+Number }\end{DoxyParamCaption})}
+
+\Hypertarget{pollLib_8h_aaa2d69f7f902e1213b304b3c35153add}\label{pollLib_8h_aaa2d69f7f902e1213b304b3c35153add} 
+\index{pollLib.h@{pollLib.h}!pollCall@{pollCall}}
+\index{pollCall@{pollCall}!pollLib.h@{pollLib.h}}
+\doxysubsubsection{\texorpdfstring{pollCall()}{pollCall()}}
+{\footnotesize\ttfamily int poll\+Call (\begin{DoxyParamCaption}\item[{int}]{time\+In\+Milli\+Seconds }\end{DoxyParamCaption})}
+
+\Hypertarget{pollLib_8h_acc55adaa7f5a0b5d81a21d445e061cab}\label{pollLib_8h_acc55adaa7f5a0b5d81a21d445e061cab} 
+\index{pollLib.h@{pollLib.h}!removeFromPollSet@{removeFromPollSet}}
+\index{removeFromPollSet@{removeFromPollSet}!pollLib.h@{pollLib.h}}
+\doxysubsubsection{\texorpdfstring{removeFromPollSet()}{removeFromPollSet()}}
+{\footnotesize\ttfamily void remove\+From\+Poll\+Set (\begin{DoxyParamCaption}\item[{int}]{socket\+Number }\end{DoxyParamCaption})}
+
+\Hypertarget{pollLib_8h_a95e1656afd4ed8c57f317b72529febc8}\label{pollLib_8h_a95e1656afd4ed8c57f317b72529febc8} 
+\index{pollLib.h@{pollLib.h}!setupPollSet@{setupPollSet}}
+\index{setupPollSet@{setupPollSet}!pollLib.h@{pollLib.h}}
+\doxysubsubsection{\texorpdfstring{setupPollSet()}{setupPollSet()}}
+{\footnotesize\ttfamily void setup\+Poll\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{pollLib_8h_a95e1656afd4ed8c57f317b72529febc8_cgraph}
+\end{center}
+\end{figure}

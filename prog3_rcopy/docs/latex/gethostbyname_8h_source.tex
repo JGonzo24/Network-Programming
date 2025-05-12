@@ -1,0 +1,28 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/gethostbyname.h}
+\hypertarget{gethostbyname_8h_source}{}\label{gethostbyname_8h_source}\mbox{\hyperlink{gethostbyname_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Hugh\ Smith\ -\/\ April\ 2017\ }}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Replacement\ code\ for\ gethostbyname\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Gives\ either\ IPv4\ address,\ IPv6\ address\ or\ IPv4\ mapped\ IPv6\ address}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Works\ well\ with\ sockets\ of\ type\ family\ AF\_INET6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ GETHOSTBYNAME\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ GETHOSTBYNAME\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{gethostbyname_8h_ac6e1975d9b2e67292680f9d8e98b35d1}{gethostbyname6}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ hostName,\ \textcolor{keyword}{struct}\ sockaddr\_in6\ *\ aSockaddr6);}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{gethostbyname_8h_a7dc9d26d3e3113466913cce59f7c93f9}{gethostbyname4}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ hostName,\ \textcolor{keyword}{struct}\ sockaddr\_in\ *\ aSockaddr);}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{gethostbyname_8h_a4c858bd9d65a8073cf346bc6888f367d}{getIPAddressString4}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\ ipAddress);}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{gethostbyname_8h_af025e2812183cb45f9636afe3e6047ae}{getIPAddressString6}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\ ipAddress);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Testing\ functions}}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gethostbyname_8h_a0f4c0894d499927801c54adb9e4a3191}{gethostbyname\_test}}();}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gethostbyname_8h_adb072037b3df14af1f3c4012a4110d76}{gethostbyname\_test\_lookup}}(\textcolor{keywordtype}{char}\ *\ hostname);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Just\ for\ printout\ out\ address\ info}}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gethostbyname_8h_af7214d4cf4e597455433b6a2fa887cc0}{printIPInfo}}(\textcolor{keyword}{struct}\ sockaddr\_in6\ *\ ipAddressStruct);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{gethostbyname_8h_ad65a1b5f96cd7b7d190d2d2e6ed192c1}{ipAddressToString}}(\textcolor{keyword}{struct}\ sockaddr\_in6\ *\ ipAddressStruct);}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

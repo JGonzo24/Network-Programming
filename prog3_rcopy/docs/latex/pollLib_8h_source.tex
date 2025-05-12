@@ -1,0 +1,26 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/poll\+Lib.h}
+\hypertarget{pollLib_8h_source}{}\label{pollLib_8h_source}\mbox{\hyperlink{pollLib_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Writen\ by\ Hugh\ Smith,\ April\ 2022}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Provides\ an\ interface\ to\ the\ poll()\ library.\ \ Allows\ for}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ adding\ a\ file\ descriptor\ to\ the\ set,\ removing\ one\ and\ calling\ poll.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Feel\ free\ to\ copy,\ just\ leave\ my\ name\ in\ it,\ use\ at\ your\ own\ risk.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifndef\ \_\_POLLLIB\_H\_\_}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ \_\_POLLLIB\_H\_\_}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ POLL\_SET\_SIZE\ 10}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ POLL\_WAIT\_FOREVER\ -\/1}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pollLib_8h_a95e1656afd4ed8c57f317b72529febc8}{setupPollSet}}();}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pollLib_8h_a963075ea184857285cc940df3c7c7e4a}{addToPollSet}}(\textcolor{keywordtype}{int}\ socketNumber);}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pollLib_8h_acc55adaa7f5a0b5d81a21d445e061cab}{removeFromPollSet}}(\textcolor{keywordtype}{int}\ socketNumber);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{pollLib_8h_aaa2d69f7f902e1213b304b3c35153add}{pollCall}}(\textcolor{keywordtype}{int}\ timeInMilliSeconds);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,26 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/safe\+Util.h}
+\hypertarget{safeUtil_8h_source}{}\label{safeUtil_8h_source}\mbox{\hyperlink{safeUtil_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Writen\ by\ Hugh\ Smith,\ April\ 2020}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Put\ in\ system\ calls\ with\ error\ checking.}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ \_\_SAFEUTIL\_H\_\_}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ \_\_SAFEUTIL\_H\_\_}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{struct\ }sockaddr;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{safeUtil_8h_a63f2db5253b1616ae85fe2b161c46966}{safeRecvfrom}}(\textcolor{keywordtype}{int}\ socketNum,\ \textcolor{keywordtype}{void}\ *\ buf,\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{int}\ flags,\ \textcolor{keyword}{struct}\ sockaddr\ *srcAddr,\ \textcolor{keywordtype}{int}\ *\ addrLen);}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{safeUtil_8h_a15983dc95bd227f94c4973f67c8a704f}{safeSendto}}(\textcolor{keywordtype}{int}\ socketNum,\ \textcolor{keywordtype}{void}\ *\ buf,\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{int}\ flags,\ \textcolor{keyword}{struct}\ sockaddr\ *srcAddr,\ \textcolor{keywordtype}{int}\ addrLen);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{safeUtil_8h_a5ac815e89bab963c6e7f78f75c8d8e60}{safeRecv}}(\textcolor{keywordtype}{int}\ socketNum,\ \textcolor{keywordtype}{void}\ *\ buf,\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{int}\ flags);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{safeUtil_8h_a61f1b2a403cbae20496dcd805e44e926}{safeSend}}(\textcolor{keywordtype}{int}\ socketNum,\ \textcolor{keywordtype}{void}\ *\ buf,\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{int}\ flags);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{safeUtil_8h_a9997dd623b7b5b8a898bf716c20190b7}{srealloc}}(\textcolor{keywordtype}{void}\ *ptr,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ *\ \mbox{\hyperlink{safeUtil_8h_aa28db415c57a2fe5724cd33306389139}{sCalloc}}(\textcolor{keywordtype}{size\_t}\ nmemb,\ \textcolor{keywordtype}{size\_t}\ size);}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

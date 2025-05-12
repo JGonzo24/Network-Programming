@@ -1,0 +1,243 @@
+\doxysection{Packet\+Manager Class Reference}
+\hypertarget{classPacketManager}{}\label{classPacketManager}\index{PacketManager@{PacketManager}}
+
+
+{\ttfamily \#include $<$Packet\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ \mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPacketManager_a7320fcc2691fa82b89a1cb6b666b2b6f}{Packet\+Manager}} ()
+\item 
+\mbox{\hyperlink{classPacketManager_a9d47311266ca292dbd2a6f7d9167463a}{\texorpdfstring{$\sim$}{\string~}\+Packet\+Manager}} ()
+\item 
+int \mbox{\hyperlink{classPacketManager_a03d7c5729e55dee0dfcb198bb3d5aa7e}{set\+Rand\+Seed}} (long seed)
+\item 
+int \mbox{\hyperlink{classPacketManager_a7caa333d902656a102a3206c8eac0a50}{set\+Error\+Rate}} (float rate)
+\item 
+int \mbox{\hyperlink{classPacketManager_ab8596f5ee28983c162139711c22724a3}{add\+Msg\+Event\+\_\+\+Standard}} (\mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}} \texorpdfstring{$\ast$}{*}error\+Case)
+\item 
+int \mbox{\hyperlink{classPacketManager_a2331c8d641438ff1921982515c9b7e1b}{add\+Msg\+Event\+\_\+\+Random}} (\mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}} \texorpdfstring{$\ast$}{*}error\+Case)
+\item 
+int \mbox{\hyperlink{classPacketManager_ae1e0a919fdc6e14064eaf6a53d0e73db}{process\+Events}} (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Buf, size\+\_\+t \texorpdfstring{$\ast$}{*}p\+Len, uint32\+\_\+t msg\+No)
+\item 
+void \mbox{\hyperlink{classPacketManager_a6628382d310d0e83e18219d76d3f9de9}{print\+Type}} (int flag, char \texorpdfstring{$\ast$}{*}buf)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{classPacketManager_ab67f660ac08f1498a739c48685387aaa}{send\+\_\+\+Err}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{classPacketManager_a7ac757cd7fc73e73b710a1c82b16e4da}{recv\+\_\+\+Mod}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{classPacketManager_a26cdcee8e04d625b7d1361b3fcd0254a}{sendto\+\_\+\+Err}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags, const struct sockaddr \texorpdfstring{$\ast$}{*}to, socklen\+\_\+t tolen)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{classPacketManager_a4dddf80b2e2670657731a9de8bb1664e}{recvfrom\+\_\+\+Mod}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags, struct sockaddr \texorpdfstring{$\ast$}{*}from, socklen\+\_\+t \texorpdfstring{$\ast$}{*}fromlen)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classPacketManager_ab3effbe1c45549d1bcc9bc78e0d0644d}{run\+Msg\+Events}} (\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} \&Err\+Vec, void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}p\+Buf, size\+\_\+t \texorpdfstring{$\ast$}{*}p\+Len, uint32\+\_\+t msg\+No)
+\item 
+int \mbox{\hyperlink{classPacketManager_ae03812e5f35f684f420a73c0e785cf3e}{clear\+Msg\+Events}} (\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} \&Err\+Vec)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classPacketManager_a209438b193d4f2173899b69d06306adb}{m\+\_\+\+Error\+Rate}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classPacketManager_a800f1dc19abbca14d1f2950f4a4adfa5}{m\+\_\+\+Msg\+No}}
+\item 
+\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} \mbox{\hyperlink{classPacketManager_a1c788d06460e3dac5345d503d258b90e}{m\+\_\+\+Error\+Case\+\_\+\+Constant}}
+\item 
+\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} \mbox{\hyperlink{classPacketManager_a7f5fa8fbd6147483a41d32514429eba0}{m\+\_\+\+Error\+Case\+\_\+\+Chance}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classPacketManager}{Packet\+Manager} -\/ Handles all packet send and receive operations
+
+This class provides the mechanism to have Msg\+Events (such as errors creation and info collection) to be run on each or random packets. When each packet is sent, all "{}\+Standard"{} Msg\+Events will be performed. Additionally, there is a random chance for "{}\+Random"{} events to happen.
+
+For event tracking (such as seq\+No printing), the receive functions are also processed through this class. Currently Msg\+Events have no affect on the receive functions (however, this may be added later to provide info event processing.) 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}\label{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d} 
+\index{PacketManager@{PacketManager}!listMsgEvents\_t@{listMsgEvents\_t}}
+\index{listMsgEvents\_t@{listMsgEvents\_t}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{listMsgEvents\_t}{listMsgEvents\_t}}
+{\footnotesize\ttfamily typedef std\+::vector$<$\mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}}\texorpdfstring{$\ast$}{*}$>$ \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{Packet\+Manager\+::list\+Msg\+Events\+\_\+t}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPacketManager_a7320fcc2691fa82b89a1cb6b666b2b6f}\label{classPacketManager_a7320fcc2691fa82b89a1cb6b666b2b6f} 
+\index{PacketManager@{PacketManager}!PacketManager@{PacketManager}}
+\index{PacketManager@{PacketManager}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{PacketManager()}{PacketManager()}}
+{\footnotesize\ttfamily Packet\+Manager\+::\+Packet\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classPacketManager_a9d47311266ca292dbd2a6f7d9167463a}\label{classPacketManager_a9d47311266ca292dbd2a6f7d9167463a} 
+\index{PacketManager@{PacketManager}!````~PacketManager@{\texorpdfstring{$\sim$}{\string~}PacketManager}}
+\index{````~PacketManager@{\texorpdfstring{$\sim$}{\string~}PacketManager}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}PacketManager()}{\string~PacketManager()}}
+{\footnotesize\ttfamily Packet\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Packet\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPacketManager_a9d47311266ca292dbd2a6f7d9167463a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPacketManager_a2331c8d641438ff1921982515c9b7e1b}\label{classPacketManager_a2331c8d641438ff1921982515c9b7e1b} 
+\index{PacketManager@{PacketManager}!addMsgEvent\_Random@{addMsgEvent\_Random}}
+\index{addMsgEvent\_Random@{addMsgEvent\_Random}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{addMsgEvent\_Random()}{addMsgEvent\_Random()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::add\+Msg\+Event\+\_\+\+Random (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}} \texorpdfstring{$\ast$}{*}}]{error\+Case }\end{DoxyParamCaption})}
+
+\Hypertarget{classPacketManager_ab8596f5ee28983c162139711c22724a3}\label{classPacketManager_ab8596f5ee28983c162139711c22724a3} 
+\index{PacketManager@{PacketManager}!addMsgEvent\_Standard@{addMsgEvent\_Standard}}
+\index{addMsgEvent\_Standard@{addMsgEvent\_Standard}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{addMsgEvent\_Standard()}{addMsgEvent\_Standard()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::add\+Msg\+Event\+\_\+\+Standard (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classIMsgEvent}{IMsg\+Event}} \texorpdfstring{$\ast$}{*}}]{error\+Case }\end{DoxyParamCaption})}
+
+\Hypertarget{classPacketManager_ae03812e5f35f684f420a73c0e785cf3e}\label{classPacketManager_ae03812e5f35f684f420a73c0e785cf3e} 
+\index{PacketManager@{PacketManager}!clearMsgEvents@{clearMsgEvents}}
+\index{clearMsgEvents@{clearMsgEvents}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{clearMsgEvents()}{clearMsgEvents()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::clear\+Msg\+Events (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} \&}]{Err\+Vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classPacketManager_a6628382d310d0e83e18219d76d3f9de9}\label{classPacketManager_a6628382d310d0e83e18219d76d3f9de9} 
+\index{PacketManager@{PacketManager}!printType@{printType}}
+\index{printType@{printType}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{printType()}{printType()}}
+{\footnotesize\ttfamily void Packet\+Manager\+::print\+Type (\begin{DoxyParamCaption}\item[{int}]{flag,  }\item[{char \texorpdfstring{$\ast$}{*}}]{buf }\end{DoxyParamCaption})}
+
+\Hypertarget{classPacketManager_ae1e0a919fdc6e14064eaf6a53d0e73db}\label{classPacketManager_ae1e0a919fdc6e14064eaf6a53d0e73db} 
+\index{PacketManager@{PacketManager}!processEvents@{processEvents}}
+\index{processEvents@{processEvents}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{processEvents()}{processEvents()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::process\+Events (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Buf,  }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Len,  }\item[{uint32\+\_\+t}]{msg\+No }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPacketManager_ae1e0a919fdc6e14064eaf6a53d0e73db_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPacketManager_a7ac757cd7fc73e73b710a1c82b16e4da}\label{classPacketManager_a7ac757cd7fc73e73b710a1c82b16e4da} 
+\index{PacketManager@{PacketManager}!recv\_Mod@{recv\_Mod}}
+\index{recv\_Mod@{recv\_Mod}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{recv\_Mod()}{recv\_Mod()}}
+{\footnotesize\ttfamily ssize\+\_\+t Packet\+Manager\+::recv\+\_\+\+Mod (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPacketManager_a7ac757cd7fc73e73b710a1c82b16e4da_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPacketManager_a4dddf80b2e2670657731a9de8bb1664e}\label{classPacketManager_a4dddf80b2e2670657731a9de8bb1664e} 
+\index{PacketManager@{PacketManager}!recvfrom\_Mod@{recvfrom\_Mod}}
+\index{recvfrom\_Mod@{recvfrom\_Mod}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{recvfrom\_Mod()}{recvfrom\_Mod()}}
+{\footnotesize\ttfamily ssize\+\_\+t Packet\+Manager\+::recvfrom\+\_\+\+Mod (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{from,  }\item[{socklen\+\_\+t \texorpdfstring{$\ast$}{*}}]{fromlen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPacketManager_a4dddf80b2e2670657731a9de8bb1664e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPacketManager_ab3effbe1c45549d1bcc9bc78e0d0644d}\label{classPacketManager_ab3effbe1c45549d1bcc9bc78e0d0644d} 
+\index{PacketManager@{PacketManager}!runMsgEvents@{runMsgEvents}}
+\index{runMsgEvents@{runMsgEvents}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{runMsgEvents()}{runMsgEvents()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::run\+Msg\+Events (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} \&}]{Err\+Vec,  }\item[{void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{p\+Buf,  }\item[{size\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Len,  }\item[{uint32\+\_\+t}]{msg\+No }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classPacketManager_ab67f660ac08f1498a739c48685387aaa}\label{classPacketManager_ab67f660ac08f1498a739c48685387aaa} 
+\index{PacketManager@{PacketManager}!send\_Err@{send\_Err}}
+\index{send\_Err@{send\_Err}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{send\_Err()}{send\_Err()}}
+{\footnotesize\ttfamily ssize\+\_\+t Packet\+Manager\+::send\+\_\+\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPacketManager_ab67f660ac08f1498a739c48685387aaa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPacketManager_a26cdcee8e04d625b7d1361b3fcd0254a}\label{classPacketManager_a26cdcee8e04d625b7d1361b3fcd0254a} 
+\index{PacketManager@{PacketManager}!sendto\_Err@{sendto\_Err}}
+\index{sendto\_Err@{sendto\_Err}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{sendto\_Err()}{sendto\_Err()}}
+{\footnotesize\ttfamily ssize\+\_\+t Packet\+Manager\+::sendto\+\_\+\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags,  }\item[{const struct sockaddr \texorpdfstring{$\ast$}{*}}]{to,  }\item[{socklen\+\_\+t}]{tolen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classPacketManager_a26cdcee8e04d625b7d1361b3fcd0254a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classPacketManager_a7caa333d902656a102a3206c8eac0a50}\label{classPacketManager_a7caa333d902656a102a3206c8eac0a50} 
+\index{PacketManager@{PacketManager}!setErrorRate@{setErrorRate}}
+\index{setErrorRate@{setErrorRate}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{setErrorRate()}{setErrorRate()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::set\+Error\+Rate (\begin{DoxyParamCaption}\item[{float}]{rate }\end{DoxyParamCaption})}
+
+\Hypertarget{classPacketManager_a03d7c5729e55dee0dfcb198bb3d5aa7e}\label{classPacketManager_a03d7c5729e55dee0dfcb198bb3d5aa7e} 
+\index{PacketManager@{PacketManager}!setRandSeed@{setRandSeed}}
+\index{setRandSeed@{setRandSeed}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{setRandSeed()}{setRandSeed()}}
+{\footnotesize\ttfamily int Packet\+Manager\+::set\+Rand\+Seed (\begin{DoxyParamCaption}\item[{long}]{seed }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classPacketManager_a7f5fa8fbd6147483a41d32514429eba0}\label{classPacketManager_a7f5fa8fbd6147483a41d32514429eba0} 
+\index{PacketManager@{PacketManager}!m\_ErrorCase\_Chance@{m\_ErrorCase\_Chance}}
+\index{m\_ErrorCase\_Chance@{m\_ErrorCase\_Chance}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{m\_ErrorCase\_Chance}{m\_ErrorCase\_Chance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} Packet\+Manager\+::m\+\_\+\+Error\+Case\+\_\+\+Chance\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classPacketManager_a1c788d06460e3dac5345d503d258b90e}\label{classPacketManager_a1c788d06460e3dac5345d503d258b90e} 
+\index{PacketManager@{PacketManager}!m\_ErrorCase\_Constant@{m\_ErrorCase\_Constant}}
+\index{m\_ErrorCase\_Constant@{m\_ErrorCase\_Constant}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{m\_ErrorCase\_Constant}{m\_ErrorCase\_Constant}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{list\+Msg\+Events\+\_\+t}} Packet\+Manager\+::m\+\_\+\+Error\+Case\+\_\+\+Constant\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classPacketManager_a209438b193d4f2173899b69d06306adb}\label{classPacketManager_a209438b193d4f2173899b69d06306adb} 
+\index{PacketManager@{PacketManager}!m\_ErrorRate@{m\_ErrorRate}}
+\index{m\_ErrorRate@{m\_ErrorRate}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{m\_ErrorRate}{m\_ErrorRate}}
+{\footnotesize\ttfamily float Packet\+Manager\+::m\+\_\+\+Error\+Rate\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classPacketManager_a800f1dc19abbca14d1f2950f4a4adfa5}\label{classPacketManager_a800f1dc19abbca14d1f2950f4a4adfa5} 
+\index{PacketManager@{PacketManager}!m\_MsgNo@{m\_MsgNo}}
+\index{m\_MsgNo@{m\_MsgNo}!PacketManager@{PacketManager}}
+\doxysubsubsection{\texorpdfstring{m\_MsgNo}{m\_MsgNo}}
+{\footnotesize\ttfamily uint32\+\_\+t Packet\+Manager\+::m\+\_\+\+Msg\+No\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\mbox{\hyperlink{PacketManager_8h}{Packet\+Manager.\+h}}\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\mbox{\hyperlink{PacketManager_8cpp}{Packet\+Manager.\+cpp}}\end{DoxyCompactItemize}

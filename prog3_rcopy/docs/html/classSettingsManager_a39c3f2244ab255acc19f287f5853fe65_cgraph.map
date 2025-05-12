@@ -1,0 +1,11 @@
+<map id="SettingsManager::loadEnvData_ErrDrop" name="SettingsManager::loadEnvData_ErrDrop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,101,197,141"/>
+<area shape="rect" id="Node000002" href="$classPacketManager.html#a2331c8d641438ff1921982515c9b7e1b" title=" " alt="" coords="247,5,464,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,99,244,55,267,47,269,52,246,60,145,104"/>
+<area shape="rect" id="Node000003" href="$classPacketManager.html#ab8596f5ee28983c162139711c22724a3" title=" " alt="" coords="247,69,464,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,107,233,102,234,107,198,112"/>
+<area shape="rect" id="Node000004" href="$classSettingsManager.html#a695fde0354a134da0f2c1c27b3a398c4" title=" " alt="" coords="245,133,465,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,131,232,135,231,140,197,136"/>
+<area shape="rect" id="Node000005" href="$classerrorDrop.html#a092408acf79dd65b55cf261a808fe9e6" title=" " alt="" coords="259,198,452,223"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="143,139,192,162,246,183,278,192,276,197,244,188,190,166,141,144"/>
+</map>

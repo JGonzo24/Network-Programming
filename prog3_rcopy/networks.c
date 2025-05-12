@@ -2,6 +2,18 @@
 // Hugh Smith April 2017
 // Network code to support TCP/UDP client and server connections
 
+
+/**
+ * @file networks.c
+ * @author Joshua Gonzalez
+ * @brief This file contains functions to set up TCP and UDP sockets for client and server
+ *        connections. It includes functions to create, bind, listen, accept, and connect sockets.
+ * @version 0.1
+ * @date 2025-05-10
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

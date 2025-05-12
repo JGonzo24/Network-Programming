@@ -1,0 +1,103 @@
+\doxysection{\+\_\+\+Env\+Data\+Entry Struct Reference}
+\hypertarget{struct__EnvDataEntry}{}\label{struct__EnvDataEntry}\index{\_EnvDataEntry@{\_EnvDataEntry}}
+
+
+{\ttfamily \#include $<$Settings\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__EnvDataEntry_aef57aa068cbb3222c42d9b1b72ad7740}{\+\_\+\+Env\+Data\+Entry}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{e\+Env\+Data\+Key\+\_\+t}} \mbox{\hyperlink{struct__EnvDataEntry_adb1b99d07a42c7530c3d6dd3061d5596}{key}}
+\item 
+\mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{e\+Env\+Data\+\_\+t}} \mbox{\hyperlink{struct__EnvDataEntry_a178ebcd079ce4e623a0359163ebb5c1d}{type}}
+\item 
+bool \mbox{\hyperlink{struct__EnvDataEntry_a3bb62bf77723d21f1ba759837574d4cb}{is\+Set}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>long \mbox{\hyperlink{struct__EnvDataEntry_a11062a16cd3db994e79c8520068faafa}{vLong}}\\
+\>float \mbox{\hyperlink{struct__EnvDataEntry_a5420a2762ead6ff5806f7debbee24561}{vFloat}}\\
+\>bool \mbox{\hyperlink{struct__EnvDataEntry_adf2a89218c83feefa63428ad1a9fd765}{vBool}}\\
+\>char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct__EnvDataEntry_a2203932c35361b42fd797a8cdf0af199}{vCharPtr}}\\
+\} \mbox{\hyperlink{struct__EnvDataEntry_a90f9be75d0e4c218bbbff25ce0334e3d}{data}}\\
+
+\end{tabbing}\item 
+\mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}} \mbox{\hyperlink{struct__EnvDataEntry_a256e98734106bbeda5aabcee3db54d9a}{l\+Long}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct__EnvDataEntry_aef57aa068cbb3222c42d9b1b72ad7740}\label{struct__EnvDataEntry_aef57aa068cbb3222c42d9b1b72ad7740} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!\_EnvDataEntry@{\_EnvDataEntry}}
+\index{\_EnvDataEntry@{\_EnvDataEntry}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{\_EnvDataEntry()}{\_EnvDataEntry()}}
+{\footnotesize\ttfamily \+\_\+\+Env\+Data\+Entry\+::\+\_\+\+Env\+Data\+Entry (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct__EnvDataEntry_a90f9be75d0e4c218bbbff25ce0334e3d}\label{struct__EnvDataEntry_a90f9be75d0e4c218bbbff25ce0334e3d} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!data@{data}}
+\index{data@{data}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{[union]}{[union]}}
+{\footnotesize\ttfamily union  \{ ... \}  \+\_\+\+Env\+Data\+Entry\+::data}
+
+\Hypertarget{struct__EnvDataEntry_a3bb62bf77723d21f1ba759837574d4cb}\label{struct__EnvDataEntry_a3bb62bf77723d21f1ba759837574d4cb} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!isSet@{isSet}}
+\index{isSet@{isSet}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{isSet}{isSet}}
+{\footnotesize\ttfamily bool \+\_\+\+Env\+Data\+Entry\+::is\+Set}
+
+\Hypertarget{struct__EnvDataEntry_adb1b99d07a42c7530c3d6dd3061d5596}\label{struct__EnvDataEntry_adb1b99d07a42c7530c3d6dd3061d5596} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!key@{key}}
+\index{key@{key}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SettingsManager_8h_a972b0fad80436f53d5632a175a459538}{e\+Env\+Data\+Key\+\_\+t}} \+\_\+\+Env\+Data\+Entry\+::key}
+
+\Hypertarget{struct__EnvDataEntry_a256e98734106bbeda5aabcee3db54d9a}\label{struct__EnvDataEntry_a256e98734106bbeda5aabcee3db54d9a} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!lLong@{lLong}}
+\index{lLong@{lLong}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{lLong}{lLong}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SettingsManager_8h_a08935fa2b624444f8c02eda77f6f737b}{List\+Long\+\_\+t}} \+\_\+\+Env\+Data\+Entry\+::l\+Long}
+
+\Hypertarget{struct__EnvDataEntry_a178ebcd079ce4e623a0359163ebb5c1d}\label{struct__EnvDataEntry_a178ebcd079ce4e623a0359163ebb5c1d} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!type@{type}}
+\index{type@{type}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SettingsManager_8h_a513a65bfb1bf8664b7741505a2ebee8a}{e\+Env\+Data\+\_\+t}} \+\_\+\+Env\+Data\+Entry\+::type}
+
+\Hypertarget{struct__EnvDataEntry_adf2a89218c83feefa63428ad1a9fd765}\label{struct__EnvDataEntry_adf2a89218c83feefa63428ad1a9fd765} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!vBool@{vBool}}
+\index{vBool@{vBool}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{vBool}{vBool}}
+{\footnotesize\ttfamily bool \+\_\+\+Env\+Data\+Entry\+::v\+Bool}
+
+\Hypertarget{struct__EnvDataEntry_a2203932c35361b42fd797a8cdf0af199}\label{struct__EnvDataEntry_a2203932c35361b42fd797a8cdf0af199} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!vCharPtr@{vCharPtr}}
+\index{vCharPtr@{vCharPtr}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{vCharPtr}{vCharPtr}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} \+\_\+\+Env\+Data\+Entry\+::v\+Char\+Ptr}
+
+\Hypertarget{struct__EnvDataEntry_a5420a2762ead6ff5806f7debbee24561}\label{struct__EnvDataEntry_a5420a2762ead6ff5806f7debbee24561} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!vFloat@{vFloat}}
+\index{vFloat@{vFloat}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{vFloat}{vFloat}}
+{\footnotesize\ttfamily float \+\_\+\+Env\+Data\+Entry\+::v\+Float}
+
+\Hypertarget{struct__EnvDataEntry_a11062a16cd3db994e79c8520068faafa}\label{struct__EnvDataEntry_a11062a16cd3db994e79c8520068faafa} 
+\index{\_EnvDataEntry@{\_EnvDataEntry}!vLong@{vLong}}
+\index{vLong@{vLong}!\_EnvDataEntry@{\_EnvDataEntry}}
+\doxysubsubsection{\texorpdfstring{vLong}{vLong}}
+{\footnotesize\ttfamily long \+\_\+\+Env\+Data\+Entry\+::v\+Long}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/\mbox{\hyperlink{SettingsManager_8h}{Settings\+Manager.\+h}}\end{DoxyCompactItemize}

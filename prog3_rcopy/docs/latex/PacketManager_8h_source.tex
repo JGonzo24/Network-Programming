@@ -1,0 +1,56 @@
+\doxysection{Packet\+Manager.\+h}
+\hypertarget{PacketManager_8h_source}{}\label{PacketManager_8h_source}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/PacketManager.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/PacketManager.h}}
+\mbox{\hyperlink{PacketManager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ \_\_PACKETMANAGER\_H}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_\_PACKETMANAGER\_H}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{IMsgEvent_8h}{MsgEvents/IMsgEvent.h}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPacketManager}{PacketManager}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<IMsgEvent*>\ \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{listMsgEvents\_t}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classPacketManager_a7320fcc2691fa82b89a1cb6b666b2b6f}{PacketManager}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{classPacketManager_a9d47311266ca292dbd2a6f7d9167463a}{\string~PacketManager}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_a03d7c5729e55dee0dfcb198bb3d5aa7e}{setRandSeed}}(\textcolor{keywordtype}{long}\ seed);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_a7caa333d902656a102a3206c8eac0a50}{setErrorRate}}(\textcolor{keywordtype}{float}\ rate);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_ab8596f5ee28983c162139711c22724a3}{addMsgEvent\_Standard}}(\mbox{\hyperlink{classIMsgEvent}{IMsgEvent}}*\ errorCase);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_a2331c8d641438ff1921982515c9b7e1b}{addMsgEvent\_Random}}(\mbox{\hyperlink{classIMsgEvent}{IMsgEvent}}*\ errorCase);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_ae1e0a919fdc6e14064eaf6a53d0e73db}{processEvents}}(\textcolor{keywordtype}{void}**\ pBuf,\ \textcolor{keywordtype}{size\_t}*\ pLen,\ uint32\_t\ msgNo);}
+\DoxyCodeLine{00038\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPacketManager_a6628382d310d0e83e18219d76d3f9de9}{printType}}(\textcolor{keywordtype}{int}\ flag,\ \textcolor{keywordtype}{char}\ *\ buf);}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ ssize\_t\ \mbox{\hyperlink{classPacketManager_ab67f660ac08f1498a739c48685387aaa}{send\_Err}}(\textcolor{keywordtype}{int}\ s,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ ssize\_t\ \mbox{\hyperlink{classPacketManager_a7ac757cd7fc73e73b710a1c82b16e4da}{recv\_Mod}}(\textcolor{keywordtype}{int}\ s,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ ssize\_t\ \mbox{\hyperlink{classPacketManager_a26cdcee8e04d625b7d1361b3fcd0254a}{sendto\_Err}}(\textcolor{keywordtype}{int}\ s,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags,}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ sockaddr\ *to,\ socklen\_t\ tolen);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ ssize\_t\ \mbox{\hyperlink{classPacketManager_a4dddf80b2e2670657731a9de8bb1664e}{recvfrom\_Mod}}(\textcolor{keywordtype}{int}\ s,\ \textcolor{keywordtype}{void}\ *buf,\ \textcolor{keywordtype}{size\_t}\ len,\ \textcolor{keywordtype}{int}\ flags,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}\ sockaddr\ *from,\ socklen\_t\ *fromlen);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \mbox{\hyperlink{classPacketManager_a209438b193d4f2173899b69d06306adb}{m\_ErrorRate}};}
+\DoxyCodeLine{00053\ \ \ \ \ uint32\_t\ \ \ \mbox{\hyperlink{classPacketManager_a800f1dc19abbca14d1f2950f4a4adfa5}{m\_MsgNo}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{listMsgEvents\_t}}\ \mbox{\hyperlink{classPacketManager_a1c788d06460e3dac5345d503d258b90e}{m\_ErrorCase\_Constant}};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{listMsgEvents\_t}}\ \mbox{\hyperlink{classPacketManager_a7f5fa8fbd6147483a41d32514429eba0}{m\_ErrorCase\_Chance}};}
+\DoxyCodeLine{00057\ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_ab3effbe1c45549d1bcc9bc78e0d0644d}{runMsgEvents}}(\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{listMsgEvents\_t}}\&\ ErrVec,\ \textcolor{keywordtype}{void}**\ pBuf,\ \textcolor{keywordtype}{size\_t}*\ pLen,\ uint32\_t\ msgNo);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPacketManager_ae03812e5f35f684f420a73c0e785cf3e}{clearMsgEvents}}(\mbox{\hyperlink{classPacketManager_a5874c2fcb8aa1a549ca40bd082ce0f7d}{listMsgEvents\_t}}\&\ ErrVec);}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

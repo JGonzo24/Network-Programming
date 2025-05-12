@@ -1,0 +1,55 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/server.c File Reference}
+\hypertarget{server_8c}{}\label{server_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/server.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/server.c}}
+
+
+Simple UDP server that listens for messages and echoes back byte counts.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include "{}gethostbyname.\+h"{}}\newline
+{\ttfamily \#include "{}networks.\+h"{}}\newline
+{\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
+Include dependency graph for server.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{server_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__udp__server_gad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~80
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb}{process\+Client}} (int socket\+Num)
+\begin{DoxyCompactList}\small\item\em Process incoming client messages on a bound UDP socket. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Validates command-\/line arguments for port number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Entry point for the UDP server application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Simple UDP server that listens for messages and echoes back byte counts. 
+
+\begin{DoxyAuthor}{Author}
+Joshua Gonzalez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/10
+\end{DoxyDate}
+This server sets up a UDP socket (IPv6-\/capable), receives messages until it sees a single dot (\textquotesingle{}.\textquotesingle{}) as the first character, and for each message prints the client address + payload, then echoes back the number of bytes received. 

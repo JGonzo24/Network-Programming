@@ -1,0 +1,175 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/libcpe464/network-\/hooks.c File Reference}
+\hypertarget{network-hooks_8c}{}\label{network-hooks_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/network-\/hooks.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/libcpe464/network-\/hooks.c}}
+{\ttfamily \#include "{}networks/network-\/hooks.\+h"{}}\newline
+{\ttfamily \#include "{}Packet\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}Settings\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}Msg\+Events/error\+Drop.\+h"{}}\newline
+{\ttfamily \#include "{}Msg\+Events/error\+Flip\+Bits.\+h"{}}\newline
+{\ttfamily \#include "{}Msg\+Events/info\+Seq\+No.\+h"{}}\newline
+{\ttfamily \#include "{}utils/dbg\+\_\+print.\+h"{}}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/select.\+h$>$}\newline
+{\ttfamily \#include $<$sys/syscall.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for network-\/hooks.c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} \mbox{\hyperlink{network-hooks_8c_a84e97031e45a887d36e8d460924fc608}{g\+\_\+\+Sets\+Mgr}} (\mbox{\hyperlink{network-hooks_8c_a20aa2f9568fe06e8af03765fec09ba28}{g\+\_\+\+Pkt\+Mgr}})
+\item 
+int \mbox{\hyperlink{network-hooks_8c_a82425f485ce7d04f0dc461f27a001d49}{fork\+Mod}} (void)
+\item 
+int \mbox{\hyperlink{network-hooks_8c_a0e168a2222e740a01267227573b2b4c9}{socket\+Mod}} (int domain, int type, int protocol)
+\item 
+int \mbox{\hyperlink{network-hooks_8c_aae33cb498db4c3016435ff3f9b329546}{bind\+Mod}} (int sockfd, const struct sockaddr \texorpdfstring{$\ast$}{*}addr, socklen\+\_\+t addrlen)
+\item 
+int \mbox{\hyperlink{network-hooks_8c_add584cb96e271899e50ce7a068632ca0}{select\+Mod}} (int nfds, fd\+\_\+set \texorpdfstring{$\ast$}{*}readfds, fd\+\_\+set \texorpdfstring{$\ast$}{*}writefds, fd\+\_\+set \texorpdfstring{$\ast$}{*}exceptfds, struct timeval \texorpdfstring{$\ast$}{*}timeout)
+\item 
+int \mbox{\hyperlink{network-hooks_8c_aaedf070171d733d05519822e5da05787}{send\+Err\+\_\+init}} (double error\+\_\+rate, int drop\+\_\+flag, int flip\+\_\+flag, int debug\+\_\+flag, int random\+\_\+flag)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{network-hooks_8c_a6baf40e5c707e012a99043794af718c9}{send\+Err}} (int s, void \texorpdfstring{$\ast$}{*}msg, int len, unsigned int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{network-hooks_8c_a58919639340752d5994dc32feee091a1}{recv\+Err}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{network-hooks_8c_a767819e79935cf81a761252b8986677b}{sendto\+Err}} (int s, void \texorpdfstring{$\ast$}{*}msg, int len, unsigned int flags, const struct sockaddr \texorpdfstring{$\ast$}{*}to, int tolen)
+\item 
+ssize\+\_\+t \mbox{\hyperlink{network-hooks_8c_a427f34a5218fb054c85f785b5bd85bd4}{recvfrom\+Err}} (int s, void \texorpdfstring{$\ast$}{*}buf, size\+\_\+t len, int flags, struct sockaddr \texorpdfstring{$\ast$}{*}from, socklen\+\_\+t \texorpdfstring{$\ast$}{*}fromlen)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPacketManager}{Packet\+Manager}} \mbox{\hyperlink{network-hooks_8c_a20aa2f9568fe06e8af03765fec09ba28}{g\+\_\+\+Pkt\+Mgr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{network-hooks_8c_aae33cb498db4c3016435ff3f9b329546}\label{network-hooks_8c_aae33cb498db4c3016435ff3f9b329546} 
+\index{network-\/hooks.c@{network-\/hooks.c}!bindMod@{bindMod}}
+\index{bindMod@{bindMod}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{bindMod()}{bindMod()}}
+{\footnotesize\ttfamily int bind\+Mod (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{const struct sockaddr \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{socklen\+\_\+t}]{addrlen }\end{DoxyParamCaption})}
+
+\Hypertarget{network-hooks_8c_a82425f485ce7d04f0dc461f27a001d49}\label{network-hooks_8c_a82425f485ce7d04f0dc461f27a001d49} 
+\index{network-\/hooks.c@{network-\/hooks.c}!forkMod@{forkMod}}
+\index{forkMod@{forkMod}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{forkMod()}{forkMod()}}
+{\footnotesize\ttfamily int fork\+Mod (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c_a82425f485ce7d04f0dc461f27a001d49_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{network-hooks_8c_a84e97031e45a887d36e8d460924fc608}\label{network-hooks_8c_a84e97031e45a887d36e8d460924fc608} 
+\index{network-\/hooks.c@{network-\/hooks.c}!g\_SetsMgr@{g\_SetsMgr}}
+\index{g\_SetsMgr@{g\_SetsMgr}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{g\_SetsMgr()}{g\_SetsMgr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSettingsManager}{Settings\+Manager}} g\+\_\+\+Sets\+Mgr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{network-hooks_8c_a20aa2f9568fe06e8af03765fec09ba28}{g\+\_\+\+Pkt\+Mgr}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{network-hooks_8c_a58919639340752d5994dc32feee091a1}\label{network-hooks_8c_a58919639340752d5994dc32feee091a1} 
+\index{network-\/hooks.c@{network-\/hooks.c}!recvErr@{recvErr}}
+\index{recvErr@{recvErr}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{recvErr()}{recvErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t recv\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c_a58919639340752d5994dc32feee091a1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{network-hooks_8c_a427f34a5218fb054c85f785b5bd85bd4}\label{network-hooks_8c_a427f34a5218fb054c85f785b5bd85bd4} 
+\index{network-\/hooks.c@{network-\/hooks.c}!recvfromErr@{recvfromErr}}
+\index{recvfromErr@{recvfromErr}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{recvfromErr()}{recvfromErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t recvfrom\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{size\+\_\+t}]{len,  }\item[{int}]{flags,  }\item[{struct sockaddr \texorpdfstring{$\ast$}{*}}]{from,  }\item[{socklen\+\_\+t \texorpdfstring{$\ast$}{*}}]{fromlen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c_a427f34a5218fb054c85f785b5bd85bd4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{network-hooks_8c_add584cb96e271899e50ce7a068632ca0}\label{network-hooks_8c_add584cb96e271899e50ce7a068632ca0} 
+\index{network-\/hooks.c@{network-\/hooks.c}!selectMod@{selectMod}}
+\index{selectMod@{selectMod}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{selectMod()}{selectMod()}}
+{\footnotesize\ttfamily int select\+Mod (\begin{DoxyParamCaption}\item[{int}]{nfds,  }\item[{fd\+\_\+set \texorpdfstring{$\ast$}{*}}]{readfds,  }\item[{fd\+\_\+set \texorpdfstring{$\ast$}{*}}]{writefds,  }\item[{fd\+\_\+set \texorpdfstring{$\ast$}{*}}]{exceptfds,  }\item[{struct timeval \texorpdfstring{$\ast$}{*}}]{timeout }\end{DoxyParamCaption})}
+
+\Hypertarget{network-hooks_8c_a6baf40e5c707e012a99043794af718c9}\label{network-hooks_8c_a6baf40e5c707e012a99043794af718c9} 
+\index{network-\/hooks.c@{network-\/hooks.c}!sendErr@{sendErr}}
+\index{sendErr@{sendErr}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{sendErr()}{sendErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t send\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{int}]{len,  }\item[{unsigned int}]{flags }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c_a6baf40e5c707e012a99043794af718c9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{network-hooks_8c_aaedf070171d733d05519822e5da05787}\label{network-hooks_8c_aaedf070171d733d05519822e5da05787} 
+\index{network-\/hooks.c@{network-\/hooks.c}!sendErr\_init@{sendErr\_init}}
+\index{sendErr\_init@{sendErr\_init}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{sendErr\_init()}{sendErr\_init()}}
+{\footnotesize\ttfamily int send\+Err\+\_\+init (\begin{DoxyParamCaption}\item[{double}]{error\+\_\+rate,  }\item[{int}]{drop\+\_\+flag,  }\item[{int}]{flip\+\_\+flag,  }\item[{int}]{debug\+\_\+flag,  }\item[{int}]{random\+\_\+flag }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c_aaedf070171d733d05519822e5da05787_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{network-hooks_8c_a767819e79935cf81a761252b8986677b}\label{network-hooks_8c_a767819e79935cf81a761252b8986677b} 
+\index{network-\/hooks.c@{network-\/hooks.c}!sendtoErr@{sendtoErr}}
+\index{sendtoErr@{sendtoErr}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{sendtoErr()}{sendtoErr()}}
+{\footnotesize\ttfamily ssize\+\_\+t sendto\+Err (\begin{DoxyParamCaption}\item[{int}]{s,  }\item[{void \texorpdfstring{$\ast$}{*}}]{msg,  }\item[{int}]{len,  }\item[{unsigned int}]{flags,  }\item[{const struct sockaddr \texorpdfstring{$\ast$}{*}}]{to,  }\item[{int}]{tolen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{network-hooks_8c_a767819e79935cf81a761252b8986677b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{network-hooks_8c_a0e168a2222e740a01267227573b2b4c9}\label{network-hooks_8c_a0e168a2222e740a01267227573b2b4c9} 
+\index{network-\/hooks.c@{network-\/hooks.c}!socketMod@{socketMod}}
+\index{socketMod@{socketMod}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{socketMod()}{socketMod()}}
+{\footnotesize\ttfamily int socket\+Mod (\begin{DoxyParamCaption}\item[{int}]{domain,  }\item[{int}]{type,  }\item[{int}]{protocol }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{network-hooks_8c_a20aa2f9568fe06e8af03765fec09ba28}\label{network-hooks_8c_a20aa2f9568fe06e8af03765fec09ba28} 
+\index{network-\/hooks.c@{network-\/hooks.c}!g\_PktMgr@{g\_PktMgr}}
+\index{g\_PktMgr@{g\_PktMgr}!network-\/hooks.c@{network-\/hooks.c}}
+\doxysubsubsection{\texorpdfstring{g\_PktMgr}{g\_PktMgr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPacketManager}{Packet\+Manager}} g\+\_\+\+Pkt\+Mgr}
+

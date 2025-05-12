@@ -11,6 +11,18 @@
 //
 // This is for student projects so I don't intend on improving this. 
 
+
+/**
+ * @file pollLib.c
+ * @author Joshua Gonzalez 
+ * @brief Library to interface with the poll() system call
+ * @version 0.1
+ * @date 2025-05-10
+ * 
+ * @copyright Copyright (c) 2025
+ * 
+ */
+
 #include <poll.h>
 #include <stdlib.h>
 #include <stdio.h>
