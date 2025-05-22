@@ -42,7 +42,7 @@
    See textbook - Garcia 2nd ed. page 607 for more details
 
    Hugh Smith
-   
+
 */
 
 #include "networks/checksum.h"
@@ -50,12 +50,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 /*
  * in_cksum --
  *      Checksum routine for Internet Protocol family headers (C Version)
  */
-unsigned short in_cksum(unsigned short *addr,int len)
+unsigned short in_cksum(unsigned short *addr, int len)
 {
         register int sum = 0;
         u_short answer = 0;
@@ -67,20 +69,23 @@ unsigned short in_cksum(unsigned short *addr,int len)
          * sequential 16 bit words to it, and at the end, fold back all the
          * carry bits from the top 16 bits into the lower 16 bits.
          */
-        while (nleft > 1)  {
+        while (nleft > 1)
+        {
                 sum += *w++;
                 nleft -= 2;
         }
 
         /* mop up an odd byte, if necessary */
-        if (nleft == 1) {
-                *(u_char *)(&answer) = *(u_char *)w ;
+        if (nleft == 1)
+        {
+                *(u_char *)(&answer) = *(u_char *)w;
                 sum += answer;
         }
 
         /* add back carry outs from top 16 bits to low 16 bits */
-        sum = (sum >> 16) + (sum & 0xffff);     /* add hi 16 to low 16 */
-        sum += (sum >> 16);                     /* add carry */
-        answer = ~sum;                          /* truncate to 16 bits */
-        return(answer);
+        sum = (sum >> 16) + (sum & 0xffff); /* add hi 16 to low 16 */
+        sum += (sum >> 16);                 /* add carry */
+        answer = ~sum;                      /* truncate to 16 bits */
+        return (answer);
 }
+

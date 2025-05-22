@@ -2,6 +2,11 @@
     "files.associations": {
         "checksum.h": "c",
         "types.h": "c",
-        "gethostbyname.h": "c"
+        "gethostbyname.h": "c",
+        "socket.h": "c",
+        "in.h": "c",
+        "polllib.h": "c",
+        "helperfunctions.h": "c",
+        "safeutil.h": "c"
     }
 }
