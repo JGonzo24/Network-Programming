@@ -45,13 +45,12 @@ typedef struct
 	int remotePort;
 } ClientConfig;
 
-void talkToServer(struct sockaddr_in6 *server, char *fromFileName, ClientConfig config);
+void talkToServer(struct sockaddr_in6 *server, ClientConfig config);
 int readFromStdin(char *buffer);
 int checkArgs(int argc, char *argv[]);
 int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config, int sequenceNum);
 int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
 int processData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
-
 
 ClientConfig parseArgs(int argc, char *argv[]);
 typedef enum State STATE;
@@ -65,6 +64,9 @@ enum State
 	WAIT_FOR_DATA,
 	PROCESS_DATA,
 	DONE,
+	INORDER,
+	BUFFER,
+	FLUSH
 };
 
 /**
@@ -88,24 +90,23 @@ int main(int argc, char *argv[])
 	// argv[6] is the remote machine name
 	socketNum = setupUdpClientToServer(&server, config.remoteMachine, config.remotePort);
 
-	talkToServer(&server, config.fromFileName, config);
+	talkToServer(&server, config);
 
 	close(socketNum);
 
 	return 0;
 }
 
-
 /**
- * @brief 
- * 
- * @param socketNum 
- * @param server 
- * @param fromFileName 
- * @param config 
+ * @brief
+ *
+ * @param socketNum
+ * @param server
+ * @param fromFileName
+ * @param config
  */
 
-void talkToServer(struct sockaddr_in6 *server, char *fromFileName, ClientConfig config)
+void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 {
 	STATE currentState = SEND_FILENAME;
 
@@ -114,7 +115,13 @@ void talkToServer(struct sockaddr_in6 *server, char *fromFileName, ClientConfig 
 	int sequenceNumber = 0;
 
 	// Create the PDU with the filename (flag = 8)
-	int pduLength = createPDU(pduBuffer, sequenceNumber, 8, (uint8_t *)fromFileName, strlen(fromFileName), config.windowSize);
+	int pduLength = createPDU(pduBuffer, sequenceNumber, FNAME, (uint8_t*)config.fromFileName, 
+					strlen(config.fromFileName), config.windowSize, config.bufferSize);
+
+	// Print the PDU
+	printf("printing PDU\n");
+	printPDU(pduBuffer, pduLength);
+
 	while (currentState != DONE)
 	{
 		switch (currentState)
@@ -144,31 +151,33 @@ void talkToServer(struct sockaddr_in6 *server, char *fromFileName, ClientConfig 
 		case DONE:
 			printf("Got to the DONE state\n");
 			break;
+
+		case INORDER:
+			printf("GOT TO INORDER STATE\n");
+			break;
+
+		case BUFFER:
+			printf("GOT TO BUFFER STATE\n");
+			break;
+		case FLUSH:
+			printf("GOT TO FLUSH STATE\n");
+			break;
 		}
 	}
 }
 
-
 int processData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
 {
-	// Now we will process the Data that was just received 
+	// Now we will process the Data that was just received
+
+
+	printf("GOT TO PROCESS DATA STATE\n");
 	int timeout = 10000;
 	int pollGood = pollCall(timeout);
-
-
-
-
-
-
-
+	exit(0);
 
 	return PROCESS_DATA;
-
-
-
 }
-
-
 
 int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
 {
@@ -176,6 +185,9 @@ int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, 
 	int timeout = 1000;
 	int readySocket;
 	int received;
+
+
+	printf("WORKING HERE ON GETTING DATA");
 
 	readySocket = pollCall(timeout);
 
@@ -272,7 +284,7 @@ int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength,
 			uint8_t flag;
 			memcpy(&flag, ackBuffer + 6, sizeof(flag));
 
-			// going to declare that the flag for a good ack from the server is 35 
+			// going to declare that the flag for a good ack from the server is 35
 			if (flag == FNAME_OK)
 			{
 				printf("Got an ack from the server\n");
@@ -287,7 +299,7 @@ int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength,
 					return DONE;
 				}
 
-				// if we can open the output file, then send file ok ACK and then poll(1 sec) 
+				// if we can open the output file, then send file ok ACK and then poll(1 sec)
 
 				// Declaring file ok ACK == 36
 				uint8_t fileOK[ACKBUF];

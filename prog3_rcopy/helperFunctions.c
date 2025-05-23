@@ -28,46 +28,45 @@
  * @param payloadLen
  * @return int
  */
-int createPDU(uint8_t *pduBuffer, uint32_t sequenceNumber, uint8_t flag, uint8_t *payload, int payloadLen, int windowSize)
+int createPDU(uint8_t *pduBuffer, uint32_t sequenceNumber, uint8_t flag, uint8_t *payload, int payloadLen, int windowSize, int16_t bufferSize)
 {
     int index = 0;
     uint16_t zero = 0;
 
-    // Sequence (network byte order)
+    // Sequence Number (4 bytes) in network byte order
     sequenceNumber = htonl(sequenceNumber);
     memcpy(pduBuffer, &sequenceNumber, sizeof(sequenceNumber));
     index += sizeof(sequenceNumber);
-
-    // Reserve space for checksum (set to zero for now)
+    // Reserve space for checksum (2 bytes, set to zero for now)
     memcpy(pduBuffer + index, &zero, sizeof(zero));
     index += sizeof(zero);
-
-    // Flag
+    // Flag (1 byte)
     memcpy(pduBuffer + index, &flag, sizeof(flag));
     index += sizeof(flag);
 
-    // Payload
+
+    // Window Size (1 bytes)
+    uint8_t netWindowSize = (uint8_t)windowSize;
+    memcpy(pduBuffer + index, &netWindowSize, 1);
+    index += sizeof(netWindowSize);
+
+    // Buffer Size (2 bytes)
+    uint16_t netBufferSize = htons(bufferSize);
+    memcpy(pduBuffer + index, &netBufferSize, sizeof(netBufferSize));
+    index += sizeof(netBufferSize);
+
+    // Payload (variable length)
     memcpy(pduBuffer + index, payload, payloadLen);
     index += payloadLen;
 
-    // Window size
-    memcpy(pduBuffer + index, &windowSize, sizeof(windowSize));
-    index += sizeof(windowSize);
-
-    // Append buffer size (total PDU length so far) as an extra field
-    uint16_t bufferSize = htons(index);
-    memcpy(pduBuffer + index, &bufferSize, sizeof(bufferSize));
-    index += sizeof(bufferSize);
-
-    // Final PDU length includes the new buffer size field
-    int pduLength = index;
-
-    // Compute the checksum over the entire PDU (with checksum field as 0)
-    uint16_t checksum = in_cksum((unsigned short *)pduBuffer, pduLength);
-    // Store the checksum into the checksum field (right after sequence number)
+    // Compute checksum over the entire PDU
+    uint16_t checksum = in_cksum((unsigned short *)pduBuffer, index);
+    // Convert checksum to network byte order
+    checksum = htons(checksum);
+    // Store the checksum in the previously reserved spot (after the sequence number)
     memcpy(pduBuffer + sizeof(sequenceNumber), &checksum, sizeof(checksum));
 
-    return pduLength;
+    return index;
 }
 
 /**
@@ -93,18 +92,14 @@ void printPDU(uint8_t *pduBuffer, int pduLength)
     index += sizeof(storedChecksum);
 
     // Create a copy and zero out the checksum field for recalculation
-    uint8_t pduCopy[pduLength];
-    memcpy(pduCopy, pduBuffer, pduLength);
-    memset(pduCopy + sizeof(sequenceNumber), 0, sizeof(uint16_t));
-    uint16_t calculatedChecksum = in_cksum((unsigned short *)pduCopy, pduLength);
-
-    if (storedChecksum == calculatedChecksum)
+    bool verified = verifyChecksum(pduBuffer, pduLength);
+    if (verified)
     {
-        printf("Checksum: %u (valid)\n", storedChecksum);
+        printf("Checksum verified successfully.\n");
     }
     else
     {
-        printf("Checksum: %u (invalid) - recalculated: %u\n", storedChecksum, calculatedChecksum);
+        printf("Checksum verification failed!\n");
     }
 
     // Extract the flag
@@ -113,15 +108,29 @@ void printPDU(uint8_t *pduBuffer, int pduLength)
     printf("Flag: %u\n", flag);
     index += sizeof(flag);
 
-    // Extract the payload
-    int payloadLen = pduLength - index;
-    uint8_t payload[MAXBUF];
-    memcpy(payload, pduBuffer + index, payloadLen);
-    payload[payloadLen] = '\0'; // Null-terminate the payload string
+    // Extract the window size
+    uint8_t windowSize;
+    memcpy(&windowSize, pduBuffer + index, sizeof(windowSize));
+    printf("Window Size: %u\n", windowSize);
+    index += sizeof(windowSize);
 
-    printf("Payload: %s\n", payload);
-    index += payloadLen;
-    printf("Payload Length: %d\n", payloadLen);
+    // Extract the buffer size
+    uint16_t bufferSize;
+    memcpy(&bufferSize, pduBuffer + index, sizeof(bufferSize));
+    bufferSize = ntohs(bufferSize);
+    printf("Buffer Size: %u\n", bufferSize);
+    index += sizeof(bufferSize);
+
+    // Extract the payload
+    uint8_t payload[MAXBUF];
+    memcpy(payload, pduBuffer + index, pduLength - index);
+    printf("Payload: ");
+    printBytes(payload, pduLength - index);
+    index += pduLength - index;
+
+    // Print the entire PDU in hex format
+    printf("PDU Buffer: ");
+    printBytes(pduBuffer, pduLength);
 }
 
 /**
@@ -177,13 +186,17 @@ void printBytes(const uint8_t* buffer, int length)
 
 bool verifyChecksum(const uint8_t *buffer, int length)
 {
-        // Extract the transmitted checksum
-        uint16_t transmittedChecksum;
-        memcpy(&transmittedChecksum, buffer + length - sizeof(uint16_t), sizeof(uint16_t));
+    // Extract the transmitted checksum
+    uint16_t transmittedChecksum;
+    memcpy(&transmittedChecksum, buffer + 4, sizeof(transmittedChecksum));
+    transmittedChecksum = ntohs(transmittedChecksum);
 
-        // Compute checksum on the portion that excludes the checksum field
-        uint16_t computedChecksum = in_cksum(buffer, length - sizeof(uint16_t));
+    // Create a copy of the buffer and zero out the checksum field
+    uint8_t bufferCopy[length];
+    memcpy(bufferCopy, buffer, length);
+    memset(bufferCopy + 4, 0, sizeof(uint16_t));
+    // Calculate the checksum over the entire buffer
+    uint16_t calculatedChecksum = in_cksum((unsigned short *)bufferCopy, length);
 
-        // Compare (make sure to account for endianness if required)
-        return (transmittedChecksum == computedChecksum);
+    return (transmittedChecksum == calculatedChecksum);
 }
