@@ -115,7 +115,7 @@ void processServer(int socketNum, double err_rate)
         dataLen = safeRecvfrom(socketNum, buffer, MAXBUF, 0, (struct sockaddr *)&client, (int *)&clientAddrLen);
 
         printf("Received bytes in the main server socket:\n");
-        printPDU(buffer, dataLen);
+        //printPDU(buffer, dataLen);
         // check the checksum
         bool checkSum;
         checkSum = verifyChecksum(buffer, dataLen);
@@ -210,7 +210,7 @@ STATE sendData(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int d
     int seqNum = 0;
     // just double check packet to be sure
     printf("\nCheck the buffer just to be sure\n");
-    printPDU(buffer, dataLen);
+    //printPDU(buffer, dataLen);
 
     SenderWindow window;
     initSenderWindow(&window, windowSize);
@@ -276,10 +276,13 @@ STATE sendData(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int d
 
             // Send the PDU to the client
             printf("Sending PDU with sequence number %d and flag %d\n", seqNum, DATA);
-            printPDU(pduBuffer, pduLen);
+          //  printPDU(pduBuffer, pduLen);
 
             int bytesSent = safeSendto(socketNum, pduBuffer, pduLen, 0, (struct sockaddr *)&client, sizeof(client));
             seqNum++;
+            printWindow(&window);
+
+            window.current = (window.current + 1);
 
             if (bytesSent < 0)
             {
@@ -392,7 +395,9 @@ STATE sendData(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int d
             }
         }
     }
-    return DONE;
+    printf("Finished sending data.\n"); 
+    exit(-1);
+    fclose(file);
 }
 
 STATE waitOnAck(int socketNum, struct sockaddr_in6 client)

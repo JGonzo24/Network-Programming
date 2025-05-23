@@ -27,6 +27,15 @@ int windowSize;
 Packet* buffer;
 } SenderWindow;
 
+// Initalize the reciever buffer
+
+typedef struct {
+    Packet* buffer;
+    int size;
+    int nextSeqNum;
+    int count;
+} ReceiverBuffer;
+
 
 void initSenderWindow(SenderWindow* window, int windowSize);
 void destroySenderWindow(SenderWindow* window);
@@ -34,6 +43,15 @@ void addPacketToWindow(SenderWindow* window, Packet* packet);
 void removePacketFromWindow(SenderWindow* window, uint32_t seqNum);
 void printWindow(SenderWindow* window);
 int windowIsFull(SenderWindow* window);
+
+void initReceiverBuffer(ReceiverBuffer* receiverBuffer, int windowSize);
+void printReceiverBuffer(ReceiverBuffer *buffer);
+void addPacketToReceiverBuffer(ReceiverBuffer *buffer, Packet *packet);
+void destroyReceiverBuffer(ReceiverBuffer *buffer);
+
+
+
+
 
 
 

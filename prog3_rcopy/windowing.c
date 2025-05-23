@@ -66,4 +66,55 @@ int windowIsFull(SenderWindow* window)
     }
 }
 
+void printWindow(SenderWindow* window)
+{
+    printf("Sender Window:\n");
+    printf("Lower: %d, Current: %d, Upper: %d\n", window->lower, window->current, window->upper);
+    for (int i = 0; i < window->windowSize; i++)
+    {
+        printf("Packet %d: SeqNum: %u, Flag: %u\n", i, window->buffer[i].seqNum, window->buffer[i].flag);
+    }
+}
 
+
+
+// Init the receiver buffer, this doesn't need to be a circular buffer
+void initReceiverBuffer(ReceiverBuffer *buffer, int bufferSize)
+{
+    buffer->buffer = (Packet*)calloc(bufferSize, sizeof(Packet));
+    if (buffer->buffer == NULL)
+    {
+        perror("Failed to allocate memory for receiver buffer");
+        exit(EXIT_FAILURE);
+    }
+
+    buffer->size = bufferSize;
+    buffer->count = 0;
+    buffer->nextSeqNum = 0;
+}
+
+
+void destroyReceiverBuffer(ReceiverBuffer *buffer)
+{
+    free(buffer->buffer);
+    buffer->buffer = NULL;
+    buffer->size = 0;
+    buffer->count = 0;
+    buffer->nextSeqNum = 0;
+}
+
+void addPacketToReceiverBuffer(ReceiverBuffer *buffer, Packet *packet)
+{
+    int index = packet->seqNum % buffer->size;
+    buffer->buffer[index] = *packet;
+}
+
+void printReceiverBuffer(ReceiverBuffer *buffer)
+{
+    printf("Receiver Buffer:\n");
+    printf("Next SeqNum: %d, Count: %d\n", buffer->nextSeqNum, buffer->count);
+    for (int i = 0; i < buffer->size; i++)
+    {
+        printf("Packet %d: SeqNum: %u, Flag: %u\n", i, buffer->buffer[i].seqNum, buffer->buffer[i].flag);
+    }
+}

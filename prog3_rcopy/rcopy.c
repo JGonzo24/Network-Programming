@@ -33,6 +33,7 @@
 #include "cpe464.h"
 #include "pollLib.h"
 #include "srej.h"
+#include "windowing.h"
 
 typedef struct
 {
@@ -49,13 +50,16 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config);
 int readFromStdin(char *buffer);
 int checkArgs(int argc, char *argv[]);
 int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config, int sequenceNum);
-int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
+int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength, ClientConfig config);
 int processData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
+int inOrder(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
 
 ClientConfig parseArgs(int argc, char *argv[]);
 typedef enum State STATE;
 static int attempts = 0;
 static int socketNum = 0;
+static ReceiverBuffer receiverBuffer;
+static bool initialized = false;
 
 enum State
 {
@@ -115,8 +119,11 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 	int sequenceNumber = 0;
 
 	// Create the PDU with the filename (flag = 8)
-	int pduLength = createPDU(pduBuffer, sequenceNumber, FNAME, (uint8_t*)config.fromFileName, 
-					strlen(config.fromFileName), config.windowSize, config.bufferSize);
+	int pduLength = createPDU(pduBuffer, sequenceNumber, FNAME, (uint8_t *)config.fromFileName,
+							  strlen(config.fromFileName), config.windowSize, config.bufferSize);
+
+	uint8_t dataBuffer[MAXBUF];
+	int receivedDataLen = 0;
 
 	// Print the PDU
 	printf("printing PDU\n");
@@ -139,13 +146,14 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 		case WAIT_FOR_DATA:
 			// Wait for data from the server
 			printf("Got to the WAIT_FOR_DATA state\n");
-			currentState = waitForData(server, pduBuffer, pduLength, config);
+
+			currentState = waitForData(server, dataBuffer, &receivedDataLen, config);
 			break;
 
 		case PROCESS_DATA:
 			// Process the data received from the server
 			printf("Got to the PROCESS_DATA state\n");
-			currentState = processData(server, pduBuffer, pduLength, config);
+			currentState = processData(server, dataBuffer, receivedDataLen, config);
 			break;
 
 		case DONE:
@@ -154,6 +162,7 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 
 		case INORDER:
 			printf("GOT TO INORDER STATE\n");
+			currentState = inOrder(server, dataBuffer, receivedDataLen, config);
 			break;
 
 		case BUFFER:
@@ -162,40 +171,181 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 		case FLUSH:
 			printf("GOT TO FLUSH STATE\n");
 			break;
+
+		default:
+			printf("Got to an unknown state\n");
+			break;
 		}
+	}
+	exit(0);
+}
+
+static uint8_t latestPacketBuffer[MAXBUF];
+static int latestPacketLength = 0;
+static bool hasNewPacket = false;
+
+int inOrder(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
+{
+	// This is the state where we are in order
+	// We need to process the data and then send an ack back to the server
+
+	// First we need to verify the checksum
+	if (!verifyChecksum(pduBuffer, pduLength))
+	{
+		printf("Checksum verification failed!\n");
+		removeFromPollSet(socketNum);
+		close(socketNum);
+		return DONE;
+	}
+
+	// Now we know we got the expected seqNum, write to disk, update, send RR
+
+	// writing to disk
+
+	receiverBuffer.nextSeqNum++;
+
+	FILE *f = fopen(config.toFileName, "ab");
+	if (f == NULL)
+	{
+		perror("Error: opening output file");
+		removeFromPollSet(socketNum);
+		close(socketNum);
+		return DONE;
+	}
+
+	// Write the data to the file
+	fwrite(pduBuffer + 10, 1, pduLength - 10, f);
+	fclose(f);
+	printf("Wrote %d bytes to file %s\n", pduLength - 10, config.toFileName);
+
+	// Now we need to send an RR back to the server
+	uint8_t ackBuffer[ACKBUF];
+	int ackLength = createAckPDU(ackBuffer,receiverBuffer.nextSeqNum, RR);
+	safeSendto(socketNum, ackBuffer, ackLength, 0, (struct sockaddr *)server, sizeof(*server));
+	printf("Sent RR for next expected seqNum %u\n", receiverBuffer.nextSeqNum);
+
+	// Now poll for 10 seconds to see if there's another packet
+	printf("Polling for 10 seconds to see if there's another packet...\n");
+	int timeout = 10000; // 10 seconds
+	int readySocket = pollCall(timeout);
+
+	if (readySocket != -1)
+	{
+		// We received another packet
+		socklen_t addrLen = sizeof(*server);
+		latestPacketLength = recvfrom(socketNum, latestPacketBuffer, MAXBUF, 0, (struct sockaddr *)server, &addrLen);
+
+		if (latestPacketLength < 0)
+		{
+			perror("Error receiving data in INORDER");
+			return DONE;
+		}
+
+		hasNewPacket = true;
+		printf("Received another packet (%d bytes) in INORDER, going to PROCESS_DATA\n", latestPacketLength);
+
+		// Update the pduLength for the new packet
+		// You'll need to pass this back somehow - see below for solution
+
+		return PROCESS_DATA;
+	}
+	else
+	{
+		// 10 second timeout - no more packets, transfer complete
+		printf("10 second timeout in INORDER - transfer complete\n");
+		return DONE;
 	}
 }
 
 int processData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
 {
 	// Now we will process the Data that was just received
+	if (hasNewPacket)
+	{
+		// If we have a new packet, use the latest packet buffer and length
+		pduBuffer = latestPacketBuffer;
+		pduLength = latestPacketLength;
+		hasNewPacket = false; // Reset the flag
+	}
 
+	// First initialize the receiver buffer
 
-	printf("GOT TO PROCESS DATA STATE\n");
-	int timeout = 10000;
-	int pollGood = pollCall(timeout);
-	exit(0);
+	if (!initialized)
+	{
+		initialized = true;
+		initReceiverBuffer(&receiverBuffer, config.windowSize);
+		printf("Receiver buffer initialized with size %d\n", receiverBuffer.size);
+	}
+
+	uint32_t seqNum;
+	uint8_t flag;
+
+	memcpy(&seqNum, pduBuffer, sizeof(seqNum));
+	seqNum = ntohl(seqNum);
+	printf("Sequence Number: %u\n", seqNum);
+
+	// Get the flag
+	memcpy(&flag, pduBuffer + 6, sizeof(flag));
+	printf("Flag: %u\n", flag);
+	Packet receivedPacket;
+
+	receivedPacket.seqNum = seqNum;
+	receivedPacket.flag = flag;
+
+	// Get the payload
+	memcpy(receivedPacket.data, pduBuffer + 10, pduLength - 10);
+
+	printReceiverBuffer(&receiverBuffer);
+
+	// Verify the checksum
+	if (!verifyChecksum(pduBuffer, pduLength))
+	{
+		printf("Checksum verification failed!\n");
+		removeFromPollSet(socketNum);
+		close(socketNum);
+		return DONE;
+	}
+
+	// Check the flag
+	if (flag == DATA)
+	{
+		// Check the sequence number to determine if it is in order
+		if (seqNum == receiverBuffer.nextSeqNum)
+		{
+			// Go to the inorder state
+			printf("Got the data in order, going to the INORDER state\n");
+			return INORDER;
+		}
+		else if (seqNum > receiverBuffer.nextSeqNum)
+		{
+			// Go to the buffer state
+			printf("Got the data out of order, going to the BUFFER state\n");
+			addPacketToReceiverBuffer(&receiverBuffer, &receivedPacket);
+			return BUFFER;
+		}
+		else
+		{
+			printf("WE ARE NOT SUPPOSED TO BE HERE\n");
+			exit(-1);
+		}
+	}
 
 	return PROCESS_DATA;
 }
 
-int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
+int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength, ClientConfig config)
 {
 	// First we need to send
 	int timeout = 1000;
 	int readySocket;
 	int received;
 
-
-	printf("WORKING HERE ON GETTING DATA");
-
 	readySocket = pollCall(timeout);
 
 	if (readySocket != -1)
 	{
-		uint8_t dataBuffer[MAXBUF];
 		socklen_t addrLen = sizeof(*server);
-		received = recvfrom(socketNum, dataBuffer, sizeof(dataBuffer), 0, (struct sockaddr *)server, &addrLen);
+		received = recvfrom(socketNum, pduBuffer, MAXBUF, 0, (struct sockaddr *)server, &addrLen);
 
 		if (received < 0)
 		{
@@ -205,9 +355,8 @@ int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, 
 			return DONE;
 		}
 		printf("Received file data (bytes: %d), transitioning to PROCESS_DATA\n", received);
+		*pduLength = received;
 
-		// Here you would write the received data to the file, update your file pointer, etc.
-		// For now, we simply transition to PROCESS_DATA.
 		return PROCESS_DATA;
 	}
 	else
