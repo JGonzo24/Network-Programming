@@ -66,17 +66,29 @@ int windowIsFull(SenderWindow* window)
     }
 }
 
+
+  
 void printWindow(SenderWindow* window)
 {
     printf("Sender Window:\n");
-    printf("Lower: %d, Current: %d, Upper: %d\n", window->lower, window->current, window->upper);
+    printf("Lower: %d, Upper: %d, Current: %d, Window Size: %d\n", window->lower, window->upper, window->current, window->windowSize);
     for (int i = 0; i < window->windowSize; i++)
     {
-        printf("Packet %d: SeqNum: %u, Flag: %u\n", i, window->buffer[i].seqNum, window->buffer[i].flag);
+        printf("Packet %d: SeqNum: %u, Flag: %u, Valid: %s\n", i, window->buffer[i].seqNum, window->buffer[i].flag, window->buffer[i].valid ? "true" : "false");
     }
 }
 
-
+void printAllPacketsInWindow(SenderWindow *window)
+{
+    printf("Packets in Sender Window:\n");
+    for (int i = 0; i < window->windowSize; i++)
+    {
+        // print all packets and all the information for that packet 
+        printf("Packet %d: SeqNum: %u, Flag: %u, PayloadLen: %u, Valid: %s\n", 
+               i, window->buffer[i].seqNum, window->buffer[i].flag, 
+               window->buffer[i].payloadLen, window->buffer[i].valid ? "true" : "false");
+    }
+}
 
 // Init the receiver buffer, this doesn't need to be a circular buffer
 void initReceiverBuffer(ReceiverBuffer *buffer, int bufferSize)
@@ -91,6 +103,12 @@ void initReceiverBuffer(ReceiverBuffer *buffer, int bufferSize)
     buffer->size = bufferSize;
     buffer->count = 0;
     buffer->nextSeqNum = 0;
+    buffer->highest = 0;
+
+    for (int i = 0; i < bufferSize; i++)
+    {
+        buffer->buffer[i].valid = false; // Initialize all packets as invalid
+    }
 }
 
 
@@ -118,3 +136,4 @@ void printReceiverBuffer(ReceiverBuffer *buffer)
         printf("Packet %d: SeqNum: %u, Flag: %u\n", i, buffer->buffer[i].seqNum, buffer->buffer[i].flag);
     }
 }
+

@@ -17,6 +17,10 @@
 #include "helperFunctions.h"
 #include <arpa/inet.h> // For htons and ntohs
 #include <stdbool.h>
+#include "srej.h"
+#include "safeUtil.h"
+
+static uint32_t ackPduSeq = 0;
 
 /**
  * @brief This function creates a PDU (Protocol Data Unit) with the given parameters.
@@ -43,7 +47,6 @@ int createPDU(uint8_t *pduBuffer, uint32_t sequenceNumber, uint8_t flag, uint8_t
     // Flag (1 byte)
     memcpy(pduBuffer + index, &flag, sizeof(flag));
     index += sizeof(flag);
-
 
     // Window Size (1 bytes)
     uint8_t netWindowSize = (uint8_t)windowSize;
@@ -135,13 +138,13 @@ void printPDU(uint8_t *pduBuffer, int pduLength)
 
 /**
  * @brief Create a Ack PDU object
- * 
- * @param ackBuff 
- * @param sequenceNumber 
- * @param flag 
- * @return int 
+ *
+ * @param ackBuff
+ * @param sequenceNumber
+ * @param flag
+ * @return int
  */
-int createAckPDU(uint8_t* ackBuff, uint32_t sequenceNumber, uint8_t flag)
+int createAckPDU(uint8_t *ackBuff, uint32_t sequenceNumber, uint8_t flag)
 {
     int index = 0;
     uint16_t zero = 0;
@@ -174,8 +177,7 @@ int createAckPDU(uint8_t* ackBuff, uint32_t sequenceNumber, uint8_t flag)
     return ackLength;
 }
 
-
-void printBytes(const uint8_t* buffer, int length)
+void printBytes(const uint8_t *buffer, int length)
 {
     for (int i = 0; i < length; i++)
     {
@@ -200,3 +202,96 @@ bool verifyChecksum(const uint8_t *buffer, int length)
 
     return (transmittedChecksum == calculatedChecksum);
 }
+
+// Create the RR PDU
+
+int createRRPDU(uint8_t *rrBuff, uint32_t sequenceNumber, uint8_t flag, uint32_t rrSequenceNumber)
+{
+    // First is the packet sequence number
+    int index = 0;
+    uint16_t zero = 0;
+    // Sequence Number (4 bytes) in network byte order
+    sequenceNumber = htonl(sequenceNumber);
+    memcpy(rrBuff, &sequenceNumber, sizeof(sequenceNumber));
+    index += sizeof(sequenceNumber);
+
+    // Reserve space for checksum (2 bytes, set to zero for now)
+    memcpy(rrBuff + index, &zero, sizeof(zero));
+    index += sizeof(zero);
+    // Flag (1 byte)
+    memcpy(rrBuff + index, &flag, sizeof(flag));
+    index += sizeof(flag);
+
+    // Last is the RR sequence number (the sequence number of packet to be received)
+    rrSequenceNumber = htonl(rrSequenceNumber);
+    memcpy(rrBuff + index, &rrSequenceNumber, sizeof(rrSequenceNumber));
+    index += sizeof(rrSequenceNumber);
+
+    // Add the checksum back in
+    uint16_t checksum = in_cksum((unsigned short *)rrBuff, index);
+    memcpy(rrBuff + sizeof(sequenceNumber), &checksum, sizeof(checksum));
+
+    // Return the length of the RR PDU
+    return index;
+}
+
+int createSREJPDU(uint8_t *srejBuff, uint32_t sequenceNumber, uint8_t flag, uint32_t srejSequenceNumber)
+{
+    // First is the packet sequence number
+    int index = 0;
+    uint16_t zero = 0;
+
+    // Sequence Number (4 bytes) in network byte order
+    sequenceNumber = htonl(sequenceNumber);
+    memcpy(srejBuff, &sequenceNumber, sizeof(sequenceNumber));
+    index += sizeof(sequenceNumber);
+
+    // Reserve space for checksum (2 bytes, set to zero for now)
+    memcpy(srejBuff + index, &zero, sizeof(zero));
+    index += sizeof(zero);
+
+    // Flag (1 byte)
+    memcpy(srejBuff + index, &flag, sizeof(flag));
+    index += sizeof(flag);
+
+    // SREJ sequence number (4 bytes) - the sequence number being SREJ'ed
+    srejSequenceNumber = htonl(srejSequenceNumber);
+    memcpy(srejBuff + index, &srejSequenceNumber, sizeof(srejSequenceNumber));
+    index += sizeof(srejSequenceNumber);
+
+    // Compute checksum over the entire SREJ packet
+    uint16_t checksum = in_cksum((unsigned short *)srejBuff, index);
+    // Store the checksum in the previously reserved spot (after the sequence number)
+    memcpy(srejBuff + sizeof(sequenceNumber), &checksum, sizeof(checksum));
+
+    return index; // Should be 11 bytes total
+}
+
+int sendRR(int socketNum, struct sockaddr_in6 *server, uint32_t nextDataSeq)
+{
+    ackPduSeq++;
+    uint8_t rrBuff[RR_PDU_LEN];
+    int rrLen = createRRPDU(rrBuff, ackPduSeq, RR, nextDataSeq);
+    int bytesSent = safeSendto(socketNum, rrBuff, rrLen, 0, (struct sockaddr *)server, sizeof(*server));
+    if (bytesSent < 0)
+    {
+        perror("Error sending RR");
+        return -1;
+    }
+    return bytesSent;
+}
+
+int sendSREJ(int socketNum, struct sockaddr_in6 *server, uint32_t srejSeq)
+{
+    ackPduSeq++;
+    uint8_t srejBuff[SREJ_PDU_LEN];
+    int srejLen = createSREJPDU(srejBuff, ackPduSeq, SREJ, srejSeq);
+    int bytesSent = safeSendto(socketNum, srejBuff, srejLen, 0, (struct sockaddr *)server, sizeof(*server));
+    if (bytesSent < 0)
+    {
+        perror("Error sending SREJ");
+        return -1;
+    }
+    return bytesSent;
+}
+

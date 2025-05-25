@@ -52,14 +52,24 @@ int checkArgs(int argc, char *argv[]);
 int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config, int sequenceNum);
 int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength, ClientConfig config);
 int processData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
-int inOrder(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config);
+int inOrder(uint8_t *inOrderPDU, int inOrderPDULen, struct sockaddr_in6 *server, ClientConfig config);
+int inBuffer(struct sockaddr_in6 *server, ClientConfig config);
+int flush(struct sockaddr_in6 *server);
+void writeinOrder(uint8_t *buf, int len, uint32_t seq, struct sockaddr_in6 *server);
+void invalidatePacket(uint32_t seq);
 
+// above your talkToServer()
+#define HDRLEN 10
+#define TO_MS 10000
 ClientConfig parseArgs(int argc, char *argv[]);
 typedef enum State STATE;
 static int attempts = 0;
 static int socketNum = 0;
 static ReceiverBuffer receiverBuffer;
 static bool initialized = false;
+static bool eofSeen = false;
+
+static FILE *outputFile = NULL;
 
 enum State
 {
@@ -89,7 +99,7 @@ int main(int argc, char *argv[])
 
 	ClientConfig config = parseArgs(argc, argv);
 
-	sendErr_init(config.errorRate, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
+	sendErr_init(config.errorRate, DROP_OFF, FLIP_OFF, DEBUG_ON, RSEED_ON);
 
 	// argv[6] is the remote machine name
 	socketNum = setupUdpClientToServer(&server, config.remoteMachine, config.remotePort);
@@ -115,19 +125,16 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 	STATE currentState = SEND_FILENAME;
 
 	// Create the filename PDU
-	uint8_t pduBuffer[MAXBUF];
+	uint8_t pduFileName[MAXBUF];
 	int sequenceNumber = 0;
 
 	// Create the PDU with the filename (flag = 8)
-	int pduLength = createPDU(pduBuffer, sequenceNumber, FNAME, (uint8_t *)config.fromFileName,
+	int pduLength = createPDU(pduFileName, sequenceNumber, FNAME, (uint8_t *)config.fromFileName,
 							  strlen(config.fromFileName), config.windowSize, config.bufferSize);
 
+	// this is where we are going to store the data received from the server
 	uint8_t dataBuffer[MAXBUF];
 	int receivedDataLen = 0;
-
-	// Print the PDU
-	printf("printing PDU\n");
-	printPDU(pduBuffer, pduLength);
 
 	while (currentState != DONE)
 	{
@@ -136,40 +143,47 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 		case SEND_FILENAME:
 			// We need to send the filename to the server, so we need what socket and the server address
 			printf("Got to the SEND_FILENAME state\n");
-			currentState = sendFileName(server, pduBuffer, pduLength, config, sequenceNumber);
-			break;
-
-		case WAIT_FOR_ACK:
-			printf("Got to the WAIT_FOR_ACK state\n");
+			currentState = sendFileName(server, pduFileName, pduLength, config, sequenceNumber);
 			break;
 
 		case WAIT_FOR_DATA:
 			// Wait for data from the server
 			printf("Got to the WAIT_FOR_DATA state\n");
 
+			// save the recevied data and the data in the dataBuffer
 			currentState = waitForData(server, dataBuffer, &receivedDataLen, config);
 			break;
 
 		case PROCESS_DATA:
 			// Process the data received from the server
 			printf("Got to the PROCESS_DATA state\n");
+
+			// we are giving this state the dataBuffer and the receivedDataLen
 			currentState = processData(server, dataBuffer, receivedDataLen, config);
 			break;
 
 		case DONE:
 			printf("Got to the DONE state\n");
+			if (outputFile)
+			{
+				fclose(outputFile);
+				outputFile = NULL;
+			}
 			break;
 
 		case INORDER:
 			printf("GOT TO INORDER STATE\n");
-			currentState = inOrder(server, dataBuffer, receivedDataLen, config);
+			currentState = inOrder(dataBuffer, receivedDataLen, server, config);
 			break;
 
 		case BUFFER:
 			printf("GOT TO BUFFER STATE\n");
+			currentState = inBuffer(server, config);
 			break;
+
 		case FLUSH:
 			printf("GOT TO FLUSH STATE\n");
+			currentState = flush(server);
 			break;
 
 		default:
@@ -177,160 +191,412 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 			break;
 		}
 	}
+	printf("WE SHOULDNT NOT BE GETTING HERE");
 	exit(0);
 }
 
-static uint8_t latestPacketBuffer[MAXBUF];
-static int latestPacketLength = 0;
-static bool hasNewPacket = false;
-
-int inOrder(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
+int inBuffer(struct sockaddr_in6 *server, ClientConfig config)
 {
-	// This is the state where we are in order
-	// We need to process the data and then send an ack back to the server
+	printf("WE GOT TO BUFFERING STATE\n\n");
+	uint8_t buf[MAXBUF];
+	int addressLen = sizeof(*server);
+	int bufPacketLen;
+	uint32_t seq;
+	uint8_t flag;
 
-	// First we need to verify the checksum
-	if (!verifyChecksum(pduBuffer, pduLength))
+	int ready = pollCall(TO_MS);
+	if (ready <= 0)
 	{
-		printf("Checksum verification failed!\n");
-		removeFromPollSet(socketNum);
-		close(socketNum);
+		printf("BUFFER: no pkt for 10s → DONE\n");
 		return DONE;
 	}
-
-	// Now we know we got the expected seqNum, write to disk, update, send RR
-
-	// writing to disk
-
-	receiverBuffer.nextSeqNum++;
-
-	FILE *f = fopen(config.toFileName, "ab");
-	if (f == NULL)
+	bufPacketLen = safeRecvfrom(socketNum,
+								buf, MAXBUF,
+								0,
+								(struct sockaddr *)server,
+								&addressLen);
+	if (bufPacketLen < 0)
 	{
-		perror("Error: opening output file");
-		removeFromPollSet(socketNum);
-		close(socketNum);
+		perror("INORDER: recv");
 		return DONE;
 	}
-
-	// Write the data to the file
-	fwrite(pduBuffer + 10, 1, pduLength - 10, f);
-	fclose(f);
-	printf("Wrote %d bytes to file %s\n", pduLength - 10, config.toFileName);
-
-	// Now we need to send an RR back to the server
-	uint8_t ackBuffer[ACKBUF];
-	int ackLength = createAckPDU(ackBuffer,receiverBuffer.nextSeqNum, RR);
-	safeSendto(socketNum, ackBuffer, ackLength, 0, (struct sockaddr *)server, sizeof(*server));
-	printf("Sent RR for next expected seqNum %u\n", receiverBuffer.nextSeqNum);
-
-	// Now poll for 10 seconds to see if there's another packet
-	printf("Polling for 10 seconds to see if there's another packet...\n");
-	int timeout = 10000; // 10 seconds
-	int readySocket = pollCall(timeout);
-
-	if (readySocket != -1)
+	if (!verifyChecksum(buf, bufPacketLen))
 	{
-		// We received another packet
-		socklen_t addrLen = sizeof(*server);
-		latestPacketLength = recvfrom(socketNum, latestPacketBuffer, MAXBUF, 0, (struct sockaddr *)server, &addrLen);
+		printf("INORDER: checksum failed for seq=%u, dropping\n", receiverBuffer.nextSeqNum);
+		return INORDER; // immediately go back to waiting
+	}
 
-		if (latestPacketLength < 0)
+	// 2) Pull out seq & flag
+	memcpy(&seq, buf, sizeof(seq));
+	seq = ntohl(seq);
+	memcpy(&flag, buf + 6, sizeof(flag));
+
+	// 4) In‐order arrival?  (this was the missing one!)
+	if (seq == receiverBuffer.nextSeqNum)
+	{
+		// write it and advance
+		fwrite(buf + HDRLEN, 1, bufPacketLen - HDRLEN, outputFile);
+		fflush(outputFile);
+		printf("BUFFER: flushed seq=%u (%d bytes)\n",
+			   seq, bufPacketLen - HDRLEN);
+		receiverBuffer.nextSeqNum++;
+
+		// now we can fall through to INORDER to flush any more
+		return FLUSH;
+	}
+	// 5) Future packet → buffer + SREJ
+	else if (seq > receiverBuffer.nextSeqNum)
+	{
+		Packet p = {
+			.seqNum = seq,
+			.flag = DATA,
+			.payloadLen = bufPacketLen - HDRLEN,
+			.valid = true};
+		memcpy(p.data, buf + HDRLEN, bufPacketLen - HDRLEN);
+		addPacketToReceiverBuffer(&receiverBuffer, &p);
+		printReceiverBuffer(&receiverBuffer);
+
+		receiverBuffer.count++;
+		receiverBuffer.highest = seq;
+
+		sendSREJ(socketNum, server, receiverBuffer.nextSeqNum);
+		printf("BUFFER: buffered seq=%u, sent SREJ for %u, highest=%u\n",
+			   seq, receiverBuffer.nextSeqNum, receiverBuffer.highest);
+		return BUFFER;
+	}
+	// 6) Duplicate → ignore
+	else
+	{
+		// if seq# is less than nextSeqNum, rr expected nextSeqNum
+		if (seq < receiverBuffer.nextSeqNum)
 		{
-			perror("Error receiving data in INORDER");
+			printf("BUFFER: duplicate seq=%u, ignoring\n", seq);
+			sendRR(socketNum, server, receiverBuffer.nextSeqNum);
+			printf("BUFFER: sent RR for %u\n", receiverBuffer.nextSeqNum);
+
+			// also srej expected nextSeqNum
+			sendSREJ(socketNum, server, receiverBuffer.nextSeqNum);
+			printf("BUFFER: sent SREJ for %u\n", receiverBuffer.nextSeqNum);
+		}
+		else
+		{
+			printf("BUFFER: unexpected seq=%u, ignoring\n", seq);
+		}
+
+		return BUFFER;
+	}
+}
+
+void writeinOrder(uint8_t *buf, int len, uint32_t seq, struct sockaddr_in6 *server)
+{
+	// got the missing one, deliver + ack + flush rest
+	int w = fwrite(buf, 1, len, outputFile);
+	fflush(outputFile);
+	printf("INORDER WRITINGG: flushed seq=%u (%d bytes)\n", seq, w);
+
+	invalidatePacket(seq);
+	receiverBuffer.nextSeqNum++;
+	receiverBuffer.highest = seq;
+	invalidatePacket(seq);
+
+	int sent = sendRR(socketNum, server, receiverBuffer.nextSeqNum);
+
+	if (sent < 0)
+	{
+		perror("INORDER: sendRR failed\n");
+		exit(-1);
+	}
+}
+
+int flush(struct sockaddr_in6 *server)
+{
+	// As long as we have buffered packets, see if the next‐expected is in the buffer
+	while (receiverBuffer.count > 0)
+	{
+		// compute the slot where nextSeqNum would live
+		int idx = receiverBuffer.nextSeqNum % receiverBuffer.size;
+		Packet *p = &receiverBuffer.buffer[idx];
+
+		// if that slot really holds our nextSeqNum, deliver it
+		if ((uint32_t)p->seqNum == receiverBuffer.nextSeqNum && p->valid)
+		{
+
+			int w = fwrite(p->data, 1, p->payloadLen, outputFile);
+			fflush(outputFile);
+			printf("FLUSH: wrote buffered seq=%u (%d bytes)\n",
+				   p->seqNum, w);
+
+			// invalidate the packet in the buffer
+			p->valid = false;
+			receiverBuffer.nextSeqNum++;
+			receiverBuffer.count--;
+
+			// send RR for the next expected sequence number
+			if (sendRR(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("FLUSH: sendRR failed");
+				exit(-1);
+			}
+		}
+		// else if expected < highest and not valid in the buffer
+		else if (receiverBuffer.nextSeqNum < receiverBuffer.highest && !p->valid)
+		{
+			// srej expected
+			printf("FLUSH: seq=%u not in buffer, sending SREJ for %u\n",
+				   receiverBuffer.nextSeqNum, receiverBuffer.nextSeqNum);
+			if (sendSREJ(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("FLUSH: sendSREJ failed");
+				exit(-1);
+			}
+
+			// RR expected nextSeqNum
+			if (sendRR(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("FLUSH: sendRR failed");
+				exit(-1);
+			}
+			printf("FLUSH: sent SREJ for %u, RR for %u\n",
+				   receiverBuffer.nextSeqNum, receiverBuffer.nextSeqNum);
+
+			return BUFFER; // stay in BUFFER state to wait for more packets
+		}
+
+		// if expected == highest, write to disk, increment expected, RR expected, go back to inorder
+		if (receiverBuffer.nextSeqNum == receiverBuffer.highest)
+		{
+			printf("FLUSH: nextSeqNum %u is highest, flushing to disk\n", receiverBuffer.nextSeqNum);
+			writeinOrder(p->data, p->payloadLen, p->seqNum, server);
+			// after writing, we can go back to INORDER state
+			return INORDER;
+		}
+		else
+		{
+			printf("FLUSH: nextSeqNum %u not highest %u, waiting for more packets\n",
+				   receiverBuffer.nextSeqNum, receiverBuffer.highest);
+		}
+	}
+	// after flushing everything in order, go back to INORDER state
+	if (eofSeen)
+	{
+		printf("FLUSH: EOF seen, closing file and exiting.\n");
+		fclose(outputFile);
+		outputFile = NULL;
+		removeFromPollSet(socketNum);
+		close(socketNum);
+		return DONE;
+	}
+	printf("FLUSH: No more packets to flush, staying in INORDER state.\n");
+	return INORDER;
+}
+
+int inOrder(uint8_t *inOrderPDU, int inOrderPDULen, struct sockaddr_in6 *server, ClientConfig config)
+{
+	uint32_t seqNum;
+	uint8_t flag;
+	int addressLen = sizeof(*server);
+
+	while (1)
+	{
+		int ready = pollCall(TO_MS);
+		if (ready < 0)
+		{
 			return DONE;
 		}
 
-		hasNewPacket = true;
-		printf("Received another packet (%d bytes) in INORDER, going to PROCESS_DATA\n", latestPacketLength);
+		int newPacketLen = safeRecvfrom(socketNum, inOrderPDU, MAXBUF, 0, (struct sockaddr *)server, &addressLen);
+		if (newPacketLen < 0)
+		{
+			perror("INORDER: recv");
+			return DONE;
+		}
+		if (!verifyChecksum(inOrderPDU, newPacketLen))
+		{
+			printf("INORDER: checksum failed for seq=%u, dropping\n", receiverBuffer.nextSeqNum);
+			continue;
+		}
 
-		// Update the pduLength for the new packet
-		// You'll need to pass this back somehow - see below for solution
+		// Extract the sequence number and flag from the in-order PDU.
+		memcpy(&seqNum, inOrderPDU, sizeof(seqNum));
+		seqNum = ntohl(seqNum);
+		memcpy(&flag, inOrderPDU + 6, sizeof(flag));
 
-		return PROCESS_DATA;
-	}
-	else
-	{
-		// 10 second timeout - no more packets, transfer complete
-		printf("10 second timeout in INORDER - transfer complete\n");
-		return DONE;
+		printf("INORDER: Received packet with seqNum %u and flag %u\n", seqNum, flag);
+
+		// Handle EOF flag
+		if (flag == EOF_FLAG)
+		{
+			eofSeen = true;
+			
+			//create the EOF PDU
+			uint8_t eofPDU[MAXBUF];
+			int eofPDULen = createPDU(eofPDU, seqNum, EOF_FLAG, NULL, 0, receiverBuffer.size, receiverBuffer.size);
+			printf("INORDER: Received EOF flag, making the EOF PDU of length %d\n", eofPDULen);
+
+			// send the EOF PDU to the server
+			if (safeSendto(socketNum, eofPDU, eofPDULen, 0, (struct sockaddr *)server, addressLen) < 0)
+			{
+				perror("INORDER: send EOF failed");
+				exit(-1);
+			}
+			printf("INORDER: Sent EOF PDU to server, closing file and exiting.\n");
+			// Ensure that all buffered packets are flushed before exiting
+			printReceiverBuffer(&receiverBuffer);
+			return DONE;
+		}
+
+		// If the sequence number matches the next expected sequence number
+		if (seqNum == receiverBuffer.nextSeqNum)
+		{
+			printf("INORDER: Packet %u is in order, writing to file.\n", seqNum);
+			fwrite(inOrderPDU + HDRLEN, 1, inOrderPDULen - HDRLEN, outputFile);
+			fflush(outputFile);
+
+			// Invalidate the packet and update the next expected sequence number
+			receiverBuffer.nextSeqNum++;
+			printf("INORDER: Updated nextSeqNum to %u\n", receiverBuffer.nextSeqNum);
+
+			if (sendRR(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("INORDER: sendRR failed");
+				exit(-1);
+			}
+
+			continue; // Continue to process more packets
+		}
+		else if (seqNum > receiverBuffer.nextSeqNum)
+		{
+			printf("INORDER: Packet %u is out of order, buffering and sending SREJ for %u\n", seqNum, receiverBuffer.nextSeqNum);
+
+			// Buffer the out-of-order packet
+			addPacketToReceiverBuffer(&receiverBuffer, &(Packet){.seqNum = seqNum, .flag = DATA, .payloadLen = inOrderPDULen - HDRLEN, .valid = true});
+			sendSREJ(socketNum, server, receiverBuffer.nextSeqNum); // Send SREJ for the next expected sequence number
+			return BUFFER;											// Transition to BUFFER state to handle buffered packets
+		}
+		else if (seqNum < receiverBuffer.nextSeqNum)
+		{
+			if (sendRR(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("INORDER: sendRR failed");
+				exit(-1);
+			}
+		}
+		return INORDER; // Stay in INORDER state to process more packets
 	}
 }
 
 int processData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, ClientConfig config)
 {
-	// Now we will process the Data that was just received
-	if (hasNewPacket)
-	{
-		// If we have a new packet, use the latest packet buffer and length
-		pduBuffer = latestPacketBuffer;
-		pduLength = latestPacketLength;
-		hasNewPacket = false; // Reset the flag
-	}
-
-	// First initialize the receiver buffer
-
+	// First initialize the receiver buffer if not already done.
 	if (!initialized)
 	{
 		initialized = true;
 		initReceiverBuffer(&receiverBuffer, config.windowSize);
+		outputFile = fopen(config.toFileName, "wb");
+		if (!outputFile)
+		{
+			perror("Error opening output file");
+			removeFromPollSet(socketNum);
+			close(socketNum);
+			return DONE;
+		}
 		printf("Receiver buffer initialized with size %d\n", receiverBuffer.size);
 	}
 
+	// Extract the sequence number and flag from the data PDU.
 	uint32_t seqNum;
 	uint8_t flag;
-
 	memcpy(&seqNum, pduBuffer, sizeof(seqNum));
 	seqNum = ntohl(seqNum);
-	printf("Sequence Number: %u\n", seqNum);
-
-	// Get the flag
 	memcpy(&flag, pduBuffer + 6, sizeof(flag));
-	printf("Flag: %u\n", flag);
-	Packet receivedPacket;
 
-	receivedPacket.seqNum = seqNum;
-	receivedPacket.flag = flag;
-
-	// Get the payload
-	memcpy(receivedPacket.data, pduBuffer + 10, pduLength - 10);
-
-	printReceiverBuffer(&receiverBuffer);
-
-	// Verify the checksum
-	if (!verifyChecksum(pduBuffer, pduLength))
+	// Handle EOF flag
+	if (flag == EOF_FLAG)
 	{
-		printf("Checksum verification failed!\n");
-		removeFromPollSet(socketNum);
-		close(socketNum);
-		return DONE;
+		eofSeen = true;
+		printf("Received the EOF flag, still waiting for RR\n");
+		// Create the EOF PDU
+		uint8_t eofPDU[MAXBUF];
+		int eofPDULen = createPDU(eofPDU, seqNum, EOF_FLAG, NULL, 0, receiverBuffer.size, receiverBuffer.size);
+		printf("Creating EOF PDU of length %d\n", eofPDULen);
+		// Send the EOF PDU to the server
+		if (safeSendto(socketNum, eofPDU, eofPDULen, 0, (struct sockaddr *)server, sizeof(*server)) < 0)
+		{
+			perror("Error sending EOF PDU");
+			exit(-1);
+		}
+		printReceiverBuffer(&receiverBuffer);
+		
+		while (receiverBuffer.count > 0)
+		{
+			// Flush any buffered packets
+			int flushState = flush(server);
+			if (flushState == DONE)
+			{
+				printf("Flushed all buffered packets, exiting.\n");
+				fclose(outputFile);
+				outputFile = NULL;
+				removeFromPollSet(socketNum);
+				close(socketNum);
+				return DONE;
+			}
+		}
 	}
 
-	// Check the flag
+	printf("INTIAL RECEIVER BUFFER:\n");
+	printReceiverBuffer(&receiverBuffer);
+
+	// Process DATA flag.
 	if (flag == DATA)
 	{
-		// Check the sequence number to determine if it is in order
 		if (seqNum == receiverBuffer.nextSeqNum)
 		{
-			// Go to the inorder state
-			printf("Got the data in order, going to the INORDER state\n");
+			// return INORDER STATE
+			printf("Received in-order packet with seqNum %u\n", seqNum);
+			// we need to write this buffer to the output file
+			fwrite(pduBuffer + HDRLEN, 1, pduLength - HDRLEN, outputFile);
+			fflush(outputFile);
+			printf("Wrote %d bytes to output file for seqNum %u\n", pduLength - HDRLEN, seqNum);
+			// Invalidate the packet and update the next expected sequence number
+			receiverBuffer.nextSeqNum++;
+			printf("Updated nextSeqNum to %u\n", receiverBuffer.nextSeqNum);
+			if (sendRR(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("Error sending RR");
+				exit(-1);
+			}
+
 			return INORDER;
 		}
 		else if (seqNum > receiverBuffer.nextSeqNum)
 		{
-			// Go to the buffer state
-			printf("Got the data out of order, going to the BUFFER state\n");
-			addPacketToReceiverBuffer(&receiverBuffer, &receivedPacket);
-			return BUFFER;
+			// Buffer the out-of-order packet
+			printf("Received out-of-order packet with seqNum %u, buffering it\n", seqNum);
+			Packet p = {
+				.seqNum = seqNum,
+				.flag = DATA,
+				.payloadLen = pduLength - HDRLEN,
+				.valid = true};
+			memcpy(p.data, pduBuffer + HDRLEN, pduLength - HDRLEN);
+			addPacketToReceiverBuffer(&receiverBuffer, &p);
+			printReceiverBuffer(&receiverBuffer);
+
+			sendSREJ(socketNum, server, receiverBuffer.nextSeqNum); // Send SREJ for the next expected sequence number
+			return BUFFER;											// Transition to BUFFER state to handle buffered packets
 		}
-		else
+		else if (seqNum < receiverBuffer.nextSeqNum)
 		{
-			printf("WE ARE NOT SUPPOSED TO BE HERE\n");
-			exit(-1);
+			printf("Received duplicate packet with seqNum %u, ignoring it\n", seqNum);
+			if (sendRR(socketNum, server, receiverBuffer.nextSeqNum) < 0)
+			{
+				perror("Error sending RR for duplicate packet");
+				exit(-1);
+			}
+			return INORDER; // Stay in INORDER state to process more packets
 		}
 	}
-
-	return PROCESS_DATA;
+	printf("PROCESS DATA SHOULD NOT GET HERE\n");
+	return DONE;
 }
 
 int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength, ClientConfig config)
@@ -344,8 +610,9 @@ int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength,
 
 	if (readySocket != -1)
 	{
-		socklen_t addrLen = sizeof(*server);
-		received = recvfrom(socketNum, pduBuffer, MAXBUF, 0, (struct sockaddr *)server, &addrLen);
+		// save the data into the pduBuffer
+		int addrLen = sizeof(*server);
+		received = safeRecvfrom(socketNum, pduBuffer, MAXBUF, 0, (struct sockaddr *)server, &addrLen);
 
 		if (received < 0)
 		{
@@ -355,6 +622,8 @@ int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength,
 			return DONE;
 		}
 		printf("Received file data (bytes: %d), transitioning to PROCESS_DATA\n", received);
+
+		// save the length of the received data
 		*pduLength = received;
 
 		return PROCESS_DATA;
@@ -417,8 +686,8 @@ int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength,
 			// We have a socket that is ready to read now, get the ack
 			uint8_t ackBuffer[ACKBUF];
 
-			socklen_t addrLen = sizeof(*server);
-			int recieved = recvfrom(socketNum, ackBuffer, sizeof(ackBuffer), 0, (struct sockaddr *)server, &addrLen);
+			int addrLen = sizeof(*server);
+			int recieved = safeRecvfrom(socketNum, ackBuffer, sizeof(ackBuffer), 0, (struct sockaddr *)server, &addrLen);
 
 			// Check for errors, if received bad file then go to DONE state
 			if (recieved < 0)
@@ -452,8 +721,8 @@ int sendFileName(struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength,
 
 				// Declaring file ok ACK == 36
 				uint8_t fileOK[ACKBUF];
-				createAckPDU(fileOK, sequenceNum, FILE_OK_ACK);
-				safeSendto(socketNum, fileOK, sizeof(fileOK), 0, (struct sockaddr *)server, sizeof(*server));
+				int ctrlLen = createAckPDU(fileOK, sequenceNum, FILE_OK_ACK);
+				safeSendto(socketNum, fileOK, ctrlLen, 0, (struct sockaddr *)server, sizeof(*server));
 				return WAIT_FOR_DATA;
 			}
 			else
@@ -548,4 +817,10 @@ ClientConfig parseArgs(int argc, char *argv[])
 	config.remotePort = atoi(argv[7]);
 
 	return config;
+}
+
+void invalidatePacket(uint32_t seq)
+{
+	int index = seq % receiverBuffer.size;
+	receiverBuffer.buffer[index].valid = false;
 }

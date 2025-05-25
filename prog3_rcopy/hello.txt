@@ -1,4 +1,4 @@
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam enim, vitae facilisis enim urna eu enim. Mauris dictum, sapien nec cursus dictum, enim enim cursus enim, nec cursus enim enim nec enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam euismod, enim nec cursus dictum, enim enim cursus enim, nec cursus enim enim nec enim.
+start Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam enim, vitae facilisis enim urna eu enim. Mauris dictum, sapien nec cursus dictum, enim enim cursus enim, nec cursus enim enim nec enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam euismod, enim nec cursus dictum, enim enim cursus enim, nec cursus enim enim nec enim.
 
 Suspendisse potenti. Proin euismod, enim nec cursus dictum, enim enim cursus enim, nec cursus enim enim nec enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dictum, enim nec cursus dictum, enim enim cursus enim, nec cursus enim enim nec enim.
 
@@ -10,6 +10,48 @@ The quick brown fox jumps over the lazy dog. 1234567890!@#$%^&*()_+[]{}|;':",./<
 
 Random text for testing purposes. This file contains a lot of random text to test file reading, writing, and network transfer. End of random text.
 
+Another line of random text to increase the file size and test buffer handling in file operations.
 
+abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;':",.<>/?~`
+
+Testing file reading and writing with even more random content. The rain in Spain stays mainly in the plain.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+
+Quick test: 9876543210 zyxwvutsrqponmlkjihgfedcba
+
+End of additional random text.
+
+---
+
+2Here is even more random text to further increase the file size and test various edge cases in file processing. 
+
+Pack my box with five dozen liquor jugs. Sphinx of black quartz, judge my vow. How razorback-jumping frogs can level six piqued gymnasts!
+
+0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;':",.<>/?~`
+
+The five boxing wizards jump quickly. Bright vixens jump; dozy fowl quack. Jackdaws love my big sphinx of quartz.
+
+Testing, testing, 1, 2, 3... This is a test of the emergency broadcast system. If this had been an actual emergency, you would have been instructed where to tune in your area.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam enim, vitae facilisis enim urna eu enim.
+
+Random data: 123abcDEF!@#456ghiJKL$%^789mnoPQR&*()_+0stuVWX-=[]{}|;':",.<>/?~`
+
+The quick brown fox jumps over the lazy dog. The quick onyx goblin jumps over the lazy dwarf.
+
+End of even more random text for testing purposes.
+
+---
+
+3Yet another block of random text to ensure the file is sufficiently large for robust testing.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Random string: qwertyuiopasdfghjklzxcvbnm1234567890!@#$%^&*()_+-=[]{}|;':",.<>/?~`
+
+End of large random text block.
 
 

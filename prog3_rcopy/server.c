@@ -76,7 +76,7 @@ void processServer(int socketNum, double err_rate);
 void processClient(int socketNum, uint8_t *buffer, int dataLen, struct sockaddr_in6 client, int16_t buffSize, int8_t windowSize);
 STATE fileOpen(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int32_t dataLen, char **data_file);
 STATE waitOnAck(int socketNum, struct sockaddr_in6 client);
-STATE sendData(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int dataLen, char *data_file, int16_t buffSize, int8_t windowSize);
+STATE sendData(int socketNum, struct sockaddr_in6 client, char *data_file, int16_t buffSize, int8_t windowSize);
 
 int main(int argc, char *argv[])
 {
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     portNumber = checkArgs(argc, argv);
 
     double err_rate = atof(argv[1]);
-    sendErr_init(err_rate, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_OFF);
+    sendErr_init(err_rate, DROP_ON, FLIP_OFF, DEBUG_ON, RSEED_ON);
 
     socketNum = udpServerSetup(portNumber);
 
@@ -112,11 +112,11 @@ void processServer(int socketNum, double err_rate)
 
     while (1)
     {
-        dataLen = safeRecvfrom(socketNum, buffer, MAXBUF, 0, (struct sockaddr *)&client, (int *)&clientAddrLen);
+        dataLen = safeRecvfrom(socketNum, buffer, MAXBUF, 0, (struct sockaddr *)&client, &clientAddrLen);
 
         printf("Received bytes in the main server socket:\n");
-        //printPDU(buffer, dataLen);
-        // check the checksum
+        // printPDU(buffer, dataLen);
+        //  check the checksum
         bool checkSum;
         checkSum = verifyChecksum(buffer, dataLen);
 
@@ -147,7 +147,7 @@ void processServer(int socketNum, double err_rate)
                 printf("Buffer size: %d\n", buffSize);
                 printf("Window size: %d\n", winSize);
 
-                sendErr_init(err_rate, DROP_ON, FLIP_ON, DEBUG_ON, RSEED_ON);
+                sendErr_init(err_rate, DROP_ON, FLIP_OFF, DEBUG_ON, RSEED_ON);
 
                 printf("Child fork() - child pid: %d\n", getpid());
 
@@ -194,210 +194,183 @@ void processClient(int socketNum, uint8_t *buffer, int dataLen, struct sockaddr_
 
         case SEND_DATA:
             printf("GOT TO SEND DATA!");
-            state = sendData(socketNum, client, buffer, dataLen, data_file, buffSize, windowSize);
+            state = sendData(socketNum, client, data_file, buffSize, windowSize);
+            break;
+        case DONE:
+            printf("GOT TO DONE STATE\n");
+            if (data_file != NULL)
+            {
+                free(data_file);
+                data_file = NULL;
+            }
             break;
 
         default:
             state = DONE;
+            printf("GOT TO DONE STATE from default\n\n");
             break;
         }
     }
 }
 
-STATE sendData(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int dataLen,
+STATE sendData(int socketNum, struct sockaddr_in6 client,
                char *data_file, int16_t buffSize, int8_t windowSize)
 {
-    int seqNum = 0;
-    // just double check packet to be sure
-    printf("\nCheck the buffer just to be sure\n");
-    //printPDU(buffer, dataLen);
-
-    SenderWindow window;
-    initSenderWindow(&window, windowSize);
-
-    printf("In sendData state in server. Window size: %d\n. ", windowSize);
-    printf("Buffer size from cmd line: %d\n", buffSize);
-
-    printf("WE ARE NOW GOING TO TRY TO SEND DATA FROM THE SERVER TO CLIENT\n");
-
-    // Now to send data...........
-    printf("Opening File: %s\n", data_file);
-
-    FILE *file = fopen(data_file, "rb");
-    if (!file)
+    // Open file...
+    FILE *fp = fopen(data_file, "rb");
+    if (!fp)
     {
-        perror("Failed to open file in sendData state in server");
+        perror("Error opening file");
         return DONE;
     }
-    else
+
+    // Initialize window
+    SenderWindow W;
+    initSenderWindow(&W, windowSize);
+
+    // Buffer for raw file reads
+    uint8_t dataBuf[MAXBUF];
+    // Single PDU buffer for all outgoing/control PDUs
+    uint8_t pdu[MAXBUF];
+
+    uint32_t nextSeq = 0;
+    bool eof = false;
+
+    // Main send loop
+    while (!eof)
     {
-        printf("Was able to open the file to try and read from the server now!\n");
-        bool eofSeen = false;
-
-        while (!windowIsFull(&window) && !eofSeen)
+        // refill window
+        while (!windowIsFull(&W) && !eof)
         {
-            // Read a chunk of data from the file
-            uint8_t dataBuffer[buffSize];
-            size_t bytesRead = fread(dataBuffer, 1, buffSize, file);
-
-            if (bytesRead < 0)
+            int bytesRead = fread(dataBuf, 1, buffSize, fp);
+            if (bytesRead <= 0)
             {
-                perror("Error reading from file");
-                fclose(file);
-                return DONE;
-            }
-            else if (bytesRead == 0)
-            {
-                eofSeen = true;
-                printf("End of file reached.\n");
-
-                // send EOF flag
-                uint8_t eofBuffer[ACKBUF];
-                uint32_t seqNum = 0; // Replace with your protocol's sequence number if needed
-                int eofLen = createPDU(eofBuffer, seqNum, EOF_FLAG, NULL, 0, windowSize, buffSize);
-                safeSendto(socketNum, eofBuffer, eofLen, 0, (struct sockaddr *)&client, sizeof(client));
-
-                printf("Sent EOF flag to client.\n");
-                fclose(file);
+                eof = true;
                 break;
             }
 
-            // Create a PDU with the data
-            uint8_t pduBuffer[MAXBUF];
-            int pduLen = createPDU(pduBuffer, seqNum, DATA, dataBuffer, bytesRead, windowSize, buffSize);
-
-            Packet packet;
-            packet.seqNum = seqNum;
-            packet.flag = DATA;
-            memcpy(packet.data, dataBuffer, bytesRead);
-
-            // Add the packet to the window
-            addPacketToWindow(&window, &packet);
-
-            // Send the PDU to the client
-            printf("Sending PDU with sequence number %d and flag %d\n", seqNum, DATA);
-          //  printPDU(pduBuffer, pduLen);
-
-            int bytesSent = safeSendto(socketNum, pduBuffer, pduLen, 0, (struct sockaddr *)&client, sizeof(client));
-            seqNum++;
-            printWindow(&window);
-
-            window.current = (window.current + 1);
-
-            if (bytesSent < 0)
+            int pduLen = createPDU(pdu, nextSeq, DATA,
+                                   dataBuf, bytesRead,
+                                   windowSize, buffSize);
+            if (pduLen < 0)
             {
-                perror("Error sending data");
-                fclose(file);
+                perror("createPDU");
+                fclose(fp);
                 return DONE;
             }
 
-            printf("Sent %d bytes to client.\n", bytesSent);
+            safeSendto(socketNum, pdu, pduLen, 0,
+                       (struct sockaddr *)&client, sizeof(client));
+            W.current = nextSeq;
+            printf("Sent DATA seq=%u (%d bytes)\n", nextSeq, bytesRead);
 
-            // Poll, wait for RR or SREJ
-            // If there is something there to read immediately, then we can read it
-            while (pollCall(0) > 0)
+            // stash in window
+            Packet pkt = {.seqNum = nextSeq,
+                          .flag = DATA,
+                          .payloadLen = bytesRead,
+                          .valid = true};
+            memcpy(pkt.data, dataBuf, bytesRead);
+            addPacketToWindow(&W, &pkt);
+            nextSeq++;
+            printWindow(&W);
+        }
+
+        // wait for RR/SREJ or timeout
+        int ready = pollCall(1000);
+        if (ready > 0)
+        {
+            uint8_t ctrl[MAXBUF];
+            int addrLen = sizeof(client);
+            int r = safeRecvfrom(socketNum, ctrl, sizeof(ctrl), 0,
+                                 (struct sockaddr *)&client, &addrLen);
+            if (r < 0)
             {
-                // Proccess RR or SREJ
-                uint8_t ackBuffer[ACKBUF];
-                socklen_t addrLen = sizeof(client);
-                int received = safeRecvfrom(socketNum, ackBuffer, ACKBUF, 0, (struct sockaddr *)&client, (int *)&addrLen);
-                if (received < 0)
-                {
-                    perror("Error receiving ack");
-                    fclose(file);
-                    return DONE;
-                }
-
-                // Extract the flag from the ack
-                uint8_t flag;
-                memcpy(&flag, ackBuffer + 6, sizeof(flag));
-                printf("Received ack with flag %d\n", flag);
-
-                // Check if the flag is RR or SREJ
-                if (flag == RR)
-                {
-                    printf("Received RR, moving window forward.\n");
-                    // Move the window forward
-                    window.lower = (window.lower + 1) % window.windowSize;
-                    window.current = (window.current + 1) % window.windowSize;
-                }
-                else if (flag == SREJ)
-                {
-                    printf("Received SREJ, resending packet.\n");
-                    // Resend the packet
-                    int resendIndex = (window.lower + 1) % window.windowSize;
-                    Packet *resendPacket = &window.buffer[resendIndex];
-                    int resendLen = createPDU(pduBuffer, resendPacket->seqNum, DATA, resendPacket->data, bytesRead, windowSize, buffSize);
-                    safeSendto(socketNum, pduBuffer, resendLen, 0, (struct sockaddr *)&client, sizeof(client));
-                }
-                else
-                {
-                    printf("Received unexpected flag %d, ignoring.\n", flag);
-                }
+                perror("recv RR/SREJ");
+                break;
             }
+            if (!verifyChecksum(ctrl, r))
+                continue;
 
-            // while the window is closed, if poll doesn't time out, then process the rr/srej
-            // else, send lowest packet in the window
-            while (windowIsFull(&window))
+            uint8_t flag = ctrl[6];
+            uint32_t aseq;
+            memcpy(&aseq, ctrl + 7, sizeof(aseq));
+            aseq = ntohl(aseq);
+
+            if (flag == RR)
             {
-                int timeout = 1000;
-                int ready;
-
-                ready = pollCall(timeout);
-
-                if (ready == -1)
+                W.lower = aseq;
+                W.upper = aseq + windowSize;
+                printf("RR %u → slide to [%u,%u)\n",
+                       aseq, W.lower, W.upper);
+            }
+            else if (flag == SREJ)
+            {
+                Packet *p = &W.buffer[aseq % windowSize];
+                if (p->valid)
                 {
-                    printf("Timed out waiting for RR/SREJ, resending lowest packet in window.\n");
-                    // Resend the lowest packet in the window
-                    int resendIndex = window.lower;
-                    Packet *resendPacket = &window.buffer[resendIndex];
-                    int resendLen = createPDU(pduBuffer, resendPacket->seqNum, DATA, resendPacket->data, bytesRead, windowSize, buffSize);
-                    safeSendto(socketNum, pduBuffer, resendLen, 0, (struct sockaddr *)&client, sizeof(client));
-                }
-                else
-                {
-                    // We have a socket that is ready to read now, process the rr/srej
-                    uint8_t ackBuffer[ACKBUF];
-                    socklen_t addrLen = sizeof(client);
-                    int received = safeRecvfrom(socketNum, ackBuffer, ACKBUF, 0, (struct sockaddr *)&client, (int *)&addrLen);
-                    if (received < 0)
-                    {
-                        perror("Error receiving ack");
-                        fclose(file);
-                        return DONE;
-                    }
-                    // Extract the flag from the ack
-                    uint8_t flag;
-                    memcpy(&flag, ackBuffer + 6, sizeof(flag));
-                    printf("Received ack with flag %d\n", flag);
-                    // Check if the flag is RR or SREJ
-                    if (flag == RR)
-                    {
-                        printf("Received RR, moving window forward.\n");
-                        // Move the window forward
-                        window.lower = (window.lower + 1) % window.windowSize;
-                        window.current = (window.current + 1) % window.windowSize;
-                    }
-                    else if (flag == SREJ)
-                    {
-                        printf("Received SREJ, resending packet.\n");
-                        // Resend the packet
-                        int resendIndex = (window.lower + 1) % window.windowSize;
-                        Packet *resendPacket = &window.buffer[resendIndex];
-                        int resendLen = createPDU(pduBuffer, resendPacket->seqNum, DATA, resendPacket->data, bytesRead, windowSize, buffSize);
-                        safeSendto(socketNum, pduBuffer, resendLen, 0, (struct sockaddr *)&client, sizeof(client));
-                    }
-                    else
-                    {
-                        printf("Received unexpected flag %d, ignoring.\n", flag);
-                    }
+                    int len = createPDU(pdu, p->seqNum, DATA,
+                                        p->data, p->payloadLen,
+                                        windowSize, buffSize);
+                    safeSendto(socketNum, pdu, len, 0,
+                               (struct sockaddr *)&client, sizeof(client));
+                    printf("Resent SREJ %u\n", aseq);
                 }
             }
         }
+        else
+        {
+            // timeout: resend oldest
+            uint32_t oldest = W.lower;
+            Packet *p = &W.buffer[oldest % windowSize];
+            if (p->valid)
+            {
+                int len = createPDU(pdu, p->seqNum, DATA,
+                                    p->data, p->payloadLen,
+                                    windowSize, buffSize);
+                safeSendto(socketNum, pdu, len, 0,
+                           (struct sockaddr *)&client, sizeof(client));
+                printf("Timeout → resent oldest seq=%u\n", oldest);
+            }
+        }
     }
-    printf("Finished sending data.\n"); 
-    exit(-1);
-    fclose(file);
+
+    // send one EOF
+    int eofLen = createPDU(pdu, nextSeq, EOF_FLAG, NULL, 0,
+                           windowSize, buffSize);
+    safeSendto(socketNum, pdu, eofLen, 0,
+               (struct sockaddr *)&client, sizeof(client));
+    printf("Sent EOF seq=%u\n", nextSeq);
+
+    // fclose(fp);
+    // return DONE;
+    printWindow(&W);
+    while (1)
+    {
+        // wait for final RR
+        int ready = pollCall(1000);
+        if (ready > 0)
+        {
+            uint8_t ctrl[MAXBUF];
+            int addrLen = sizeof(client);
+            int r = safeRecvfrom(socketNum, ctrl, sizeof(ctrl), 0,
+                                 (struct sockaddr *)&client, &addrLen);
+            if (r < 0)
+            {
+                perror("recv final RR");
+                break;
+            }
+            if (!verifyChecksum(ctrl, r))
+                continue;
+
+            uint8_t flag = ctrl[6];
+            if (flag == RR)
+            {
+                printf("Final RR received, exiting SEND_DATA state.\n");
+                break;
+            }
+        }
+    }
+    return DONE;
 }
 
 STATE waitOnAck(int socketNum, struct sockaddr_in6 client)
@@ -414,6 +387,13 @@ STATE waitOnAck(int socketNum, struct sockaddr_in6 client)
         return DONE;
     }
 
+    // // check the checksum
+    // bool checkSum = verifyChecksum(ackBuffer, received);
+    // if (checkSum == false)
+    // {
+    //     return WAIT_ON_ACK;
+    // }
+
     // Extract the flag from the ack (assuming flag is the 7th byte in the ACK PDU)
     uint8_t flag;
     memcpy(&flag, ackBuffer + 6, 1);
@@ -422,6 +402,7 @@ STATE waitOnAck(int socketNum, struct sockaddr_in6 client)
     if (flag == FILE_OK_ACK)
     {
         printf("Received file ok ack from client, transitioning to SEND_DATA.\n");
+        printf("Ready to send data to client.\n");
         return SEND_DATA;
     }
     else
@@ -472,7 +453,7 @@ STATE fileOpen(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int32
             printf("Failed to open file %s, sending file NOT OK ack\n", fname);
             // Create a NACK PDU (using for example flag 37 for file error)
             uint8_t ackBuffer[ACKBUF];
-            uint32_t seqNum = 0; // Replace with your protocol's sequence number if needed
+            uint32_t seqNum = 0;
             int ackLen = createAckPDU(ackBuffer, seqNum, FNAME_NOT_OK);
             safeSendto(socketNum, ackBuffer, ackLen, 0, (struct sockaddr *)&client, sizeof(client));
             // Remain in FILE_OPEN (or re-enter SEND_FILENAME to resend the filename)
@@ -498,7 +479,7 @@ STATE fileOpen(int socketNum, struct sockaddr_in6 client, uint8_t *buffer, int32
             int ackLen = createAckPDU(ackBuffer, seqNum, FNAME_OK);
             safeSendto(socketNum, ackBuffer, ackLen, 0, (struct sockaddr *)&client, sizeof(client));
             fclose(fp);
-            // Transition to the next state (for example, WAIT_ON_ACK to wait for further instructions)
+
             *data_file = malloc(strlen(fname) + 1);
             if (*data_file == NULL)
             {

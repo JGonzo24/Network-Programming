@@ -7,6 +7,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <stdbool.h>
 #include <stdint.h>
 
 
@@ -16,6 +17,8 @@ typedef struct {
     uint32_t seqNum;
     uint8_t flag;  
     uint8_t data[1400];
+    uint16_t payloadLen;
+    bool valid;
 } Packet;
 
  
@@ -34,6 +37,7 @@ typedef struct {
     int size;
     int nextSeqNum;
     int count;
+    int highest;
 } ReceiverBuffer;
 
 
@@ -43,6 +47,8 @@ void addPacketToWindow(SenderWindow* window, Packet* packet);
 void removePacketFromWindow(SenderWindow* window, uint32_t seqNum);
 void printWindow(SenderWindow* window);
 int windowIsFull(SenderWindow* window);
+void printAllPacketsInWindow(SenderWindow *window);
+
 
 void initReceiverBuffer(ReceiverBuffer* receiverBuffer, int windowSize);
 void printReceiverBuffer(ReceiverBuffer *buffer);

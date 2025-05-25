@@ -7,6 +7,8 @@
 
 
 #define MAX_FILE_LEN 100
+#define RR_PDU_LEN 11
+#define SREJ_PDU_LEN 11
 
 #define START_SEQ_NUM 1
 typedef struct header Header;
