@@ -13,9 +13,17 @@ Simple UDP server that listens for messages and echoes back byte counts.
 {\ttfamily \#include $<$sys/socket.\+h$>$}\newline
 {\ttfamily \#include $<$netinet/in.\+h$>$}\newline
 {\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
 {\ttfamily \#include "{}gethostbyname.\+h"{}}\newline
 {\ttfamily \#include "{}networks.\+h"{}}\newline
 {\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
+{\ttfamily \#include "{}helper\+Functions.\+h"{}}\newline
+{\ttfamily \#include "{}cpe464.\+h"{}}\newline
+{\ttfamily \#include "{}poll\+Lib.\+h"{}}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include "{}srej.\+h"{}}\newline
+{\ttfamily \#include "{}windowing.\+h"{}}\newline
 Include dependency graph for server.\+c\+:
 \nopagebreak
 \begin{figure}[H]
@@ -24,20 +32,49 @@ Include dependency graph for server.\+c\+:
 \includegraphics[width=350pt]{server_8c__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Macros}
+\doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{group__udp__server_gad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~80
+typedef enum \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \mbox{\hyperlink{group__udp__server_ga99dadca5bcdc6b33cc3b9c1577ec617a}{STATE}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__udp__server_ga5d74787dedbc4e11c1ab15bf487e61f8}{State}} \{ \newline
+\mbox{\hyperlink{group__udp__server_gga5d74787dedbc4e11c1ab15bf487e61f8a13d000b4d7dc70d90239b7430d1eb6b2}{START}}
+, \mbox{\hyperlink{group__udp__server_gga5d74787dedbc4e11c1ab15bf487e61f8ab1547041ebf3cd3a54e2b378b340729f}{FILE\+\_\+\+OPEN}}
+, \mbox{\hyperlink{group__udp__server_gga5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749}{DONE}}
+, \mbox{\hyperlink{group__udp__server_gga5d74787dedbc4e11c1ab15bf487e61f8a9742566ff81580c0b8fabbea544f3fa7}{WAIT\+\_\+\+ON\+\_\+\+ACK}}
+, \newline
+\mbox{\hyperlink{group__udp__server_gga5d74787dedbc4e11c1ab15bf487e61f8ac948d5ff8cf4daa433f5eb5d530bb26d}{SEND\+\_\+\+DATA}}
+ \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{group__udp__server_ga8590d75ad7b920d7397fdacd8cfe9dcb}{process\+Client}} (int socket\+Num)
-\begin{DoxyCompactList}\small\item\em Process incoming client messages on a bound UDP socket. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Validates command-\/line arguments for port number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__udp__server_gac14cf26b23efb5d15df6fc3c47162393}{process\+Server}} (int socket\+Num, double err\+\_\+rate)
+\item 
+void \mbox{\hyperlink{group__udp__server_gafa08f994714dea0efce17fcfc5fcb4e2}{process\+Client}} (int socket\+Num, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, int data\+Len, struct sockaddr\+\_\+in6 client, int16\+\_\+t buff\+Size, int8\+\_\+t window\+Size)
+\item 
+\mbox{\hyperlink{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a}{STATE}} \mbox{\hyperlink{group__udp__server_ga79772438c34f920815d0bb13876f1387}{file\+Open}} (int socket\+Num, struct sockaddr\+\_\+in6 client, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, int32\+\_\+t data\+Len, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}data\+\_\+file)
+\item 
+\mbox{\hyperlink{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a}{STATE}} \mbox{\hyperlink{group__udp__server_ga4d10867ef70c2530fbd5fb06dd980c5b}{wait\+On\+Ack}} (int socket\+Num, struct sockaddr\+\_\+in6 client)
+\item 
+\mbox{\hyperlink{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a}{STATE}} \mbox{\hyperlink{group__udp__server_ga199544e387c554ae99cfb736e0b2cfda}{send\+Data}} (int socket\+Num, struct sockaddr\+\_\+in6 client, char \texorpdfstring{$\ast$}{*}data\+\_\+file, int16\+\_\+t buff\+Size, int8\+\_\+t window\+Size)
+\item 
+void \mbox{\hyperlink{group__udp__server_ga4241123278356a4208f5e33254c804f9}{done}} (int socket\+Num, struct sockaddr\+\_\+in6 client, char \texorpdfstring{$\ast$}{*}data\+\_\+file, int16\+\_\+t buff\+Size, int8\+\_\+t window\+Size)
+\item 
+void \mbox{\hyperlink{group__udp__server_ga18f5f0b5b1ea69def6ce4b6f6e8694b6}{process\+RRSREJ}} (int socket\+Num, struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}client, \mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}W, int8\+\_\+t window\+Size, int16\+\_\+t buff\+Size, uint8\+\_\+t \texorpdfstring{$\ast$}{*}pdu)
+\item 
 int \mbox{\hyperlink{group__udp__server_ga0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em Entry point for the UDP server application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+FILE \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__udp__server_gaa065f30aa9f5f9a42132c82c787ee70b}{fp}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}

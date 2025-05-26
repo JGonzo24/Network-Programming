@@ -1,0 +1,181 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/windowing.c File Reference}
+\hypertarget{windowing_8c}{}\label{windowing_8c}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/windowing.c@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/windowing.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include "{}windowing.\+h"{}}\newline
+Include dependency graph for windowing.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{windowing_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{windowing_8c_af28857a474a6c2cdc73616f76d9d2b90}{init\+Sender\+Window}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window, int window\+Size)
+\item 
+void \mbox{\hyperlink{windowing_8c_aa6d5828aecfe66e4bb2a1915c8bb311d}{destroy\+Sender\+Window}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window)
+\item 
+void \mbox{\hyperlink{windowing_8c_a5dc7bb9eea79f775494e28a1be4f8365}{add\+Packet\+To\+Window}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{structPacket}{Packet}} \texorpdfstring{$\ast$}{*}packet)
+\item 
+int \mbox{\hyperlink{windowing_8c_a5d23874736bfab999ace46ef06623daf}{window\+Is\+Empty}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window)
+\item 
+int \mbox{\hyperlink{windowing_8c_af1e5c57717e26aba4ac783de8407974e}{window\+Is\+Open}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window)
+\item 
+void \mbox{\hyperlink{windowing_8c_acfb052528ba4d915b5a95e3b59f1395b}{print\+Window}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window)
+\item 
+void \mbox{\hyperlink{windowing_8c_a645af1bd0a9202b1436bb083d4e23c04}{print\+All\+Packets\+In\+Window}} (\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}window)
+\item 
+void \mbox{\hyperlink{windowing_8c_a1007f6c09c1a4518a08726dffb2a0c2f}{init\+Receiver\+Buffer}} (\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}buffer, int buffer\+Size)
+\item 
+void \mbox{\hyperlink{windowing_8c_a66c3fa4da527cc2bd15256845df9a16c}{destroy\+Receiver\+Buffer}} (\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}buffer)
+\item 
+void \mbox{\hyperlink{windowing_8c_ac116b00342a2182d7330b60f6fe5808d}{add\+Packet\+To\+Receiver\+Buffer}} (\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}buffer, \mbox{\hyperlink{structPacket}{Packet}} \texorpdfstring{$\ast$}{*}packet)
+\item 
+void \mbox{\hyperlink{windowing_8c_a346db43485fd75092bed4c26a4ee02c4}{print\+Receiver\+Buffer}} (\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}buffer)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{windowing_8c_ac116b00342a2182d7330b60f6fe5808d}\label{windowing_8c_ac116b00342a2182d7330b60f6fe5808d} 
+\index{windowing.c@{windowing.c}!addPacketToReceiverBuffer@{addPacketToReceiverBuffer}}
+\index{addPacketToReceiverBuffer@{addPacketToReceiverBuffer}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{addPacketToReceiverBuffer()}{addPacketToReceiverBuffer()}}
+{\footnotesize\ttfamily void add\+Packet\+To\+Receiver\+Buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{\mbox{\hyperlink{structPacket}{Packet}} \texorpdfstring{$\ast$}{*}}]{packet }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+{\em packet} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_a5dc7bb9eea79f775494e28a1be4f8365}\label{windowing_8c_a5dc7bb9eea79f775494e28a1be4f8365} 
+\index{windowing.c@{windowing.c}!addPacketToWindow@{addPacketToWindow}}
+\index{addPacketToWindow@{addPacketToWindow}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{addPacketToWindow()}{addPacketToWindow()}}
+{\footnotesize\ttfamily void add\+Packet\+To\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window,  }\item[{\mbox{\hyperlink{structPacket}{Packet}} \texorpdfstring{$\ast$}{*}}]{packet }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+{\em packet} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_a66c3fa4da527cc2bd15256845df9a16c}\label{windowing_8c_a66c3fa4da527cc2bd15256845df9a16c} 
+\index{windowing.c@{windowing.c}!destroyReceiverBuffer@{destroyReceiverBuffer}}
+\index{destroyReceiverBuffer@{destroyReceiverBuffer}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{destroyReceiverBuffer()}{destroyReceiverBuffer()}}
+{\footnotesize\ttfamily void destroy\+Receiver\+Buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_aa6d5828aecfe66e4bb2a1915c8bb311d}\label{windowing_8c_aa6d5828aecfe66e4bb2a1915c8bb311d} 
+\index{windowing.c@{windowing.c}!destroySenderWindow@{destroySenderWindow}}
+\index{destroySenderWindow@{destroySenderWindow}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{destroySenderWindow()}{destroySenderWindow()}}
+{\footnotesize\ttfamily void destroy\+Sender\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_a1007f6c09c1a4518a08726dffb2a0c2f}\label{windowing_8c_a1007f6c09c1a4518a08726dffb2a0c2f} 
+\index{windowing.c@{windowing.c}!initReceiverBuffer@{initReceiverBuffer}}
+\index{initReceiverBuffer@{initReceiverBuffer}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{initReceiverBuffer()}{initReceiverBuffer()}}
+{\footnotesize\ttfamily void init\+Receiver\+Buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+{\em buffer\+Size} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_af28857a474a6c2cdc73616f76d9d2b90}\label{windowing_8c_af28857a474a6c2cdc73616f76d9d2b90} 
+\index{windowing.c@{windowing.c}!initSenderWindow@{initSenderWindow}}
+\index{initSenderWindow@{initSenderWindow}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{initSenderWindow()}{initSenderWindow()}}
+{\footnotesize\ttfamily void init\+Sender\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window,  }\item[{int}]{window\+Size }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+{\em window\+Size} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_a645af1bd0a9202b1436bb083d4e23c04}\label{windowing_8c_a645af1bd0a9202b1436bb083d4e23c04} 
+\index{windowing.c@{windowing.c}!printAllPacketsInWindow@{printAllPacketsInWindow}}
+\index{printAllPacketsInWindow@{printAllPacketsInWindow}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{printAllPacketsInWindow()}{printAllPacketsInWindow()}}
+{\footnotesize\ttfamily void print\+All\+Packets\+In\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_a346db43485fd75092bed4c26a4ee02c4}\label{windowing_8c_a346db43485fd75092bed4c26a4ee02c4} 
+\index{windowing.c@{windowing.c}!printReceiverBuffer@{printReceiverBuffer}}
+\index{printReceiverBuffer@{printReceiverBuffer}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{printReceiverBuffer()}{printReceiverBuffer()}}
+{\footnotesize\ttfamily void print\+Receiver\+Buffer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structReceiverBuffer}{Receiver\+Buffer}} \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_acfb052528ba4d915b5a95e3b59f1395b}\label{windowing_8c_acfb052528ba4d915b5a95e3b59f1395b} 
+\index{windowing.c@{windowing.c}!printWindow@{printWindow}}
+\index{printWindow@{printWindow}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{printWindow()}{printWindow()}}
+{\footnotesize\ttfamily void print\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{windowing_8c_a5d23874736bfab999ace46ef06623daf}\label{windowing_8c_a5d23874736bfab999ace46ef06623daf} 
+\index{windowing.c@{windowing.c}!windowIsEmpty@{windowIsEmpty}}
+\index{windowIsEmpty@{windowIsEmpty}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{windowIsEmpty()}{windowIsEmpty()}}
+{\footnotesize\ttfamily int window\+Is\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{windowing_8c_af1e5c57717e26aba4ac783de8407974e}\label{windowing_8c_af1e5c57717e26aba4ac783de8407974e} 
+\index{windowing.c@{windowing.c}!windowIsOpen@{windowIsOpen}}
+\index{windowIsOpen@{windowIsOpen}!windowing.c@{windowing.c}}
+\doxysubsubsection{\texorpdfstring{windowIsOpen()}{windowIsOpen()}}
+{\footnotesize\ttfamily int window\+Is\+Open (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSenderWindow}{Sender\+Window}} \texorpdfstring{$\ast$}{*}}]{window }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

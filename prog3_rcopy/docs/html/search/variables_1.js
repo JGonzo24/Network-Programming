@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['g_5fpktmgr_0',['g_PktMgr',['../network-hooks_8c.html#a20aa2f9568fe06e8af03765fec09ba28',1,'network-hooks.c']]]
+  ['checksum_0',['checksum',['../structheader.html#aaf11eae494681e2399e74537b08ecaa1',1,'header']]],
+  ['count_1',['count',['../structReceiverBuffer.html#a0fd414538700975cb9835b1afcfa4524',1,'ReceiverBuffer']]],
+  ['current_2',['current',['../structSenderWindow.html#a04bda32ed58ef4ea67c79d523b47406e',1,'SenderWindow']]]
 ];

@@ -1,0 +1,71 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/windowing.h}
+\hypertarget{windowing_8h_source}{}\label{windowing_8h_source}\mbox{\hyperlink{windowing_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_WINDOWING\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_WINDOWING\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <sys/socket.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ MAX\_PACKET\_SIZE\ 1407}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00017\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structPacket_ad83ec73191584b5a9eb6b1daabde5dac}{seqNum}};}
+\DoxyCodeLine{00018\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structPacket_aef6fa85cd56eb5b187f4c895b695c893}{flag}};\ \ }
+\DoxyCodeLine{00019\ \ \ \ \ uint8\_t\ data[1400];}
+\DoxyCodeLine{00020\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structPacket_ac8d278d10bba4a14c0ab39a78208565f}{payloadLen}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structPacket_ac13c2b67f64484c98e5e9c6788be2c9b}{valid}};}
+\DoxyCodeLine{00022\ \}\ \mbox{\hyperlink{structPacket}{Packet}};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSenderWindow_a234d6c819115a7c9912b5f00d97770b4}{upper}};}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSenderWindow_a67aee780306c7b933432f043b125b639}{lower}};}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSenderWindow_a04bda32ed58ef4ea67c79d523b47406e}{current}};}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSenderWindow_acc19fc99a3c9f7f45502edd3f7bc201d}{windowSize}};}
+\DoxyCodeLine{00030\ \mbox{\hyperlink{structPacket}{Packet}}*\ \mbox{\hyperlink{structSenderWindow_abe0e189cee7a9d84acc1f32b8395c076}{buffer}};}
+\DoxyCodeLine{00031\ \}\ \mbox{\hyperlink{structSenderWindow}{SenderWindow}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Initalize\ the\ reciever\ buffer}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{structPacket}{Packet}}*\ \mbox{\hyperlink{structReceiverBuffer_a4e2d5842e2423910e8ddc78b9be33880}{buffer}};}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structReceiverBuffer_a2182e58bfcff4c2c6347f3993d903193}{size}};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structReceiverBuffer_a5c519380d0c16ef434703820c2715ec9}{nextSeqNum}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structReceiverBuffer_a0fd414538700975cb9835b1afcfa4524}{count}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structReceiverBuffer_ac869a50339cab5b2fdc3dddfd366dc9a}{highest}};}
+\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structReceiverBuffer}{ReceiverBuffer}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_af28857a474a6c2cdc73616f76d9d2b90}{initSenderWindow}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window,\ \textcolor{keywordtype}{int}\ windowSize);}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_aa6d5828aecfe66e4bb2a1915c8bb311d}{destroySenderWindow}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window);}
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_a5dc7bb9eea79f775494e28a1be4f8365}{addPacketToWindow}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window,\ \mbox{\hyperlink{structPacket}{Packet}}*\ packet);}
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_a82efa2b5295a8be0d44076b7915708a0}{removePacketFromWindow}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window,\ uint32\_t\ seqNum);}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_acfb052528ba4d915b5a95e3b59f1395b}{printWindow}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window);}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_a645af1bd0a9202b1436bb083d4e23c04}{printAllPacketsInWindow}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}\ *window);}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{windowing_8h_a5d23874736bfab999ace46ef06623daf}{windowIsEmpty}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window);}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{windowing_8h_af1e5c57717e26aba4ac783de8407974e}{windowIsOpen}}(\mbox{\hyperlink{structSenderWindow}{SenderWindow}}*\ window);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_a82352d520ba0913a6493bd9c7f80776c}{initReceiverBuffer}}(\mbox{\hyperlink{structReceiverBuffer}{ReceiverBuffer}}*\ receiverBuffer,\ \textcolor{keywordtype}{int}\ windowSize);}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_a346db43485fd75092bed4c26a4ee02c4}{printReceiverBuffer}}(\mbox{\hyperlink{structReceiverBuffer}{ReceiverBuffer}}\ *buffer);}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_ac116b00342a2182d7330b60f6fe5808d}{addPacketToReceiverBuffer}}(\mbox{\hyperlink{structReceiverBuffer}{ReceiverBuffer}}\ *buffer,\ \mbox{\hyperlink{structPacket}{Packet}}\ *packet);}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{windowing_8h_a66c3fa4da527cc2bd15256845df9a16c}{destroyReceiverBuffer}}(\mbox{\hyperlink{structReceiverBuffer}{ReceiverBuffer}}\ *buffer);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

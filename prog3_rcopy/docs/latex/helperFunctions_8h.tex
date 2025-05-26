@@ -1,0 +1,322 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/helper\+Functions.h File Reference}
+\hypertarget{helperFunctions_8h}{}\label{helperFunctions_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/helperFunctions.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/helperFunctions.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include "{}checksum.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+Include dependency graph for helper\+Functions.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helperFunctions_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helperFunctions_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{helperFunctions_8h_ad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~1407
+\item 
+\#define \mbox{\hyperlink{helperFunctions_8h_a98818d438befb69b4b9d68eac63c2f33}{MAXPAYLOAD}}~1400
+\item 
+\#define \mbox{\hyperlink{helperFunctions_8h_a161c77ae7a099d969721cb772111467d}{ACKBUF}}~8
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{helperFunctions_8h_a9268bec9c3046f00be5e1a834e94d85f}{create\+PDU}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}pdu\+Buffer, uint32\+\_\+t sequence\+Number, uint8\+\_\+t flag, uint8\+\_\+t \texorpdfstring{$\ast$}{*}payload, int payload\+Len, int window\+Size, int16\+\_\+t buffer\+Size)
+\begin{DoxyCompactList}\small\item\em This function creates a PDU (Protocol Data Unit) with the given parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{helperFunctions_8h_a552c68a8a02a85a4a23bfbeea5563a42}{print\+PDU}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}pdu\+Buffer, int pdu\+Length)
+\begin{DoxyCompactList}\small\item\em This function prints the PDU (Protocol Data Unit) with the given parameters. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{helperFunctions_8h_a58fabc255a5ebbdb36c5565096d6ebee}{create\+Ack\+PDU}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}ack\+Buff, uint32\+\_\+t sequence\+Number, uint8\+\_\+t flag)
+\begin{DoxyCompactList}\small\item\em Create a Ack PDU object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{helperFunctions_8h_aebde21270fc17c762b71c67899f1be92}{print\+Bytes}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, int length)
+\item 
+bool \mbox{\hyperlink{helperFunctions_8h_a3853f2e3eba762d1409c17397eb3667c}{verify\+Checksum}} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, int length)
+\item 
+int \mbox{\hyperlink{helperFunctions_8h_a3d3d961ab944b1f79185cb6cf2264ae0}{create\+RRPDU}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}rr\+Buff, uint32\+\_\+t sequence\+Number, uint8\+\_\+t flag, uint32\+\_\+t rr\+Sequence\+Number)
+\item 
+int \mbox{\hyperlink{helperFunctions_8h_a598d604bdca13e5f39b6bc89f8947ae4}{create\+SREJPDU}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}srej\+Buff, uint32\+\_\+t sequence\+Number, uint8\+\_\+t flag, uint32\+\_\+t srej\+Sequence\+Number)
+\item 
+int \mbox{\hyperlink{helperFunctions_8h_a645bda7a3d32ee0a61119ac1393e9a25}{send\+RR}} (int socket\+Num, struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, uint32\+\_\+t next\+Data\+Seq)
+\item 
+int \mbox{\hyperlink{helperFunctions_8h_a9144a44b0851b7286b7d88ea1405c0f0}{send\+SREJ}} (int socket\+Num, struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, uint32\+\_\+t srej\+Seq)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Joshua Gonzalez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/10
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{helperFunctions_8h_a161c77ae7a099d969721cb772111467d}\label{helperFunctions_8h_a161c77ae7a099d969721cb772111467d} 
+\index{helperFunctions.h@{helperFunctions.h}!ACKBUF@{ACKBUF}}
+\index{ACKBUF@{ACKBUF}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{ACKBUF}{ACKBUF}}
+{\footnotesize\ttfamily \#define ACKBUF~8}
+
+\Hypertarget{helperFunctions_8h_ad7871643c05865c80f5d8050aead2b57}\label{helperFunctions_8h_ad7871643c05865c80f5d8050aead2b57} 
+\index{helperFunctions.h@{helperFunctions.h}!MAXBUF@{MAXBUF}}
+\index{MAXBUF@{MAXBUF}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{MAXBUF}{MAXBUF}}
+{\footnotesize\ttfamily \#define MAXBUF~1407}
+
+\Hypertarget{helperFunctions_8h_a98818d438befb69b4b9d68eac63c2f33}\label{helperFunctions_8h_a98818d438befb69b4b9d68eac63c2f33} 
+\index{helperFunctions.h@{helperFunctions.h}!MAXPAYLOAD@{MAXPAYLOAD}}
+\index{MAXPAYLOAD@{MAXPAYLOAD}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{MAXPAYLOAD}{MAXPAYLOAD}}
+{\footnotesize\ttfamily \#define MAXPAYLOAD~1400}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{helperFunctions_8h_a58fabc255a5ebbdb36c5565096d6ebee}\label{helperFunctions_8h_a58fabc255a5ebbdb36c5565096d6ebee} 
+\index{helperFunctions.h@{helperFunctions.h}!createAckPDU@{createAckPDU}}
+\index{createAckPDU@{createAckPDU}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createAckPDU()}{createAckPDU()}}
+{\footnotesize\ttfamily int create\+Ack\+PDU (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{ack\+Buff,  }\item[{uint32\+\_\+t}]{sequence\+Number,  }\item[{uint8\+\_\+t}]{flag }\end{DoxyParamCaption})}
+
+
+
+Create a Ack PDU object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ack\+Buff} & \\
+\hline
+{\em sequence\+Number} & \\
+\hline
+{\em flag} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{helperFunctions_8h_a58fabc255a5ebbdb36c5565096d6ebee_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_a9268bec9c3046f00be5e1a834e94d85f}\label{helperFunctions_8h_a9268bec9c3046f00be5e1a834e94d85f} 
+\index{helperFunctions.h@{helperFunctions.h}!createPDU@{createPDU}}
+\index{createPDU@{createPDU}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createPDU()}{createPDU()}}
+{\footnotesize\ttfamily int create\+PDU (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pdu\+Buffer,  }\item[{uint32\+\_\+t}]{sequence\+Number,  }\item[{uint8\+\_\+t}]{flag,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{payload,  }\item[{int}]{payload\+Len,  }\item[{int}]{window\+Size,  }\item[{int16\+\_\+t}]{buffer\+Size }\end{DoxyParamCaption})}
+
+
+
+This function creates a PDU (Protocol Data Unit) with the given parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdu\+Buffer} & \\
+\hline
+{\em sequence\+Number} & \\
+\hline
+{\em flag} & \\
+\hline
+{\em payload} & \\
+\hline
+{\em payload\+Len} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{helperFunctions_8h_a9268bec9c3046f00be5e1a834e94d85f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_a3d3d961ab944b1f79185cb6cf2264ae0}\label{helperFunctions_8h_a3d3d961ab944b1f79185cb6cf2264ae0} 
+\index{helperFunctions.h@{helperFunctions.h}!createRRPDU@{createRRPDU}}
+\index{createRRPDU@{createRRPDU}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createRRPDU()}{createRRPDU()}}
+{\footnotesize\ttfamily int create\+RRPDU (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rr\+Buff,  }\item[{uint32\+\_\+t}]{sequence\+Number,  }\item[{uint8\+\_\+t}]{flag,  }\item[{uint32\+\_\+t}]{rr\+Sequence\+Number }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em rr\+Buff} & \\
+\hline
+{\em sequence\+Number} & \\
+\hline
+{\em flag} & \\
+\hline
+{\em rr\+Sequence\+Number} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{helperFunctions_8h_a3d3d961ab944b1f79185cb6cf2264ae0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_a598d604bdca13e5f39b6bc89f8947ae4}\label{helperFunctions_8h_a598d604bdca13e5f39b6bc89f8947ae4} 
+\index{helperFunctions.h@{helperFunctions.h}!createSREJPDU@{createSREJPDU}}
+\index{createSREJPDU@{createSREJPDU}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createSREJPDU()}{createSREJPDU()}}
+{\footnotesize\ttfamily int create\+SREJPDU (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{srej\+Buff,  }\item[{uint32\+\_\+t}]{sequence\+Number,  }\item[{uint8\+\_\+t}]{flag,  }\item[{uint32\+\_\+t}]{srej\+Sequence\+Number }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em srej\+Buff} & \\
+\hline
+{\em sequence\+Number} & \\
+\hline
+{\em flag} & \\
+\hline
+{\em srej\+Sequence\+Number} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{helperFunctions_8h_a598d604bdca13e5f39b6bc89f8947ae4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_aebde21270fc17c762b71c67899f1be92}\label{helperFunctions_8h_aebde21270fc17c762b71c67899f1be92} 
+\index{helperFunctions.h@{helperFunctions.h}!printBytes@{printBytes}}
+\index{printBytes@{printBytes}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{printBytes()}{printBytes()}}
+{\footnotesize\ttfamily void print\+Bytes (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\Hypertarget{helperFunctions_8h_a552c68a8a02a85a4a23bfbeea5563a42}\label{helperFunctions_8h_a552c68a8a02a85a4a23bfbeea5563a42} 
+\index{helperFunctions.h@{helperFunctions.h}!printPDU@{printPDU}}
+\index{printPDU@{printPDU}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{printPDU()}{printPDU()}}
+{\footnotesize\ttfamily void print\+PDU (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pdu\+Buffer,  }\item[{int}]{pdu\+Length }\end{DoxyParamCaption})}
+
+
+
+This function prints the PDU (Protocol Data Unit) with the given parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pdu\+Buffer} & \\
+\hline
+{\em pdu\+Length} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helperFunctions_8h_a552c68a8a02a85a4a23bfbeea5563a42_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_a645bda7a3d32ee0a61119ac1393e9a25}\label{helperFunctions_8h_a645bda7a3d32ee0a61119ac1393e9a25} 
+\index{helperFunctions.h@{helperFunctions.h}!sendRR@{sendRR}}
+\index{sendRR@{sendRR}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{sendRR()}{sendRR()}}
+{\footnotesize\ttfamily int send\+RR (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{uint32\+\_\+t}]{next\+Data\+Seq }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Num} & \\
+\hline
+{\em server} & \\
+\hline
+{\em next\+Data\+Seq} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helperFunctions_8h_a645bda7a3d32ee0a61119ac1393e9a25_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_a9144a44b0851b7286b7d88ea1405c0f0}\label{helperFunctions_8h_a9144a44b0851b7286b7d88ea1405c0f0} 
+\index{helperFunctions.h@{helperFunctions.h}!sendSREJ@{sendSREJ}}
+\index{sendSREJ@{sendSREJ}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{sendSREJ()}{sendSREJ()}}
+{\footnotesize\ttfamily int send\+SREJ (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{uint32\+\_\+t}]{srej\+Seq }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Num} & \\
+\hline
+{\em server} & \\
+\hline
+{\em srej\+Seq} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{helperFunctions_8h_a9144a44b0851b7286b7d88ea1405c0f0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{helperFunctions_8h_a3853f2e3eba762d1409c17397eb3667c}\label{helperFunctions_8h_a3853f2e3eba762d1409c17397eb3667c} 
+\index{helperFunctions.h@{helperFunctions.h}!verifyChecksum@{verifyChecksum}}
+\index{verifyChecksum@{verifyChecksum}!helperFunctions.h@{helperFunctions.h}}
+\doxysubsubsection{\texorpdfstring{verifyChecksum()}{verifyChecksum()}}
+{\footnotesize\ttfamily bool verify\+Checksum (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer,  }\item[{int}]{length }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+{\em length} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}

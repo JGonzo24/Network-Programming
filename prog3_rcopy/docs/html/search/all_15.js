@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['_7eerrordrop_0',['~errorDrop',['../classerrorDrop.html#ae295a4c94684b2809f7e21e67b3965b6',1,'errorDrop']]],
-  ['_7eerrorflipbits_1',['~errorFlipBits',['../classerrorFlipBits.html#a08706c24d72fc291b9955d0fec0b5e99',1,'errorFlipBits']]],
-  ['_7eimsgevent_2',['~IMsgEvent',['../classIMsgEvent.html#a2048f382695ff01723ea3c842fa8bf7d',1,'IMsgEvent']]],
-  ['_7einfoseqno_3',['~infoSeqNo',['../classinfoSeqNo.html#a5e35b32fc6b38523718e3a40c314c943',1,'infoSeqNo']]],
-  ['_7epacketmanager_4',['~PacketManager',['../classPacketManager.html#a9d47311266ca292dbd2a6f7d9167463a',1,'PacketManager']]],
-  ['_7esettingsmanager_5',['~SettingsManager',['../classSettingsManager.html#a00f848310bc1f31a896580d1ea4c2e1c',1,'SettingsManager']]]
+  ['valid_0',['valid',['../structPacket.html#ac13c2b67f64484c98e5e9c6788be2c9b',1,'Packet']]],
+  ['vbool_1',['vBool',['../struct__EnvDataEntry.html#adf2a89218c83feefa63428ad1a9fd765',1,'_EnvDataEntry']]],
+  ['vcharptr_2',['vCharPtr',['../struct__EnvDataEntry.html#a2203932c35361b42fd797a8cdf0af199',1,'_EnvDataEntry']]],
+  ['vdbg_5fprint_3',['vdbg_print',['../dbg__print_8h.html#af6956915fd09d59725c51effbc30ea67',1,'VDBG_PRINT:&#160;dbg_print.h'],['../old__dbg__pring_8h.html#af6956915fd09d59725c51effbc30ea67',1,'VDBG_PRINT:&#160;old_dbg_pring.h']]],
+  ['verifychecksum_4',['verifychecksum',['../helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c',1,'verifyChecksum(const uint8_t *buffer, int length):&#160;helperFunctions.c'],['../helperFunctions_8h.html#a3853f2e3eba762d1409c17397eb3667c',1,'verifyChecksum(const uint8_t *buffer, int length):&#160;helperFunctions.c'],['../libcpe464_2checksum_8h.html#a3853f2e3eba762d1409c17397eb3667c',1,'verifyChecksum(const uint8_t *buffer, int length):&#160;helperFunctions.c']]],
+  ['vfloat_5',['vFloat',['../struct__EnvDataEntry.html#a5420a2762ead6ff5806f7debbee24561',1,'_EnvDataEntry']]],
+  ['vlong_6',['vLong',['../struct__EnvDataEntry.html#a11062a16cd3db994e79c8520068faafa',1,'_EnvDataEntry']]]
 ];

@@ -1,15 +1,17 @@
 var searchData=
 [
-  ['g_5fpktmgr_0',['g_PktMgr',['../network-hooks_8c.html#a20aa2f9568fe06e8af03765fec09ba28',1,'network-hooks.c']]],
-  ['g_5fsetsmgr_1',['g_SetsMgr',['../network-hooks_8c.html#a84e97031e45a887d36e8d460924fc608',1,'network-hooks.c']]],
-  ['gethostbyname_2ec_2',['gethostbyname.c',['../gethostbyname_8c.html',1,'']]],
-  ['gethostbyname_2eh_3',['gethostbyname.h',['../gethostbyname_8h.html',1,'']]],
-  ['gethostbyname4_4',['gethostbyname4',['../gethostbyname_8h.html#a7dc9d26d3e3113466913cce59f7c93f9',1,'gethostbyname4(const char *hostName, struct sockaddr_in *aSockaddr):&#160;gethostbyname.c'],['../gethostbyname_8c.html#a7dc9d26d3e3113466913cce59f7c93f9',1,'gethostbyname4(const char *hostName, struct sockaddr_in *aSockaddr):&#160;gethostbyname.c']]],
-  ['gethostbyname6_5',['gethostbyname6',['../gethostbyname_8c.html#ac6e1975d9b2e67292680f9d8e98b35d1',1,'gethostbyname6(const char *hostName, struct sockaddr_in6 *aSockaddr6):&#160;gethostbyname.c'],['../gethostbyname_8h.html#ac6e1975d9b2e67292680f9d8e98b35d1',1,'gethostbyname6(const char *hostName, struct sockaddr_in6 *aSockaddr6):&#160;gethostbyname.c']]],
-  ['gethostbyname_5ftest_6',['gethostbyname_test',['../gethostbyname_8c.html#a0f4c0894d499927801c54adb9e4a3191',1,'gethostbyname_test():&#160;gethostbyname.c'],['../gethostbyname_8h.html#a0f4c0894d499927801c54adb9e4a3191',1,'gethostbyname_test():&#160;gethostbyname.c']]],
-  ['gethostbyname_5ftest_5flookup_7',['gethostbyname_test_lookup',['../gethostbyname_8c.html#adb072037b3df14af1f3c4012a4110d76',1,'gethostbyname_test_lookup(char *hostname):&#160;gethostbyname.c'],['../gethostbyname_8h.html#adb072037b3df14af1f3c4012a4110d76',1,'gethostbyname_test_lookup(char *hostname):&#160;gethostbyname.c']]],
-  ['getipaddressstring4_8',['getipaddressstring4',['../gethostbyname_8c.html#a4c858bd9d65a8073cf346bc6888f367d',1,'getIPAddressString4(unsigned char *ipAddress):&#160;gethostbyname.c'],['../gethostbyname_8h.html#a4c858bd9d65a8073cf346bc6888f367d',1,'getIPAddressString4(unsigned char *ipAddress):&#160;gethostbyname.c']]],
-  ['getipaddressstring6_9',['getipaddressstring6',['../gethostbyname_8c.html#af025e2812183cb45f9636afe3e6047ae',1,'getIPAddressString6(unsigned char *ipAddress):&#160;gethostbyname.c'],['../gethostbyname_8h.html#af025e2812183cb45f9636afe3e6047ae',1,'getIPAddressString6(unsigned char *ipAddress):&#160;gethostbyname.c']]],
-  ['getname_10',['getname',['../classinfoSeqNo.html#af86305885a2b26e27c4d52eeaca4818b',1,'infoSeqNo::getName()'],['../classIMsgEvent.html#a9d492dfaacb8ab8766102c1681e62921',1,'IMsgEvent::getName()'],['../classerrorFlipBits.html#ac3dc08fbeda7f2c62cfbf7b660e352b3',1,'errorFlipBits::getName()'],['../classerrorDrop.html#ab35de9f829a60d9a1c75dd3f2da5b6fa',1,'errorDrop::getName()']]],
-  ['getting_20started_11',['Getting Started',['../index.html#autotoc_md4',1,'']]]
+  ['file_5fok_5fack_0',['FILE_OK_ACK',['../srej_8h.html#aea43282ab1b4708d7657390fa01103ecafc34b46522239a4661326f0c025aadfb',1,'srej.h']]],
+  ['file_5fopen_1',['FILE_OPEN',['../group__udp__server.html#gga5d74787dedbc4e11c1ab15bf487e61f8ab1547041ebf3cd3a54e2b378b340729f',1,'server.c']]],
+  ['fileopen_2',['fileOpen',['../group__udp__server.html#ga79772438c34f920815d0bb13876f1387',1,'server.c']]],
+  ['flag_3',['flag',['../structPacket.html#aef6fa85cd56eb5b187f4c895b695c893',1,'Packet::flag'],['../srej_8h.html#aea43282ab1b4708d7657390fa01103ec',1,'FLAG:&#160;srej.h'],['../structheader.html#abe6fb52eea514d6cb7a6eb221f7a5c63',1,'header::flag']]],
+  ['flip_5foff_4',['flip_off',['../cpe464_8h.html#ab592fa07d7656d400c3b6b564b3e1631',1,'FLIP_OFF:&#160;cpe464.h'],['../network-hooks_8h.html#ab592fa07d7656d400c3b6b564b3e1631',1,'FLIP_OFF:&#160;network-hooks.h']]],
+  ['flip_5fon_5',['flip_on',['../cpe464_8h.html#a49a5677573f5211e705a592c7e3893e7',1,'FLIP_ON:&#160;cpe464.h'],['../network-hooks_8h.html#a49a5677573f5211e705a592c7e3893e7',1,'FLIP_ON:&#160;network-hooks.h']]],
+  ['flush_6',['flush',['../rcopy_8c.html#aebfc0a1ce90f5edcd74978f9fb14738c',1,'flush(struct sockaddr_in6 *server):&#160;rcopy.c'],['../rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9',1,'FLUSH:&#160;rcopy.c']]],
+  ['fname_7',['FNAME',['../srej_8h.html#aea43282ab1b4708d7657390fa01103ecaa9d10e28f0e591fa583be7d0c804a286',1,'srej.h']]],
+  ['fname_5fnot_5fok_8',['FNAME_NOT_OK',['../srej_8h.html#aea43282ab1b4708d7657390fa01103ecaf857b31f2de7539c5e5cf78a98947dc0',1,'srej.h']]],
+  ['fname_5fok_9',['FNAME_OK',['../srej_8h.html#aea43282ab1b4708d7657390fa01103ecad2420bb71acbd9cedac25c0706709659',1,'srej.h']]],
+  ['fork_10',['fork',['../cpe464_8h.html#ab2e49d0b8dbb3181c7d1f622fd5ea1b4',1,'fork:&#160;cpe464.h'],['../network-hooks_8h.html#ab2e49d0b8dbb3181c7d1f622fd5ea1b4',1,'fork:&#160;network-hooks.h']]],
+  ['forkmod_11',['forkmod',['../cpe464_8h.html#a82425f485ce7d04f0dc461f27a001d49',1,'forkMod(void):&#160;network-hooks.c'],['../network-hooks_8c.html#a82425f485ce7d04f0dc461f27a001d49',1,'forkMod(void):&#160;network-hooks.c'],['../network-hooks_8h.html#a82425f485ce7d04f0dc461f27a001d49',1,'forkMod(void):&#160;network-hooks.c']]],
+  ['fp_12',['fp',['../group__udp__server.html#gaa065f30aa9f5f9a42132c82c787ee70b',1,'server.c']]],
+  ['fromfilename_13',['fromFileName',['../structClientConfig.html#acae419eeffc732d0bd7ee80d9fabab1f',1,'ClientConfig']]]
 ];

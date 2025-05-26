@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['imsgevent_0',['IMsgEvent',['../classIMsgEvent.html',1,'']]],
-  ['infoseqno_1',['infoSeqNo',['../classinfoSeqNo.html',1,'']]]
+  ['errordrop_0',['errorDrop',['../classerrorDrop.html',1,'']]],
+  ['errorflipbits_1',['errorFlipBits',['../classerrorFlipBits.html',1,'']]]
 ];

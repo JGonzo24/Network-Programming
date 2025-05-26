@@ -21,29 +21,78 @@ This is a simple UDP client program that sends data to a server.
 {\ttfamily \#include "{}gethostbyname.\+h"{}}\newline
 {\ttfamily \#include "{}networks.\+h"{}}\newline
 {\ttfamily \#include "{}safe\+Util.\+h"{}}\newline
-Include dependency graph for rcopy.\+c\+:\nopagebreak
+{\ttfamily \#include "{}helper\+Functions.\+h"{}}\newline
+{\ttfamily \#include "{}cpe464.\+h"{}}\newline
+{\ttfamily \#include "{}poll\+Lib.\+h"{}}\newline
+{\ttfamily \#include "{}srej.\+h"{}}\newline
+{\ttfamily \#include "{}windowing.\+h"{}}\newline
+Include dependency graph for rcopy.\+c\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{rcopy_8c__incl}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structClientConfig}{Client\+Config}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{rcopy_8c_ad7871643c05865c80f5d8050aead2b57}{MAXBUF}}~80
+\#define \mbox{\hyperlink{rcopy_8c_a13550f28207d6cded155933c698e494c}{HDRLEN}}~10
+\item 
+\#define \mbox{\hyperlink{rcopy_8c_a4e64ad851f290642d5fb0ac250a1ff34}{TO\+\_\+\+MS}}~10000
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \mbox{\hyperlink{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a}{STATE}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \{ \newline
+\mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a96e018978be3dd72830a2d5156877831}{SEND\+\_\+\+FILENAME}}
+, \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8ab4aa103795368b58112c5ea127c8c58d}{WAIT\+\_\+\+FOR\+\_\+\+ACK}}
+, \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a935153633832e3b50e12f1230846052e}{WAIT\+\_\+\+FOR\+\_\+\+DATA}}
+, \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8aabf4bfe057b64b1f08fa686fa72a7645}{PROCESS\+\_\+\+DATA}}
+, \newline
+\mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749}{DONE}}
+, \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a541a7d029edbe0dc4855fa23ba23162b}{INORDER}}
+, \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a57ea20be5a2dd38faaadc99ae400ac35}{BUFFER}}
+, \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9}{FLUSH}}
+ \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a}{talk\+To\+Server}} (int socket\+Num, struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server)
+void \mbox{\hyperlink{rcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f}{talk\+To\+Server}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, \mbox{\hyperlink{structClientConfig}{Client\+Config}} config)
 \item 
 int \mbox{\hyperlink{rcopy_8c_ad4e63ea77d61babc4ed66f9bf6d3b8b2}{read\+From\+Stdin}} (char \texorpdfstring{$\ast$}{*}buffer)
 \item 
-int \mbox{\hyperlink{rcopy_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+int \mbox{\hyperlink{group__udp__server_gad0ac805d2cdb2fc14a19ba6cebc9bc55}{check\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Validates command-\/line arguments for port number. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0}{send\+File\+Name}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, uint8\+\_\+t \texorpdfstring{$\ast$}{*}pdu\+Buffer, int pdu\+Length, \mbox{\hyperlink{structClientConfig}{Client\+Config}} config, int sequence\+Num)
+\begin{DoxyCompactList}\small\item\em This function sends the filename to the server and waits for an ack. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{rcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8}{wait\+For\+Data}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, uint8\+\_\+t \texorpdfstring{$\ast$}{*}pdu\+Buffer, int \texorpdfstring{$\ast$}{*}pdu\+Length, \mbox{\hyperlink{structClientConfig}{Client\+Config}} config)
+\item 
+int \mbox{\hyperlink{rcopy_8c_a74c224849f2e81167392a0e1cc7c13c5}{process\+Data}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, uint8\+\_\+t \texorpdfstring{$\ast$}{*}pdu\+Buffer, int pdu\+Length, \mbox{\hyperlink{structClientConfig}{Client\+Config}} config)
+\item 
+int \mbox{\hyperlink{rcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf}{in\+Order}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}in\+Order\+PDU, int in\+Order\+PDULen, struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, \mbox{\hyperlink{structClientConfig}{Client\+Config}} config)
+\item 
+int \mbox{\hyperlink{rcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166}{in\+Buffer}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server, \mbox{\hyperlink{structClientConfig}{Client\+Config}} config)
+\item 
+int \mbox{\hyperlink{rcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c}{flush}} (struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}server)
+\item 
+void \mbox{\hyperlink{rcopy_8c_ada1474e4a4da15c3ec2ad267ee35be11}{invalidate\+Packet}} (uint32\+\_\+t seq)
+\item 
+\mbox{\hyperlink{structClientConfig}{Client\+Config}} \mbox{\hyperlink{rcopy_8c_aecfb03a103587626d773616cffcac084}{parse\+Args}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
 \item 
 int \mbox{\hyperlink{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is the main function for the UDP client program. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -64,27 +113,181 @@ Copyright (c) 2025
 
 
 \doxysubsection{Macro Definition Documentation}
-\Hypertarget{rcopy_8c_ad7871643c05865c80f5d8050aead2b57}\label{rcopy_8c_ad7871643c05865c80f5d8050aead2b57} 
-\index{rcopy.c@{rcopy.c}!MAXBUF@{MAXBUF}}
-\index{MAXBUF@{MAXBUF}!rcopy.c@{rcopy.c}}
-\doxysubsubsection{\texorpdfstring{MAXBUF}{MAXBUF}}
-{\footnotesize\ttfamily \#define MAXBUF~80}
+\Hypertarget{rcopy_8c_a13550f28207d6cded155933c698e494c}\label{rcopy_8c_a13550f28207d6cded155933c698e494c} 
+\index{rcopy.c@{rcopy.c}!HDRLEN@{HDRLEN}}
+\index{HDRLEN@{HDRLEN}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{HDRLEN}{HDRLEN}}
+{\footnotesize\ttfamily \#define HDRLEN~10}
 
+\Hypertarget{rcopy_8c_a4e64ad851f290642d5fb0ac250a1ff34}\label{rcopy_8c_a4e64ad851f290642d5fb0ac250a1ff34} 
+\index{rcopy.c@{rcopy.c}!TO\_MS@{TO\_MS}}
+\index{TO\_MS@{TO\_MS}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{TO\_MS}{TO\_MS}}
+{\footnotesize\ttfamily \#define TO\+\_\+\+MS~10000}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a}\label{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a} 
+\index{rcopy.c@{rcopy.c}!STATE@{STATE}}
+\index{STATE@{STATE}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{STATE}{STATE}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}} \mbox{\hyperlink{rcopy_8c_a99dadca5bcdc6b33cc3b9c1577ec617a}{STATE}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8} 
+\index{rcopy.c@{rcopy.c}!State@{State}}
+\index{State@{State}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8}{State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEND\_FILENAME@{SEND\_FILENAME}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!SEND\_FILENAME@{SEND\_FILENAME}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a96e018978be3dd72830a2d5156877831}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a96e018978be3dd72830a2d5156877831} 
+SEND\+\_\+\+FILENAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAIT\_FOR\_ACK@{WAIT\_FOR\_ACK}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!WAIT\_FOR\_ACK@{WAIT\_FOR\_ACK}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8ab4aa103795368b58112c5ea127c8c58d}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8ab4aa103795368b58112c5ea127c8c58d} 
+WAIT\+\_\+\+FOR\+\_\+\+ACK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WAIT\_FOR\_DATA@{WAIT\_FOR\_DATA}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!WAIT\_FOR\_DATA@{WAIT\_FOR\_DATA}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a935153633832e3b50e12f1230846052e}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a935153633832e3b50e12f1230846052e} 
+WAIT\+\_\+\+FOR\+\_\+\+DATA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PROCESS\_DATA@{PROCESS\_DATA}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!PROCESS\_DATA@{PROCESS\_DATA}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8aabf4bfe057b64b1f08fa686fa72a7645}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8aabf4bfe057b64b1f08fa686fa72a7645} 
+PROCESS\+\_\+\+DATA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DONE@{DONE}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!DONE@{DONE}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749} 
+DONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INORDER@{INORDER}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!INORDER@{INORDER}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a541a7d029edbe0dc4855fa23ba23162b}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a541a7d029edbe0dc4855fa23ba23162b} 
+INORDER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUFFER@{BUFFER}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!BUFFER@{BUFFER}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a57ea20be5a2dd38faaadc99ae400ac35}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a57ea20be5a2dd38faaadc99ae400ac35} 
+BUFFER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLUSH@{FLUSH}!rcopy.c@{rcopy.c}}\index{rcopy.c@{rcopy.c}!FLUSH@{FLUSH}}}\Hypertarget{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9}\label{rcopy_8c_a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9} 
+FLUSH&\\
+\hline
+
+\end{DoxyEnumFields}
 
 
 \doxysubsection{Function Documentation}
-\Hypertarget{rcopy_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55}\label{rcopy_8c_ad0ac805d2cdb2fc14a19ba6cebc9bc55} 
-\index{rcopy.c@{rcopy.c}!checkArgs@{checkArgs}}
-\index{checkArgs@{checkArgs}!rcopy.c@{rcopy.c}}
-\doxysubsubsection{\texorpdfstring{checkArgs()}{checkArgs()}}
-{\footnotesize\ttfamily int check\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+\Hypertarget{rcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c}\label{rcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c} 
+\index{rcopy.c@{rcopy.c}!flush@{flush}}
+\index{flush@{flush}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily int flush (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server }\end{DoxyParamCaption})}
 
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166}\label{rcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166} 
+\index{rcopy.c@{rcopy.c}!inBuffer@{inBuffer}}
+\index{inBuffer@{inBuffer}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{inBuffer()}{inBuffer()}}
+{\footnotesize\ttfamily int in\+Buffer (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{\mbox{\hyperlink{structClientConfig}{Client\+Config}}}]{config }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+{\em config} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf}\label{rcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf} 
+\index{rcopy.c@{rcopy.c}!inOrder@{inOrder}}
+\index{inOrder@{inOrder}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{inOrder()}{inOrder()}}
+{\footnotesize\ttfamily int in\+Order (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{in\+Order\+PDU,  }\item[{int}]{in\+Order\+PDULen,  }\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{\mbox{\hyperlink{structClientConfig}{Client\+Config}}}]{config }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em in\+Order\+PDU} & \\
+\hline
+{\em in\+Order\+PDULen} & \\
+\hline
+{\em server} & \\
+\hline
+{\em config} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rcopy_8c_ada1474e4a4da15c3ec2ad267ee35be11}\label{rcopy_8c_ada1474e4a4da15c3ec2ad267ee35be11} 
+\index{rcopy.c@{rcopy.c}!invalidatePacket@{invalidatePacket}}
+\index{invalidatePacket@{invalidatePacket}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{invalidatePacket()}{invalidatePacket()}}
+{\footnotesize\ttfamily void invalidate\+Packet (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{seq }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em seq} & \\
+\hline
+\end{DoxyParams}
 \Hypertarget{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97} 
 \index{rcopy.c@{rcopy.c}!main@{main}}
 \index{main@{main}!rcopy.c@{rcopy.c}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
+
+
+This is the main function for the UDP client program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+rcopy from-\/filename to-\/filename window-\/size buffer-\/size error-\/rate remote-\/machine remote-\/port 
+\end{DoxyNote}
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
@@ -93,23 +296,138 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
 \end{center}
 \end{figure}
+\Hypertarget{rcopy_8c_aecfb03a103587626d773616cffcac084}\label{rcopy_8c_aecfb03a103587626d773616cffcac084} 
+\index{rcopy.c@{rcopy.c}!parseArgs@{parseArgs}}
+\index{parseArgs@{parseArgs}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{parseArgs()}{parseArgs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClientConfig}{Client\+Config}} parse\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structClientConfig}{Client\+Config} 
+\end{DoxyReturn}
+\Hypertarget{rcopy_8c_a74c224849f2e81167392a0e1cc7c13c5}\label{rcopy_8c_a74c224849f2e81167392a0e1cc7c13c5} 
+\index{rcopy.c@{rcopy.c}!processData@{processData}}
+\index{processData@{processData}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{processData()}{processData()}}
+{\footnotesize\ttfamily int process\+Data (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pdu\+Buffer,  }\item[{int}]{pdu\+Length,  }\item[{\mbox{\hyperlink{structClientConfig}{Client\+Config}}}]{config }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+{\em pdu\+Buffer} & \\
+\hline
+{\em pdu\+Length} & \\
+\hline
+{\em config} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_a74c224849f2e81167392a0e1cc7c13c5_cgraph}
+\end{center}
+\end{figure}
 \Hypertarget{rcopy_8c_ad4e63ea77d61babc4ed66f9bf6d3b8b2}\label{rcopy_8c_ad4e63ea77d61babc4ed66f9bf6d3b8b2} 
 \index{rcopy.c@{rcopy.c}!readFromStdin@{readFromStdin}}
 \index{readFromStdin@{readFromStdin}!rcopy.c@{rcopy.c}}
 \doxysubsubsection{\texorpdfstring{readFromStdin()}{readFromStdin()}}
 {\footnotesize\ttfamily int read\+From\+Stdin (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buffer }\end{DoxyParamCaption})}
 
-\Hypertarget{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a}\label{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a} 
-\index{rcopy.c@{rcopy.c}!talkToServer@{talkToServer}}
-\index{talkToServer@{talkToServer}!rcopy.c@{rcopy.c}}
-\doxysubsubsection{\texorpdfstring{talkToServer()}{talkToServer()}}
-{\footnotesize\ttfamily void talk\+To\+Server (\begin{DoxyParamCaption}\item[{int}]{socket\+Num,  }\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server }\end{DoxyParamCaption})}
 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{rcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0}\label{rcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0} 
+\index{rcopy.c@{rcopy.c}!sendFileName@{sendFileName}}
+\index{sendFileName@{sendFileName}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{sendFileName()}{sendFileName()}}
+{\footnotesize\ttfamily int send\+File\+Name (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pdu\+Buffer,  }\item[{int}]{pdu\+Length,  }\item[{\mbox{\hyperlink{structClientConfig}{Client\+Config}}}]{config,  }\item[{int}]{sequence\+Num }\end{DoxyParamCaption})}
+
+
+
+This function sends the filename to the server and waits for an ack. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em socket\+Num} & \\
+\hline
+{\em server} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
 Here is the call graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=297pt]{rcopy_8c_a2ade93d937581d401ffd561f2c64db6a_cgraph}
+\includegraphics[width=350pt]{rcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f}\label{rcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f} 
+\index{rcopy.c@{rcopy.c}!talkToServer@{talkToServer}}
+\index{talkToServer@{talkToServer}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{talkToServer()}{talkToServer()}}
+{\footnotesize\ttfamily void talk\+To\+Server (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{\mbox{\hyperlink{structClientConfig}{Client\+Config}}}]{config }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+{\em config} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{rcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8}\label{rcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8} 
+\index{rcopy.c@{rcopy.c}!waitForData@{waitForData}}
+\index{waitForData@{waitForData}!rcopy.c@{rcopy.c}}
+\doxysubsubsection{\texorpdfstring{waitForData()}{waitForData()}}
+{\footnotesize\ttfamily int wait\+For\+Data (\begin{DoxyParamCaption}\item[{struct sockaddr\+\_\+in6 \texorpdfstring{$\ast$}{*}}]{server,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pdu\+Buffer,  }\item[{int \texorpdfstring{$\ast$}{*}}]{pdu\+Length,  }\item[{\mbox{\hyperlink{structClientConfig}{Client\+Config}}}]{config }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em server} & \\
+\hline
+{\em pdu\+Buffer} & \\
+\hline
+{\em pdu\+Length} & \\
+\hline
+{\em config} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8_cgraph}
 \end{center}
 \end{figure}

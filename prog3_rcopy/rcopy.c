@@ -640,7 +640,7 @@ int waitForData(struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength,
 	else
 	{
 		// Poll time out
-		// close socket4
+		// close socket
 		perror("Timeout waiting for file data in waitForData");
 		removeFromPollSet(socketNum);
 		close(socketNum);

@@ -78,7 +78,21 @@ $(function() {
   <div class="headertitle"><div class="title">checksum.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><div class="dynheader">
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for checksum.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="libcpe464_2checksum_8h__incl.png" border="0" usemap="#a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2libcpe464_2checksum_8h" alt=""/></div>
+<map name="a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2libcpe464_2checksum_8h" id="a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2libcpe464_2checksum_8h">
+<area shape="rect" title=" " alt="" coords="5,5,220,60"/>
+<area shape="rect" title=" " alt="" coords="21,108,103,133"/>
+<area shape="poly" title=" " alt="" coords="99,61,78,97,74,95,95,59"/>
+<area shape="rect" title=" " alt="" coords="128,108,199,133"/>
+<area shape="poly" title=" " alt="" coords="130,59,152,95,147,97,126,61"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="libcpe464_2checksum_8h__dep__incl.png" border="0" usemap="#a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2libcpe464_2checksum_8hdep" alt=""/></div>
@@ -96,6 +110,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a5e4cd95c89adfdd7e4bdad48b0b7aa9f" id="r_a5e4cd95c89adfdd7e4bdad48b0b7aa9f"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libcpe464_2checksum_8h.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f">in_cksum</a> (unsigned short *addr, int len)</td></tr>
 <tr class="memdesc:a5e4cd95c89adfdd7e4bdad48b0b7aa9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the checksum function. It calculates the checksum of a given buffer.  <br /></td></tr>
 <tr class="separator:a5e4cd95c89adfdd7e4bdad48b0b7aa9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3853f2e3eba762d1409c17397eb3667c" id="r_a3853f2e3eba762d1409c17397eb3667c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libcpe464_2checksum_8h.html#a3853f2e3eba762d1409c17397eb3667c">verifyChecksum</a> (const uint8_t *buffer, int length)</td></tr>
+<tr class="separator:a3853f2e3eba762d1409c17397eb3667c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a5e4cd95c89adfdd7e4bdad48b0b7aa9f" name="a5e4cd95c89adfdd7e4bdad48b0b7aa9f"></a>
@@ -133,6 +149,54 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>unsigned short </dd></dl>
+
+</div>
+</div>
+<a id="a3853f2e3eba762d1409c17397eb3667c" name="a3853f2e3eba762d1409c17397eb3667c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3853f2e3eba762d1409c17397eb3667c">&#9670;&#160;</a></span>verifyChecksum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool verifyChecksum </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td></td></tr>
+    <tr><td class="paramname">length</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="libcpe464_2checksum_8h_a3853f2e3eba762d1409c17397eb3667c_cgraph.png" border="0" usemap="#alibcpe464_2checksum_8h_a3853f2e3eba762d1409c17397eb3667c_cgraph" alt=""/></div>
+<map name="alibcpe464_2checksum_8h_a3853f2e3eba762d1409c17397eb3667c_cgraph" id="alibcpe464_2checksum_8h_a3853f2e3eba762d1409c17397eb3667c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,132,31"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="180,5,264,31"/>
+<area shape="poly" title=" " alt="" coords="132,15,166,15,166,21,132,21"/>
+</map>
+</div>
 
 </div>
 </div>

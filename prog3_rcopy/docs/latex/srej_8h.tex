@@ -1,0 +1,151 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/srej.h File Reference}
+\hypertarget{srej_8h}{}\label{srej_8h}\index{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/srej.h@{/home/joshua/Network-\/Programming-\/3/prog3\_rcopy/srej.h}}
+{\ttfamily \#include "{}networks.\+h"{}}\newline
+{\ttfamily \#include "{}cpe464.\+h"{}}\newline
+Include dependency graph for srej.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{srej_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{srej_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structheader}{header}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{srej_8h_a3fd5ab5d380936ded4f6cbe6fe24dca8}{MAX\+\_\+\+FILE\+\_\+\+LEN}}~100
+\item 
+\#define \mbox{\hyperlink{srej_8h_aecfd2f17b667cab75e0fe442cb23b3a3}{RR\+\_\+\+PDU\+\_\+\+LEN}}~11
+\item 
+\#define \mbox{\hyperlink{srej_8h_ae134685c437134a04ff088201085f76b}{SREJ\+\_\+\+PDU\+\_\+\+LEN}}~11
+\item 
+\#define \mbox{\hyperlink{srej_8h_a4975222db131bd5a6db8f4ec46b6fdb9}{START\+\_\+\+SEQ\+\_\+\+NUM}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structheader}{header}} \mbox{\hyperlink{srej_8h_a516f8660e47c860cb8b0119d78ce1fdb}{Header}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ec}{FLAG}} \{ \newline
+\mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ecaea4586c054afe1678864fa75dfb1787d}{RR}} =5
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103eca0680deb615082372d308669b56bef969}{SREJ}} =6
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ecaa9d10e28f0e591fa583be7d0c804a286}{FNAME}} =8
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ecad2420bb71acbd9cedac25c0706709659}{FNAME\+\_\+\+OK}} =9
+, \newline
+\mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103eca6a94b3112de4c82d2ed6667f17633e8a}{EOF\+\_\+\+FLAG}} =10
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103eca9d7d6f31868d66330397c967c4afd2d2}{DATA}} =16
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103eca63fe576575070b9b4ced532328f72fc2}{RESENT\+\_\+\+DATA}} =17
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103eca0c12fd62982e34afb5633aeaa447c49d}{RESEND\+\_\+\+TIMEOUT}} =18
+, \newline
+\mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ecaf857b31f2de7539c5e5cf78a98947dc0}{FNAME\+\_\+\+NOT\+\_\+\+OK}} =37
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ecafc34b46522239a4661326f0c025aadfb}{FILE\+\_\+\+OK\+\_\+\+ACK}} =36
+, \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103eca9ef6256fe44beefa52acfcdeb3f7a959}{EOF\+\_\+\+ACK}} =38
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{srej_8h_a3fd5ab5d380936ded4f6cbe6fe24dca8}\label{srej_8h_a3fd5ab5d380936ded4f6cbe6fe24dca8} 
+\index{srej.h@{srej.h}!MAX\_FILE\_LEN@{MAX\_FILE\_LEN}}
+\index{MAX\_FILE\_LEN@{MAX\_FILE\_LEN}!srej.h@{srej.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_FILE\_LEN}{MAX\_FILE\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+FILE\+\_\+\+LEN~100}
+
+\Hypertarget{srej_8h_aecfd2f17b667cab75e0fe442cb23b3a3}\label{srej_8h_aecfd2f17b667cab75e0fe442cb23b3a3} 
+\index{srej.h@{srej.h}!RR\_PDU\_LEN@{RR\_PDU\_LEN}}
+\index{RR\_PDU\_LEN@{RR\_PDU\_LEN}!srej.h@{srej.h}}
+\doxysubsubsection{\texorpdfstring{RR\_PDU\_LEN}{RR\_PDU\_LEN}}
+{\footnotesize\ttfamily \#define RR\+\_\+\+PDU\+\_\+\+LEN~11}
+
+\Hypertarget{srej_8h_ae134685c437134a04ff088201085f76b}\label{srej_8h_ae134685c437134a04ff088201085f76b} 
+\index{srej.h@{srej.h}!SREJ\_PDU\_LEN@{SREJ\_PDU\_LEN}}
+\index{SREJ\_PDU\_LEN@{SREJ\_PDU\_LEN}!srej.h@{srej.h}}
+\doxysubsubsection{\texorpdfstring{SREJ\_PDU\_LEN}{SREJ\_PDU\_LEN}}
+{\footnotesize\ttfamily \#define SREJ\+\_\+\+PDU\+\_\+\+LEN~11}
+
+\Hypertarget{srej_8h_a4975222db131bd5a6db8f4ec46b6fdb9}\label{srej_8h_a4975222db131bd5a6db8f4ec46b6fdb9} 
+\index{srej.h@{srej.h}!START\_SEQ\_NUM@{START\_SEQ\_NUM}}
+\index{START\_SEQ\_NUM@{START\_SEQ\_NUM}!srej.h@{srej.h}}
+\doxysubsubsection{\texorpdfstring{START\_SEQ\_NUM}{START\_SEQ\_NUM}}
+{\footnotesize\ttfamily \#define START\+\_\+\+SEQ\+\_\+\+NUM~1}
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{srej_8h_a516f8660e47c860cb8b0119d78ce1fdb}\label{srej_8h_a516f8660e47c860cb8b0119d78ce1fdb} 
+\index{srej.h@{srej.h}!Header@{Header}}
+\index{Header@{Header}!srej.h@{srej.h}}
+\doxysubsubsection{\texorpdfstring{Header}{Header}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structheader}{header}} \mbox{\hyperlink{srej_8h_a516f8660e47c860cb8b0119d78ce1fdb}{Header}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103ec}\label{srej_8h_aea43282ab1b4708d7657390fa01103ec} 
+\index{srej.h@{srej.h}!FLAG@{FLAG}}
+\index{FLAG@{FLAG}!srej.h@{srej.h}}
+\doxysubsubsection{\texorpdfstring{FLAG}{FLAG}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{srej_8h_aea43282ab1b4708d7657390fa01103ec}{FLAG}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RR@{RR}!srej.h@{srej.h}}\index{srej.h@{srej.h}!RR@{RR}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103ecaea4586c054afe1678864fa75dfb1787d}\label{srej_8h_aea43282ab1b4708d7657390fa01103ecaea4586c054afe1678864fa75dfb1787d} 
+RR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SREJ@{SREJ}!srej.h@{srej.h}}\index{srej.h@{srej.h}!SREJ@{SREJ}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103eca0680deb615082372d308669b56bef969}\label{srej_8h_aea43282ab1b4708d7657390fa01103eca0680deb615082372d308669b56bef969} 
+SREJ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FNAME@{FNAME}!srej.h@{srej.h}}\index{srej.h@{srej.h}!FNAME@{FNAME}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103ecaa9d10e28f0e591fa583be7d0c804a286}\label{srej_8h_aea43282ab1b4708d7657390fa01103ecaa9d10e28f0e591fa583be7d0c804a286} 
+FNAME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FNAME\_OK@{FNAME\_OK}!srej.h@{srej.h}}\index{srej.h@{srej.h}!FNAME\_OK@{FNAME\_OK}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103ecad2420bb71acbd9cedac25c0706709659}\label{srej_8h_aea43282ab1b4708d7657390fa01103ecad2420bb71acbd9cedac25c0706709659} 
+FNAME\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EOF\_FLAG@{EOF\_FLAG}!srej.h@{srej.h}}\index{srej.h@{srej.h}!EOF\_FLAG@{EOF\_FLAG}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103eca6a94b3112de4c82d2ed6667f17633e8a}\label{srej_8h_aea43282ab1b4708d7657390fa01103eca6a94b3112de4c82d2ed6667f17633e8a} 
+EOF\+\_\+\+FLAG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!srej.h@{srej.h}}\index{srej.h@{srej.h}!DATA@{DATA}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103eca9d7d6f31868d66330397c967c4afd2d2}\label{srej_8h_aea43282ab1b4708d7657390fa01103eca9d7d6f31868d66330397c967c4afd2d2} 
+DATA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RESENT\_DATA@{RESENT\_DATA}!srej.h@{srej.h}}\index{srej.h@{srej.h}!RESENT\_DATA@{RESENT\_DATA}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103eca63fe576575070b9b4ced532328f72fc2}\label{srej_8h_aea43282ab1b4708d7657390fa01103eca63fe576575070b9b4ced532328f72fc2} 
+RESENT\+\_\+\+DATA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RESEND\_TIMEOUT@{RESEND\_TIMEOUT}!srej.h@{srej.h}}\index{srej.h@{srej.h}!RESEND\_TIMEOUT@{RESEND\_TIMEOUT}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103eca0c12fd62982e34afb5633aeaa447c49d}\label{srej_8h_aea43282ab1b4708d7657390fa01103eca0c12fd62982e34afb5633aeaa447c49d} 
+RESEND\+\_\+\+TIMEOUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FNAME\_NOT\_OK@{FNAME\_NOT\_OK}!srej.h@{srej.h}}\index{srej.h@{srej.h}!FNAME\_NOT\_OK@{FNAME\_NOT\_OK}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103ecaf857b31f2de7539c5e5cf78a98947dc0}\label{srej_8h_aea43282ab1b4708d7657390fa01103ecaf857b31f2de7539c5e5cf78a98947dc0} 
+FNAME\+\_\+\+NOT\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_OK\_ACK@{FILE\_OK\_ACK}!srej.h@{srej.h}}\index{srej.h@{srej.h}!FILE\_OK\_ACK@{FILE\_OK\_ACK}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103ecafc34b46522239a4661326f0c025aadfb}\label{srej_8h_aea43282ab1b4708d7657390fa01103ecafc34b46522239a4661326f0c025aadfb} 
+FILE\+\_\+\+OK\+\_\+\+ACK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EOF\_ACK@{EOF\_ACK}!srej.h@{srej.h}}\index{srej.h@{srej.h}!EOF\_ACK@{EOF\_ACK}}}\Hypertarget{srej_8h_aea43282ab1b4708d7657390fa01103eca9ef6256fe44beefa52acfcdeb3f7a959}\label{srej_8h_aea43282ab1b4708d7657390fa01103eca9ef6256fe44beefa52acfcdeb3f7a959} 
+EOF\+\_\+\+ACK&\\
+\hline
+
+\end{DoxyEnumFields}

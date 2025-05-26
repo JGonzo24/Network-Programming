@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['no2count_5ft_0',['No2Count_t',['../classinfoSeqNo.html#aaf5a02d33cae9bf464e679ca128279db',1,'infoSeqNo']]],
-  ['nojournal_5ft_1',['NoJournal_t',['../classinfoSeqNo.html#ae694096559574d4899d98dd7cd542436',1,'infoSeqNo']]]
+  ['listlong_5ft_0',['ListLong_t',['../SettingsManager_8h.html#a08935fa2b624444f8c02eda77f6f737b',1,'SettingsManager.h']]],
+  ['listmsgevents_5ft_1',['listMsgEvents_t',['../classPacketManager.html#a5874c2fcb8aa1a549ca40bd082ce0f7d',1,'PacketManager']]]
 ];

@@ -1,15 +1,17 @@
 <map id="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/safeUtil.h" name="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/safeUtil.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="488,5,657,60"/>
-<area shape="rect" id="Node000002" href="$myClient_8c.html" title="This is a simple TCP client program that connects to a server." alt="" coords="5,108,175,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="475,53,338,79,187,111,175,113,174,108,185,105,337,73,474,48"/>
-<area shape="rect" id="Node000003" href="$myServer_8c.html" title="This is a simple TCP server program that receives data from a client." alt="" coords="199,108,368,163"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="485,67,360,110,358,105,484,62"/>
-<area shape="rect" id="Node000004" href="$pollLib_8c.html" title="Library to interface with the poll() system call." alt="" coords="392,108,561,163"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="540,72,504,110,500,106,536,68"/>
-<area shape="rect" id="Node000005" href="$rcopy_8c.html" title="This is a simple UDP client program that sends data to a server." alt="" coords="585,108,755,163"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="610,68,647,106,643,110,606,72"/>
-<area shape="rect" id="Node000006" href="$safeUtil_8c.html" title="This file contains functions to safely send and receive data over sockets." alt="" coords="779,108,948,163"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="662,62,788,105,787,110,660,67"/>
-<area shape="rect" id="Node000007" href="$server_8c.html" title="Simple UDP server that listens for messages and echoes back byte counts." alt="" coords="972,108,1141,163"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="671,48,809,73,961,105,973,108,971,113,960,111,808,79,670,53"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="599,5,768,60"/>
+<area shape="rect" id="Node000002" href="$helperFunctions_8c.html" title="This file contains helper functions for the project including the createPDU()" alt="" coords="5,108,188,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="585,49,406,74,200,111,189,113,188,108,199,105,405,69,585,44"/>
+<area shape="rect" id="Node000003" href="$myClient_8c.html" title="This is a simple TCP client program that connects to a server." alt="" coords="212,108,381,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="586,61,393,111,382,114,381,108,392,105,585,56"/>
+<area shape="rect" id="Node000004" href="$myServer_8c.html" title="This is a simple TCP server program that receives data from a client." alt="" coords="405,108,575,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="622,69,542,110,539,106,620,64"/>
+<area shape="rect" id="Node000005" href="$pollLib_8c.html" title="Library to interface with the poll() system call." alt="" coords="599,108,768,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="686,74,686,108,681,108,681,74"/>
+<area shape="rect" id="Node000006" href="$rcopy_8c.html" title="This is a simple UDP client program that sends data to a server." alt="" coords="792,108,961,163"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="747,64,828,106,825,110,744,69"/>
+<area shape="rect" id="Node000007" href="$safeUtil_8c.html" title="This file contains functions to safely send and receive data over sockets." alt="" coords="985,108,1155,163"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="782,56,975,105,986,108,985,114,973,111,781,61"/>
+<area shape="rect" id="Node000008" href="$server_8c.html" title="Simple UDP server that listens for messages and echoes back byte counts." alt="" coords="1179,108,1348,163"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="782,43,962,68,1168,105,1179,108,1178,113,1167,111,961,74,781,48"/>
 </map>

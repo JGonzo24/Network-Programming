@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['about_0',['About',['../index.html#autotoc_md2',1,'']]],
-  ['addmsgevent_5frandom_1',['addMsgEvent_Random',['../classPacketManager.html#a2331c8d641438ff1921982515c9b7e1b',1,'PacketManager']]],
-  ['addmsgevent_5fstandard_2',['addMsgEvent_Standard',['../classPacketManager.html#ab8596f5ee28983c162139711c22724a3',1,'PacketManager']]],
-  ['addtopollset_3',['addtopollset',['../pollLib_8c.html#a963075ea184857285cc940df3c7c7e4a',1,'addToPollSet(int socketNumber):&#160;pollLib.c'],['../pollLib_8h.html#a963075ea184857285cc940df3c7c7e4a',1,'addToPollSet(int socketNumber):&#160;pollLib.c']]]
+  ['_5fcpe464_5fhooks_5fh_5f_0',['_CPE464_HOOKS_H_',['../cpe464_8h.html#a3cb1a603428ce7d96fc4e71c2e25f366',1,'cpe464.h']]],
+  ['_5fenvdataentry_1',['_envdataentry',['../struct__EnvDataEntry.html',1,'_EnvDataEntry'],['../struct__EnvDataEntry.html#aef57aa068cbb3222c42d9b1b72ad7740',1,'_EnvDataEntry::_EnvDataEntry()']]],
+  ['_5fenvkeyinfo_2',['_EnvKeyInfo',['../struct__EnvKeyInfo.html',1,'']]]
 ];

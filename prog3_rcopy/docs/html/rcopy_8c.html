@@ -70,7 +70,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">/home/joshua/Network-Programming-3/prog3_rcopy/rcopy.c File Reference</div></div>
 </div><!--header-->
@@ -94,71 +97,157 @@ $(function() {
 <code>#include &quot;<a class="el" href="gethostbyname_8h_source.html">gethostbyname.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="networks_8h_source.html">networks.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="safeUtil_8h_source.html">safeUtil.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="helperFunctions_8h_source.html">helperFunctions.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="cpe464_8h_source.html">cpe464.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="pollLib_8h_source.html">pollLib.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="srej_8h_source.html">srej.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="windowing_8h_source.html">windowing.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rcopy.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="rcopy_8c__incl.png" border="0" usemap="#a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2rcopy_8c" alt=""/></div>
 <map name="a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2rcopy_8c" id="a_2home_2joshua_2Network-Programming-3_2prog3__rcopy_2rcopy_8c">
-<area shape="rect" title="This is a simple UDP client program that sends data to a server." alt="" coords="585,5,754,60"/>
-<area shape="rect" title=" " alt="" coords="5,181,72,207"/>
-<area shape="poly" title=" " alt="" coords="585,47,430,71,341,89,254,111,157,144,77,178,75,173,155,139,253,105,340,84,429,66,584,41"/>
-<area shape="rect" title=" " alt="" coords="97,181,167,207"/>
-<area shape="poly" title=" " alt="" coords="585,50,460,74,322,111,237,144,167,177,164,173,235,139,321,105,458,69,584,44"/>
-<area shape="rect" title=" " alt="" coords="192,181,288,207"/>
-<area shape="poly" title=" " alt="" coords="585,50,482,74,426,90,373,110,315,142,267,175,264,171,312,137,371,106,425,85,480,68,584,45"/>
-<area shape="rect" title=" " alt="" coords="732,108,817,133"/>
-<area shape="poly" title=" " alt="" coords="703,58,751,97,748,101,700,62"/>
-<area shape="rect" title=" " alt="" coords="841,108,921,133"/>
-<area shape="poly" title=" " alt="" coords="735,58,841,100,839,105,733,63"/>
-<area shape="rect" title=" " alt="" coords="945,108,1036,133"/>
-<area shape="poly" title=" " alt="" coords="755,54,935,102,934,107,753,59"/>
-<area shape="rect" title=" " alt="" coords="312,181,387,207"/>
-<area shape="poly" title=" " alt="" coords="585,43,539,51,490,64,442,83,399,110,375,138,360,169,355,167,371,135,396,106,440,79,489,59,538,46,584,37"/>
-<area shape="rect" title=" " alt="" coords="1061,108,1123,133"/>
-<area shape="poly" title=" " alt="" coords="755,46,1048,105,1047,111,754,52"/>
-<area shape="rect" title=" " alt="" coords="527,181,598,207"/>
-<area shape="poly" title=" " alt="" coords="653,62,620,109,580,171,575,168,615,107,648,59"/>
-<area shape="rect" title=" " alt="" coords="1147,108,1226,133"/>
-<area shape="poly" title=" " alt="" coords="755,43,926,69,1134,105,1133,110,925,74,754,48"/>
-<area shape="rect" title=" " alt="" coords="622,181,725,207"/>
-<area shape="poly" title=" " alt="" coords="648,61,629,96,625,114,628,133,638,152,652,169,648,173,634,155,623,134,620,114,624,94,644,59"/>
-<area shape="rect" title=" " alt="" coords="749,181,845,207"/>
-<area shape="poly" title=" " alt="" coords="667,60,666,97,670,115,678,132,704,157,737,175,735,179,701,162,674,135,665,117,661,97,662,60"/>
-<area shape="rect" title=" " alt="" coords="870,181,941,207"/>
-<area shape="poly" title=" " alt="" coords="679,59,695,97,707,115,721,131,774,152,858,177,856,182,772,157,719,136,703,119,690,99,674,61"/>
-<area shape="rect" href="gethostbyname_8h.html" title=" " alt="" coords="1251,108,1387,133"/>
-<area shape="poly" title=" " alt="" coords="755,42,1237,105,1237,110,754,47"/>
-<area shape="rect" href="networks_8h.html" title=" " alt="" coords="410,108,505,133"/>
-<area shape="poly" title=" " alt="" coords="606,63,499,105,497,100,604,58"/>
-<area shape="rect" href="safeUtil_8h.html" title=" " alt="" coords="1411,108,1496,133"/>
-<area shape="poly" title=" " alt="" coords="755,37,1036,61,1215,81,1398,105,1397,111,1214,86,1036,66,754,42"/>
-<area shape="poly" title=" " alt="" coords="410,131,269,151,86,184,85,179,268,146,410,126"/>
-<area shape="poly" title=" " alt="" coords="410,134,181,184,180,179,409,129"/>
-<area shape="poly" title=" " alt="" coords="423,136,289,180,287,174,422,131"/>
-<area shape="poly" title=" " alt="" coords="441,136,380,176,377,171,439,131"/>
-<area shape="poly" title=" " alt="" coords="476,131,536,171,533,176,473,136"/>
-<area shape="poly" title=" " alt="" coords="493,131,626,174,625,179,491,136"/>
-<area shape="poly" title=" " alt="" coords="506,129,736,177,735,182,504,135"/>
-<area shape="poly" title=" " alt="" coords="505,125,658,146,857,179,856,184,657,151,505,130"/>
-<area shape="rect" title=" " alt="" coords="411,181,503,207"/>
-<area shape="poly" title=" " alt="" coords="460,134,460,168,455,168,455,134"/>
+<area shape="rect" title="This is a simple UDP client program that sends data to a server." alt="" coords="736,5,905,60"/>
+<area shape="rect" title=" " alt="" coords="759,255,826,280"/>
+<area shape="poly" title=" " alt="" coords="748,62,718,82,695,109,683,135,679,157,683,180,695,205,718,231,748,249,746,253,715,235,690,208,678,181,674,157,678,133,690,107,714,78,745,58"/>
+<area shape="rect" title=" " alt="" coords="851,255,921,280"/>
+<area shape="poly" title=" " alt="" coords="853,58,902,111,925,144,942,181,944,199,938,217,915,247,910,243,933,215,938,199,937,182,920,147,898,114,849,62"/>
+<area shape="rect" title=" " alt="" coords="1045,255,1141,280"/>
+<area shape="poly" title=" " alt="" coords="905,31,1017,35,1141,46,1200,56,1251,68,1293,85,1321,106,1335,132,1332,156,1316,178,1290,197,1223,230,1153,253,1151,248,1221,225,1287,193,1312,174,1327,154,1329,133,1317,110,1290,90,1250,74,1199,61,1140,51,1017,40,905,36"/>
+<area shape="rect" title=" " alt="" coords="186,108,271,133"/>
+<area shape="poly" title=" " alt="" coords="736,47,535,72,286,110,285,105,534,67,735,41"/>
+<area shape="rect" title=" " alt="" coords="295,108,375,133"/>
+<area shape="poly" title=" " alt="" coords="736,50,389,110,388,105,735,45"/>
+<area shape="rect" title=" " alt="" coords="399,108,490,133"/>
+<area shape="poly" title=" " alt="" coords="736,56,504,109,503,103,735,51"/>
+<area shape="rect" title=" " alt="" coords="946,255,1021,280"/>
+<area shape="poly" title=" " alt="" coords="906,32,1012,36,1131,48,1186,57,1235,70,1275,86,1301,106,1306,116,1306,127,1290,147,1260,168,1219,188,1124,225,1035,254,1033,249,1122,220,1217,183,1257,163,1286,144,1301,125,1301,117,1297,110,1272,91,1233,75,1185,63,1130,53,1012,42,905,37"/>
+<area shape="rect" title=" " alt="" coords="565,108,628,133"/>
+<area shape="poly" title=" " alt="" coords="753,63,641,105,639,100,751,58"/>
+<area shape="rect" title=" " alt="" coords="569,255,640,280"/>
+<area shape="poly" title=" " alt="" coords="736,49,628,73,583,90,556,110,548,125,545,142,551,178,568,213,588,242,584,245,564,216,546,180,539,142,543,124,552,106,581,85,626,68,735,44"/>
+<area shape="rect" title=" " alt="" coords="704,108,783,133"/>
+<area shape="poly" title=" " alt="" coords="799,62,765,99,761,96,795,58"/>
+<area shape="rect" title=" " alt="" coords="1227,255,1329,280"/>
+<area shape="poly" title=" " alt="" coords="906,34,1072,42,1266,55,1435,76,1493,90,1513,97,1525,106,1535,127,1536,154,1527,182,1509,209,1482,225,1440,240,1344,260,1342,254,1438,234,1479,221,1505,205,1522,180,1531,153,1530,128,1521,110,1510,102,1492,95,1434,81,1266,61,1071,47,905,39"/>
+<area shape="rect" title=" " alt="" coords="130,255,226,280"/>
+<area shape="poly" title=" " alt="" coords="735,40,575,48,388,62,227,82,172,95,144,110,135,124,130,141,134,176,147,212,164,242,159,244,142,214,128,178,125,140,130,122,140,106,171,90,226,77,388,56,575,42,735,34"/>
+<area shape="rect" title=" " alt="" coords="251,255,321,280"/>
+<area shape="poly" title=" " alt="" coords="736,40,579,48,397,62,241,83,188,96,160,110,150,127,150,146,157,164,171,183,211,218,254,245,251,250,208,222,168,187,153,167,144,147,145,126,156,106,186,91,240,78,397,57,578,43,735,35"/>
+<area shape="rect" href="gethostbyname_8h.html" title=" " alt="" coords="959,108,1095,133"/>
+<area shape="poly" title=" " alt="" coords="885,58,988,100,986,105,883,63"/>
+<area shape="rect" href="networks_8h.html" title=" " alt="" coords="704,181,799,207"/>
+<area shape="poly" title=" " alt="" coords="819,61,811,96,798,135,773,172,768,169,793,132,806,95,814,60"/>
+<area shape="rect" href="safeUtil_8h.html" title=" " alt="" coords="1202,108,1287,133"/>
+<area shape="poly" title=" " alt="" coords="906,48,1189,105,1188,110,905,53"/>
+<area shape="rect" href="helperFunctions_8h.html" title=" " alt="" coords="332,181,469,207"/>
+<area shape="poly" title=" " alt="" coords="736,40,583,49,406,63,254,83,203,96,176,110,166,127,168,140,179,152,199,162,255,177,319,185,318,191,254,182,197,167,176,156,163,142,161,125,172,106,201,91,253,78,406,58,582,43,735,35"/>
+<area shape="rect" href="cpe464_8h.html" title=" " alt="" coords="1413,181,1495,207"/>
+<area shape="poly" title=" " alt="" coords="906,34,1067,42,1255,56,1417,77,1473,90,1504,106,1511,123,1507,142,1495,159,1481,174,1477,170,1491,155,1502,139,1506,124,1500,110,1471,95,1416,82,1254,61,1067,48,906,40"/>
+<area shape="rect" href="pollLib_8h.html" title=" " alt="" coords="1413,108,1490,133"/>
+<area shape="poly" title=" " alt="" coords="906,41,1127,67,1394,105,1400,106,1399,111,1394,111,1127,72,905,46"/>
+<area shape="rect" href="srej_8h.html" title=" " alt="" coords="1119,108,1178,133"/>
+<area shape="poly" title=" " alt="" coords="906,53,1107,105,1106,110,905,58"/>
+<area shape="rect" href="windowing_8h.html" title=" " alt="" coords="823,181,927,207"/>
+<area shape="poly" title=" " alt="" coords="832,59,869,167,864,169,827,61"/>
+<area shape="poly" title=" " alt="" coords="760,206,781,241,777,244,756,208"/>
+<area shape="poly" title=" " alt="" coords="774,204,853,246,851,250,772,209"/>
+<area shape="poly" title=" " alt="" coords="799,203,1032,251,1031,256,798,208"/>
+<area shape="poly" title=" " alt="" coords="789,204,934,248,932,253,788,209"/>
+<area shape="poly" title=" " alt="" coords="729,209,642,251,640,246,727,204"/>
+<area shape="poly" title=" " alt="" coords="800,202,812,204,1032,235,1213,256,1213,262,1032,240,811,209,799,207"/>
+<area shape="poly" title=" " alt="" coords="704,202,506,223,240,257,239,252,505,218,703,197"/>
+<area shape="poly" title=" " alt="" coords="704,203,544,223,335,257,334,252,544,218,704,198"/>
+<area shape="rect" title=" " alt="" coords="345,255,437,280"/>
+<area shape="poly" title=" " alt="" coords="704,207,451,257,450,252,703,202"/>
+<area shape="poly" title=" " alt="" coords="470,197,714,216,870,232,1031,252,1031,257,870,237,713,222,469,202"/>
+<area shape="poly" title=" " alt="" coords="434,204,560,248,558,253,433,209"/>
+<area shape="poly" title=" " alt="" coords="366,209,228,253,226,248,364,204"/>
+<area shape="poly" title=" " alt="" coords="402,207,397,242,392,241,396,207"/>
+<area shape="rect" title=" " alt="" coords="664,255,735,280"/>
+<area shape="poly" title=" " alt="" coords="450,204,651,252,650,257,449,209"/>
+<area shape="rect" href="checksum_8h.html" title=" " alt="" coords="5,255,105,280"/>
+<area shape="poly" title=" " alt="" coords="346,209,119,256,118,250,345,204"/>
+<area shape="rect" title=" " alt="" coords="462,255,545,280"/>
+<area shape="poly" title=" " alt="" coords="419,204,477,244,474,249,416,209"/>
+<area shape="poly" title=" " alt="" coords="1414,206,1154,257,1153,251,1413,201"/>
+<area shape="poly" title=" " alt="" coords="1427,209,1321,252,1319,247,1425,204"/>
+<area shape="rect" title=" " alt="" coords="1405,255,1503,280"/>
+<area shape="poly" title=" " alt="" coords="1457,207,1457,241,1451,241,1451,207"/>
+<area shape="poly" title=" " alt="" coords="1120,133,1108,136,963,162,813,184,812,179,962,156,1107,131,1118,128"/>
+<area shape="poly" title=" " alt="" coords="1179,128,1191,131,1401,179,1399,184,1189,136,1178,133"/>
+<area shape="poly" title=" " alt="" coords="864,209,818,248,815,243,860,205"/>
+<area shape="poly" title=" " alt="" coords="880,207,885,241,880,242,874,207"/>
+<area shape="poly" title=" " alt="" coords="911,204,1045,248,1044,253,909,209"/>
+<area shape="poly" title=" " alt="" coords="894,204,956,245,953,249,891,209"/>
+<area shape="poly" title=" " alt="" coords="833,209,654,256,653,251,831,204"/>
+<area shape="poly" title=" " alt="" coords="928,202,1214,252,1213,257,927,207"/>
+<area shape="poly" title=" " alt="" coords="848,209,742,252,740,247,846,204"/>
+<area shape="poly" title=" " alt="" coords="824,207,559,257,558,252,823,202"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structClientConfig.html">ClientConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ad7871643c05865c80f5d8050aead2b57" id="r_ad7871643c05865c80f5d8050aead2b57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#ad7871643c05865c80f5d8050aead2b57">MAXBUF</a>&#160;&#160;&#160;80</td></tr>
-<tr class="separator:ad7871643c05865c80f5d8050aead2b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13550f28207d6cded155933c698e494c" id="r_a13550f28207d6cded155933c698e494c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a13550f28207d6cded155933c698e494c">HDRLEN</a>&#160;&#160;&#160;10</td></tr>
+<tr class="separator:a13550f28207d6cded155933c698e494c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e64ad851f290642d5fb0ac250a1ff34" id="r_a4e64ad851f290642d5fb0ac250a1ff34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a4e64ad851f290642d5fb0ac250a1ff34">TO_MS</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="separator:a4e64ad851f290642d5fb0ac250a1ff34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a99dadca5bcdc6b33cc3b9c1577ec617a" id="r_a99dadca5bcdc6b33cc3b9c1577ec617a"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a99dadca5bcdc6b33cc3b9c1577ec617a">STATE</a></td></tr>
+<tr class="separator:a99dadca5bcdc6b33cc3b9c1577ec617a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a5d74787dedbc4e11c1ab15bf487e61f8" id="r_a5d74787dedbc4e11c1ab15bf487e61f8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8">State</a> { <br />
+&#160;&#160;<a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a96e018978be3dd72830a2d5156877831">SEND_FILENAME</a>
+, <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8ab4aa103795368b58112c5ea127c8c58d">WAIT_FOR_ACK</a>
+, <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a935153633832e3b50e12f1230846052e">WAIT_FOR_DATA</a>
+, <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8aabf4bfe057b64b1f08fa686fa72a7645">PROCESS_DATA</a>
+, <br />
+&#160;&#160;<a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749">DONE</a>
+, <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a541a7d029edbe0dc4855fa23ba23162b">INORDER</a>
+, <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a57ea20be5a2dd38faaadc99ae400ac35">BUFFER</a>
+, <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9">FLUSH</a>
+<br />
+ }</td></tr>
+<tr class="separator:a5d74787dedbc4e11c1ab15bf487e61f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2ade93d937581d401ffd561f2c64db6a" id="r_a2ade93d937581d401ffd561f2c64db6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a2ade93d937581d401ffd561f2c64db6a">talkToServer</a> (int socketNum, struct sockaddr_in6 *server)</td></tr>
-<tr class="separator:a2ade93d937581d401ffd561f2c64db6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5a15260cc9d3aec4c1cb12303e868f" id="r_afe5a15260cc9d3aec4c1cb12303e868f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#afe5a15260cc9d3aec4c1cb12303e868f">talkToServer</a> (struct sockaddr_in6 *server, <a class="el" href="structClientConfig.html">ClientConfig</a> config)</td></tr>
+<tr class="separator:afe5a15260cc9d3aec4c1cb12303e868f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4e63ea77d61babc4ed66f9bf6d3b8b2" id="r_ad4e63ea77d61babc4ed66f9bf6d3b8b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#ad4e63ea77d61babc4ed66f9bf6d3b8b2">readFromStdin</a> (char *buffer)</td></tr>
 <tr class="separator:ad4e63ea77d61babc4ed66f9bf6d3b8b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0ac805d2cdb2fc14a19ba6cebc9bc55" id="r_ad0ac805d2cdb2fc14a19ba6cebc9bc55"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#ad0ac805d2cdb2fc14a19ba6cebc9bc55">checkArgs</a> (int argc, char *argv[])</td></tr>
-<tr class="separator:ad0ac805d2cdb2fc14a19ba6cebc9bc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad0ac805d2cdb2fc14a19ba6cebc9bc55" id="r_gad0ac805d2cdb2fc14a19ba6cebc9bc55"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__udp__server.html#gad0ac805d2cdb2fc14a19ba6cebc9bc55">checkArgs</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:gad0ac805d2cdb2fc14a19ba6cebc9bc55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates command-line arguments for port number.  <br /></td></tr>
+<tr class="separator:gad0ac805d2cdb2fc14a19ba6cebc9bc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387190aa9e9505d28a3b553a2eef3eb0" id="r_a387190aa9e9505d28a3b553a2eef3eb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a387190aa9e9505d28a3b553a2eef3eb0">sendFileName</a> (struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, <a class="el" href="structClientConfig.html">ClientConfig</a> config, int sequenceNum)</td></tr>
+<tr class="memdesc:a387190aa9e9505d28a3b553a2eef3eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function sends the filename to the server and waits for an ack.  <br /></td></tr>
+<tr class="separator:a387190aa9e9505d28a3b553a2eef3eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2efeebdf7d4047f0b92a9987f07040e8" id="r_a2efeebdf7d4047f0b92a9987f07040e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a2efeebdf7d4047f0b92a9987f07040e8">waitForData</a> (struct sockaddr_in6 *server, uint8_t *pduBuffer, int *pduLength, <a class="el" href="structClientConfig.html">ClientConfig</a> config)</td></tr>
+<tr class="separator:a2efeebdf7d4047f0b92a9987f07040e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74c224849f2e81167392a0e1cc7c13c5" id="r_a74c224849f2e81167392a0e1cc7c13c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a74c224849f2e81167392a0e1cc7c13c5">processData</a> (struct sockaddr_in6 *server, uint8_t *pduBuffer, int pduLength, <a class="el" href="structClientConfig.html">ClientConfig</a> config)</td></tr>
+<tr class="separator:a74c224849f2e81167392a0e1cc7c13c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2f9df67660e78f3c2a4677fd3f0ebf" id="r_abd2f9df67660e78f3c2a4677fd3f0ebf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#abd2f9df67660e78f3c2a4677fd3f0ebf">inOrder</a> (uint8_t *inOrderPDU, int inOrderPDULen, struct sockaddr_in6 *server, <a class="el" href="structClientConfig.html">ClientConfig</a> config)</td></tr>
+<tr class="separator:abd2f9df67660e78f3c2a4677fd3f0ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08941fbf1565dcc64b72eb1d1eb0c166" id="r_a08941fbf1565dcc64b72eb1d1eb0c166"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a08941fbf1565dcc64b72eb1d1eb0c166">inBuffer</a> (struct sockaddr_in6 *server, <a class="el" href="structClientConfig.html">ClientConfig</a> config)</td></tr>
+<tr class="separator:a08941fbf1565dcc64b72eb1d1eb0c166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfc0a1ce90f5edcd74978f9fb14738c" id="r_aebfc0a1ce90f5edcd74978f9fb14738c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#aebfc0a1ce90f5edcd74978f9fb14738c">flush</a> (struct sockaddr_in6 *server)</td></tr>
+<tr class="separator:aebfc0a1ce90f5edcd74978f9fb14738c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada1474e4a4da15c3ec2ad267ee35be11" id="r_ada1474e4a4da15c3ec2ad267ee35be11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#ada1474e4a4da15c3ec2ad267ee35be11">invalidatePacket</a> (uint32_t seq)</td></tr>
+<tr class="separator:ada1474e4a4da15c3ec2ad267ee35be11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecfb03a103587626d773616cffcac084" id="r_aecfb03a103587626d773616cffcac084"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#aecfb03a103587626d773616cffcac084">parseArgs</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:aecfb03a103587626d773616cffcac084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rcopy_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the main function for the UDP client program.  <br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -168,38 +257,157 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2025-05-10</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="ad7871643c05865c80f5d8050aead2b57" name="ad7871643c05865c80f5d8050aead2b57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7871643c05865c80f5d8050aead2b57">&#9670;&#160;</a></span>MAXBUF</h2>
+<a id="a13550f28207d6cded155933c698e494c" name="a13550f28207d6cded155933c698e494c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13550f28207d6cded155933c698e494c">&#9670;&#160;</a></span>HDRLEN</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define MAXBUF&#160;&#160;&#160;80</td>
+          <td class="memname">#define HDRLEN&#160;&#160;&#160;10</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ad0ac805d2cdb2fc14a19ba6cebc9bc55" name="ad0ac805d2cdb2fc14a19ba6cebc9bc55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0ac805d2cdb2fc14a19ba6cebc9bc55">&#9670;&#160;</a></span>checkArgs()</h2>
+<a id="a4e64ad851f290642d5fb0ac250a1ff34" name="a4e64ad851f290642d5fb0ac250a1ff34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e64ad851f290642d5fb0ac250a1ff34">&#9670;&#160;</a></span>TO_MS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int checkArgs </td>
+          <td class="memname">#define TO_MS&#160;&#160;&#160;10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a99dadca5bcdc6b33cc3b9c1577ec617a" name="a99dadca5bcdc6b33cc3b9c1577ec617a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99dadca5bcdc6b33cc3b9c1577ec617a">&#9670;&#160;</a></span>STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef enum <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8">State</a> <a class="el" href="rcopy_8c.html#a99dadca5bcdc6b33cc3b9c1577ec617a">STATE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a5d74787dedbc4e11c1ab15bf487e61f8" name="a5d74787dedbc4e11c1ab15bf487e61f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d74787dedbc4e11c1ab15bf487e61f8">&#9670;&#160;</a></span>State</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="rcopy_8c.html#a5d74787dedbc4e11c1ab15bf487e61f8">State</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8a96e018978be3dd72830a2d5156877831" name="a5d74787dedbc4e11c1ab15bf487e61f8a96e018978be3dd72830a2d5156877831"></a>SEND_FILENAME&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8ab4aa103795368b58112c5ea127c8c58d" name="a5d74787dedbc4e11c1ab15bf487e61f8ab4aa103795368b58112c5ea127c8c58d"></a>WAIT_FOR_ACK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8a935153633832e3b50e12f1230846052e" name="a5d74787dedbc4e11c1ab15bf487e61f8a935153633832e3b50e12f1230846052e"></a>WAIT_FOR_DATA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8aabf4bfe057b64b1f08fa686fa72a7645" name="a5d74787dedbc4e11c1ab15bf487e61f8aabf4bfe057b64b1f08fa686fa72a7645"></a>PROCESS_DATA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749" name="a5d74787dedbc4e11c1ab15bf487e61f8a9c954bcf443428c80b0f107b3bc48749"></a>DONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8a541a7d029edbe0dc4855fa23ba23162b" name="a5d74787dedbc4e11c1ab15bf487e61f8a541a7d029edbe0dc4855fa23ba23162b"></a>INORDER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8a57ea20be5a2dd38faaadc99ae400ac35" name="a5d74787dedbc4e11c1ab15bf487e61f8a57ea20be5a2dd38faaadc99ae400ac35"></a>BUFFER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9" name="a5d74787dedbc4e11c1ab15bf487e61f8a365b228f1c799ff897f963650ec33dd9"></a>FLUSH&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="aebfc0a1ce90f5edcd74978f9fb14738c" name="aebfc0a1ce90f5edcd74978f9fb14738c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebfc0a1ce90f5edcd74978f9fb14738c">&#9670;&#160;</a></span>flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int flush </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="rcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c_cgraph.png" border="0" usemap="#arcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c_cgraph" alt=""/></div>
+<map name="arcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c_cgraph" id="arcopy_8c_aebfc0a1ce90f5edcd74978f9fb14738c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,129,59,155"/>
+<area shape="rect" href="rcopy_8c.html#ada1474e4a4da15c3ec2ad267ee35be11" title=" " alt="" coords="117,5,247,31"/>
+<area shape="poly" title=" " alt="" coords="37,128,63,85,82,61,105,40,114,34,117,39,108,44,86,64,67,88,42,131"/>
+<area shape="rect" href="helperFunctions_8c.html#aebde21270fc17c762b71c67899f1be92" title=" " alt="" coords="137,55,227,80"/>
+<area shape="poly" title=" " alt="" coords="47,127,74,108,105,89,124,81,126,86,108,94,77,112,50,131"/>
+<area shape="rect" href="windowing_8c.html#a346db43485fd75092bed4c26a4ee02c4" title=" " alt="" coords="108,104,256,129"/>
+<area shape="poly" title=" " alt="" coords="59,135,94,129,95,134,59,140"/>
+<area shape="rect" href="pollLib_8c.html#acc55adaa7f5a0b5d81a21d445e061cab" title=" " alt="" coords="107,153,257,179"/>
+<area shape="poly" title=" " alt="" coords="59,144,94,149,93,154,59,149"/>
+<area shape="rect" href="helperFunctions_8c.html#a645bda7a3d32ee0a61119ac1393e9a25" title=" " alt="" coords="147,203,217,228"/>
+<area shape="poly" title=" " alt="" coords="52,152,108,188,134,199,132,204,105,192,49,157"/>
+<area shape="rect" href="helperFunctions_8c.html#a9144a44b0851b7286b7d88ea1405c0f0" title=" " alt="" coords="141,252,223,277"/>
+<area shape="poly" title=" " alt="" coords="42,153,67,195,86,217,108,237,129,249,127,253,105,242,82,221,63,198,37,156"/>
+<area shape="rect" href="helperFunctions_8c.html#a3d3d961ab944b1f79185cb6cf2264ae0" title=" " alt="" coords="311,177,420,203"/>
+<area shape="poly" title=" " alt="" coords="217,208,297,197,298,202,218,213"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="318,227,413,252"/>
+<area shape="poly" title=" " alt="" coords="218,217,305,229,304,234,217,223"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="473,276,557,301"/>
+<area shape="poly" title=" " alt="" coords="406,200,427,212,442,224,452,236,475,261,482,266,478,270,472,265,448,240,438,228,424,216,403,205"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="473,227,557,252"/>
+<area shape="poly" title=" " alt="" coords="413,237,459,237,459,242,413,242"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="605,227,804,252"/>
+<area shape="poly" title=" " alt="" coords="558,237,591,237,591,242,558,242"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="869,201,1058,227"/>
+<area shape="poly" title=" " alt="" coords="804,227,855,222,855,227,805,232"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="852,251,1075,276"/>
+<area shape="poly" title=" " alt="" coords="804,246,839,249,838,254,804,251"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1123,251,1344,276"/>
+<area shape="poly" title=" " alt="" coords="1075,261,1109,261,1109,266,1075,266"/>
+<area shape="poly" title=" " alt="" coords="223,256,304,245,305,250,224,262"/>
+<area shape="rect" href="helperFunctions_8c.html#a598d604bdca13e5f39b6bc89f8947ae4" title=" " alt="" coords="305,276,425,301"/>
+<area shape="poly" title=" " alt="" coords="224,267,292,276,291,282,223,273"/>
+<area shape="poly" title=" " alt="" coords="426,286,459,286,459,291,426,291"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a08941fbf1565dcc64b72eb1d1eb0c166" name="a08941fbf1565dcc64b72eb1d1eb0c166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08941fbf1565dcc64b72eb1d1eb0c166">&#9670;&#160;</a></span>inBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int inBuffer </td>
+          <td>(</td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>argv</em>[]&#160;</td>
+          <td class="paramtype"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -208,6 +416,176 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td></td></tr>
+    <tr><td class="paramname">config</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="rcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166_cgraph.png" border="0" usemap="#arcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166_cgraph" alt=""/></div>
+<map name="arcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166_cgraph" id="arcopy_8c_a08941fbf1565dcc64b72eb1d1eb0c166_cgraph">
+<area shape="rect" title=" " alt="" coords="5,203,79,228"/>
+<area shape="rect" href="windowing_8c.html#ac116b00342a2182d7330b60f6fe5808d" title=" " alt="" coords="127,5,325,31"/>
+<area shape="poly" title=" " alt="" coords="43,202,51,169,66,125,90,79,106,58,125,40,132,35,135,39,128,44,110,62,95,82,71,127,56,171,48,203"/>
+<area shape="rect" href="rcopy_8c.html#ada1474e4a4da15c3ec2ad267ee35be11" title=" " alt="" coords="161,55,291,80"/>
+<area shape="poly" title=" " alt="" coords="46,201,73,147,96,116,125,89,147,78,149,82,128,94,100,119,78,150,51,204"/>
+<area shape="rect" href="pollLib_8c.html#aaa2d69f7f902e1213b304b3c35153add" title=" " alt="" coords="191,104,261,129"/>
+<area shape="poly" title=" " alt="" coords="52,200,83,169,125,138,151,128,176,121,178,126,152,133,128,143,87,173,56,204"/>
+<area shape="rect" href="helperFunctions_8c.html#aebde21270fc17c762b71c67899f1be92" title=" " alt="" coords="181,153,271,179"/>
+<area shape="poly" title=" " alt="" coords="78,201,126,187,167,177,169,182,127,193,80,207"/>
+<area shape="rect" href="windowing_8c.html#a346db43485fd75092bed4c26a4ee02c4" title=" " alt="" coords="152,203,300,228"/>
+<area shape="poly" title=" " alt="" coords="79,213,138,213,138,218,79,218"/>
+<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="169,252,283,277"/>
+<area shape="poly" title=" " alt="" coords="80,223,127,237,162,246,160,251,126,242,78,228"/>
+<area shape="rect" href="helperFunctions_8c.html#a645bda7a3d32ee0a61119ac1393e9a25" title=" " alt="" coords="191,301,261,327"/>
+<area shape="poly" title=" " alt="" coords="56,226,87,257,128,286,178,304,176,309,125,291,83,261,53,230"/>
+<area shape="rect" href="helperFunctions_8c.html#a9144a44b0851b7286b7d88ea1405c0f0" title=" " alt="" coords="185,351,267,376"/>
+<area shape="poly" title=" " alt="" coords="51,227,78,280,101,311,128,336,149,347,172,354,170,359,147,352,125,340,97,314,74,283,46,230"/>
+<area shape="rect" href="helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c" title=" " alt="" coords="373,401,500,427"/>
+<area shape="poly" title=" " alt="" coords="48,228,55,261,69,305,93,350,109,370,128,386,155,402,183,413,244,426,305,429,360,425,360,430,305,434,243,431,182,418,152,407,125,391,105,374,89,353,64,307,50,262,43,229"/>
+<area shape="rect" href="helperFunctions_8c.html#a3d3d961ab944b1f79185cb6cf2264ae0" title=" " alt="" coords="382,253,491,279"/>
+<area shape="poly" title=" " alt="" coords="261,303,368,279,369,284,262,309"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="389,303,484,328"/>
+<area shape="poly" title=" " alt="" coords="262,312,376,312,376,318,262,317"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="548,352,632,377"/>
+<area shape="poly" title=" " alt="" coords="480,276,501,288,517,300,527,312,550,337,556,342,553,346,546,341,523,316,513,304,499,292,477,281"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="548,303,632,328"/>
+<area shape="poly" title=" " alt="" coords="484,313,534,313,534,318,484,318"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="680,303,879,328"/>
+<area shape="poly" title=" " alt="" coords="632,313,666,313,666,318,632,318"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="943,277,1133,303"/>
+<area shape="poly" title=" " alt="" coords="879,303,930,298,930,303,879,308"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="927,327,1149,352"/>
+<area shape="poly" title=" " alt="" coords="879,322,913,325,913,330,879,327"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1197,327,1419,352"/>
+<area shape="poly" title=" " alt="" coords="1150,337,1183,337,1183,342,1150,342"/>
+<area shape="poly" title=" " alt="" coords="267,351,375,326,376,332,268,357"/>
+<area shape="rect" href="helperFunctions_8c.html#a598d604bdca13e5f39b6bc89f8947ae4" title=" " alt="" coords="377,352,497,377"/>
+<area shape="poly" title=" " alt="" coords="267,361,363,362,363,367,267,366"/>
+<area shape="poly" title=" " alt="" coords="497,362,534,362,534,367,497,367"/>
+<area shape="poly" title=" " alt="" coords="476,399,536,379,537,384,478,404"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abd2f9df67660e78f3c2a4677fd3f0ebf" name="abd2f9df67660e78f3c2a4677fd3f0ebf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd2f9df67660e78f3c2a4677fd3f0ebf">&#9670;&#160;</a></span>inOrder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int inOrder </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>inOrderPDU</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>inOrderPDULen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inOrderPDU</td><td></td></tr>
+    <tr><td class="paramname">inOrderPDULen</td><td></td></tr>
+    <tr><td class="paramname">server</td><td></td></tr>
+    <tr><td class="paramname">config</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="rcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf_cgraph.png" border="0" usemap="#arcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf_cgraph" alt=""/></div>
+<map name="arcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf_cgraph" id="arcopy_8c_abd2f9df67660e78f3c2a4677fd3f0ebf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,129,76,155"/>
+<area shape="rect" href="windowing_8c.html#ac116b00342a2182d7330b60f6fe5808d" title=" " alt="" coords="124,5,323,31"/>
+<area shape="poly" title=" " alt="" coords="47,128,76,84,97,60,123,40,134,34,136,38,125,44,101,64,80,87,51,130"/>
+<area shape="rect" href="pollLib_8c.html#aaa2d69f7f902e1213b304b3c35153add" title=" " alt="" coords="188,55,259,80"/>
+<area shape="poly" title=" " alt="" coords="58,127,87,107,123,89,174,73,175,78,125,94,90,112,61,131"/>
+<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="167,104,280,129"/>
+<area shape="poly" title=" " alt="" coords="76,135,153,124,154,129,77,140"/>
+<area shape="rect" href="helperFunctions_8c.html#a645bda7a3d32ee0a61119ac1393e9a25" title=" " alt="" coords="188,153,259,179"/>
+<area shape="poly" title=" " alt="" coords="77,144,175,157,174,162,76,149"/>
+<area shape="rect" href="helperFunctions_8c.html#a9144a44b0851b7286b7d88ea1405c0f0" title=" " alt="" coords="182,203,265,228"/>
+<area shape="poly" title=" " alt="" coords="62,153,91,171,125,188,169,202,168,207,123,192,89,175,59,157"/>
+<area shape="rect" href="helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c" title=" " alt="" coords="371,253,497,279"/>
+<area shape="poly" title=" " alt="" coords="50,153,79,197,100,220,125,238,182,260,243,271,303,275,357,273,357,278,303,280,243,277,181,265,123,243,96,224,74,200,46,156"/>
+<area shape="rect" href="helperFunctions_8c.html#a3d3d961ab944b1f79185cb6cf2264ae0" title=" " alt="" coords="379,105,489,131"/>
+<area shape="poly" title=" " alt="" coords="258,155,365,131,366,136,260,161"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="387,155,481,180"/>
+<area shape="poly" title=" " alt="" coords="259,164,373,164,373,170,259,169"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="545,204,629,229"/>
+<area shape="poly" title=" " alt="" coords="477,128,499,140,514,152,524,164,547,189,554,194,550,198,544,193,520,168,510,156,496,144,475,133"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="545,155,629,180"/>
+<area shape="poly" title=" " alt="" coords="481,165,531,165,531,170,481,170"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="677,155,876,180"/>
+<area shape="poly" title=" " alt="" coords="630,165,663,165,663,170,630,170"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="941,129,1130,155"/>
+<area shape="poly" title=" " alt="" coords="876,155,927,150,927,155,877,160"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="924,179,1147,204"/>
+<area shape="poly" title=" " alt="" coords="876,174,911,177,910,182,876,179"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1195,179,1416,204"/>
+<area shape="poly" title=" " alt="" coords="1147,189,1181,189,1181,194,1147,194"/>
+<area shape="poly" title=" " alt="" coords="264,203,373,178,374,184,265,209"/>
+<area shape="rect" href="helperFunctions_8c.html#a598d604bdca13e5f39b6bc89f8947ae4" title=" " alt="" coords="374,204,494,229"/>
+<area shape="poly" title=" " alt="" coords="265,213,360,214,360,219,265,218"/>
+<area shape="poly" title=" " alt="" coords="494,214,532,214,532,219,494,219"/>
+<area shape="poly" title=" " alt="" coords="473,251,533,231,535,236,475,256"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ada1474e4a4da15c3ec2ad267ee35be11" name="ada1474e4a4da15c3ec2ad267ee35be11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada1474e4a4da15c3ec2ad267ee35be11">&#9670;&#160;</a></span>invalidatePacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void invalidatePacket </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>seq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seq</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -236,28 +614,280 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This is the main function for the UDP client program. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>rcopy from-filename to-filename window-size buffer-size error-rate remote-machine remote-port </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="rcopy_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#arcopy_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
 <map name="arcopy_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="arcopy_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
-<area shape="rect" title=" " alt="" coords="5,55,60,80"/>
-<area shape="rect" href="rcopy_8c.html#ad0ac805d2cdb2fc14a19ba6cebc9bc55" title=" " alt="" coords="153,5,242,31"/>
-<area shape="poly" title=" " alt="" coords="59,55,107,39,139,30,140,35,109,45,61,60"/>
-<area shape="rect" href="networks_8c.html#a3bb9c2213390dee4d057e3589562696b" title=" " alt="" coords="108,55,287,80"/>
-<area shape="poly" title=" " alt="" coords="60,65,95,65,95,70,60,70"/>
-<area shape="rect" href="rcopy_8c.html#a2ade93d937581d401ffd561f2c64db6a" title=" " alt="" coords="146,128,249,153"/>
-<area shape="poly" title=" " alt="" coords="61,77,156,120,154,125,59,82"/>
-<area shape="rect" href="gethostbyname_8c.html#ac6e1975d9b2e67292680f9d8e98b35d1" title=" " alt="" coords="338,29,470,55"/>
-<area shape="poly" title=" " alt="" coords="287,54,324,49,324,54,287,59"/>
-<area shape="rect" href="gethostbyname_8c.html#ad65a1b5f96cd7b7d190d2d2e6ed192c1" title=" " alt="" coords="335,79,473,104"/>
-<area shape="poly" title=" " alt="" coords="248,126,336,105,337,110,250,131"/>
-<area shape="rect" href="rcopy_8c.html#ad4e63ea77d61babc4ed66f9bf6d3b8b2" title=" " alt="" coords="345,128,463,153"/>
-<area shape="poly" title=" " alt="" coords="249,138,332,138,332,143,249,143"/>
-<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="347,177,461,203"/>
-<area shape="poly" title=" " alt="" coords="250,150,337,171,336,177,248,155"/>
-<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="357,227,451,252"/>
-<area shape="poly" title=" " alt="" coords="222,151,273,180,336,212,354,219,352,224,334,216,271,185,219,156"/>
+<area shape="rect" title="This is the main function for the UDP client program." alt="" coords="5,439,60,465"/>
+<area shape="rect" href="rcopy_8c.html#aecfb03a103587626d773616cffcac084" title=" " alt="" coords="116,219,203,245"/>
+<area shape="poly" title=" " alt="" coords="33,439,39,404,52,355,73,302,88,277,106,254,109,251,113,255,110,258,93,280,78,304,57,357,44,405,38,440"/>
+<area shape="rect" href="network-hooks_8c.html#aaedf070171d733d05519822e5da05787" title=" " alt="" coords="110,269,209,294"/>
+<area shape="poly" title=" " alt="" coords="41,438,138,304,143,307,45,441"/>
+<area shape="rect" href="pollLib_8c.html#a95e1656afd4ed8c57f317b72529febc8" title=" " alt="" coords="108,439,211,465"/>
+<area shape="poly" title=" " alt="" coords="60,449,94,449,94,455,60,455"/>
+<area shape="rect" href="networks_8c.html#a3bb9c2213390dee4d057e3589562696b" title=" " alt="" coords="543,541,722,566"/>
+<area shape="poly" title=" " alt="" coords="61,459,109,473,220,497,333,515,529,541,529,546,332,521,219,502,107,479,59,464"/>
+<area shape="rect" href="rcopy_8c.html#afe5a15260cc9d3aec4c1cb12303e868f" title=" " alt="" coords="108,815,211,841"/>
+<area shape="poly" title=" " alt="" coords="41,464,152,801,147,803,36,466"/>
+<area shape="rect" href="classPacketManager.html#ab8596f5ee28983c162139711c22724a3" title=" " alt="" coords="259,325,476,365"/>
+<area shape="poly" title=" " alt="" coords="200,291,259,311,286,319,284,324,258,316,198,297"/>
+<area shape="rect" href="network-hooks_8c.html#a84e97031e45a887d36e8d460924fc608" title=" " alt="" coords="322,390,413,415"/>
+<area shape="poly" title=" " alt="" coords="172,292,208,334,232,356,260,375,284,385,309,393,308,398,282,390,257,380,229,360,204,337,168,296"/>
+<area shape="rect" href="classSettingsManager.html#a01151cd5640942dbaa12b41e34531a24" title=" " alt="" coords="272,5,463,45"/>
+<area shape="poly" title=" " alt="" coords="194,266,209,254,224,229,231,204,230,155,228,130,230,106,239,81,257,56,261,52,264,56,261,59,243,83,235,107,234,130,235,155,236,205,229,231,213,258,198,271"/>
+<area shape="rect" href="classSettingsManager.html#a60a963ee01bec4ce1f3fc4bbd5f538d5" title=" " alt="" coords="272,69,463,109"/>
+<area shape="poly" title=" " alt="" coords="193,266,209,254,221,237,227,220,230,187,235,153,243,136,257,119,262,115,265,119,261,123,247,139,240,155,236,188,232,222,225,240,213,258,197,271"/>
+<area shape="rect" href="classSettingsManager.html#a976ca8e9d91b5d21f25ed7c72511a49c" title=" " alt="" coords="272,133,463,173"/>
+<area shape="poly" title=" " alt="" coords="190,266,209,254,224,236,231,219,240,201,257,183,266,177,269,182,260,187,244,204,236,221,228,239,212,258,193,271"/>
+<area shape="rect" href="classSettingsManager.html#a1b97b1806fac2a77d945c50c15697a4b" title=" " alt="" coords="272,197,463,237"/>
+<area shape="poly" title=" " alt="" coords="198,266,258,247,284,239,286,244,259,252,200,271"/>
+<area shape="rect" href="classSettingsManager.html#aa09e6ac391d67f8b424c74fe1cfcefb6" title=" " alt="" coords="272,261,463,301"/>
+<area shape="poly" title=" " alt="" coords="209,279,258,279,258,284,209,284"/>
+<area shape="rect" href="dbg__print_8c.html#afb9222bc2facf42197d297cc8ea3c00a" title=" " alt="" coords="580,13,685,38"/>
+<area shape="poly" title=" " alt="" coords="463,23,566,23,566,28,463,28"/>
+<area shape="rect" href="classPacketManager.html#a2331c8d641438ff1921982515c9b7e1b" title=" " alt="" coords="524,101,741,141"/>
+<area shape="poly" title=" " alt="" coords="463,98,511,104,510,109,462,103"/>
+<area shape="poly" title=" " alt="" coords="462,139,510,133,511,139,463,145"/>
+<area shape="rect" href="classPacketManager.html#a7caa333d902656a102a3206c8eac0a50" title=" " alt="" coords="527,205,738,230"/>
+<area shape="poly" title=" " alt="" coords="463,215,514,215,514,220,463,220"/>
+<area shape="rect" href="classPacketManager.html#a03d7c5729e55dee0dfcb198bb3d5aa7e" title=" " alt="" coords="525,269,740,294"/>
+<area shape="poly" title=" " alt="" coords="463,279,511,279,511,284,463,284"/>
+<area shape="rect" href="safeUtil_8c.html#aa28db415c57a2fe5724cd33306389139" title=" " alt="" coords="333,439,402,465"/>
+<area shape="poly" title=" " alt="" coords="211,449,319,449,319,455,211,455"/>
+<area shape="rect" href="gethostbyname_8c.html#ac6e1975d9b2e67292680f9d8e98b35d1" title=" " alt="" coords="789,541,921,566"/>
+<area shape="poly" title=" " alt="" coords="722,551,776,551,776,556,722,556"/>
+<area shape="rect" href="helperFunctions_8c.html#a9268bec9c3046f00be5e1a834e94d85f" title="This function creates a PDU (Protocol Data Unit) with the given parameters." alt="" coords="810,491,901,517"/>
+<area shape="poly" title=" " alt="" coords="164,814,199,751,225,713,257,678,322,621,378,582,441,553,523,525,595,509,669,500,738,497,796,498,796,503,738,503,670,506,596,514,525,531,443,558,381,586,325,625,261,682,229,716,203,754,169,816"/>
+<area shape="rect" href="windowing_8c.html#a66c3fa4da527cc2bd15256845df9a16c" title=" " alt="" coords="284,693,451,718"/>
+<area shape="poly" title=" " alt="" coords="168,813,203,771,229,747,257,727,271,720,273,725,260,732,232,751,207,774,172,817"/>
+<area shape="rect" href="rcopy_8c.html#aebfc0a1ce90f5edcd74978f9fb14738c" title=" " alt="" coords="341,1041,394,1066"/>
+<area shape="poly" title=" " alt="" coords="166,840,174,878,192,929,220,982,239,1006,260,1027,292,1043,327,1050,326,1055,291,1048,257,1032,235,1010,216,985,187,931,169,879,160,841"/>
+<area shape="rect" href="pollLib_8c.html#acc55adaa7f5a0b5d81a21d445e061cab" title=" " alt="" coords="557,890,708,915"/>
+<area shape="poly" title=" " alt="" coords="181,838,216,859,259,876,333,892,408,901,544,904,544,910,408,906,332,897,258,881,214,864,178,843"/>
+<area shape="rect" href="rcopy_8c.html#a08941fbf1565dcc64b72eb1d1eb0c166" title=" " alt="" coords="331,942,404,967"/>
+<area shape="poly" title=" " alt="" coords="173,839,209,879,233,901,260,920,288,934,318,943,316,948,286,939,257,925,230,906,205,883,169,843"/>
+<area shape="rect" href="rcopy_8c.html#abd2f9df67660e78f3c2a4677fd3f0ebf" title=" " alt="" coords="332,841,403,866"/>
+<area shape="poly" title=" " alt="" coords="211,832,318,845,318,850,211,837"/>
+<area shape="rect" href="rcopy_8c.html#a74c224849f2e81167392a0e1cc7c13c5" title=" " alt="" coords="316,991,419,1017"/>
+<area shape="poly" title=" " alt="" coords="168,840,179,869,199,907,226,945,260,978,281,989,303,996,302,1001,279,994,257,982,222,949,194,910,175,871,163,842"/>
+<area shape="rect" href="rcopy_8c.html#a387190aa9e9505d28a3b553a2eef3eb0" title="This function sends the filename to the server and waits for an ack." alt="" coords="310,742,425,767"/>
+<area shape="poly" title=" " alt="" coords="181,813,216,794,258,776,296,765,297,770,260,781,219,799,183,818"/>
+<area shape="rect" href="rcopy_8c.html#a2efeebdf7d4047f0b92a9987f07040e8" title=" " alt="" coords="317,791,418,817"/>
+<area shape="poly" title=" " alt="" coords="211,819,303,809,303,814,211,825"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="969,841,1053,866"/>
+<area shape="poly" title=" " alt="" coords="903,512,923,526,950,562,971,602,987,644,998,687,1010,766,1013,827,1008,827,1005,767,993,688,982,645,966,604,946,565,919,530,900,516"/>
+<area shape="rect" href="rcopy_8c.html#ada1474e4a4da15c3ec2ad267ee35be11" title=" " alt="" coords="568,1186,697,1211"/>
+<area shape="poly" title=" " alt="" coords="383,1064,441,1117,481,1147,525,1172,556,1183,554,1189,523,1177,478,1152,438,1121,379,1068"/>
+<area shape="rect" href="helperFunctions_8c.html#aebde21270fc17c762b71c67899f1be92" title=" " alt="" coords="588,1087,677,1113"/>
+<area shape="poly" title=" " alt="" coords="395,1055,575,1087,574,1093,394,1061"/>
+<area shape="rect" href="windowing_8c.html#a346db43485fd75092bed4c26a4ee02c4" title=" " alt="" coords="559,1235,707,1261"/>
+<area shape="poly" title=" " alt="" coords="378,1065,400,1097,433,1140,476,1184,525,1222,547,1232,545,1236,523,1226,472,1188,429,1143,396,1100,374,1068"/>
+<area shape="poly" title=" " alt="" coords="394,1051,435,1046,456,1038,474,1027,486,1016,492,1004,497,978,503,952,510,939,522,926,543,914,546,918,526,930,515,942,508,954,503,979,497,1006,490,1019,478,1031,458,1043,436,1051,395,1056"/>
+<area shape="rect" href="helperFunctions_8c.html#a645bda7a3d32ee0a61119ac1393e9a25" title=" " alt="" coords="597,989,668,1014"/>
+<area shape="poly" title=" " alt="" coords="394,1046,583,1008,584,1013,395,1051"/>
+<area shape="rect" href="helperFunctions_8c.html#a9144a44b0851b7286b7d88ea1405c0f0" title=" " alt="" coords="591,1038,674,1063"/>
+<area shape="poly" title=" " alt="" coords="394,1050,578,1049,578,1054,394,1056"/>
+<area shape="rect" href="helperFunctions_8c.html#a3d3d961ab944b1f79185cb6cf2264ae0" title=" " alt="" coords="801,915,910,941"/>
+<area shape="poly" title=" " alt="" coords="668,993,741,975,815,944,817,949,742,980,669,998"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="808,989,903,1014"/>
+<area shape="poly" title=" " alt="" coords="668,999,794,999,794,1004,668,1004"/>
+<area shape="poly" title=" " alt="" coords="882,913,971,869,973,874,884,918"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="969,989,1053,1014"/>
+<area shape="poly" title=" " alt="" coords="903,999,956,999,956,1004,903,1004"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="1101,989,1300,1014"/>
+<area shape="poly" title=" " alt="" coords="1054,999,1087,999,1087,1004,1054,1004"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="1365,963,1554,989"/>
+<area shape="poly" title=" " alt="" coords="1300,989,1351,984,1351,989,1301,994"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="1348,1013,1571,1038"/>
+<area shape="poly" title=" " alt="" coords="1300,1008,1335,1011,1334,1016,1300,1013"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1619,1013,1840,1038"/>
+<area shape="poly" title=" " alt="" coords="1571,1023,1605,1023,1605,1028,1571,1028"/>
+<area shape="poly" title=" " alt="" coords="674,1039,741,1024,794,1012,795,1017,742,1029,675,1044"/>
+<area shape="rect" href="helperFunctions_8c.html#a598d604bdca13e5f39b6bc89f8947ae4" title=" " alt="" coords="795,1038,915,1063"/>
+<area shape="poly" title=" " alt="" coords="674,1048,782,1048,782,1053,674,1053"/>
+<area shape="poly" title=" " alt="" coords="903,1036,920,1025,950,990,973,951,990,912,1001,879,1006,880,995,913,978,953,954,993,923,1029,906,1040"/>
+<area shape="poly" title=" " alt="" coords="405,951,443,958,461,966,478,978,496,1003,504,1028,505,1053,503,1078,500,1102,501,1126,509,1150,526,1173,540,1183,556,1190,554,1195,537,1188,522,1177,504,1152,496,1127,495,1102,497,1077,500,1053,499,1029,491,1005,474,982,459,971,441,963,404,957"/>
+<area shape="poly" title=" " alt="" coords="405,953,442,960,478,978,489,990,496,1002,503,1027,508,1052,515,1063,526,1074,549,1087,575,1094,574,1099,547,1092,522,1078,511,1066,503,1054,497,1029,492,1004,485,993,474,982,440,965,404,958"/>
+<area shape="poly" title=" " alt="" coords="405,951,443,958,462,966,478,978,499,1009,508,1040,507,1072,502,1103,498,1133,497,1163,505,1193,526,1222,547,1237,544,1241,522,1226,501,1195,492,1164,492,1133,497,1102,502,1071,502,1041,494,1011,474,982,459,970,441,963,404,956"/>
+<area shape="poly" title=" " alt="" coords="405,958,584,990,583,995,404,964"/>
+<area shape="poly" title=" " alt="" coords="405,956,441,963,477,978,493,989,502,1002,511,1014,525,1024,551,1035,579,1042,577,1047,550,1040,523,1029,507,1017,498,1005,489,993,475,982,439,968,404,961"/>
+<area shape="rect" href="windowing_8c.html#ac116b00342a2182d7330b60f6fe5808d" title=" " alt="" coords="533,939,732,965"/>
+<area shape="poly" title=" " alt="" coords="404,952,520,950,520,956,404,957"/>
+<area shape="rect" href="pollLib_8c.html#aaa2d69f7f902e1213b304b3c35153add" title=" " alt="" coords="597,742,668,767"/>
+<area shape="poly" title=" " alt="" coords="392,940,433,914,474,877,489,850,495,825,502,801,522,777,552,761,583,754,584,759,553,766,526,781,507,803,500,827,494,852,478,880,437,918,395,944"/>
+<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="576,791,689,817"/>
+<area shape="poly" title=" " alt="" coords="387,940,428,912,474,877,497,850,507,839,523,827,561,812,563,817,525,832,510,843,501,854,478,881,432,916,390,944"/>
+<area shape="rect" href="helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c" title=" " alt="" coords="569,841,696,866"/>
+<area shape="poly" title=" " alt="" coords="389,940,449,908,523,876,555,866,557,871,525,881,451,913,392,944"/>
+<area shape="poly" title=" " alt="" coords="696,851,956,851,956,856,696,856"/>
+<area shape="poly" title=" " alt="" coords="390,864,478,929,501,954,510,965,525,975,554,987,584,994,583,999,553,992,523,980,507,969,497,958,474,933,387,868"/>
+<area shape="poly" title=" " alt="" coords="394,864,436,891,478,929,494,956,500,981,507,1003,526,1025,551,1038,579,1045,577,1051,549,1043,522,1029,503,1006,495,982,489,958,474,932,433,895,392,868"/>
+<area shape="poly" title=" " alt="" coords="392,864,451,894,525,925,551,933,549,938,523,931,449,899,390,869"/>
+<area shape="poly" title=" " alt="" coords="402,848,439,841,475,827,489,815,498,803,507,789,523,776,552,764,583,757,584,762,554,769,525,781,511,793,502,805,493,819,477,832,440,846,403,853"/>
+<area shape="poly" title=" " alt="" coords="403,844,562,814,563,820,403,850"/>
+<area shape="poly" title=" " alt="" coords="403,851,556,851,556,856,403,856"/>
+<area shape="poly" title=" " alt="" coords="420,1002,450,1010,478,1027,496,1052,504,1077,505,1102,503,1127,500,1152,501,1176,509,1199,526,1222,547,1236,544,1240,522,1226,504,1202,496,1177,495,1151,497,1127,500,1102,499,1078,491,1054,474,1031,448,1015,418,1007"/>
+<area shape="poly" title=" " alt="" coords="418,997,447,989,475,978,489,966,498,953,507,939,523,926,543,916,545,921,525,930,511,942,502,956,493,969,477,982,449,995,420,1002"/>
+<area shape="poly" title=" " alt="" coords="419,1001,583,999,583,1004,419,1006"/>
+<area shape="poly" title=" " alt="" coords="419,1010,578,1039,577,1044,418,1016"/>
+<area shape="poly" title=" " alt="" coords="418,991,553,965,554,970,419,997"/>
+<area shape="rect" href="windowing_8c.html#a1007f6c09c1a4518a08726dffb2a0c2f" title=" " alt="" coords="563,1137,702,1162"/>
+<area shape="poly" title=" " alt="" coords="420,1004,450,1012,478,1027,489,1039,496,1052,503,1077,508,1101,515,1112,526,1123,551,1137,549,1142,522,1127,511,1116,503,1103,497,1078,492,1054,485,1042,474,1031,448,1017,418,1009"/>
+<area shape="poly" title=" " alt="" coords="424,750,451,742,474,727,488,711,495,694,498,658,500,621,508,602,522,583,541,570,544,574,526,587,512,604,506,622,503,658,500,695,493,713,478,731,453,747,426,755"/>
+<area shape="poly" title=" " alt="" coords="425,755,453,763,478,777,490,789,497,802,503,828,508,853,515,865,526,877,546,888,543,893,522,881,510,868,503,855,497,829,492,804,485,792,474,781,451,768,424,760"/>
+<area shape="poly" title=" " alt="" coords="424,745,450,738,475,727,489,715,497,702,506,689,523,678,584,653,638,640,664,640,690,646,716,658,743,678,770,709,782,741,784,774,779,807,773,842,770,877,775,914,792,952,804,967,819,979,815,983,800,970,787,955,770,915,765,878,768,841,774,807,778,774,777,742,766,712,740,682,713,663,688,651,663,645,639,645,586,658,525,682,510,693,502,705,493,719,477,732,452,743,426,750"/>
+<area shape="poly" title=" " alt="" coords="425,752,583,752,583,757,425,757"/>
+<area shape="poly" title=" " alt="" coords="426,763,563,788,562,794,425,768"/>
+<area shape="poly" title=" " alt="" coords="426,758,452,765,477,776,493,789,502,803,511,815,525,827,557,840,555,845,523,832,507,819,498,805,489,793,475,781,450,770,424,763"/>
+<area shape="rect" href="pollLib_8c.html#a963075ea184857285cc940df3c7c7e4a" title=" " alt="" coords="580,693,685,718"/>
+<area shape="poly" title=" " alt="" coords="425,741,566,715,567,720,426,747"/>
+<area shape="rect" href="helperFunctions_8c.html#a58fabc255a5ebbdb36c5565096d6ebee" title="Create a Ack PDU object." alt="" coords="798,690,913,715"/>
+<area shape="poly" title=" " alt="" coords="424,748,451,740,474,727,485,716,491,705,496,680,502,656,510,644,523,634,552,618,579,609,604,605,629,605,680,616,742,633,790,654,829,679,826,684,787,658,740,639,679,621,628,610,605,610,580,614,554,623,525,638,514,648,507,658,501,682,496,707,489,720,478,731,453,745,426,753"/>
+<area shape="poly" title=" " alt="" coords="872,714,989,829,986,833,868,717"/>
+<area shape="poly" title=" " alt="" coords="417,799,447,791,474,777,494,755,502,732,508,707,522,679,565,621,607,574,611,578,569,624,526,681,513,709,507,734,498,758,478,781,449,796,419,804"/>
+<area shape="poly" title=" " alt="" coords="419,807,449,815,477,827,493,839,502,853,511,865,525,876,545,885,543,890,523,881,507,869,498,856,489,843,475,832,447,820,418,812"/>
+<area shape="poly" title=" " alt="" coords="418,792,584,761,585,766,419,797"/>
+<area shape="poly" title=" " alt="" coords="418,801,562,801,562,807,418,807"/>
+<area shape="poly" title=" " alt="" coords="419,811,556,837,555,842,418,816"/>
+<area shape="poly" title=" " alt="" coords="418,796,447,788,475,776,489,765,498,752,507,739,523,727,566,711,568,716,525,732,511,743,502,755,493,769,477,781,449,793,419,801"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aecfb03a103587626d773616cffcac084" name="aecfb03a103587626d773616cffcac084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecfb03a103587626d773616cffcac084">&#9670;&#160;</a></span>parseArgs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structClientConfig.html">ClientConfig</a> parseArgs </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td></td></tr>
+    <tr><td class="paramname">argv</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structClientConfig.html">ClientConfig</a> </dd></dl>
+
+</div>
+</div>
+<a id="a74c224849f2e81167392a0e1cc7c13c5" name="a74c224849f2e81167392a0e1cc7c13c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74c224849f2e81167392a0e1cc7c13c5">&#9670;&#160;</a></span>processData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int processData </td>
+          <td>(</td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>pduBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pduLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td></td></tr>
+    <tr><td class="paramname">pduBuffer</td><td></td></tr>
+    <tr><td class="paramname">pduLength</td><td></td></tr>
+    <tr><td class="paramname">config</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="rcopy_8c_a74c224849f2e81167392a0e1cc7c13c5_cgraph.png" border="0" usemap="#arcopy_8c_a74c224849f2e81167392a0e1cc7c13c5_cgraph" alt=""/></div>
+<map name="arcopy_8c_a74c224849f2e81167392a0e1cc7c13c5_cgraph" id="arcopy_8c_a74c224849f2e81167392a0e1cc7c13c5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,129,108,155"/>
+<area shape="rect" href="windowing_8c.html#ac116b00342a2182d7330b60f6fe5808d" title=" " alt="" coords="156,5,355,31"/>
+<area shape="poly" title=" " alt="" coords="65,127,101,84,126,60,155,40,168,33,171,38,157,44,129,64,104,88,69,131"/>
+<area shape="rect" href="windowing_8c.html#a1007f6c09c1a4518a08726dffb2a0c2f" title=" " alt="" coords="186,55,325,80"/>
+<area shape="poly" title=" " alt="" coords="78,127,113,108,155,89,178,81,180,86,157,94,116,112,80,132"/>
+<area shape="rect" href="windowing_8c.html#a346db43485fd75092bed4c26a4ee02c4" title=" " alt="" coords="181,104,329,129"/>
+<area shape="poly" title=" " alt="" coords="108,133,167,125,168,131,109,138"/>
+<area shape="rect" href="pollLib_8c.html#acc55adaa7f5a0b5d81a21d445e061cab" title=" " alt="" coords="180,153,331,179"/>
+<area shape="poly" title=" " alt="" coords="109,146,166,153,166,158,108,151"/>
+<area shape="rect" href="helperFunctions_8c.html#a645bda7a3d32ee0a61119ac1393e9a25" title=" " alt="" coords="220,203,291,228"/>
+<area shape="poly" title=" " alt="" coords="82,152,157,188,208,203,206,208,155,192,80,157"/>
+<area shape="rect" href="helperFunctions_8c.html#a9144a44b0851b7286b7d88ea1405c0f0" title=" " alt="" coords="214,252,297,277"/>
+<area shape="poly" title=" " alt="" coords="69,153,105,195,130,218,157,237,201,254,199,259,155,242,126,222,101,199,65,157"/>
+<area shape="rect" href="helperFunctions_8c.html#a3d3d961ab944b1f79185cb6cf2264ae0" title=" " alt="" coords="408,177,517,203"/>
+<area shape="poly" title=" " alt="" coords="291,208,394,196,395,201,291,214"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="415,227,510,252"/>
+<area shape="poly" title=" " alt="" coords="291,217,402,230,401,235,291,222"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="571,276,655,301"/>
+<area shape="poly" title=" " alt="" coords="503,200,524,212,539,224,549,236,572,261,579,266,576,270,569,265,545,240,536,228,521,216,501,205"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="571,227,655,252"/>
+<area shape="poly" title=" " alt="" coords="510,237,557,237,557,242,510,242"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="703,227,901,252"/>
+<area shape="poly" title=" " alt="" coords="655,237,689,237,689,242,655,242"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="966,201,1155,227"/>
+<area shape="poly" title=" " alt="" coords="901,227,952,222,953,227,902,232"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="949,251,1172,276"/>
+<area shape="poly" title=" " alt="" coords="902,246,936,249,935,254,901,251"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1220,251,1441,276"/>
+<area shape="poly" title=" " alt="" coords="1172,261,1206,261,1206,266,1172,266"/>
+<area shape="poly" title=" " alt="" coords="297,257,402,244,402,249,297,262"/>
+<area shape="rect" href="helperFunctions_8c.html#a598d604bdca13e5f39b6bc89f8947ae4" title=" " alt="" coords="403,276,523,301"/>
+<area shape="poly" title=" " alt="" coords="297,267,389,278,389,283,297,272"/>
+<area shape="poly" title=" " alt="" coords="523,286,557,286,557,291,523,291"/>
 </map>
 </div>
 
@@ -278,26 +908,51 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>
-<a id="a2ade93d937581d401ffd561f2c64db6a" name="a2ade93d937581d401ffd561f2c64db6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ade93d937581d401ffd561f2c64db6a">&#9670;&#160;</a></span>talkToServer()</h2>
+<a id="a387190aa9e9505d28a3b553a2eef3eb0" name="a387190aa9e9505d28a3b553a2eef3eb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a387190aa9e9505d28a3b553a2eef3eb0">&#9670;&#160;</a></span>sendFileName()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void talkToServer </td>
+          <td class="memname">int sendFileName </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>socketNum</em>, </td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
-          <td class="paramname"><em>server</em>&#160;</td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>pduBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pduLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sequenceNum</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -306,20 +961,267 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This function sends the filename to the server and waits for an ack. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socketNum</td><td></td></tr>
+    <tr><td class="paramname">server</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="rcopy_8c_a2ade93d937581d401ffd561f2c64db6a_cgraph.png" border="0" usemap="#arcopy_8c_a2ade93d937581d401ffd561f2c64db6a_cgraph" alt=""/></div>
-<map name="arcopy_8c_a2ade93d937581d401ffd561f2c64db6a_cgraph" id="arcopy_8c_a2ade93d937581d401ffd561f2c64db6a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,80,108,105"/>
-<area shape="rect" href="gethostbyname_8c.html#ad65a1b5f96cd7b7d190d2d2e6ed192c1" title=" " alt="" coords="156,5,295,31"/>
-<area shape="poly" title=" " alt="" coords="79,77,155,40,171,33,173,38,157,44,82,82"/>
-<area shape="rect" href="rcopy_8c.html#ad4e63ea77d61babc4ed66f9bf6d3b8b2" title=" " alt="" coords="167,55,284,80"/>
-<area shape="poly" title=" " alt="" coords="108,82,152,76,153,81,109,88"/>
-<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="169,104,282,129"/>
-<area shape="poly" title=" " alt="" coords="109,97,155,104,154,109,108,103"/>
-<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="178,153,273,179"/>
-<area shape="poly" title=" " alt="" coords="83,103,157,138,176,146,174,151,155,143,81,108"/>
+<div class="center"><img src="rcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0_cgraph.png" border="0" usemap="#arcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0_cgraph" alt=""/></div>
+<map name="arcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0_cgraph" id="arcopy_8c_a387190aa9e9505d28a3b553a2eef3eb0_cgraph">
+<area shape="rect" title="This function sends the filename to the server and waits for an ack." alt="" coords="5,179,120,204"/>
+<area shape="rect" href="pollLib_8c.html#a963075ea184857285cc940df3c7c7e4a" title=" " alt="" coords="205,5,310,31"/>
+<area shape="poly" title=" " alt="" coords="67,177,102,111,131,73,166,40,190,28,193,32,170,44,135,76,106,114,72,180"/>
+<area shape="rect" href="helperFunctions_8c.html#a58fabc255a5ebbdb36c5565096d6ebee" title="Create a Ack PDU object." alt="" coords="200,55,315,80"/>
+<area shape="poly" title=" " alt="" coords="72,177,110,134,137,110,167,89,186,80,188,85,169,94,140,114,114,137,76,180"/>
+<area shape="rect" href="pollLib_8c.html#aaa2d69f7f902e1213b304b3c35153add" title=" " alt="" coords="222,104,293,129"/>
+<area shape="poly" title=" " alt="" coords="86,176,167,138,208,125,209,130,169,143,88,181"/>
+<area shape="rect" href="pollLib_8c.html#acc55adaa7f5a0b5d81a21d445e061cab" title=" " alt="" coords="182,153,333,179"/>
+<area shape="poly" title=" " alt="" coords="120,181,168,175,168,180,120,187"/>
+<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="201,203,314,228"/>
+<area shape="poly" title=" " alt="" coords="120,196,187,204,187,209,120,201"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="210,301,305,327"/>
+<area shape="poly" title=" " alt="" coords="76,202,114,244,140,267,169,286,198,299,196,304,167,291,137,271,111,248,72,206"/>
+<area shape="rect" href="networks_8c.html#a3bb9c2213390dee4d057e3589562696b" title=" " alt="" coords="168,351,347,376"/>
+<area shape="poly" title=" " alt="" coords="72,203,106,268,135,305,170,337,178,343,176,347,166,341,131,309,102,271,67,206"/>
+<area shape="rect" href="helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c" title=" " alt="" coords="194,252,321,277"/>
+<area shape="poly" title=" " alt="" coords="90,202,169,237,194,245,192,250,167,242,88,206"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="419,153,503,179"/>
+<area shape="poly" title=" " alt="" coords="316,77,348,89,394,115,434,142,431,147,392,119,346,94,314,82"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="419,301,503,327"/>
+<area shape="poly" title=" " alt="" coords="305,311,405,311,405,317,305,317"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="575,301,773,327"/>
+<area shape="poly" title=" " alt="" coords="503,311,561,311,561,317,503,317"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="838,276,1027,301"/>
+<area shape="poly" title=" " alt="" coords="773,302,824,297,825,302,774,307"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="821,325,1044,351"/>
+<area shape="poly" title=" " alt="" coords="774,321,808,324,807,329,773,326"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1092,325,1313,351"/>
+<area shape="poly" title=" " alt="" coords="1044,335,1078,335,1078,341,1044,341"/>
+<area shape="rect" href="gethostbyname_8c.html#ac6e1975d9b2e67292680f9d8e98b35d1" title=" " alt="" coords="395,351,527,376"/>
+<area shape="poly" title=" " alt="" coords="347,361,381,361,381,366,347,366"/>
+<area shape="poly" title=" " alt="" coords="312,249,346,237,391,212,430,185,433,189,394,216,348,242,314,254"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afe5a15260cc9d3aec4c1cb12303e868f" name="afe5a15260cc9d3aec4c1cb12303e868f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe5a15260cc9d3aec4c1cb12303e868f">&#9670;&#160;</a></span>talkToServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void talkToServer </td>
+          <td>(</td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td></td></tr>
+    <tr><td class="paramname">config</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="rcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f_cgraph.png" border="0" usemap="#arcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f_cgraph" alt=""/></div>
+<map name="arcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f_cgraph" id="arcopy_8c_afe5a15260cc9d3aec4c1cb12303e868f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,400,108,425"/>
+<area shape="rect" href="helperFunctions_8c.html#a9268bec9c3046f00be5e1a834e94d85f" title="This function creates a PDU (Protocol Data Unit) with the given parameters." alt="" coords="638,736,729,761"/>
+<area shape="poly" title=" " alt="" coords="68,424,108,480,176,560,218,603,266,643,317,679,372,708,437,729,505,741,569,747,624,748,624,753,569,752,504,746,436,734,370,712,314,684,262,647,215,607,172,564,104,483,64,427"/>
+<area shape="rect" href="windowing_8c.html#a66c3fa4da527cc2bd15256845df9a16c" title=" " alt="" coords="156,800,323,825"/>
+<area shape="poly" title=" " alt="" coords="60,426,61,488,73,581,84,634,102,686,126,735,158,779,174,792,170,796,154,782,122,738,97,688,79,635,67,582,56,488,55,426"/>
+<area shape="rect" href="rcopy_8c.html#aebfc0a1ce90f5edcd74978f9fb14738c" title=" " alt="" coords="213,201,266,227"/>
+<area shape="poly" title=" " alt="" coords="59,399,70,366,89,322,117,276,154,236,175,224,198,217,200,222,178,229,158,240,121,279,94,325,75,368,64,401"/>
+<area shape="rect" href="pollLib_8c.html#acc55adaa7f5a0b5d81a21d445e061cab" title=" " alt="" coords="395,351,545,376"/>
+<area shape="poly" title=" " alt="" coords="108,406,322,383,380,375,381,380,323,389,109,411"/>
+<area shape="rect" href="rcopy_8c.html#a08941fbf1565dcc64b72eb1d1eb0c166" title=" " alt="" coords="203,300,276,325"/>
+<area shape="poly" title=" " alt="" coords="70,397,106,366,155,334,189,321,191,326,157,339,110,370,73,402"/>
+<area shape="rect" href="rcopy_8c.html#abd2f9df67660e78f3c2a4677fd3f0ebf" title=" " alt="" coords="204,349,275,375"/>
+<area shape="poly" title=" " alt="" coords="103,397,190,373,192,378,104,402"/>
+<area shape="rect" href="rcopy_8c.html#a74c224849f2e81167392a0e1cc7c13c5" title=" " alt="" coords="188,251,291,276"/>
+<area shape="poly" title=" " alt="" coords="62,398,96,344,123,312,154,285,174,275,176,280,158,290,127,316,101,347,67,401"/>
+<area shape="rect" href="rcopy_8c.html#a387190aa9e9505d28a3b553a2eef3eb0" title="This function sends the filename to the server and waits for an ack." alt="" coords="182,500,297,525"/>
+<area shape="poly" title=" " alt="" coords="73,423,110,454,157,485,175,493,173,498,155,490,107,458,70,428"/>
+<area shape="rect" href="rcopy_8c.html#a2efeebdf7d4047f0b92a9987f07040e8" title=" " alt="" coords="189,451,290,476"/>
+<area shape="poly" title=" " alt="" coords="104,423,180,444,179,449,103,428"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="797,499,881,524"/>
+<area shape="poly" title=" " alt="" coords="704,734,727,717,747,696,775,655,798,612,828,536,833,538,803,614,780,658,751,700,730,721,708,738"/>
+<area shape="rect" href="rcopy_8c.html#ada1474e4a4da15c3ec2ad267ee35be11" title=" " alt="" coords="405,104,535,129"/>
+<area shape="poly" title=" " alt="" coords="258,199,307,169,370,138,391,131,393,136,372,143,310,173,261,203"/>
+<area shape="rect" href="helperFunctions_8c.html#aebde21270fc17c762b71c67899f1be92" title=" " alt="" coords="425,55,515,80"/>
+<area shape="poly" title=" " alt="" coords="249,199,296,146,331,115,369,89,411,74,413,79,372,94,334,119,300,149,253,203"/>
+<area shape="rect" href="windowing_8c.html#a346db43485fd75092bed4c26a4ee02c4" title=" " alt="" coords="396,153,544,179"/>
+<area shape="poly" title=" " alt="" coords="266,206,395,179,396,184,267,211"/>
+<area shape="poly" title=" " alt="" coords="267,213,296,220,324,236,336,249,343,262,349,288,355,313,361,324,372,336,384,344,381,348,369,340,357,328,350,315,344,289,338,264,332,252,321,240,294,225,266,219"/>
+<area shape="rect" href="helperFunctions_8c.html#a645bda7a3d32ee0a61119ac1393e9a25" title=" " alt="" coords="435,203,505,228"/>
+<area shape="poly" title=" " alt="" coords="266,211,421,212,421,218,266,217"/>
+<area shape="rect" href="helperFunctions_8c.html#a9144a44b0851b7286b7d88ea1405c0f0" title=" " alt="" coords="429,252,511,277"/>
+<area shape="poly" title=" " alt="" coords="267,217,416,250,415,255,266,222"/>
+<area shape="rect" href="helperFunctions_8c.html#a3d3d961ab944b1f79185cb6cf2264ae0" title=" " alt="" coords="629,203,738,228"/>
+<area shape="poly" title=" " alt="" coords="506,213,615,213,615,218,506,218"/>
+<area shape="rect" href="safeUtil_8c.html#a15983dc95bd227f94c4973f67c8a704f" title=" " alt="" coords="636,252,731,277"/>
+<area shape="poly" title=" " alt="" coords="506,221,623,248,622,253,505,226"/>
+<area shape="poly" title=" " alt="" coords="736,226,751,237,775,266,793,299,819,368,834,434,839,485,834,485,828,435,814,369,789,301,770,269,747,241,733,230"/>
+<area shape="rect" href="network-hooks_8c.html#a767819e79935cf81a761252b8986677b" title=" " alt="" coords="797,252,881,277"/>
+<area shape="poly" title=" " alt="" coords="731,262,784,262,784,267,731,267"/>
+<area shape="rect" href="classPacketManager.html#a26cdcee8e04d625b7d1361b3fcd0254a" title=" " alt="" coords="929,252,1128,277"/>
+<area shape="poly" title=" " alt="" coords="882,262,915,262,915,267,882,267"/>
+<area shape="rect" href="classPacketManager.html#a6628382d310d0e83e18219d76d3f9de9" title=" " alt="" coords="1193,227,1382,252"/>
+<area shape="poly" title=" " alt="" coords="1128,252,1179,247,1179,253,1129,258"/>
+<area shape="rect" href="classPacketManager.html#ae1e0a919fdc6e14064eaf6a53d0e73db" title=" " alt="" coords="1176,276,1399,301"/>
+<area shape="poly" title=" " alt="" coords="1128,271,1163,274,1162,280,1128,277"/>
+<area shape="rect" href="classPacketManager.html#ab3effbe1c45549d1bcc9bc78e0d0644d" title=" " alt="" coords="1447,276,1668,301"/>
+<area shape="poly" title=" " alt="" coords="1399,286,1433,286,1433,291,1399,291"/>
+<area shape="poly" title=" " alt="" coords="511,262,622,262,622,267,511,267"/>
+<area shape="rect" href="helperFunctions_8c.html#a598d604bdca13e5f39b6bc89f8947ae4" title=" " alt="" coords="623,375,743,400"/>
+<area shape="poly" title=" " alt="" coords="512,267,541,275,571,286,598,303,624,323,664,363,660,366,620,327,595,308,568,291,540,280,511,273"/>
+<area shape="poly" title=" " alt="" coords="702,398,813,488,810,492,699,402"/>
+<area shape="poly" title=" " alt="" coords="276,307,300,299,321,285,334,268,341,250,343,213,346,176,354,157,369,139,391,125,394,129,372,143,358,160,351,177,349,214,346,251,339,270,324,289,302,304,277,312"/>
+<area shape="poly" title=" " alt="" coords="276,307,300,300,321,285,337,262,345,238,345,213,343,189,341,164,342,139,351,114,369,89,389,76,411,68,413,73,391,81,373,93,355,117,348,140,346,164,349,188,351,213,350,239,342,264,325,289,302,304,277,312"/>
+<area shape="poly" title=" " alt="" coords="275,306,299,298,321,285,332,274,338,262,344,238,350,213,357,200,369,188,382,179,385,184,372,192,361,203,355,215,349,239,343,264,336,277,324,289,301,303,277,311"/>
+<area shape="poly" title=" " alt="" coords="275,303,299,296,321,285,335,274,344,261,354,249,369,237,394,226,420,219,422,224,396,231,372,242,358,253,349,265,339,277,324,290,301,301,277,308"/>
+<area shape="poly" title=" " alt="" coords="276,303,414,273,416,279,277,308"/>
+<area shape="rect" href="windowing_8c.html#ac116b00342a2182d7330b60f6fe5808d" title=" " alt="" coords="371,301,569,327"/>
+<area shape="poly" title=" " alt="" coords="276,310,357,311,357,316,276,316"/>
+<area shape="rect" href="pollLib_8c.html#aaa2d69f7f902e1213b304b3c35153add" title=" " alt="" coords="435,400,505,425"/>
+<area shape="poly" title=" " alt="" coords="277,316,301,323,324,334,340,347,349,361,358,373,372,385,396,396,422,403,420,409,394,401,369,390,354,377,344,364,336,351,321,339,299,328,275,321"/>
+<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="413,449,527,475"/>
+<area shape="poly" title=" " alt="" coords="277,314,301,321,324,335,336,347,343,360,349,386,355,411,361,423,372,435,401,450,399,455,369,439,357,426,350,413,344,387,338,362,332,350,321,339,299,326,275,319"/>
+<area shape="rect" href="helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c" title=" " alt="" coords="407,499,533,524"/>
+<area shape="poly" title=" " alt="" coords="277,313,302,320,324,335,339,354,347,373,349,411,351,449,358,467,372,484,395,498,392,503,369,488,354,469,346,450,344,412,341,374,335,356,321,339,300,325,276,318"/>
+<area shape="poly" title=" " alt="" coords="534,509,784,509,784,514,534,514"/>
+<area shape="poly" title=" " alt="" coords="274,355,299,348,321,335,332,323,338,312,344,287,350,262,357,249,369,237,394,223,420,216,422,221,396,228,372,241,361,253,355,264,349,288,343,313,336,326,324,339,301,353,276,360"/>
+<area shape="poly" title=" " alt="" coords="274,353,298,345,321,334,335,323,344,311,354,298,369,286,414,270,416,275,372,291,358,302,349,314,339,327,324,339,300,350,276,358"/>
+<area shape="poly" title=" " alt="" coords="274,352,394,327,395,332,275,357"/>
+<area shape="poly" title=" " alt="" coords="275,367,421,399,420,405,274,372"/>
+<area shape="poly" title=" " alt="" coords="261,373,310,403,372,434,401,444,399,449,370,439,307,408,258,377"/>
+<area shape="poly" title=" " alt="" coords="257,373,325,436,347,462,357,473,372,484,395,494,393,499,369,488,353,477,343,466,321,440,253,377"/>
+<area shape="poly" title=" " alt="" coords="290,250,321,236,335,224,344,212,354,200,369,188,383,181,385,186,372,192,358,203,349,215,339,228,324,240,292,254"/>
+<area shape="poly" title=" " alt="" coords="292,271,324,285,340,298,349,311,358,324,372,336,388,343,385,348,369,340,354,328,344,314,336,302,321,290,290,276"/>
+<area shape="poly" title=" " alt="" coords="290,250,421,223,422,228,291,255"/>
+<area shape="poly" title=" " alt="" coords="291,261,415,262,415,267,291,266"/>
+<area shape="poly" title=" " alt="" coords="291,272,399,296,397,301,290,277"/>
+<area shape="rect" href="windowing_8c.html#a1007f6c09c1a4518a08726dffb2a0c2f" title=" " alt="" coords="401,5,539,31"/>
+<area shape="poly" title=" " alt="" coords="290,254,307,247,321,236,337,212,345,188,345,164,343,140,341,115,342,90,351,65,369,40,386,28,389,32,373,44,355,67,348,91,346,115,349,139,351,164,350,189,342,215,325,240,309,252,292,259"/>
+<area shape="poly" title=" " alt="" coords="295,500,321,485,332,474,338,462,344,436,350,411,357,398,369,385,381,377,384,382,372,389,361,401,355,413,349,438,343,463,336,477,324,489,298,504"/>
+<area shape="poly" title=" " alt="" coords="251,524,270,549,297,580,332,610,372,633,428,655,476,666,498,666,520,661,543,651,568,633,594,604,608,575,611,544,609,512,601,442,603,403,615,361,636,320,660,286,665,290,641,323,620,363,609,404,606,442,614,512,617,544,613,576,599,607,571,637,546,655,522,666,499,672,475,671,426,660,370,638,329,615,294,584,266,553,247,527"/>
+<area shape="poly" title=" " alt="" coords="295,498,321,485,336,473,344,460,354,447,369,434,394,423,420,416,421,421,396,428,372,439,358,451,349,463,339,476,324,490,297,502"/>
+<area shape="poly" title=" " alt="" coords="296,498,399,475,400,480,298,503"/>
+<area shape="poly" title=" " alt="" coords="297,510,393,509,393,514,297,515"/>
+<area shape="rect" href="pollLib_8c.html#a963075ea184857285cc940df3c7c7e4a" title=" " alt="" coords="417,548,523,573"/>
+<area shape="poly" title=" " alt="" coords="298,522,404,544,403,550,296,527"/>
+<area shape="rect" href="helperFunctions_8c.html#a58fabc255a5ebbdb36c5565096d6ebee" title="Create a Ack PDU object." alt="" coords="626,660,741,685"/>
+<area shape="poly" title=" " alt="" coords="248,524,264,557,290,601,326,644,348,662,372,677,403,689,436,697,505,702,570,697,625,686,626,691,570,702,505,707,435,702,402,694,369,682,345,667,323,648,286,604,259,560,243,527"/>
+<area shape="rect" href="networks_8c.html#a3bb9c2213390dee4d057e3589562696b" title=" " alt="" coords="381,597,559,623"/>
+<area shape="poly" title=" " alt="" coords="262,523,311,553,372,582,397,591,396,596,370,587,308,557,259,528"/>
+<area shape="poly" title=" " alt="" coords="711,658,748,633,791,583,822,535,827,538,795,586,751,637,714,662"/>
+<area shape="rect" href="gethostbyname_8c.html#ac6e1975d9b2e67292680f9d8e98b35d1" title=" " alt="" coords="617,597,749,623"/>
+<area shape="poly" title=" " alt="" coords="559,607,604,607,604,613,559,613"/>
+<area shape="poly" title=" " alt="" coords="281,448,321,429,335,418,344,407,354,396,369,385,384,378,386,383,372,390,358,400,348,410,339,422,324,434,283,453"/>
+<area shape="poly" title=" " alt="" coords="290,450,420,421,422,426,291,455"/>
+<area shape="poly" title=" " alt="" coords="290,460,400,460,400,465,290,466"/>
+<area shape="poly" title=" " alt="" coords="291,471,396,493,394,498,290,476"/>
+<area shape="poly" title=" " alt="" coords="291,471,324,485,339,497,349,510,358,522,372,533,405,547,403,552,369,538,354,526,344,513,336,501,321,490,289,476"/>
+<area shape="poly" title=" " alt="" coords="291,468,309,475,324,485,336,498,343,510,349,536,355,560,362,571,372,583,381,589,378,593,369,587,357,575,350,562,344,537,338,512,332,501,321,489,306,480,289,473"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2efeebdf7d4047f0b92a9987f07040e8" name="a2efeebdf7d4047f0b92a9987f07040e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2efeebdf7d4047f0b92a9987f07040e8">&#9670;&#160;</a></span>waitForData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int waitForData </td>
+          <td>(</td>
+          <td class="paramtype">struct sockaddr_in6 *&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *&#160;</td>
+          <td class="paramname"><em>pduBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>pduLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structClientConfig.html">ClientConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td></td></tr>
+    <tr><td class="paramname">pduBuffer</td><td></td></tr>
+    <tr><td class="paramname">pduLength</td><td></td></tr>
+    <tr><td class="paramname">config</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="rcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8_cgraph.png" border="0" usemap="#arcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8_cgraph" alt=""/></div>
+<map name="arcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8_cgraph" id="arcopy_8c_a2efeebdf7d4047f0b92a9987f07040e8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,129,107,155"/>
+<area shape="rect" href="pollLib_8c.html#a963075ea184857285cc940df3c7c7e4a" title=" " alt="" coords="191,5,297,31"/>
+<area shape="poly" title=" " alt="" coords="64,127,100,84,125,60,153,40,177,29,179,34,156,44,128,64,104,88,68,131"/>
+<area shape="rect" href="pollLib_8c.html#aaa2d69f7f902e1213b304b3c35153add" title=" " alt="" coords="209,55,279,80"/>
+<area shape="poly" title=" " alt="" coords="78,127,154,89,194,76,196,81,156,94,80,132"/>
+<area shape="rect" href="pollLib_8c.html#acc55adaa7f5a0b5d81a21d445e061cab" title=" " alt="" coords="169,104,319,129"/>
+<area shape="poly" title=" " alt="" coords="107,133,154,126,155,131,107,138"/>
+<area shape="rect" href="safeUtil_8c.html#a63f2db5253b1616ae85fe2b161c46966" title=" " alt="" coords="187,153,301,179"/>
+<area shape="poly" title=" " alt="" coords="107,146,174,154,173,160,107,151"/>
+<area shape="rect" href="networks_8c.html#a3bb9c2213390dee4d057e3589562696b" title=" " alt="" coords="155,203,333,228"/>
+<area shape="poly" title=" " alt="" coords="82,152,156,188,181,196,179,201,154,192,79,157"/>
+<area shape="rect" href="helperFunctions_8c.html#a3853f2e3eba762d1409c17397eb3667c" title=" " alt="" coords="181,252,307,277"/>
+<area shape="poly" title=" " alt="" coords="69,153,104,195,129,217,156,237,171,245,169,249,153,242,125,222,100,198,65,157"/>
+<area shape="rect" href="gethostbyname_8c.html#ac6e1975d9b2e67292680f9d8e98b35d1" title=" " alt="" coords="381,203,513,228"/>
+<area shape="poly" title=" " alt="" coords="333,213,368,213,368,218,333,218"/>
+<area shape="rect" href="checksum_8c.html#a5e4cd95c89adfdd7e4bdad48b0b7aa9f" title="This is the checksum function. It calculates the checksum of a given buffer." alt="" coords="405,252,489,277"/>
+<area shape="poly" title=" " alt="" coords="308,262,392,262,392,267,308,267"/>
 </map>
 </div>
 

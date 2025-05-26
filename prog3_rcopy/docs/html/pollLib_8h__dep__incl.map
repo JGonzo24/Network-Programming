@@ -1,5 +1,9 @@
 <map id="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/pollLib.h" name="/home/joshua/Network&#45;Programming&#45;3/prog3_rcopy/pollLib.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,175,60"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="199,5,368,60"/>
 <area shape="rect" id="Node000002" href="$pollLib_8c.html" title="Library to interface with the poll() system call." alt="" coords="5,108,175,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,74,93,108,87,108,87,74"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,69,142,110,139,106,220,64"/>
+<area shape="rect" id="Node000003" href="$rcopy_8c.html" title="This is a simple UDP client program that sends data to a server." alt="" coords="199,108,368,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="286,74,286,108,281,108,281,74"/>
+<area shape="rect" id="Node000004" href="$server_8c.html" title="Simple UDP server that listens for messages and echoes back byte counts." alt="" coords="392,108,561,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="347,64,428,106,425,110,344,69"/>
 </map>

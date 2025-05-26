@@ -1,0 +1,42 @@
+\doxysection{/home/joshua/\+Network-\/\+Programming-\/3/prog3\+\_\+rcopy/helper\+Functions.h}
+\hypertarget{helperFunctions_8h_source}{}\label{helperFunctions_8h_source}\mbox{\hyperlink{helperFunctions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ HELPERFUNCTIONS\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ HELPERFUNCTIONS\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sys/types.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{libcpe464_2userfiles_2checksum_8h}{checksum.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <arpa/inet.h>}\ \textcolor{comment}{//\ For\ htons\ and\ ntohs}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <netinet/in.h>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ MAXBUF\ 1407}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MAXPAYLOAD\ 1400}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ ACKBUF\ 8}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{helperFunctions_8h_a9268bec9c3046f00be5e1a834e94d85f}{createPDU}}(uint8\_t*\ pduBuffer,\ uint32\_t\ sequenceNumber,\ uint8\_t\ flag,\ uint8\_t*\ payload,\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ payloadLen,\ \textcolor{keywordtype}{int}\ windowSize,\ int16\_t\ bufferSize);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{helperFunctions_8h_a552c68a8a02a85a4a23bfbeea5563a42}{printPDU}}(uint8\_t*\ pduBuffer,\ \textcolor{keywordtype}{int}\ pduLength);}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{helperFunctions_8h_a58fabc255a5ebbdb36c5565096d6ebee}{createAckPDU}}(uint8\_t*\ ackBuff,\ uint32\_t\ sequenceNumber,\ uint8\_t\ flag);}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{helperFunctions_8h_aebde21270fc17c762b71c67899f1be92}{printBytes}}(\textcolor{keyword}{const}\ uint8\_t*\ buffer,\ \textcolor{keywordtype}{int}\ length);}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{helperFunctions_8h_a3853f2e3eba762d1409c17397eb3667c}{verifyChecksum}}(\textcolor{keyword}{const}\ uint8\_t\ *buffer,\ \textcolor{keywordtype}{int}\ length);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{helperFunctions_8h_a3d3d961ab944b1f79185cb6cf2264ae0}{createRRPDU}}(uint8\_t*\ rrBuff,\ uint32\_t\ sequenceNumber,\ uint8\_t\ flag,\ uint32\_t\ rrSequenceNumber);}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{helperFunctions_8h_a598d604bdca13e5f39b6bc89f8947ae4}{createSREJPDU}}(uint8\_t*\ srejBuff,\ uint32\_t\ sequenceNumber,\ uint8\_t\ flag,\ uint32\_t\ srejSequenceNumber);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{helperFunctions_8h_a645bda7a3d32ee0a61119ac1393e9a25}{sendRR}}(\textcolor{keywordtype}{int}\ socketNum,\ \textcolor{keyword}{struct}\ sockaddr\_in6\ *server,\ uint32\_t\ nextDataSeq);}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{helperFunctions_8h_a9144a44b0851b7286b7d88ea1405c0f0}{sendSREJ}}(\textcolor{keywordtype}{int}\ socketNum,\ \textcolor{keyword}{struct}\ sockaddr\_in6\ *server,\ uint32\_t\ srejSeq);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ HELPERFUNCTIONS\_H}}
+
+\end{DoxyCode}
