@@ -462,7 +462,6 @@ STATE sendData(int socketNum,
         // cleanup
         destroySenderWindow(&W);
         fclose(fp);
-        free(data_file);
         removeFromPollSet(socketNum);
         close(socketNum);
         return DONE;
