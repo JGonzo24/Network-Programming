@@ -54,19 +54,19 @@ void addPacketToWindow(SenderWindow* window, Packet* packet)
     window->buffer[index] = *packet;
 }
 
-int windowIsFull(SenderWindow* window)
+int windowIsEmpty(SenderWindow* window)
 {
-    if (window->current >= window->upper)
+    if (window->current == window->upper)
     {
-        return 1;
+        return 1; // Window is empty
     }
-    else
-    {
-        return 0;
-    }
+    return 0; // Window is not empty
 }
 
-
+int windowIsOpen(SenderWindow* window)
+{
+    return ((int)(window->current - window->lower) < window->windowSize);
+}
   
 void printWindow(SenderWindow* window)
 {

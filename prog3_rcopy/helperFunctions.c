@@ -64,8 +64,7 @@ int createPDU(uint8_t *pduBuffer, uint32_t sequenceNumber, uint8_t flag, uint8_t
 
     // Compute checksum over the entire PDU
     uint16_t checksum = in_cksum((unsigned short *)pduBuffer, index);
-    // Convert checksum to network byte order
-    checksum = htons(checksum);
+
     // Store the checksum in the previously reserved spot (after the sequence number)
     memcpy(pduBuffer + sizeof(sequenceNumber), &checksum, sizeof(checksum));
 
@@ -85,7 +84,7 @@ void printPDU(uint8_t *pduBuffer, int pduLength)
     // Extract the sequence number
     uint32_t sequenceNumber;
     memcpy(&sequenceNumber, pduBuffer, sizeof(sequenceNumber));
-    sequenceNumber = ntohs(sequenceNumber);
+    sequenceNumber = ntohl(sequenceNumber);
     printf("Sequence Number: %u\n", sequenceNumber);
     index += sizeof(sequenceNumber);
 
@@ -171,6 +170,7 @@ int createAckPDU(uint8_t *ackBuff, uint32_t sequenceNumber, uint8_t flag)
 
     // Compute checksum over the entire ACK packet
     uint16_t checksum = in_cksum((unsigned short *)ackBuff, ackLength);
+
     // Store the checksum in the previously reserved spot (after the sequence number)
     memcpy(ackBuff + sizeof(sequenceNumber), &checksum, sizeof(checksum));
 
@@ -190,8 +190,9 @@ bool verifyChecksum(const uint8_t *buffer, int length)
 {
     // Extract the transmitted checksum
     uint16_t transmittedChecksum;
+
+    // +4 to skip the sequence number (4 bytes)
     memcpy(&transmittedChecksum, buffer + 4, sizeof(transmittedChecksum));
-    transmittedChecksum = ntohs(transmittedChecksum);
 
     // Create a copy of the buffer and zero out the checksum field
     uint8_t bufferCopy[length];
@@ -200,7 +201,16 @@ bool verifyChecksum(const uint8_t *buffer, int length)
     // Calculate the checksum over the entire buffer
     uint16_t calculatedChecksum = in_cksum((unsigned short *)bufferCopy, length);
 
-    return (transmittedChecksum == calculatedChecksum);
+    if (calculatedChecksum == transmittedChecksum)
+    {
+        printf("Checksum verification successful.\n");
+        return true; // Checksum matches
+    }
+    else
+    {
+        printf("Checksum verification failed: calculated %u, transmitted %u\n", calculatedChecksum, transmittedChecksum);
+        return false; // Checksum does not match
+    }
 }
 
 // Create the RR PDU
@@ -229,6 +239,7 @@ int createRRPDU(uint8_t *rrBuff, uint32_t sequenceNumber, uint8_t flag, uint32_t
 
     // Add the checksum back in
     uint16_t checksum = in_cksum((unsigned short *)rrBuff, index);
+    // Convert checksum to network byte order
     memcpy(rrBuff + sizeof(sequenceNumber), &checksum, sizeof(checksum));
 
     // Return the length of the RR PDU

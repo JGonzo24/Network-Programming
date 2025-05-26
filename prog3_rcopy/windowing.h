@@ -46,8 +46,10 @@ void destroySenderWindow(SenderWindow* window);
 void addPacketToWindow(SenderWindow* window, Packet* packet);
 void removePacketFromWindow(SenderWindow* window, uint32_t seqNum);
 void printWindow(SenderWindow* window);
-int windowIsFull(SenderWindow* window);
 void printAllPacketsInWindow(SenderWindow *window);
+int windowIsEmpty(SenderWindow* window);
+int windowIsOpen(SenderWindow* window);
+
 
 
 void initReceiverBuffer(ReceiverBuffer* receiverBuffer, int windowSize);
