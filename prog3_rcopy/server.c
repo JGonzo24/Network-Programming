@@ -353,7 +353,6 @@ STATE sendData(int socketNum,
                 else
                 {
                     perror("Error reading from file");
-                    fclose(fp);
                     return DONE;
                 }
                 break;
@@ -366,7 +365,6 @@ STATE sendData(int socketNum,
             if (sent < 0)
             {
                 perror("Error sending data PDU");
-                fclose(fp);
                 return DONE;
             }
 
@@ -409,7 +407,7 @@ STATE sendData(int socketNum,
                 if (count >= 10)
                 {
                     printf("Too many timeouts waiting for RR/SREJ → aborting\n");
-                    fclose(fp);
+
                     return DONE;
                 }
             }
@@ -434,7 +432,7 @@ STATE sendData(int socketNum,
                 if (++retries >= 10)
                 {
                     printf("Too many retries draining window → abort\n");
-                    fclose(fp);
+
                     return DONE;
                 }
             }
@@ -460,8 +458,6 @@ STATE sendData(int socketNum,
         }
 
         // cleanup
-        destroySenderWindow(&W);
-        fclose(fp);
         removeFromPollSet(socketNum);
         close(socketNum);
         return DONE;

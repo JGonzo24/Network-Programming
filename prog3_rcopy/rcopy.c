@@ -174,6 +174,7 @@ void talkToServer(struct sockaddr_in6 *server, ClientConfig config)
 		fclose(outputFile);
 		outputFile = NULL;
 	}
+	destroyReceiverBuffer(&receiverBuffer);
 	removeFromPollSet(socketNum);
 	close(socketNum);
 	exit(0);

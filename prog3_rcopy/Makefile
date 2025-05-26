@@ -14,6 +14,8 @@ OBJS = networks.o gethostbyname.o pollLib.o safeUtil.o helperFunctions.o windowi
 #uncomment next two lines if your using sendtoErr() library
 LIBS += libcpe464.2.21.a -lstdc++ -ldl
 CFLAGS += -D__LIBCPE464_ -std=gnu99
+VFLAGS= --tool=memcheck --leak-check=full --track-origins=yes --show-reachable=yes --trace-children=yes
+ERR_RATE ?= 0.1
 
 
 all: udpAll
@@ -42,6 +44,15 @@ cleano:
 clean:
 	rm -f myServer myClient rcopy server *.o
 
+### valgrind targets ###
+.PHONY: vg-rcopy vg-server
 
+vg-rcopy: rcopy
+	@echo "Running rcopy under Valgrind…"
+	valgrind $(VFLAGS) ./rcopy <args-to-rcopy>
+
+vg-server: server
+	@echo "Running server under Valgrind…"
+	valgrind $(VFLAGS) ./server $(ERR_RATE) 
 
 

@@ -34,6 +34,7 @@ void initSenderWindow(SenderWindow* window, int windowSize) {;
  * @param window 
  */
 void destroySenderWindow(SenderWindow* window) {
+    free(window->buffer);
     window->buffer = NULL;
     window->upper = 0;
     window->lower = 0;
@@ -145,6 +146,7 @@ void initReceiverBuffer(ReceiverBuffer *buffer, int bufferSize)
  */
 void destroyReceiverBuffer(ReceiverBuffer *buffer)
 {
+    free(buffer->buffer);
     buffer->buffer = NULL;
     buffer->size = 0;
     buffer->count = 0;
