@@ -1,16 +1,4 @@
-# <CPE464 Lab week 6 - UDP and sendtoErr()>
-Joshua Gonzalez Lab Wednesday 3:00 pm 
-> Creation of createPDU() and printPDU() as well as integration of sentoErr() functions
-## Table of Contents
+Name: Joshua Gonzalez
+Lab Section: 3pm
 
-
-
-## About
-
-
-## Features
-
-## Getting Started
-
-### Prerequisites
 

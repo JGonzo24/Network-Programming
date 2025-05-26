@@ -9,23 +9,12 @@
 
 #include "windowing.h"
 
-
-
-// Function prototypes
-
-
-
-
-
-
-// Function definitions
-
-/*
-- build a buffer of data, this is going to be of size WINDOW_SIZE, which is an input to this function
-- this must be a flat array 
-- circular buffer
-*/
-
+/**
+ * @brief 
+ * 
+ * @param window 
+ * @param windowSize 
+ */
 void initSenderWindow(SenderWindow* window, int windowSize) {;
     window->lower = 0;
     window->current = 0;
@@ -39,6 +28,11 @@ void initSenderWindow(SenderWindow* window, int windowSize) {;
     }
 }
 
+/**
+ * @brief 
+ * 
+ * @param window 
+ */
 void destroySenderWindow(SenderWindow* window) {
     free(window->buffer);
     window->buffer = NULL;
@@ -48,12 +42,24 @@ void destroySenderWindow(SenderWindow* window) {
     window->windowSize = 0;
 }
 
+/**
+ * @brief 
+ * 
+ * @param window 
+ * @param packet 
+ */
 void addPacketToWindow(SenderWindow* window, Packet* packet)
 {
     int index = packet->seqNum % window->windowSize;
     window->buffer[index] = *packet;
 }
 
+/**
+ * @brief 
+ * 
+ * @param window 
+ * @return int 
+ */
 int windowIsEmpty(SenderWindow* window)
 {
     if (window->current == window->upper)
@@ -63,11 +69,22 @@ int windowIsEmpty(SenderWindow* window)
     return 0; // Window is not empty
 }
 
+/**
+ * @brief 
+ * 
+ * @param window 
+ * @return int 
+ */
 int windowIsOpen(SenderWindow* window)
 {
     return ((int)(window->current - window->lower) < window->windowSize);
 }
   
+/**
+ * @brief 
+ * 
+ * @param window 
+ */
 void printWindow(SenderWindow* window)
 {
     printf("Sender Window:\n");
@@ -78,6 +95,11 @@ void printWindow(SenderWindow* window)
     }
 }
 
+/**
+ * @brief 
+ * 
+ * @param window 
+ */
 void printAllPacketsInWindow(SenderWindow *window)
 {
     printf("Packets in Sender Window:\n");
@@ -90,7 +112,13 @@ void printAllPacketsInWindow(SenderWindow *window)
     }
 }
 
-// Init the receiver buffer, this doesn't need to be a circular buffer
+
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ * @param bufferSize 
+ */
 void initReceiverBuffer(ReceiverBuffer *buffer, int bufferSize)
 {
     buffer->buffer = (Packet*)calloc(bufferSize, sizeof(Packet));
@@ -111,7 +139,11 @@ void initReceiverBuffer(ReceiverBuffer *buffer, int bufferSize)
     }
 }
 
-
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ */
 void destroyReceiverBuffer(ReceiverBuffer *buffer)
 {
     free(buffer->buffer);
@@ -121,12 +153,23 @@ void destroyReceiverBuffer(ReceiverBuffer *buffer)
     buffer->nextSeqNum = 0;
 }
 
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ * @param packet 
+ */
 void addPacketToReceiverBuffer(ReceiverBuffer *buffer, Packet *packet)
 {
     int index = packet->seqNum % buffer->size;
     buffer->buffer[index] = *packet;
 }
 
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ */
 void printReceiverBuffer(ReceiverBuffer *buffer)
 {
     printf("Receiver Buffer:\n");

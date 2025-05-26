@@ -177,6 +177,12 @@ int createAckPDU(uint8_t *ackBuff, uint32_t sequenceNumber, uint8_t flag)
     return ackLength;
 }
 
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ * @param length 
+ */
 void printBytes(const uint8_t *buffer, int length)
 {
     for (int i = 0; i < length; i++)
@@ -186,6 +192,14 @@ void printBytes(const uint8_t *buffer, int length)
     printf("\n");
 }
 
+/**
+ * @brief 
+ * 
+ * @param buffer 
+ * @param length 
+ * @return true 
+ * @return false 
+ */
 bool verifyChecksum(const uint8_t *buffer, int length)
 {
     // Extract the transmitted checksum
@@ -214,7 +228,15 @@ bool verifyChecksum(const uint8_t *buffer, int length)
 }
 
 // Create the RR PDU
-
+/**
+ * @brief 
+ * 
+ * @param rrBuff 
+ * @param sequenceNumber 
+ * @param flag 
+ * @param rrSequenceNumber 
+ * @return int 
+ */
 int createRRPDU(uint8_t *rrBuff, uint32_t sequenceNumber, uint8_t flag, uint32_t rrSequenceNumber)
 {
     // First is the packet sequence number
@@ -246,6 +268,15 @@ int createRRPDU(uint8_t *rrBuff, uint32_t sequenceNumber, uint8_t flag, uint32_t
     return index;
 }
 
+/**
+ * @brief 
+ * 
+ * @param srejBuff 
+ * @param sequenceNumber 
+ * @param flag 
+ * @param srejSequenceNumber 
+ * @return int 
+ */
 int createSREJPDU(uint8_t *srejBuff, uint32_t sequenceNumber, uint8_t flag, uint32_t srejSequenceNumber)
 {
     // First is the packet sequence number
@@ -278,6 +309,14 @@ int createSREJPDU(uint8_t *srejBuff, uint32_t sequenceNumber, uint8_t flag, uint
     return index; // Should be 11 bytes total
 }
 
+/**
+ * @brief 
+ * 
+ * @param socketNum 
+ * @param server 
+ * @param nextDataSeq 
+ * @return int 
+ */
 int sendRR(int socketNum, struct sockaddr_in6 *server, uint32_t nextDataSeq)
 {
     ackPduSeq++;
@@ -292,6 +331,14 @@ int sendRR(int socketNum, struct sockaddr_in6 *server, uint32_t nextDataSeq)
     return bytesSent;
 }
 
+/**
+ * @brief 
+ * 
+ * @param socketNum 
+ * @param server 
+ * @param srejSeq 
+ * @return int 
+ */
 int sendSREJ(int socketNum, struct sockaddr_in6 *server, uint32_t srejSeq)
 {
     ackPduSeq++;
@@ -305,4 +352,3 @@ int sendSREJ(int socketNum, struct sockaddr_in6 *server, uint32_t srejSeq)
     }
     return bytesSent;
 }
-
