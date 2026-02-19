@@ -97,7 +97,6 @@ int recvPDU(int socketNumber, uint8_t *dataBuffer, int bufferSize) {
     // 2. Receive the rest of the data (the payload)
     received_bytes = safeRecv(socketNumber, dataBuffer, pdu_length_read-2, MSG_WAITALL);
     
-    // parse out the flag
     if (received_bytes == 0) {
         printf("There is nothing to read! Connection closed by client.\n");
         return 0;
