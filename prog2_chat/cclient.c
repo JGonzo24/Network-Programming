@@ -37,6 +37,7 @@
 char sender_handle[MAX_HANDLE_LEN] = {0}; // Global variable to store the sender handle
 volatile int listInProgress = 0; // Flag to indicate if a list is in progress
 
+/* Parse what command that client would like to send */
 CommandType parseCommand(char *buffer)
 {
 	// Trim leading and trailing spaces
